@@ -11,7 +11,7 @@
         // Register User
         public function register($data)
         {
-            $this->db->query('INSERT INTO users(name, email, password) VALUES (:name, :email, :password)');
+            $this->db->query('INSERT INTO users(username, email, password) VALUES (:name, :email, :password)');
             // Bind values
             $this->db->bind(':name', $data['name']);
             $this->db->bind(':email', $data['email']);
@@ -62,7 +62,7 @@
         // Get User by ID
         public function getUserById($id)
         {
-            $this->db->query('SELECT * FROM users WHERE id = :id');
+            $this->db->query('SELECT * FROM users WHERE id_user = :id');
             // Bind value
             $this->db->bind(':id', $id);
 
