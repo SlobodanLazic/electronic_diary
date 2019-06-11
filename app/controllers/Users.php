@@ -137,7 +137,6 @@
                     // Validated
                     // Check and set logged in user
                     $loggedInUser = $this->userModel->login($data['email'], $data['password']);
-
                     if ($loggedInUser) {
                         // Create Session
                         $this->createUserSession($loggedInUser);
@@ -173,6 +172,26 @@
             $_SESSION['user_id'] = $user->id;
             $_SESSION['user_email'] = $user->email;
             $_SESSION['user_name'] = $user->name;
+            $_SESSION['id_user_role'] = $user->id_user_role;
+
+            switch($_SESSION['id_user_role'])
+            {
+                case 1:
+                    redirect('adminDashboard');
+                    break;
+                case 2:
+                    redirect('director');
+                    break;
+                case 3:
+                    redirect('teacher');
+                    break;
+                case 4:
+                    redirect('parent');
+                    break;
+                default:
+                    redirect('home');
+
+            }
             redirect('posts');
         }
 
