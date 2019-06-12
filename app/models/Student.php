@@ -39,6 +39,9 @@
         // }
 
 
+
+        
+
         public function insertStudent(){
 
             $this->db->query('INSERT INTO students (first_name , last_name , id_class) VALUES (:first_name , :last_name , :id_class)');
