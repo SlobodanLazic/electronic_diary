@@ -69,6 +69,11 @@ class Students extends Controller
         }
       } else {
         // Load view with errors
+
+        $classes = $this->studentModel->showAllClasses();
+
+        $data['classes'] = $classes;
+
         $this->view('admin/students/insert', $data);
       }
     } else {
