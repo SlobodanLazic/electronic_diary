@@ -167,6 +167,22 @@
             }
         }
 
+        public function ChangeUsernameAndPassword($id)
+        {
+            if($_SERVER['REQUEST_METHOD'] == 'POST')
+            {
+                //validating user input at first
+                $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+
+                $data = [
+                    'name' => htmlspecialchars(trim($_POST['name'])),
+                    'password' => htmlspecialchars(trim($_POST['password'])),
+                    'email' => htmlspecialchars(trim($_POST['email'])
+                ];
+                
+            }
+        }
+
         public function createUserSession($user)
         {
             $_SESSION['user_id'] = $user->id;
