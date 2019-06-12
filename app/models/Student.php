@@ -8,39 +8,6 @@
             $this->db = new Database();
         }
 
-       
-        // // Find user by email
-        // public function findUserByEmail($email)
-        // {
-        //     $this->db->query('SELECT * FROM users WHERE email = :email');
-        //     // Bind value
-        //     $this->db->bind(':email', $email);
-
-        //     $row = $this->db->single();
-
-        //     // Check row
-        //     if ($this->db->rowCount() > 0) {
-        //         return true;
-        //     } else {
-        //         return false;
-        //     }
-        // }
-
-        // // Get User by ID
-        // public function getUserById($id)
-        // {
-        //     $this->db->query('SELECT * FROM users WHERE id_user = :id');
-        //     // Bind value
-        //     $this->db->bind(':id', $id);
-
-        //     $row = $this->db->single();
-
-        //     return $row;
-        // }
-
-
-
-        
 
         public function insertStudent(){
 
@@ -62,11 +29,27 @@
         }
 
         
-        public  function showStudents(){
+        public  function showAllStudents(){
 
+            $this->db->query('SELECT * FROM students');
 
+            $users = $this->db->resultSet();
 
-            
+            return $users;
+
+        
+        }
+
+        public function getStudentById($id_student){
+
+            $this->db->query('SELECT * FROM students WHERE id_student = :id_student');
+
+            $this->db->bind(':id_student', $id);
+
+            $row = $this->db->single();
+
+            return $row;
+
         }
 
     }
