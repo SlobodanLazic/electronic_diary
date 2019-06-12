@@ -20,8 +20,4 @@
       $this->view('pages/about', $data);
     }
 	
-	   public function admin(){
-
-      $this->view('admin/index');
-    }
   }

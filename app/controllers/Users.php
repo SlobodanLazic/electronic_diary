@@ -204,6 +204,11 @@
             redirect('users/login');
         }
 
+        public function admin(){
+
+            $this->view('admin/index');
+          }
+
     }
 ?>
     
