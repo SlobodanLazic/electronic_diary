@@ -171,7 +171,7 @@ class Users extends Controller
             $data = [
                 'name' => htmlspecialchars(trim($_POST['name'])),
                 'password' => htmlspecialchars(trim($_POST['password'])),
-                'email' => htmlspecialchars(trim($_POST['email'])
+                'email' => htmlspecialchars(trim($_POST['email']))
             ];
         }
     }
@@ -211,9 +211,7 @@ class Users extends Controller
         redirect('users/login');
     }
 
-    publi
-    c fu
-      nction admin(){
+    public function admin(){
 
     $this->view('admin/index');
 }
