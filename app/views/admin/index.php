@@ -128,10 +128,10 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Users <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
-                        <a href="#">Insert User</a>
+                        <a href="#/!">Insert User</a>
                     </li>
                     <li>
-                        <a href="#">Edit User</a>
+                        <a href="#!test">Edit User</a>
                     </li>
                     <li>
                         <a href="#">Delete User</a>
@@ -232,7 +232,7 @@
 
         <!-- Page Heading -->
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12" ng-view>
                 <h1 class="page-header">
                     Blank Page
                 </h1>
