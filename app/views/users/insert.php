@@ -1,9 +1,8 @@
-
     <div class="row">
        <div class="col-md-6 mx-auto">
             <div class="card card-body bg-light mt-5">
                 <h2>Insert User</h2>
-                <p>Please fill out this form to register with us</p>
+                <p>Please fill out this form to insert user</p>
                 <form action="<?php echo URLROOT; ?>/users/admin/insert" method="post">
                     <div class="form-group">
                         <label for="name">Name: <sup>*</sup></label>
@@ -25,15 +24,30 @@
                         <input type="password" name="confirm_password" class="form-control form-control-lg <?php echo(!empty($data['confirm_password_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['confirm_password'];?>">
                         <span class="invalid-feedback"><?php echo $data['confirm_password_err']; ?></span>
                     </div>
-
+                    <div class="form-group">
+                        <label for="user_role">User Role <sup>*</sup></label>
+                        <select name="user_role" id="">
+                            <option>-----------------------</option>
+                            <?php foreach(Users::GetUserRoles() as $name=>$value) : ?>
+                                <option value='.<?php echo $name; ?>.'><?php print($value); ?></option>
+                            <?php endforeach ; ?>
+                            
+                        </select>
+                        <?php 
+                                /*$users = new Users();
+                                
+                                $roles =  $users->GetUserRoles();
+                                //(array) $userArray;
+                                print($roles[0]->name);
+                                foreach ($roles as $key => $value) {
+                                    print($roles[$key]->name);
+                                }*/
+                                
+                            ?>
+                    </div>
                     <div class="row">
                         <div class="col">
-                            <input type="submit" value="Register" class="btn btn-success btn-block">
-                        </div>
-                        <div class="col">
-                            <a href="<?php echo URLROOT; ?>/users/login" class="btn btn-light btn-block">
-                                Have an account? Login
-                            </a>
+                            <input type="submit" value="Register" class="btn btn-primary btn-block">
                         </div>
                     </div>
                 </form>

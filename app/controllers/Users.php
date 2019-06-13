@@ -6,7 +6,12 @@
             $this->userModel = $this->model('User');
         }
 
-        public function register()
+        public function index()
+        {
+            
+        }
+
+        public function insert()
         {
             // Check for POST
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -17,10 +22,11 @@
 
                 // Init data
                 $data = [
-                    'name' => trim($_POST['name']),
-                    'email' => trim($_POST['email']),
-                    'password' => trim($_POST['password']),
-                    'confirm_password' => trim($_POST['confirm_password']),
+                    'name' => htmlspecialchars(trim($_POST['name'])),
+                    'email' => htmlspecialchars(trim($_POST['email'])),
+                    'password' => htmlspecialchars(trim($_POST['password'])),
+                    'confirm_password' => htmlspecialchars(trim($_POST['confirm_password'])),
+                    'user_role' => htmlspecialchars(trim($_POST['user_role'])),
                     'name_err' => '',
                     'email_err' => '',
                     'password_err' => '',
@@ -66,7 +72,7 @@
                     $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
                     // Register User
-                    if($this->userModel->register($data)){
+                    if($this->userModel->insert($data)){
                         flash('register_success', 'You are registered and can log in');
                         redirect('users/login');
                     } else {
@@ -75,7 +81,7 @@
 
                 } else {
                     // Load view with errors
-                    $this->view('users/register', $data);
+                    $this->view('users/insert', $data);
                 }
                 
             } else {
@@ -92,7 +98,7 @@
                 ];
 
                 // Load view
-                $this->view('users/register', $data);
+                $this->view('users/insert', $data);
             }
         }
         
@@ -224,6 +230,16 @@
 
             $this->view('admin/index');
           }
+        
+        public function GetUserRoles()
+        {
+            $roles = $this->userModel->GetAllUserRoles();
+            
+            foreach ($roles as $key => $value) {
+                $user_roles[] = $roles[$key]->name;
+            }
 
+            return $user_roles;
+        }
     }
 ?>
