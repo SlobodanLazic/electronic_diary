@@ -4,6 +4,8 @@
         public function __construct()
         {
             $this->userModel = $this->model('User');
+
+            $this->studentModel = $this->model('Student');
         }
 
         public function index()

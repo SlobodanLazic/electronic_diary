@@ -31,19 +31,7 @@
                             <?php foreach(Users::GetUserRoles() as $name=>$value) : ?>
                                 <option value='.<?php echo $name; ?>.'><?php print($value); ?></option>
                             <?php endforeach ; ?>
-                            
                         </select>
-                        <?php 
-                                /*$users = new Users();
-                                
-                                $roles =  $users->GetUserRoles();
-                                //(array) $userArray;
-                                print($roles[0]->name);
-                                foreach ($roles as $key => $value) {
-                                    print($roles[$key]->name);
-                                }*/
-                                
-                            ?>
                     </div>
                     <div class="row">
                         <div class="col">

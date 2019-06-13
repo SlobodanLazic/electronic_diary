@@ -154,6 +154,7 @@
                     <li>
                         <a href="<?php echo URLROOT . '/students/delete'; ?>">Delete Student</a>
                     </li>
+
                 </ul>
 
             </li>
@@ -261,19 +262,21 @@
 
                 </form>
 
-
-
                 <table class="table table-striped">
 
                     <thead>
 
                         <tr>
+                            <th></th>
                             <th>Firstname</th>
                             <th>Lastname</th>
                             <th>Class</th>
                             <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
+
+                    <?php $i = 0; ?>
 
                     <?php foreach ($data['students'] as $student) : ?>
 
@@ -290,15 +293,19 @@
                                     $postClass = htmlspecialchars($_POST['id_class']);
                                 }
 
-                                if ($student->id_school_class != $postClass) {
+                                if ($student->id_school_class != (int)$postClass) {
 
                                     continue;
                                 }
 
-
                                 ?>
 
-                                <?php echo '<td>' . $student->first_name . '</td><td>' . $student->last_name . '</td><td>' . $student->name . '</td><td>' . '<a href ="">Edit</a>' . '</td>'; ?>
+
+        <?php echo '<td>' . ++$i . '</td><td>' . $student->first_name . '</td><td>' . $student->last_name . '</td><td>'
+
+         . $student->name . '</td><td>' . '<a href ='. URLROOT . "/students/edit/".$student->id_student.'>Edit</a>' . '</td><td>' . '<a href 
+
+         ="">Delete</a></td>'; ?>
 
                             </tr>
 
