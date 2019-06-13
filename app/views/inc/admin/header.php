@@ -26,12 +26,12 @@
 
     <!-- Routing in AngularJS -->
     <script>
-        var app = angular.module("myApp", ["ngRoute"]); // [] sluzi za navodjenje zavisnih modula
+        var app = angular.module("myApp", ["ngRoute"]); 
 			
 			app.config(function($routeProvider) {
 				$routeProvider
 				.when("/", {
-					templateUrl : "../about.html"
+					templateUrl : "<?php echo URLROOT ?>/users/register"
                 })
                 .when("/test", {
                     templateUrl : "../test.html"

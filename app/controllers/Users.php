@@ -177,7 +177,7 @@
                 $data = [
                     'name' => htmlspecialchars(trim($_POST['name'])),
                     'password' => htmlspecialchars(trim($_POST['password'])),
-                    'email' => htmlspecialchars(trim($_POST['email'])
+                    'email' => htmlspecialchars(trim($_POST['email']))
                 ];
                 
             }
