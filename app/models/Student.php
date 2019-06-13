@@ -1,76 +1,73 @@
 <?php
-    class Student  
+class Student
+{
+    private $db;
+
+    public function __construct()
     {
-        private $db;
-
-        public function __construct()
-        {
-            $this->db = new Database();
-        }
-
-       
-        // // Find user by email
-        // public function findUserByEmail($email)
-        // {
-        //     $this->db->query('SELECT * FROM users WHERE email = :email');
-        //     // Bind value
-        //     $this->db->bind(':email', $email);
-
-        //     $row = $this->db->single();
-
-        //     // Check row
-        //     if ($this->db->rowCount() > 0) {
-        //         return true;
-        //     } else {
-        //         return false;
-        //     }
-        // }
-
-        // // Get User by ID
-        // public function getUserById($id)
-        // {
-        //     $this->db->query('SELECT * FROM users WHERE id_user = :id');
-        //     // Bind value
-        //     $this->db->bind(':id', $id);
-
-        //     $row = $this->db->single();
-
-        //     return $row;
-        // }
-
-
-
-        
-
-        public function insertStudent(){
-
-            $this->db->query('INSERT INTO students (first_name , last_name , id_class) VALUES (:first_name , :last_name , :id_class)');
-
-        }
-
-        public function editStudent(){
-
-            $this->db->query('UPDATE students SET first_name = :first_name , last_name = :last_name , id_class = :id_class');
-            
-        }
-
-
-        public function deleteStudent(){
-
-            $this->db->query('DELETE FROM students WHERE id_student = :id_student');
-            
-        }
-
-        
-        public  function showStudents(){
-
-
-
-            
-        }
-
+        $this->db = new Database();
     }
 
-    
-    
-?>
+
+    public function insertStudent($data)
+    {
+
+        $this->db->query('INSERT INTO students (first_name , last_name , id_school_class) VALUES (:first_name , :last_name , :id_school_class)');
+
+        $this->db->bind(':first_name', $data['first_name']);
+        $this->db->bind(':last_name', $data['last_name']);
+        $this->db->bind(':id_school_class', $data['id_school_class']);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function editStudent()
+    {
+
+        $this->db->query('UPDATE students SET first_name = :first_name , last_name = :last_name , id_class = :id_class');
+    }
+
+
+    public function deleteStudent()
+    {
+
+        $this->db->query('DELETE FROM students WHERE id_student = :id_student');
+    }
+
+
+    public  function showAllStudents()
+    {
+
+        $this->db->query('SELECT * FROM students');
+
+        $students = $this->db->resultSet();
+
+        return $students;
+    }
+
+    public function showAllClasses()
+    {
+
+        $this->db->query('SELECT * FROM school_classes');
+
+        $classes = $this->db->resultSet();
+
+        return $classes;
+    }
+
+    public function getStudentById($id_student)
+    {
+
+        $this->db->query('SELECT * FROM students WHERE id_student = :id_student');
+
+        $this->db->bind(':id_student', $id);
+
+        $row = $this->db->single();
+
+        return $row;
+    }
+}

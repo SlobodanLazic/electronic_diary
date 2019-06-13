@@ -70,6 +70,12 @@
 
             return $row;
         }
+
+        // Edit(update) user
+        public function UpdateUser($data)
+        {
+            # code...
+        }
     }
     
 ?>

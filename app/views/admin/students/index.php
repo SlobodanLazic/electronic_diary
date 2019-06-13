@@ -128,10 +128,10 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Users <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
-                        <a href="#/!">Insert User</a>
+                        <a href="#">Insert User</a>
                     </li>
                     <li>
-                        <a href="#!test">Edit User</a>
+                        <a href="#">Edit User</a>
                     </li>
                     <li>
                         <a href="#">Delete User</a>
@@ -235,20 +235,19 @@
 
         <!-- Page Heading -->
         <div class="row">
-            <div class="col-lg-12" ng-view>
+            <div class="col-lg-12">
                 <h1 class="page-header">
-                    Admin main page
+                    All Students
                 </h1>
 
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
 
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
+                <?php foreach ($data['students'] as $student) : ?>
+
+                    <?php echo 'First Name: ' . $student->first_name . '<br>'; ?>
+
+                <?php endforeach; ?>
+
+
 
             </div>
         </div>

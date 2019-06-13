@@ -20,7 +20,24 @@
 
     <!-- Custom Fonts -->
     <link href="<?php echo URLROOT; ?>/font-awesome_admin/css/font-awesome.min.css" rel="stylesheet">
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-route.js"></script>
 
+    <!-- Routing in AngularJS -->
+    <script>
+        var app = angular.module("myApp", ["ngRoute"]); // [] sluzi za navodjenje zavisnih modula
+			
+			app.config(function($routeProvider) {
+				$routeProvider
+				.when("/", {
+					templateUrl : "../about.html"
+                })
+                .when("/test", {
+                    templateUrl : "../test.html"
+                })
+			});
+    </script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,4 +50,4 @@
 
 <body>
 
-    <div id="wrapper">
+    <div id="wrapper" ng-app="myApp">

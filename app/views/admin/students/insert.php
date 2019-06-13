@@ -128,10 +128,10 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Users <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
-                        <a href="#/!">Insert User</a>
+                        <a href="#">Insert User</a>
                     </li>
                     <li>
-                        <a href="#!test">Edit User</a>
+                        <a href="#">Edit User</a>
                     </li>
                     <li>
                         <a href="#">Delete User</a>
@@ -235,20 +235,48 @@
 
         <!-- Page Heading -->
         <div class="row">
-            <div class="col-lg-12" ng-view>
+            <div class="col-lg-12">
                 <h1 class="page-header">
-                    Admin main page
+                    Insert Student
                 </h1>
 
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
+                <div class="card card-body bg-light mt-5">
 
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
+                    <form action="<?php echo URLROOT; ?>/students/insert" method="post">
+                        <div class="form-group">
+                            <label>First Name:</label>
+                            <input type="text" name="first_name" class="form-control form-control-lg <?php echo (!empty($data['first_name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['first_name']; ?>" placeholder="Add a first name...">
+                            <span class="invalid-feedback text-danger"><?php echo $data['first_name_err']; ?></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name:</label>
+                            <input type="text" name="last_name" class="form-control form-control-lg <?php echo (!empty($data['last_name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['last_name']; ?>" placeholder="Add a last name...">
+                            <span class="invalid-feedback text-danger"><?php echo $data['last_name_err']; ?></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Select class:</label>
+                            <select name='id_school_class' class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                <option value="" selected>Chose</option>
+
+                                <?php foreach ($data['classes'] as $class) : ?>
+
+                                    <?php echo "<option value=\"$class->id_school_class\">$class->name</option>"; ?>
+
+                                <?php endforeach; ?>
+
+                            </select>
+
+
+
+
+                            <span class="invalid-feedback text-danger"><?php echo $data['id_school_class_err']; ?></span>
+
+                        </div>
+
+                        <input type="submit" class="btn btn-success" value="Submit">
+                    </form>
+                </div>
+
 
             </div>
         </div>
