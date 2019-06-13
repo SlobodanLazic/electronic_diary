@@ -10,4 +10,4 @@
   // URL Root
   define('URLROOT', 'http://localhost/electronic_diary');
   // Site Name
-  define('SITENAME', 'electronic_diary');
+  define('SITENAME', 'ELECTRONIC DIARY');

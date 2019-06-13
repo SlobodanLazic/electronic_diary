@@ -240,12 +240,59 @@
                     All Students
                 </h1>
 
+                <form action="" method="post">
+                       
+                        <div class="form-group">
+                            <label>Select class:</label>
+                            <select name='id_class' class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                <option value="" selected>Chose</option>
 
+                                <?php foreach ($data['students'] as $class) : ?>
+
+                                    <?php echo "<option value=\"$class->id_school_class\">$class->name</option>"; ?>
+
+                                <?php endforeach; ?>
+
+                            </select>
+                            
+                            <input type="submit" class="btn btn-success" value="Show"> 
+
+                        </div>
+
+                       
+                    </form>
+
+                    <?php  if(empty($_POST['id_class'])) : ?>
+                        
+
+                    <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Class</th>
+                 </tr>
+                </thead>
+                    
                 <?php foreach ($data['students'] as $student) : ?>
 
-                    <?php echo 'First Name: ' . $student->first_name . '<br>'; ?>
+                <tbody>
+
+                <tr>
+
+                    <?php echo '<td>'.$student->first_name.'</td><td>'.$student->last_name .'</td><td>'.$student->name.'</td>'; ?>
+               
+                 </tr>
+
+                 </tbody>
 
                 <?php endforeach; ?>
+                   
+                </table>
+                
+                     <?php endif;?> 
+                  
+                
 
 
 

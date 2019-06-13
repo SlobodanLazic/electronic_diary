@@ -42,7 +42,7 @@ class Student
     public  function showAllStudents()
     {
 
-        $this->db->query('SELECT * FROM students');
+        $this->db->query('SELECT students.first_name , students.last_name , school_classes.name FROM students JOIN school_classes ON students.id_school_class = school_classes.id_school_class ');
 
         $students = $this->db->resultSet();
 
