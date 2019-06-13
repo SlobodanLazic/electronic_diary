@@ -71,7 +71,7 @@ class Students extends Controller
         if ($this->studentModel->insertStudent($data)) {
           // Redirect to login
           flash('student_message', 'Student Added');
-          redirect('admin/students/index');
+          redirect('students/index');
         } else {
           die('Something went wrong');
         }
