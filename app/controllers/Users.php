@@ -171,7 +171,7 @@
         {
             if($_SERVER['REQUEST_METHOD'] == 'POST')
             {
-                //validating user input at first
+                //validating user input 
                 $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
 
                 $data = [
