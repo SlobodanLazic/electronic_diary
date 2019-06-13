@@ -62,7 +62,7 @@ class Students extends Controller
         //Execute
         if ($this->studentModel->insertStudent($data)) {
           // Redirect to login
-          // flash('post_added', 'Student Added');
+          flash('register_success', 'Student Added');
           redirect('admin/students/index');
         } else {
           die('Something went wrong');
