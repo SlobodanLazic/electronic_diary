@@ -39,25 +39,16 @@ class Student
     }
 
 
-    public  function showAllStudents()
+    public  function showAllStudentsJoinClasses()
     {
 
-        $this->db->query('SELECT students.first_name , students.last_name , school_classes.name FROM students JOIN school_classes ON students.id_school_class = school_classes.id_school_class ');
+        $this->db->query('SELECT students.first_name , students.last_name , school_classes.name , school_classes.id_school_class FROM students JOIN school_classes ON students.id_school_class = school_classes.id_school_class ');
 
         $students = $this->db->resultSet();
 
         return $students;
     }
 
-    public function showAllClasses()
-    {
-
-        $this->db->query('SELECT * FROM school_classes');
-
-        $classes = $this->db->resultSet();
-
-        return $classes;
-    }
 
     public function getStudentById($id_student)
     {

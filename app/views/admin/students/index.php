@@ -237,62 +237,79 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    All Students
+                    Students
                 </h1>
 
                 <form action="" method="post">
-                       
-                        <div class="form-group">
-                            <label>Select class:</label>
-                            <select name='id_class' class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                <option value="" selected>Chose</option>
 
-                                <?php foreach ($data['students'] as $class) : ?>
+                    <div class="form-group">
+                        <label>Select class:</label>
+                        <select name='id_class' class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
 
-                                    <?php echo "<option value=\"$class->id_school_class\">$class->name</option>"; ?>
 
-                                <?php endforeach; ?>
+                            <?php foreach ($data['classes'] as $class) : ?>
 
-                            </select>
-                            
-                            <input type="submit" class="btn btn-success" value="Show"> 
+                                <?php echo "<option value=\"$class->id_school_class\">$class->name</option>"; ?>
 
-                        </div>
+                            <?php endforeach; ?>
 
-                       
-                    </form>
+                        </select>
 
-                    <?php  if(empty($_POST['id_class'])) : ?>
-                        
+                        <input type="submit" class="btn btn-success" value="Show">
 
-                    <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Class</th>
-                 </tr>
-                </thead>
-                    
-                <?php foreach ($data['students'] as $student) : ?>
+                    </div>
 
-                <tbody>
+                </form>
 
-                <tr>
 
-                    <?php echo '<td>'.$student->first_name.'</td><td>'.$student->last_name .'</td><td>'.$student->name.'</td>'; ?>
-               
-                 </tr>
 
-                 </tbody>
+                <table class="table table-striped">
 
-                <?php endforeach; ?>
-                   
+                    <thead>
+
+                        <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Class</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+
+                    <?php foreach ($data['students'] as $student) : ?>
+
+                        <tbody>
+
+                            <tr>
+
+                                <?php
+
+                                $postClass =  1;
+
+                                if (isset($_POST['id_class'])) {
+
+                                    $postClass = htmlspecialchars($_POST['id_class']);
+                                }
+
+                                if ($student->id_school_class != $postClass) {
+
+                                    continue;
+                                }
+
+
+                                ?>
+
+                                <?php echo '<td>' . $student->first_name . '</td><td>' . $student->last_name . '</td><td>' . $student->name . '</td><td>' . '<a href ="">Edit</a>' . '</td>'; ?>
+
+                            </tr>
+
+                        </tbody>
+
+                    <?php endforeach; ?>
+
                 </table>
-                
-                     <?php endif;?> 
-                  
-                
+
+
+
 
 
 

@@ -6,6 +6,8 @@ class Students extends Controller
   public function __construct()
   {
     $this->studentModel = $this->model('Student');
+
+    $this->classModel = $this->model('School_Class');
   }
 
 
@@ -13,11 +15,17 @@ class Students extends Controller
   public function index()
   {
 
-    $students = $this->studentModel->showAllStudents();
+    $students = $this->studentModel->showAllStudentsJoinClasses();
+
+    $classes = $this->classModel->showAllClasses();
+
+
 
     $data = [
 
-      'students' => $students
+      'students' => $students,
+
+      'classes' => $classes
 
     ];
 
@@ -86,7 +94,7 @@ class Students extends Controller
         'id_school_class_err' => '',
       ];
 
-      $classes = $this->studentModel->showAllClasses();
+      $classes = $this->classModel->showAllClasses();
 
       $data['classes'] = $classes;
 
