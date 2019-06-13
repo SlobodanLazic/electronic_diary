@@ -143,14 +143,18 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo1"><i class="fa fa-fw fa-arrows-v"></i>Students <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo1" class="collapse">
                     <li>
-                        <a href="<?php echo URLROOT . '/students'; ?>">Edit Students</a>
+                        <a href="<?php echo URLROOT . '/students'; ?>">All Students</a>
                     </li>
                     <li>
                         <a href="<?php echo URLROOT . '/students/insert'; ?>">Insert Student</a>
                     </li>
                     <li>
+                        <a href="<?php echo URLROOT . '/students/edit'; ?>">Edit Student</a>
+                    </li>
+                    <li>
                         <a href="<?php echo URLROOT . '/students/delete'; ?>">Delete Student</a>
                     </li>
+
                 </ul>
 
             </li>
@@ -297,7 +301,11 @@
                                 ?>
 
 
-                                <?php echo '<td>' . ++$i . '</td><td>' . $student->first_name . '</td><td>' . $student->last_name . '</td><td>' . $student->name . '</td><td>' . '<a href ="">Edit</a>' . '</td><td>' . '<a href ="">Delete</a></td>'; ?>
+        <?php echo '<td>' . ++$i . '</td><td>' . $student->first_name . '</td><td>' . $student->last_name . '</td><td>'
+
+         . $student->name . '</td><td>' . '<a href ='. URLROOT . "/students/edit/".$student->id_student.'>Edit</a>' . '</td><td>' . '<a href 
+
+         ="">Delete</a></td>'; ?>
 
                             </tr>
 
