@@ -233,6 +233,7 @@
             $this->view('admin/index');
           }
         
+        //this function gets all user Roles from the User model
         public function GetUserRoles()
         {
             $roles = $this->userModel->GetAllUserRoles();
