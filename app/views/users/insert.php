@@ -36,11 +36,6 @@
                             <?php endforeach ; ?>
                         </select>
                     </div>
-                    <?php if(isset($_POST['user_role']))
-                            {
-                                var_dump($_POST['user_role']);
-                            }
-                            ?>
                     <div class="row">
                         <div class="col">
                             <input type="submit" value="Register" class="btn btn-primary btn-block">

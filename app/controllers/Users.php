@@ -3,6 +3,7 @@
     {
         public function __construct()
         {
+
             $this->userModel = $this->model('User');
 
             $this->studentModel = $this->model('Student');
@@ -141,7 +142,7 @@
                 
 
                 // Make sure errors are empty
-                if(empty($data['email_err']) && empty($data['password_err'])){
+                if(empty($data['email_err']) && empty($data['password_err'])) {
                     // Validated
                     // Check and set logged in user
                     $loggedInUser = $this->userModel->login($data['email'], $data['password']);
@@ -175,50 +176,34 @@
             }
         }
 
-        public function ChangeUsernameAndPassword($id)
-        {
-            if($_SERVER['REQUEST_METHOD'] == 'POST')
-            {
-                //validating user input 
-                $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
-
-                $data = [
-                    'name' => htmlspecialchars(trim($_POST['name'])),
-                    'password' => htmlspecialchars(trim($_POST['password'])),
-                    'email' => htmlspecialchars(trim($_POST['email']))
-                ];
-                
-            }
-        }
-
         public function createUserSession($user)
         {
-            $_SESSION['user_id'] = $user->id;
-            $_SESSION['user_email'] = $user->email;
-            $_SESSION['user_name'] = $user->name;
+            $_SESSION['id_user'] = $user->id_user;
+            $_SESSION['username'] = $user->username;
+            $_SESSION['email'] = $user->email;
             $_SESSION['id_user_role'] = $user->id_user_role;
             
             /* id_user_role 1 is administrator,id_user role 2 is director,id_user_role 3 is teacher,
             id_user_role 4 is parent so it will redirect it to proper page dependent of role */
             
-            switch($_SESSION['id_user_role'])
-            {
-                case 1:
-                    redirect('users/admin');
-                    break;
-                case 2:
-                    redirect('users/director');
-                    break;
-                case 3:
-                    redirect('users/teacher');
-                    break;
-                case 4:
-                    redirect('users/parent');
-                    break;
-                default:
-                    redirect('home');
+            switch ($_SESSION['id_user_role']) {
+                    case 1:
+                        redirect('users/admin');
+                        break;
+                    case 2:
+                        redirect('users/director');
+                        break;
+                    case 3:
+                        redirect('users/teacher');
+                        break;
+                    case 4:
+                        redirect('users/parent');
+                        break;
+                    default:
+                        redirect('users/login');
+                        break;
 
-            }
+                }
         }
 
         public function logout()
@@ -233,7 +218,8 @@
 
         public function admin(){
 
-            $this->view('admin/index');
+            $this->view('admin/index');      
+            
           }
         
         public function GetUserRoles()
@@ -245,6 +231,17 @@
             }
 
             return $user_roles;
+        }
+
+        public function isLoggedIn(){
+            if(isset($_SESSION['user_id']))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 ?>

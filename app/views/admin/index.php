@@ -1,16 +1,4 @@
-<?php 
-    if(isset($_SESSION) && !empty($_SESSION) && $_SESSION["id_user_role"] == 1)
-    {
-        var_dump($_SESSION["id_user_role"]);
-    }
-    else
-    {
-        redirect('users/login');
-    }
-   
-?>
 <?php require APPROOT . '/views/inc/admin/header.php'; ?>
-
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
