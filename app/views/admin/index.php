@@ -147,12 +147,6 @@
                     <li>
                         <a href="<?php echo URLROOT . '/students/insert'; ?>">Insert Student</a>
                     </li>
-                    <li>
-                        <a href="<?php echo URLROOT . '/students/edit'; ?>">Edit Student</a>
-                    </li>
-                    <li>
-                        <a href="<?php echo URLROOT . '/students/delete'; ?>">Delete Student</a>
-                    </li>
                 </ul>
 
             </li>

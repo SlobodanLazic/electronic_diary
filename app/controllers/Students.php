@@ -71,14 +71,14 @@ class Students extends Controller
         if ($this->studentModel->insertStudent($data)) {
           // Redirect to login
           flash('student_message', 'Student Added');
-          redirect('students/index');
+          redirect('/students');
         } else {
           die('Something went wrong');
         }
       } else {
         // Load view with errors
 
-        $classes = $this->studentModel->showAllClasses();
+        $classes = $this->studentModel->showAllStudentsJoinClasses();
 
         $data['classes'] = $classes;
 
@@ -124,11 +124,41 @@ class Students extends Controller
 
 
 
-  public function delete()
+
+
+
+  public function delete($id)
   {
 
-    $this->view('admin/students/delete');
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+      if($this->studentModel->deleteStudent($id)){
+
+          flash('student_deleted_msg' , 'Student Deleted');
+
+          redirect('students');
+
+      }else{
+
+        die('Something went wrong');
+
+      }
+
+
+    }else {
+
+      redirect('pages');
+
+    }
+
+   
   }
+
+
+
+
+
+
 
   public function show($id){
 
@@ -183,8 +213,8 @@ class Students extends Controller
         //Execute
         if ($this->studentModel->updateStudent($data)) {
           // Redirect to login
-          flash('student_message', 'Student Added');
-          redirect('admin/students/index');
+          flash('student_updated', 'Student Updated');
+          redirect('students');
         } else {
           die('Something went wrong');
         }
@@ -195,7 +225,7 @@ class Students extends Controller
 
         // $data['classes'] = $classes;
 
-        $this->view('admin/students/updateStudent', $data);
+        $this->view('admin/students/update', $data);
       }
     } else {
       $data = [
@@ -211,7 +241,7 @@ class Students extends Controller
 
       // $data['classes'] = $classes;
 
-      $this->view('admin/students/updateStudent', $data);
+      $this->view('admin/students/update', $data);
     }
   }
 

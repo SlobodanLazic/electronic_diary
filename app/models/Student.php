@@ -32,10 +32,21 @@ class Student
     }
 
 
-    public function deleteStudent()
+    public function deleteStudent($id)
     {
 
         $this->db->query('DELETE FROM students WHERE id_student = :id_student');
+
+         $this->db->bind(':id_student', $id);
+
+           if ($this->db->execute()) {
+
+            return true;
+
+            } else {
+
+            return false;
+        }
     }
 
 
@@ -64,10 +75,8 @@ class Student
 
     public function updateStudent($data){
 
-                var_dump($data);
-
-                   
-                  $this->db->query('UPDATE students SET first_name = :first_name, last_name = :last_name, id_school_class = :id_school_class WHERE id_student = :id');
+    
+                $this->db->query('UPDATE students SET first_name = :first_name, last_name = :last_name, id_school_class = :id_school_class WHERE id_student = :id');
              
                  $this->db->bind(':first_name', $data['first_name']);
                  $this->db->bind(':last_name', $data['last_name']);
