@@ -204,16 +204,16 @@
             switch($_SESSION['id_user_role'])
             {
                 case 1:
-                    redirect('adminDashboard');
+                    redirect('users/admin');
                     break;
                 case 2:
-                    redirect('director');
+                    redirect('users/director');
                     break;
                 case 3:
-                    redirect('teacher');
+                    redirect('users/teacher');
                     break;
                 case 4:
-                    redirect('parent');
+                    redirect('users/parent');
                     break;
                 default:
                     redirect('home');
@@ -226,6 +226,7 @@
             unset($_SESSION['user_id']);
             unset($_SESSION['user_email']);
             unset($_SESSION['user_name']);
+            unset($_SESSION['id_user_role']);
             session_destroy();
             redirect('users/login');
         }

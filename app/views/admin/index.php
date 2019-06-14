@@ -1,3 +1,14 @@
+<?php 
+    if(isset($_SESSION) && !empty($_SESSION) && $_SESSION["id_user_role"] == 1)
+    {
+        var_dump($_SESSION["id_user_role"]);
+    }
+    else
+    {
+        redirect('users/login');
+    }
+   
+?>
 <?php require APPROOT . '/views/inc/admin/header.php'; ?>
 
 <!-- Navigation -->
@@ -111,7 +122,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    <a href="<?php echo URLROOT; ?>/users/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                 </li>
             </ul>
         </li>

@@ -27,12 +27,20 @@
                     <div class="form-group">
                         <label for="user_role">User Role <sup>*</sup></label>
                         <select name="user_role" id="">
-                            <option>-----------------------</option>
-                            <?php foreach(Users::GetUserRoles() as $name=>$value) : ?>
-                                <option value='.<?php echo $name; ?>.'><?php print($value); ?></option>
+                            <option value='' selected>-----------------------</option>
+                            <?php 
+                                $users= new Users();
+                                foreach($users->GetUserRoles() as $id_user_role=>$name) : 
+                            ?>
+                                <option value='<?php echo $name; ?>'><?php print($name); ?></option>
                             <?php endforeach ; ?>
                         </select>
                     </div>
+                    <?php if(isset($_POST['user_role']))
+                            {
+                                var_dump($_POST['user_role']);
+                            }
+                            ?>
                     <div class="row">
                         <div class="col">
                             <input type="submit" value="Register" class="btn btn-primary btn-block">
