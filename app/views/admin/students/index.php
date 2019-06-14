@@ -235,6 +235,7 @@
                 </h1>
                 <?php flash('student_message') ?>
                 <?php flash('student_updated') ?>
+                <?php flash('student_deleted_msg') ?>
 
                 <form action="" method="post">
 
@@ -298,13 +299,18 @@
 
         <?php echo '<td>' . ++$i . '</td><td>' . $student->first_name . '</td><td>' . $student->last_name . '</td><td>'
 
-         . $student->name . '</td><td>' . '<a href ='. URLROOT . "/students/edit/".$student->id_student.'>Edit</a>' . '</td><td>' . '<a href 
+         . $student->name . '</td><td>' . '<a href ='. URLROOT . "/students/edit/".$student->id_student.'>Edit</a>' . '</td><td>' ?> 
 
-         ="">Delete</a></td>'; ?>
+            <form action="<?php echo URLROOT . "/students/delete/".$student->id_student?>" method="POST">
 
-                            </tr>
+                <input type="submit" name="delete" value="Delete">
+                
+            </form>
 
-                        </tbody>
+
+             </tr>
+
+              </tbody>
 
                     <?php endforeach; ?>
 

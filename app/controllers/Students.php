@@ -78,7 +78,7 @@ class Students extends Controller
       } else {
         // Load view with errors
 
-        $classes = $this->studentModel->showAllClasses();
+        $classes = $this->studentModel->showAllStudentsJoinClasses();
 
         $data['classes'] = $classes;
 
@@ -124,11 +124,41 @@ class Students extends Controller
 
 
 
-  public function delete()
+
+
+
+  public function delete($id)
   {
 
-    $this->view('admin/students/delete');
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+      if($this->studentModel->deleteStudent($id)){
+
+          flash('student_deleted_msg' , 'Student Deleted');
+
+          redirect('students');
+
+      }else{
+
+        die('Something went wrong');
+
+      }
+
+
+    }else {
+
+      redirect('pages');
+
+    }
+
+   
   }
+
+
+
+
+
+
 
   public function show($id){
 
