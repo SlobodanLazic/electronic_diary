@@ -198,7 +198,9 @@
             $_SESSION['user_name'] = $user->name;
             $_SESSION['id_user_role'] = $user->id_user_role;
             
-            // id_user_role 1 is administrator,id_user role 2 is director,id_user_role 3 is teacher,id_user_role 4 is parent so it will redirect it to proper page dependent of role
+            /* id_user_role 1 is administrator,id_user role 2 is director,id_user_role 3 is teacher,
+            id_user_role 4 is parent so it will redirect it to proper page dependent of role */
+            
             switch($_SESSION['id_user_role'])
             {
                 case 1:
