@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `e_diary` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+USE `e_diary`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: e_diary
@@ -262,7 +264,7 @@ CREATE TABLE `user_roles` (
   `name` varchar(45) NOT NULL,
   `description` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id_user_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -271,7 +273,7 @@ CREATE TABLE `user_roles` (
 
 LOCK TABLES `user_roles` WRITE;
 /*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
-INSERT INTO `user_roles` VALUES (1,'Administrator','Administrator can delete update edit users,user roles,schedules,notifications'),(2,'Director','have access to statistics on the efficiency of the classroomto have access to statistics on the efficiency of subjects at the school level'),(3,'Teacher','can have 1 class and access to only that class,access their department and write, delete, and conclude grades,can accept and reject the request for parents to come to the open door,message section , schedule'),(4,'Parent','has access to and grades only for his child,has access to the part of the application where he will schedule the arrival at the open door,messages, notification access');
+INSERT INTO `user_roles` VALUES (1,'Administrator','Administrator can delete update edit users,user roles,schedules,notifications'),(2,'Administrator','Administrator can delete update edit users,user roles,schedules,notifications');
 /*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -373,4 +375,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-13 20:44:59
+-- Dump completed on 2019-06-12 20:01:33

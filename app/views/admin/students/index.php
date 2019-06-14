@@ -148,13 +148,6 @@
                     <li>
                         <a href="<?php echo URLROOT . '/students/insert'; ?>">Insert Student</a>
                     </li>
-                    <li>
-                        <a href="<?php echo URLROOT . '/students/edit'; ?>">Edit Student</a>
-                    </li>
-                    <li>
-                        <a href="<?php echo URLROOT . '/students/delete'; ?>">Delete Student</a>
-                    </li>
-
                 </ul>
 
             </li>
@@ -240,6 +233,8 @@
                 <h1 class="page-header">
                     Students
                 </h1>
+                <?php flash('student_message') ?>
+                <?php flash('student_updated') ?>
 
                 <form action="" method="post">
 

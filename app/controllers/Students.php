@@ -71,7 +71,7 @@ class Students extends Controller
         if ($this->studentModel->insertStudent($data)) {
           // Redirect to login
           flash('student_message', 'Student Added');
-          redirect('students/index');
+          redirect('/students');
         } else {
           die('Something went wrong');
         }
@@ -183,8 +183,8 @@ class Students extends Controller
         //Execute
         if ($this->studentModel->updateStudent($data)) {
           // Redirect to login
-          flash('student_message', 'Student Added');
-          redirect('admin/students/index');
+          flash('student_updated', 'Student Updated');
+          redirect('students');
         } else {
           die('Something went wrong');
         }
@@ -195,7 +195,7 @@ class Students extends Controller
 
         // $data['classes'] = $classes;
 
-        $this->view('admin/students/updateStudent', $data);
+        $this->view('admin/students/update', $data);
       }
     } else {
       $data = [
@@ -211,7 +211,7 @@ class Students extends Controller
 
       // $data['classes'] = $classes;
 
-      $this->view('admin/students/updateStudent', $data);
+      $this->view('admin/students/update', $data);
     }
   }
 

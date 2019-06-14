@@ -8,12 +8,7 @@
             $this->studentModel = $this->model('Student');
         }
 
-        public function index()
-        {
-            
-        }
-
-        public function insert()
+        public function register()
         {
             // Check for POST
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -24,11 +19,10 @@
 
                 // Init data
                 $data = [
-                    'name' => htmlspecialchars(trim($_POST['name'])),
-                    'email' => htmlspecialchars(trim($_POST['email'])),
-                    'password' => htmlspecialchars(trim($_POST['password'])),
-                    'confirm_password' => htmlspecialchars(trim($_POST['confirm_password'])),
-                    'user_role' => htmlspecialchars(trim($_POST['user_role'])),
+                    'name' => trim($_POST['name']),
+                    'email' => trim($_POST['email']),
+                    'password' => trim($_POST['password']),
+                    'confirm_password' => trim($_POST['confirm_password']),
                     'name_err' => '',
                     'email_err' => '',
                     'password_err' => '',
@@ -74,7 +68,7 @@
                     $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
                     // Register User
-                    if($this->userModel->insert($data)){
+                    if($this->userModel->register($data)){
                         flash('register_success', 'You are registered and can log in');
                         redirect('users/login');
                     } else {
@@ -83,7 +77,7 @@
 
                 } else {
                     // Load view with errors
-                    $this->view('users/insert', $data);
+                    $this->view('users/register', $data);
                 }
                 
             } else {
@@ -100,7 +94,7 @@
                 ];
 
                 // Load view
-                $this->view('users/insert', $data);
+                $this->view('users/register', $data);
             }
         }
         
@@ -198,9 +192,7 @@
             $_SESSION['user_name'] = $user->name;
             $_SESSION['id_user_role'] = $user->id_user_role;
             
-            /* id_user_role 1 is administrator,id_user role 2 is director,id_user_role 3 is teacher,
-            id_user_role 4 is parent so it will redirect it to proper page dependent of role */
-            
+            // id_user_role 1 is administrator,id_user role 2 is director,id_user_role 3 is teacher,id_user_role 4 is parent so it will redirect it to proper page dependent of role
             switch($_SESSION['id_user_role'])
             {
                 case 1:
@@ -234,16 +226,7 @@
 
             $this->view('admin/index');
           }
-        
-        public function GetUserRoles()
-        {
-            $roles = $this->userModel->GetAllUserRoles();
-            
-            foreach ($roles as $key => $value) {
-                $user_roles[] = $roles[$key]->name;
-            }
 
-            return $user_roles;
-        }
+
     }
 ?>

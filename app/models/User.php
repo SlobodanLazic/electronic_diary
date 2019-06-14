@@ -9,7 +9,7 @@
         }
 
         // Register User
-        public function insert($data)
+        public function register($data)
         {
             $this->db->query('INSERT INTO users(username, email, password) VALUES (:name, :email, :password)');
             // Bind values
@@ -71,13 +71,10 @@
             return $row;
         }
 
-        public function GetAllUserRoles()
+        // Edit(update) user
+        public function UpdateUser($data)
         {
-            $this->db->query('SELECT * FROM user_roles;');
-
-            $allRows = $this->db->resultSet();
-
-            return $allRows;
+            # code...
         }
 
 
