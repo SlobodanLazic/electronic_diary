@@ -73,7 +73,7 @@ class Student
         return $row;
     }
 
-    public function updateStudent($data){
+    public function update($data){
 
     
                 $this->db->query('UPDATE students SET first_name = :first_name, last_name = :last_name, id_school_class = :id_school_class WHERE id_student = :id');

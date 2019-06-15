@@ -236,8 +236,7 @@
 
                 <div class="card card-body bg-light mt-5">
 
-                    
-                    <form action="<?php echo URLROOT; ?>/students/updateStudent/<?php echo $data['student']->id_student; ?>" method="post">
+                    <form action="<?php echo URLROOT; ?>/students/update/<?php echo $data['student']->id_student; ?>" method="post">
                         <div class="form-group">
                             <label>First Name:</label>
                             <input type="text" name="first_name" class="form-control form-control-lg <?php echo (!empty($data['first_name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['student']->first_name; ?>">
@@ -252,7 +251,7 @@
                         <div class="form-group">
                             <label>Select class:</label>
                             <select name='id_school_class' class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                <option value="" selected>Chose</option>
+                                <option value="<?php echo $data['student']->id_school_class; ?>" selected>Chose</option>
 
                                 <?php foreach ($data['classes'] as $class) : ?>
 

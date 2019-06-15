@@ -102,6 +102,7 @@ class Students extends Controller
     }
   }
 
+
    public function edit($id)
   {
     
@@ -174,7 +175,7 @@ class Students extends Controller
 
   }
 
-    public function updateStudent()
+    public function update()
   {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       // Sanitize POST
@@ -211,7 +212,7 @@ class Students extends Controller
       if (empty($data['first_name_err']) && empty($data['last_name_err']) && empty($data['id_school_class_err'])) {
         // Validation passed
         //Execute
-        if ($this->studentModel->updateStudent($data)) {
+        if ($this->studentModel->update($data)) {
           // Redirect to login
           flash('student_updated', 'Student Updated');
           redirect('students');
@@ -221,14 +222,11 @@ class Students extends Controller
       } else {
         // Load view with errors
 
-        // $classes = $this->studentModel->showAllClasses();
-
-        // $data['classes'] = $classes;
-
         $this->view('admin/students/update', $data);
       }
     } else {
       $data = [
+
         'first_name' => '',
         'last_name' => '',
         'id_school_class' => '',
@@ -237,9 +235,6 @@ class Students extends Controller
         'id_school_class_err' => '',
       ];
 
-      // $classes = $this->classModel->showAllClasses();
-
-      // $data['classes'] = $classes;
 
       $this->view('admin/students/update', $data);
     }
