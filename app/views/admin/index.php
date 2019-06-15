@@ -229,20 +229,6 @@
         <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12" ng-view>
-                <h1 class="page-header">
-                    Admin main page
-                </h1>
-
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quasi quos harum exercitationem rem assumenda debitis voluptatibus magnam, soluta dolor, repellat sint. Libero odio quis accusamus aliquam, minima iusto dicta?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, cupiditate quo deserunt similique, cum nemo perspiciatis eos alias doloremque tenetur eius iste aperiam odit itaque ab corporis, commodi rem placeat?</p>
-
             </div>
         </div>
         <!-- /.row -->

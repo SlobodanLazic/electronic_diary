@@ -250,7 +250,7 @@
                         <div class="form-group">
                             <label>Select class:</label>
                             <select name='id_school_class' class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                                <option value="" selected>Chose</option>
+                                <option value="" selected>Choose</option>
 
                                 <?php foreach ($data['classes'] as $class) : ?>
 
