@@ -199,50 +199,6 @@
             $_SESSION['email'] = $user->email;
             $_SESSION['id_user_role'] = $user->id_user_role;
             
-<<<<<<< HEAD
-<<<<<<< HEAD
-            /* id_user_role 1 is administrator,id_user role 2 is director,id_user_role 3 is teacher,
-            id_user_role 4 is parent so it will redirect it to proper page dependent of role */
-            
-            switch ($_SESSION['id_user_role']) {
-                    case 1:
-                        redirect('users/admin');
-                        break;
-                    case 2:
-                        redirect('users/director');
-                        break;
-                    case 3:
-                        redirect('users/teacher');
-                        break;
-                    case 4:
-                        redirect('users/parent');
-                        break;
-                    default:
-                        redirect('users/login');
-                        break;
-=======
-            // id_user_role 1 is administrator,id_user role 2 is director,id_user_role 3 is teacher,id_user_role 4 is parent so it will redirect it to proper page dependent of role
-            switch($_SESSION['id_user_role'])
-            {
-                case 1:
-                    redirect('adminDashboard');
-                    break;
-                case 2:
-                    redirect('director');
-                    break;
-                case 3:
-                    redirect('teacher');
-                    break;
-                case 4:
-                    redirect('parent');
-                    break;
-                default:
-                    redirect('home');
->>>>>>> fba386ec006bf81d8b9cc91d9f1d8ac5e05a17ac
-
-                }
-=======
->>>>>>> user_adding
         }
 
         public function logout()
