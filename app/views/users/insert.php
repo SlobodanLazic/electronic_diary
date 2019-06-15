@@ -3,7 +3,7 @@
             <div class="card card-body bg-light mt-5">
                 <h2>Insert User</h2>
                 <p>Please fill out this form to insert user</p>
-                <form action="<?php echo URLROOT; ?>/users/admin/insert" method="post">
+                <form action="<?php echo URLROOT; ?>/users/admin/users/insert" method="post">
                     <div class="form-group">
                         <label for="name">Name: <sup>*</sup></label>
                         <input type="text" name="name" class="form-control form-control-lg <?php echo(!empty($data['name_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['name'];?>">
@@ -26,8 +26,8 @@
                     </div>
                     <div class="form-group">
                         <label for="user_role">User Role <sup>*</sup></label>
-                        <select name="user_role" id="">
-                            <option value='' selected>-----------------------</option>
+                        <select name="user_role" id="" class="form-control form-control-lg">
+                            <option value='' selected>.....Select a role.....</option>
                             <?php 
                                 $users= new Users();
                                 foreach($users->GetUserRoles() as $id_user_role=>$name) : 

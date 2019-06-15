@@ -74,10 +74,9 @@
                     // Hash Password
                     $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
-                    // Register User
+                    // Add User
                     if($this->userModel->insert($data)){
-                        flash('register_success', 'You are registered and can log in');
-                        redirect('users/login');
+                        flash('register_success', 'You have added a user');
                     } else {
                         die('Something went wrong');
                     }
@@ -218,12 +217,9 @@
         }
 
         public function admin(){
-            if(isset($_SESSION['id_user']))
-            { 
+            if (isset($_SESSION['id_user'])) {
                 $this->view('admin/index');
-            } 
-            else
-            {
+            } else {
                 redirect('users/login');
             }         
           }
@@ -250,4 +246,3 @@
             }
         }
     }
-?>
