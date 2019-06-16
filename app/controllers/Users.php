@@ -218,7 +218,6 @@
             }         
           }
 
-<<<<<<< HEAD
             return $user_roles;
         }
 
@@ -232,7 +231,4 @@
                 return false;
             }
         }
-=======
-
->>>>>>> fba386ec006bf81d8b9cc91d9f1d8ac5e05a17ac
     }
