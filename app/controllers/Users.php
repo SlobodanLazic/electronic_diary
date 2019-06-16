@@ -68,16 +68,9 @@
                     // Hash Password
                     $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
-<<<<<<< HEAD
-                    // Register User
-                    if($this->userModel->register($data)){
-                        flash('register_success', 'You are registered and can log in');
-                        redirect('users/login');
-=======
                     // Add User
                     if($this->userModel->insert($data)){
                         flash('register_success', 'You have added a user');
->>>>>>> users_insert
                     } else {
                         die('Something went wrong');
                     }
