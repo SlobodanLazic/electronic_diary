@@ -9,7 +9,10 @@ class Users extends Controller
         $this->studentModel = $this->model('Student');
     }
 
-    public function register()
+    public function index()
+    { }
+
+    public function insert()
     {
         // Check for POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -20,10 +23,11 @@ class Users extends Controller
 
             // Init data
             $data = [
-                'name' => trim($_POST['name']),
-                'email' => trim($_POST['email']),
-                'password' => trim($_POST['password']),
-                'confirm_password' => trim($_POST['confirm_password']),
+                'name' => htmlspecialchars(trim($_POST['name'])),
+                'email' => htmlspecialchars(trim($_POST['email'])),
+                'password' => htmlspecialchars(trim($_POST['password'])),
+                'confirm_password' => htmlspecialchars(trim($_POST['confirm_password'])),
+                'user_role' => htmlspecialchars(trim($_POST['user_role'])),
                 'name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
@@ -76,7 +80,7 @@ class Users extends Controller
                 }
             } else {
                 // Load view with errors
-                $this->view('users/register', $data);
+                $this->view('users/insert', $data);
             }
         } else {
             // Init data
@@ -92,7 +96,7 @@ class Users extends Controller
             ];
 
             // Load view
-            $this->view('users/register', $data);
+            $this->view('users/insert', $data);
         }
     }
 
@@ -212,8 +216,16 @@ class Users extends Controller
         }
     }
 
-    // return $user_roles;
+    public function GetUserRoles()
+    {
+        $roles = $this->userModel->GetAllUserRoles();
 
+        foreach ($roles as $key => $value) {
+            $user_roles[] = $roles[$key]->name;
+        }
+
+        return $user_roles;
+    }
 
     public function isLoggedIn()
     {
