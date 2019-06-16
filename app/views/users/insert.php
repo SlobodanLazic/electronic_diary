@@ -26,19 +26,20 @@
                     </div>
                     <div class="form-group">
                         <label for="user_role">User Role <sup>*</sup></label>
-                        <select name="user_role" id="" class="form-control form-control-lg">
+                        <select name="user_role" id="user_role_dropdown_menu" class="form-control form-control-lg <?php echo(!empty($data['user_role_err'])) ? 'is-invalid' : '' ?>">
                             <option value='' selected>.....Select a role.....</option>
                             <?php 
                                 $users= new Users();
                                 foreach($users->GetUserRoles() as $id_user_role=>$name) : 
                             ?>
-                                <option value='<?php echo $name; ?>'><?php print($name); ?></option>
+                                <option value='<?php echo $id_user_role; ?>'><?php print($name); ?></option>
                             <?php endforeach ; ?>
                         </select>
+                        <span class="invalid-feedback"><?php echo $data['user_role_err']; ?></span>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <input type="submit" value="Register" class="btn btn-primary btn-block">
+                            <input type="submit" value="Insert" class="btn btn-primary btn-block">
                         </div>
                     </div>
                 </form>

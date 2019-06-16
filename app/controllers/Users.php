@@ -31,7 +31,8 @@ class Users extends Controller
                 'name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
-                'confirm_password_err' => ''
+                'confirm_password_err' => '',
+                'user_role_err' => ''
             ];
 
             // Validate Email
@@ -65,6 +66,18 @@ class Users extends Controller
                 }
             }
 
+            // Validate User Role
+             if (empty($data['user_role'])) {
+                $data['user_role_err'] = 'Please select user role';
+            } else {
+                /* this 2nd condition checks out that value sent from dropdown menu(users/insert.php) matches
+                    id_user_roles in values database
+                 */
+                if (is_numeric($data['user_role']) && in_array($data['user_role'],range(1,4,1), true)) {
+                    $data['user_role_err'] = 'User role does not exist';
+                }
+            }
+
             // Make sure errors are empty
             if (empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
                 // Validated
@@ -89,10 +102,12 @@ class Users extends Controller
                 'email' => '',
                 'password' => '',
                 'confirm_password' => '',
+                'user_role' => '',
                 'name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
-                'confirm_password_err' => ''
+                'confirm_password_err' => '',
+                'user_role_err' => ''
             ];
 
             // Load view
