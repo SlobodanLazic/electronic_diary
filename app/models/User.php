@@ -8,14 +8,15 @@
             $this->db = new Database();
         }
 
-        // Register User
+        // Insert User
         public function insert($data)
         {
-            $this->db->query('INSERT INTO users(username, email, password) VALUES (:name, :email, :password)');
+            $this->db->query('INSERT INTO users(username, password, email, id_user_role) VALUES (:name, :password, :email, :id_user_role)');
             // Bind values
             $this->db->bind(':name', $data['name']);
             $this->db->bind(':email', $data['email']);
             $this->db->bind(':password', $data['password']);
+            $this->db->bind(':id_user_role', $data['user_role']);
 
             // Execute
             if ($this->db->execute()) {
