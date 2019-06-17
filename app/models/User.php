@@ -8,13 +8,8 @@
             $this->db = new Database();
         }
 
-<<<<<<< HEAD
-        // Register User
-        public function register($data)
-=======
         // Insert User
         public function insert($data)
->>>>>>> users_crud
         {
             $this->db->query('INSERT INTO users(username, password, email, id_user_role) VALUES (:name, :password, :email, :id_user_role)');
             // Bind values
