@@ -13,6 +13,6 @@ function LoadPageUsingAjax() {
         }
     };
 
-    xhttp.open("POST", "../../../app/views/users/insert.php", true);
+    xhttp.open("POST", "../users/insert.php", true);
     console.log('entered here');
 }

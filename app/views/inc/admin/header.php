@@ -29,7 +29,28 @@
     <![endif]-->
     
     <!-- Loading page without refresh with AJAX -->
-    <script src="../js/ajax/ajax_post_request.js"></script>
+    <script >
+        function LoadPageUsingAjax() {
+        var xhttp = new XMLHttpRequest();
+
+        if (window.XMLHttpRequest) {
+            xhttp = new XMLHttpRequest();
+        } else {
+            xhttp = new ActiveXobject("Microsoft.XMLHTTP");
+        }
+
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById("load_content_by_ajax").innerHTML = xhttp.responseText;
+
+            }
+        };
+
+        xhttp.open("POST", "../users/insert.php", true);
+        console.log('entered here');
+        
+    }
+    </script>
 </head>
 
 <body>
