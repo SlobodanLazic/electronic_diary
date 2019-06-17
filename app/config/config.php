@@ -5,7 +5,7 @@
   define('DB_PASS', '');
   define('DB_NAME', 'e_diary');
 
-  // App Root
+  // App Root C:\wamp64\www\electronic_diary\app
   define('APPROOT', dirname(dirname(__FILE__)));
   // URL Root
   define('URLROOT', 'http://localhost/electronic_diary');
