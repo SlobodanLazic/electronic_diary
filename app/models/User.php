@@ -78,6 +78,15 @@
             # code...
         }
 
+        // Retrieve all user roles from database
+        public function GetAllUserRoles()
+        {
+            $this->db->query('SELECT * FROM user_roles');
+
+            $allUserRoles = $this->db->resultSet();
+
+            return $allUserRoles;
+        }
 
     }
     
