@@ -84,7 +84,7 @@
             $this->db->query('SELECT * FROM user_roles');
 
             $allUserRoles = $this->db->resultSet();
-
+            
             return $allUserRoles;
         }
 
