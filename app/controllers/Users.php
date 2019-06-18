@@ -33,7 +33,6 @@ class Users extends Controller
                 'confirm_password_err' => '',
                 'user_role_err' => ''
             ];
-            print_r($data);
             // Validate Email
             if (empty($data['email'])) {
                 $data['email_err'] = 'Please enter email';

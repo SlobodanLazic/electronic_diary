@@ -270,6 +270,16 @@
                             </select>
                             <span class="invalid-feedback text-danger"><?php echo $data['user_role_err']; ?></span>
                         </div>
+                        <div class="form-group hidden">
+                            <label for="student_first_name">Student first name: <sup>*</sup></label>
+                            <input type="text" name="student_first_name" class="form-control form-control-lg ">
+                            <span class="invalid-feedback text-danger"></span>
+                        </div>
+                        <div class="form-group hidden">
+                            <label for="student_last_name">Student last name: <sup>*</sup></label>
+                            <input type="text" name="student_last_name" class="form-control form-control-lg ">
+                            <span class="invalid-feedback text-danger"></span>
+                        </div>
                         <div class="row">
                             <div class="col">
                                 <input type="submit" value="Insert" class="btn btn-primary btn-block">
@@ -286,5 +296,19 @@
 
 </div>
 <!-- /#page-wrapper -->
-
+<script>
+    selectElement = document.getElementById("user_role_dropdown_menu");
+    OptionElements = selectElement.options;
+    
+    selectElement.onchange = function () {
+        for (let i = 0; i < OptionElements.length; i++) {
+            if(OptionElements[i].value == 4) {
+            
+                var hiddenElement = document.getElementsByClassName('hidden');
+                console.log(hiddenElement);
+                hiddenElement[0].classList.remove('hidden');
+            } 
+        }   
+    }   
+</script>
 <?php require APPROOT . '/views/inc/admin/footer.php'; ?>
