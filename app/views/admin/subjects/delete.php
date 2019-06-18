@@ -7,7 +7,12 @@
 
         <!-- Page Heading -->
         <div class="row">
-            <div class="col-lg-12" id="load_content_by_ajax">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Delete subject
+                </h1>
+
+
             </div>
         </div>
         <!-- /.row -->
