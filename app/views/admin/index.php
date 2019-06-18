@@ -127,7 +127,7 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Users <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
-                        <a href="#" onclick="LoadPageUsingAjax()">Insert User</a>
+                        <a href="<?php echo URLROOT . "/users/insert" ?>" >Insert User</a>
                     </li>
                     <li>
                         <a href="#">Edit User</a>
@@ -228,7 +228,7 @@
 
         <!-- Page Heading -->
         <div class="row">
-            <div class="col-lg-12" id="load_content_by_ajax">
+            <div class="col-lg-12">
             </div>
         </div>
         <!-- /.row -->
