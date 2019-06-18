@@ -259,14 +259,8 @@
                                 <?php endforeach; ?>
 
                             </select>
-
-
-
-
                             <span class="invalid-feedback text-danger"><?php echo $data['id_school_class_err']; ?></span>
-
                         </div>
-
                         <input type="submit" class="btn btn-success" value="Submit">
                     </form>
                 </div>
