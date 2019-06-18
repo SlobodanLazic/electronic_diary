@@ -7,6 +7,8 @@ class Users extends Controller
         $this->userModel = $this->model('User');
 
         $this->studentModel = $this->model('Student');
+
+        $this->classModel = $this->model('School_class');
     }
 
     public function index()
@@ -27,13 +29,19 @@ class Users extends Controller
                 'password' => htmlspecialchars(trim($_POST['password'])),
                 'confirm_password' => htmlspecialchars(trim($_POST['confirm_password'])),
                 'user_role' => htmlspecialchars(trim($_POST['user_role'])),
+                'first_name' => trim($_POST['first_name']),
+                'last_name' => trim($_POST['last_name']),
+                'id_school_class' => trim($_POST['id_school_class']),
                 'name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
                 'confirm_password_err' => '',
-                'user_role_err' => ''
+                'user_role_err' => '',
+                'first_name_err' => '',
+                'last_name_err' => '',
+                'id_school_class_err' => ''
             ];
-            print_r($data);
+
             // Validate Email
             if (empty($data['email'])) {
                 $data['email_err'] = 'Please enter email';
@@ -66,19 +74,39 @@ class Users extends Controller
             }
 
             // Validate User Role
-             if (empty($data['user_role'])) {
+            if (empty($data['user_role'])) {
                 $data['user_role_err'] = 'Please select user role';
             } else {
                 /* this 2nd condition checks out that value sent from dropdown menu(users/insert.php) matches
                     id_user_roles in values database
                  */
-                if (is_numeric($data['user_role']) && in_array($data['user_role'],range(1,4,1), true)) {
+                if (is_numeric($data['user_role']) && in_array($data['user_role'], range(1, 4, 1), true)) {
                     $data['user_role_err'] = 'User role does not exist';
                 }
             }
 
+
+            if ($data['user_role'] === 4) {
+                // Validate first name
+                if (empty($data['first_name'])) {
+                    $data['first_name_err'] = 'Please enter first name';
+                }
+
+                // Validate last name
+                if (empty($data['last_name'])) {
+                    $data['last_name_err'] = 'Please enter last name';
+                }
+
+                // Validate class 
+
+                if (empty($data['id_school_class'])) {
+                    $data['id_school_class_err'] = 'Please select class';
+                }
+            }
+
+
             // Make sure errors are empty
-            if (empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err'])) {
+            if (empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err']) && empty($data['first_name_err']) && empty($data['last_name_err']) && empty($data['id_school_class_err'])) {
                 // Validated
 
                 // Hash Password
@@ -89,6 +117,16 @@ class Users extends Controller
                     flash('register_success', 'You have added a user');
                 } else {
                     die('Something went wrong');
+                }
+
+                if (!empty($data['first_name'] && !empty($data['last_name']) && !empty($data['id_school_class']))) {
+                    if ($this->studentModel->insertStudent($data)) {
+                        // Redirect to login
+                        flash('student_message', 'Student Added');
+                        // redirect('/students');
+                    } else {
+                        die('Something went wrong');
+                    }
                 }
             } else {
                 // Load view with errors
@@ -102,12 +140,23 @@ class Users extends Controller
                 'password' => '',
                 'confirm_password' => '',
                 'user_role' => '',
+                'first_name' => '',
+                'last_name' => '',
+                'id_school_class' => '',
+
                 'name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
                 'confirm_password_err' => '',
-                'user_role_err' => ''
+                'user_role_err' => '',
+                'first_name_err' => '',
+                'last_name_err' => '',
+                'id_school_class_err' => ''
             ];
+
+            $classes = $this->classModel->showAllClasses();
+
+            $data['classes'] = $classes;
 
             // Load view
             $this->view('users/insert', $data);
