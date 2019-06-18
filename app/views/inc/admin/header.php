@@ -31,7 +31,7 @@
 			app.config(function($routeProvider) {
 				$routeProvider
 				.when("/", {
-					templateUrl : "<?php echo URLROOT ?>/users/register"
+					templateUrl : "<?php echo URLROOT; ?>/users/register"
                 })
                 .when("/test", {
                     templateUrl : "../test.html"
