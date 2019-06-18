@@ -9,6 +9,8 @@ class Users extends Controller
         $this->studentModel = $this->model('Student');
 
         $this->classModel = $this->model('School_class');
+
+        $this->User_Student = $this->model('User_Student');
     }
 
     public function index()
@@ -119,6 +121,7 @@ class Users extends Controller
                     die('Something went wrong');
                 }
 
+
                 if (!empty($data['first_name'] && !empty($data['last_name']) && !empty($data['id_school_class']))) {
                     if ($this->studentModel->insertStudent($data)) {
                         // Redirect to login
@@ -127,6 +130,13 @@ class Users extends Controller
                     } else {
                         die('Something went wrong');
                     }
+                }
+
+                // insert in users_students join table
+
+                if ($this->User_Student->insertInUserStudentTable()) { } else {
+
+                    die('Something went wrong');
                 }
             } else {
                 // Load view with errors
