@@ -124,19 +124,14 @@ class Users extends Controller
 
                 if (!empty($data['first_name'] && !empty($data['last_name']) && !empty($data['id_school_class']))) {
                     if ($this->studentModel->insertStudent($data)) {
-                        // Redirect to login
-                        flash('student_message', 'Student Added');
-                        // redirect('/students');
+
+                        if ($this->User_Student->insertInUserStudentTable()) {
+
+                            flash('student_message', 'Student Added');
+                        }
                     } else {
                         die('Something went wrong');
                     }
-                }
-
-                // insert in users_students join table
-
-                if ($this->User_Student->insertInUserStudentTable()) { } else {
-
-                    die('Something went wrong');
                 }
             } else {
                 // Load view with errors
