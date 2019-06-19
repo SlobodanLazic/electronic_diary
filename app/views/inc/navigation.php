@@ -1,4 +1,3 @@
-<?php require APPROOT . '/views/inc/admin/header.php'; ?>
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -110,7 +109,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/users/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                 </li>
             </ul>
         </li>
@@ -127,7 +126,7 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Users <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
-                        <a href="<?php echo URLROOT . "/users/insert" ?>" >Insert User</a>
+                        <a href="#">Insert User</a>
                     </li>
                     <li>
                         <a href="#">Edit User</a>
@@ -154,7 +153,7 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-arrows-v"></i>Notifications <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo2" class="collapse">
                     <li>
-                    <a href="<?php echo URLROOT . "/notifications/insert" ?>" >Insert User</a>
+                        <a href="#">Make Notification</a>
                     </li>
                     <li>
                         <a href="#">Edit Notification</a>
@@ -167,13 +166,7 @@
 
             </li>
             <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#demo3"><i class="fa fa-fw fa-arrows-v"></i>Subjects <i class="fa fa-fw fa-caret-down"></i></a>
-                <ul id="demo3" class="collapse">
-                    <li>
-                        <a href="<?php echo URLROOT . '/subjects'; ?>">Subjects</a>
-                    </li>
-
-                </ul>
+                <a href="<?php echo URLROOT . '/subjects'; ?>" data-toggle="collapse" data-target="#demo3"><i class="fa fa-fw fa-arrows-v"></i>Subjects </a>
 
             </li>
             <li>
@@ -215,22 +208,3 @@
 
     <!-- /.navbar-collapse -->
 </nav>
-
-<div id="page-wrapper">
-
-    <div class="container-fluid">
-
-        <!-- Page Heading -->
-        <div class="row">
-            <div class="col-lg-12">
-            </div>
-        </div>
-        <!-- /.row -->
-
-    </div>
-    <!-- /.container-fluid -->
-
-</div>
-<!-- /#page-wrapper -->
-
-<?php require APPROOT . '/views/inc/admin/footer.php'; ?>
