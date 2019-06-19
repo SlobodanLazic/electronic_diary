@@ -154,7 +154,7 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-arrows-v"></i>Notifications <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo2" class="collapse">
                     <li>
-                        <a href="#">Make Notification</a>
+                    <a href="<?php echo URLROOT . "/notifications/insert" ?>" >Insert User</a>
                     </li>
                     <li>
                         <a href="#">Edit Notification</a>
