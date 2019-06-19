@@ -116,6 +116,7 @@ class Users extends Controller
                 // Add User
                 if ($this->userModel->insert($data)) {
                     flash('register_success', 'You have added a user');
+                    redirect('/users/insert');
                 } else {
                     die('Something went wrong');
                 }
@@ -127,6 +128,7 @@ class Users extends Controller
                         if ($this->User_Student->insertInUserStudentTable()) {
 
                             flash('student_message', 'Student Added');
+                            redirect('/students');
                         }
                     } else {
                         die('Something went wrong');
