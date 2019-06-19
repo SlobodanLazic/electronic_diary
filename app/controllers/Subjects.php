@@ -86,7 +86,14 @@ class Students extends Controller
         }
 
         if(empty($data['name_err'])) {
-            if($this->subjectModel->update($data))
+            if($this->subjectModel->update($data)) {
+                flash('subject_updated', 'Subject Updated');
+                redirect('subjects');
+            } else {
+                die('Something went wrong');
+            }
+        } else {
+            $this->view('admin/subjects/update', $data);
         }
 
         }
