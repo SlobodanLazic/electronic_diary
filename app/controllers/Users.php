@@ -43,10 +43,6 @@ class Users extends Controller
                 'last_name_err' => '',
                 'id_school_class_err' => ''
             ];
-<<<<<<< HEAD
-=======
-
->>>>>>> 6ab34b042fc244160417341c850bb5efe26f0b65
             // Validate Email
             if (empty($data['email'])) {
                 $data['email_err'] = 'Please enter email';

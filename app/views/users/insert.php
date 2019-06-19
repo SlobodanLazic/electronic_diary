@@ -268,17 +268,6 @@
                             </select>
                             <span class="invalid-feedback text-danger"><?php echo $data['user_role_err']; ?></span>
                         </div>
-<<<<<<< HEAD
-                        <div class="form-group hidden">
-                            <label for="student_first_name">Student first name: <sup>*</sup></label>
-                            <input type="text" name="student_first_name" class="form-control form-control-lg ">
-                            <span class="invalid-feedback text-danger"></span>
-                        </div>
-                        <div class="form-group hidden">
-                            <label for="student_last_name">Student last name: <sup>*</sup></label>
-                            <input type="text" name="student_last_name" class="form-control form-control-lg ">
-                            <span class="invalid-feedback text-danger"></span>
-=======
                         <div class="form-group">
                             <label for="first_name">Student First Name: <sup>*</sup></label>
                             <input type="text" name="first_name" class="form-control form-control-lg <?php echo (!empty($data['first_name_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['first_name']; ?>">
@@ -301,7 +290,6 @@
 
                             </select>
                             <span class="invalid-feedback text-danger"><?php echo $data['id_school_class_err']; ?></span>
->>>>>>> 6ab34b042fc244160417341c850bb5efe26f0b65
                         </div>
                         <div class="row">
                             <div class="col">
@@ -319,24 +307,5 @@
 
 </div>
 <!-- /#page-wrapper -->
-<<<<<<< HEAD
-<script>
-    selectElement = document.getElementById("user_role_dropdown_menu");
-    OptionElements = selectElement.options;
-    
-    selectElement.onchange = function () {
-        for (let i = 0; i < OptionElements.length; i++) {
-            if(OptionElements[i].value == 4) {
-            
-                var hiddenElement = document.getElementsByClassName('hidden');
-                console.log(hiddenElement);
-                hiddenElement[0].classList.remove('hidden');
-            } 
-        }   
-    }   
-</script>
-<?php require APPROOT . '/views/inc/admin/footer.php'; ?>
-=======
 
 <?php require APPROOT . '/views/inc/admin/footer.php'; ?>
->>>>>>> 6ab34b042fc244160417341c850bb5efe26f0b65
