@@ -127,7 +127,7 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Users <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
-                        <a href="<?php echo URLROOT . "/users/insert" ?>" >Insert User</a>
+                        <a href="<?php echo URLROOT . "/users/insert" ?>">Insert User</a>
                     </li>
                     <li>
                         <a href="#">Edit User</a>
@@ -144,9 +144,6 @@
                     <li>
                         <a href="<?php echo URLROOT . '/students'; ?>">All Students</a>
                     </li>
-                    <li>
-                        <a href="<?php echo URLROOT . '/students/insert'; ?>">Insert Student</a>
-                    </li>
                 </ul>
 
             </li>
@@ -154,7 +151,7 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-arrows-v"></i>Notifications <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo2" class="collapse">
                     <li>
-                    <a href="<?php echo URLROOT . "/notifications/insert" ?>" >Insert User</a>
+                        <a href="<?php echo URLROOT . "/notifications/insert" ?>">Insert User</a>
                     </li>
                     <li>
                         <a href="#">Edit Notification</a>

@@ -145,9 +145,6 @@
                     <li>
                         <a href="<?php echo URLROOT . '/students'; ?>">All Students</a>
                     </li>
-                    <li>
-                        <a href="<?php echo URLROOT . '/students/insert'; ?>">Insert Student</a>
-                    </li>
                 </ul>
 
             </li>
@@ -297,20 +294,20 @@
                                 ?>
 
 
-        <?php echo '<td>' . ++$i . '</td><td>' . $student->first_name . '</td><td>' . $student->last_name . '</td><td>'
+                                <?php echo '<td>' . ++$i . '</td><td>' . $student->first_name . '</td><td>' . $student->last_name . '</td><td>'
 
-         . $student->name . '</td><td>' . '<a href ='. URLROOT . "/students/edit/".$student->id_student.'>Edit</a>' . '</td><td>' ?> 
+                                    . $student->name . '</td><td>' . '<a href =' . URLROOT . "/students/edit/" . $student->id_student . '>Edit</a>' . '</td><td>' ?>
 
-            <form action="<?php echo URLROOT . "/students/delete/".$student->id_student?>" method="POST">
+                                <form action="<?php echo URLROOT . "/students/delete/" . $student->id_student ?>" method="POST">
 
-                <input type="submit" name="delete" value="Delete">
-                
-            </form>
+                                    <input type="submit" name="delete" value="Delete">
+
+                                </form>
 
 
-             </tr>
+                            </tr>
 
-              </tbody>
+                        </tbody>
 
                     <?php endforeach; ?>
 

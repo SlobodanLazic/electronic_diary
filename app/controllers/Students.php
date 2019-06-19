@@ -32,95 +32,94 @@ class Students extends Controller
     $this->view('admin/students/index', $data);
   }
 
-  public function insert()
+  // public function insert()
+  // {
+  //   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  //     // Sanitize POST
+  //     $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+  //     $data = [
+  //       'first_name' => trim($_POST['first_name']),
+  //       'last_name' => trim($_POST['last_name']),
+  //       'id_school_class' => trim($_POST['id_school_class']),
+
+  //       'first_name_err' => '',
+  //       'last_name_err' => '',
+  //       'id_school_class_err' => ''
+  //     ];
+
+  //     // Validate first name
+  //     if (empty($data['first_name'])) {
+  //       $data['first_name_err'] = 'Please enter first name';
+  //     }
+
+  //     // Validate last name
+  //     if (empty($data['last_name'])) {
+  //       $data['last_name_err'] = 'Please enter last name';
+  //     }
+
+  //     // Validate class 
+
+  //     if (empty($data['id_school_class'])) {
+  //       $data['id_school_class_err'] = 'Please select class';
+  //     }
+
+  //     // Make sure there are no errors
+  //     if (empty($data['first_name_err']) && empty($data['last_name_err']) && empty($data['id_school_class_err'])) {
+  //       // Validation passed
+  //       //Execute
+  //       if ($this->studentModel->insertStudent($data)) {
+  //         // Redirect to login
+  //         flash('student_message', 'Student Added');
+  //         redirect('/students');
+  //       } else {
+  //         die('Something went wrong');
+  //       }
+  //     } else {
+  //       // Load view with errors
+
+  //       $classes = $this->studentModel->showAllStudentsJoinClasses();
+
+  //       $data['classes'] = $classes;
+
+  //       $this->view('admin/students/insert', $data);
+  //     }
+  //   } else {
+  //     $data = [
+  //       'first_name' => '',
+  //       'last_name' => '',
+  //       'id_school_class' => '',
+  //       'first_name_err' => '',
+  //       'last_name_err' => '',
+  //       'id_school_class_err' => '',
+  //     ];
+
+  //     $classes = $this->classModel->showAllClasses();
+
+  //     $data['classes'] = $classes;
+
+  //     $this->view('admin/students/insert', $data);
+  //   }
+  // }
+
+
+  public function edit($id)
   {
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      // Sanitize POST
-      $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-      $data = [
-        'first_name' => trim($_POST['first_name']),
-        'last_name' => trim($_POST['last_name']),
-        'id_school_class' => trim($_POST['id_school_class']),
+    $student = $this->studentModel->getStudentById($id);
 
-        'first_name_err' => '',
-        'last_name_err' => '',
-        'id_school_class_err' => ''
-      ];
-
-      // Validate first name
-      if (empty($data['first_name'])) {
-        $data['first_name_err'] = 'Please enter first name';
-      }
-
-      // Validate last name
-      if (empty($data['last_name'])) {
-        $data['last_name_err'] = 'Please enter last name';
-      }
-
-      // Validate class 
-
-      if (empty($data['id_school_class'])) {
-        $data['id_school_class_err'] = 'Please select class';
-      }
-
-      // Make sure there are no errors
-      if (empty($data['first_name_err']) && empty($data['last_name_err']) && empty($data['id_school_class_err'])) {
-        // Validation passed
-        //Execute
-        if ($this->studentModel->insertStudent($data)) {
-          // Redirect to login
-          flash('student_message', 'Student Added');
-          redirect('/students');
-        } else {
-          die('Something went wrong');
-        }
-      } else {
-        // Load view with errors
-
-        $classes = $this->studentModel->showAllStudentsJoinClasses();
-
-        $data['classes'] = $classes;
-
-        $this->view('admin/students/insert', $data);
-      }
-    } else {
-      $data = [
-        'first_name' => '',
-        'last_name' => '',
-        'id_school_class' => '',
-        'first_name_err' => '',
-        'last_name_err' => '',
-        'id_school_class_err' => '',
-      ];
-
-      $classes = $this->classModel->showAllClasses();
-
-      $data['classes'] = $classes;
-
-      $this->view('admin/students/insert', $data);
-    }
-  }
+    $classes = $this->classModel->showAllClasses();
 
 
-   public function edit($id)
-  {
-    
-      $student = $this->studentModel->getStudentById($id);
+    $data = [
 
-      $classes = $this->classModel->showAllClasses();
+      'student' => $student,
 
+      'classes' => $classes
 
-      $data = [
+    ];
 
-          'student' => $student,
-
-          'classes' => $classes
-
-      ];  
-  
-      $this->view('/admin/students/edit', $data);
-    
+    $this->view('/admin/students/edit', $data);
   }
 
 
@@ -131,28 +130,21 @@ class Students extends Controller
   public function delete($id)
   {
 
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-      if($this->studentModel->deleteStudent($id)){
+      if ($this->studentModel->deleteStudent($id)) {
 
-          flash('student_deleted_msg' , 'Student Deleted');
+        flash('student_deleted_msg', 'Student Deleted');
 
-          redirect('students');
-
-      }else{
+        redirect('students');
+      } else {
 
         die('Something went wrong');
-
       }
-
-
-    }else {
+    } else {
 
       redirect('pages');
-
     }
-
-   
   }
 
 
@@ -161,21 +153,21 @@ class Students extends Controller
 
 
 
-  public function show($id){
+  public function show($id)
+  {
 
     $student = $this->studentModel()->getStudentById($id);
 
-      $data = [
+    $data = [
 
-          'student' => $student
+      'student' => $student
 
-      ];
+    ];
 
-      $this->view();
-
+    $this->view();
   }
 
-    public function update()
+  public function update()
   {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       // Sanitize POST
@@ -239,5 +231,4 @@ class Students extends Controller
       $this->view('admin/students/update', $data);
     }
   }
-
 }
