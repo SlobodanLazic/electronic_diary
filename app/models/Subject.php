@@ -1,5 +1,5 @@
 <?php
-class Student
+class Subject
 {
     private $db;
 
@@ -9,7 +9,7 @@ class Student
     }
 
 
-    public function insert($data)
+    public function insertSubject($data)
     {
         $this->db->query('INSERT INTO subjects (name) VALUES (:name)');
 
@@ -29,7 +29,7 @@ class Student
 
         return $subjects;
     }
-    public function edit()
+    public function editSubject()
     {
         $this->db->query('UPDATE subjects SET name = :name');
     }
@@ -45,7 +45,7 @@ class Student
     }
 
 
-    public function delete($id)
+    public function deleteSubject($id)
     {
         $this->db->query('DELETE FROM subjects WHERE id_subject = :id_subject');
         $this->db->ind(':id_subject', $id);

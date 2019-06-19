@@ -1,6 +1,6 @@
 <?php
 
-class Students extends Controller
+class Subjects extends Controller
 {
 
     public function __construct(){
