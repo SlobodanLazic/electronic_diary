@@ -71,14 +71,18 @@ class Subjects extends Controller
         $this->view();
     }
     public function update(){
+
+      
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
                 'name' => trim($_POST['name']),
+                'id_subject' => trim($_POST['id_subject']),
 
                 'name_err' => ''
             ];
+
 
         // Validate for name
         if(empty($data['name'])) {

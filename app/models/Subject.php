@@ -23,7 +23,7 @@ class Subject
     }
 
     public function showallSubjects() {
-        $this->db->query('SELECT name FROM subjects');
+        $this->db->query('SELECT id_subject, name FROM subjects');
 
         $subjects = $this->db->resultSet();
 
@@ -48,7 +48,7 @@ class Subject
     public function deleteSubject($id)
     {
         $this->db->query('DELETE FROM subjects WHERE id_subject = :id_subject');
-        $this->db->ind(':id_subject', $id);
+        $this->db->bind(':id_subject', $id);
 
         if ($this->db->execute()) {
             return true;
@@ -60,10 +60,10 @@ class Subject
 
     public function update($data)
     {
-        $this->db->query('UPDATE subjects name = :name WHERE id_subject = :id');
+        $this->db->query('UPDATE subjects SET name = :name WHERE id_subject = :id_subject');
 
         $this->db->bind(':name', $data['name']);
-        $this->db->bind(':id', $data['id_subject']);
+        $this->db->bind(':id_subject', $data['id_subject']);
 
         if ($this->db->execute()) {
             return true;
