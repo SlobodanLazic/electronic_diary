@@ -10,7 +10,7 @@
 
         public function insertNotification($data)
         {
-            $this->db->query('INSERT INTO notifications (notification_content) VALUES (:notification_content)');
+            $this->db->query('INSERT INTO parent_notifications (notification_content) VALUES (:notification_content)');
 
      
             $this->db->bind(':notification_content', $data['notification_content']);
