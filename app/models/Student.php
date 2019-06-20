@@ -24,10 +24,10 @@ class Student
         }
     }
 
-    public function editStudent()
-    {
-        $this->db->query('UPDATE students SET first_name = :first_name , last_name = :last_name , id_class = :id_class');
-    }
+    // public function editStudent()
+    // {
+    //     $this->db->query('UPDATE students SET first_name = :first_name , last_name = :last_name , id_class = :id_class');
+    // }
 
 
     public function deleteStudent($id)

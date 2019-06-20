@@ -1,4 +1,5 @@
 <?php require APPROOT . '/views/inc/admin/header.php'; ?>
+
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -110,7 +111,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/users/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                 </li>
             </ul>
         </li>
@@ -127,7 +128,7 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Users <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
-                        <a href="<?php echo URLROOT . "/users/insert" ?>">Insert User</a>
+                        <a href="#">Insert User</a>
                     </li>
                     <li>
                         <a href="#">Edit User</a>
@@ -151,7 +152,7 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-arrows-v"></i>Notifications <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo2" class="collapse">
                     <li>
-                        <a href="<?php echo URLROOT . "/notifications/insert" ?>">Insert User</a>
+                        <a href="#">Make Notification</a>
                     </li>
                     <li>
                         <a href="#">Edit Notification</a>
@@ -167,7 +168,13 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo3"><i class="fa fa-fw fa-arrows-v"></i>Subjects <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo3" class="collapse">
                     <li>
-                        <a href="<?php echo URLROOT . '/subjects'; ?>">Subjects</a>
+                        <a href="#">Insert Subject</a>
+                    </li>
+                    <li>
+                        <a href="#">Edit Subject</a>
+                    </li>
+                    <li>
+                        <a href="#">Delete Subject</a>
                     </li>
 
                 </ul>
@@ -193,7 +200,7 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo5"><i class="fa fa-fw fa-arrows-v"></i>School Classes <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo5" class="collapse">
                     <li>
-                        <a href="<?php echo URLROOT . '/classes'; ?>">All Class</a>
+                        <a href="<?php echo URLROOT . '/students'; ?>">All Class</a>
                     </li>
                     <li>
                         <a href="#">Edit Class</a>
@@ -220,6 +227,82 @@
         <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
+                <h1 class="page-header">
+                    Classes
+                </h1>
+                <?php flash('student_message') ?>
+                <?php flash('student_updated') ?>
+                <?php flash('student_deleted_msg') ?>
+<!-- 
+                <form action="" method="post">
+
+                    <div class="form-group">
+                        <label>Select class:</label>
+                        <select name='id_class' class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+
+
+                            <?php foreach ($data['classes'] as $class) : ?>
+
+                                <?php echo "<option value=\"$class->id_school_class\">$class->name</option>"; ?>
+
+                            <?php endforeach; ?>
+
+                        </select>
+
+                        <input type="submit" class="btn btn-success" value="Show">
+
+                    </div>
+
+                </form> -->
+
+                <table class="table table-striped">
+
+                    <thead>
+
+                        <tr>
+                            <th></th>
+                            <th>Class</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+
+                    <?php $i = 0; ?>
+
+                    <?php foreach ($data['classes'] as $class) : ?>
+
+                        <tbody>
+
+                            <tr>
+
+                   
+
+
+                                <?php echo '<td>' . ++$i . '</td><td>' . $class->name . '</td><td>' 
+
+                            . '<a href =' . URLROOT . "/classes/edit/" . $class->id_school_class . '>Edit</a>' . '</td><td>' ?>
+
+
+                                <form action="<?php echo URLROOT . "/classes/delete/" . $class->id_school_class ?>" method="POST">
+
+                                    <input type="submit" name="delete" value="Delete">
+
+                                </form>
+
+
+                            </tr>
+
+                        </tbody>
+
+                    <?php endforeach; ?>
+
+                </table>
+
+
+
+
+
+
             </div>
         </div>
         <!-- /.row -->

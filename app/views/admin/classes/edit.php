@@ -1,4 +1,5 @@
 <?php require APPROOT . '/views/inc/admin/header.php'; ?>
+
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -110,7 +111,7 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <a href="<?php echo URLROOT; ?>/users/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                    <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                 </li>
             </ul>
         </li>
@@ -127,7 +128,7 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Users <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
-                        <a href="<?php echo URLROOT . "/users/insert" ?>">Insert User</a>
+                        <a href="#">Insert User</a>
                     </li>
                     <li>
                         <a href="#">Edit User</a>
@@ -144,6 +145,9 @@
                     <li>
                         <a href="<?php echo URLROOT . '/students'; ?>">All Students</a>
                     </li>
+                    <li>
+                        <a href="<?php echo URLROOT . '/students/insert'; ?>">Insert Student</a>
+                    </li>
                 </ul>
 
             </li>
@@ -151,7 +155,7 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo2"><i class="fa fa-fw fa-arrows-v"></i>Notifications <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo2" class="collapse">
                     <li>
-                        <a href="<?php echo URLROOT . "/notifications/insert" ?>">Insert User</a>
+                        <a href="#">Make Notification</a>
                     </li>
                     <li>
                         <a href="#">Edit Notification</a>
@@ -167,7 +171,13 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo3"><i class="fa fa-fw fa-arrows-v"></i>Subjects <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo3" class="collapse">
                     <li>
-                        <a href="<?php echo URLROOT . '/subjects'; ?>">Subjects</a>
+                        <a href="#">Insert Subject</a>
+                    </li>
+                    <li>
+                        <a href="#">Edit Subject</a>
+                    </li>
+                    <li>
+                        <a href="#">Delete Subject</a>
                     </li>
 
                 </ul>
@@ -193,7 +203,7 @@
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo5"><i class="fa fa-fw fa-arrows-v"></i>School Classes <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo5" class="collapse">
                     <li>
-                        <a href="<?php echo URLROOT . '/classes'; ?>">All Class</a>
+                        <a href="#">Insert Class</a>
                     </li>
                     <li>
                         <a href="#">Edit Class</a>
@@ -220,6 +230,26 @@
         <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">
+                <h1 class="page-header">
+                    Update Student
+                </h1>
+
+                <div class="card card-body bg-light mt-5">
+
+        
+                    <form action="<?php echo URLROOT; ?>/classes/update/<?php echo $data['classes']->id_school_class; ?>" method="post">
+                        <div class="form-group">
+                            <label>Name:</label>
+                            <input type="text" name="name" class="form-control form-control-lg <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['classes']->name; ?>">
+                            <input type="hidden" id="id_school_class" name="id_school_class" value="<?php echo $data['classes']->id_school_class; ?>">
+                            <span class="invalid-feedback text-danger"></span>
+                        </div>
+                    
+                        <input type="submit" class="btn btn-success" value="Update">
+                    </form>
+                </div>
+
+
             </div>
         </div>
         <!-- /.row -->
