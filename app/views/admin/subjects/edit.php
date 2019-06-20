@@ -14,7 +14,7 @@
 
                 <div class="card card-body bg-light mt-5">
 
-                    <form action="<?php echo URLROOT; ?>/subject/update/<?php echo $data['subject']->id_subject; ?>" method="post">
+                    <form action="<?php echo URLROOT; ?>/subjects/update/<?php echo $data['subject']->id_subject; ?>" method="post">
                         <div class="form-group">
                             <label>Subject Name:</label>
                             <input type="text" name="name" class="form-control form-control-lg <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['subject']->name; ?>">
