@@ -60,6 +60,32 @@ class Notifications extends Controller
 
         }
 
+        // public function show($id)
+        // {
+      
+        //   $notification = $this->notificationModel()->getMessageById($id);
+      
+        //   $data = [
+      
+        //     'notification' => $notification
+      
+        //   ];
+      
+        //   $this->view();
+        // }
+
+        public function index()
+        {
+          $message = $this->notificationModel->getMessage();
+          $data = [
+            'message' => $message 
+          ];
+          $this->view('notification/index', $data);
+
+        }
+
+
+
         public function delete($id)
         {
       
