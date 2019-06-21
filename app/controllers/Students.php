@@ -153,19 +153,19 @@ class Students extends Controller
 
 
 
-  public function show($id)
-  {
+  // public function show($id)
+  // {
 
-    $student = $this->studentModel()->getStudentById($id);
+  //   $student = $this->studentModel()->getStudentById($id);
 
-    $data = [
+  //   $data = [
 
-      'student' => $student
+  //     'student' => $student
 
-    ];
+  //   ];
 
-    $this->view();
-  }
+  //   $this->view();
+  // }
 
   public function update()
   {
