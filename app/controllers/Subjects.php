@@ -15,34 +15,52 @@ class Subjects extends Controller
 
         $this->view('admin/subjects/index', $data);
     }
-    public function insert(){
-        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-        // Sanitise post
-        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-        $data = [
-            'name' => trim($_POST['name']),
+    public function insert()
+  {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+      // Sanitize POST
+      $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-            'name_err' => ''
-    ];
+      $data = [
+        'name' => trim($_POST['name']),
 
-    // Validate name
-    if(empty($data['name'])){
-        $data['name'] = 'Please enter subject name';
-    }
+        'name_err' => '',
 
-    if(empty($data['name'])) {
-        if($this->subjectModel->insertSubject($data)) {
-            flash('subject_message', 'Subject added');
-            redirect('/subjects');
+      ];
+
+      // Validate first name
+      if (empty($data['name'])) {
+        $data['name_err'] = 'Please enter name';
+      }
+
+
+      // Make sure there are no errors
+      if (empty($data['name_err'])) {
+        // Validation passed
+        //Execute
+        if ($this->subjectModel->insertSubject($data)) {
+          // Redirect to login
+          flash('subject_message', 'Subject Added');
+          redirect('/subjects');
         } else {
-            die('Something went wrong');
+          die('Something went wrong');
         }
-    } else {
-        $data = ['name' => ''];
+      } else {
+        // Load view with errors
+
         $this->view('admin/subjects/insert', $data);
+      }
+    } else {
+      $data = [
+        'name' => '',
+
+        'name_err' => '',
+
+      ];
+
+      $this->view('admin/subjects/insert', $data);
     }
-        }
-    }
+  }
     public function edit($id){
         $subject = $this->subjectModel->getSubjectId($id);
 
