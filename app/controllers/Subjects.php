@@ -37,8 +37,10 @@ class Subjects extends Controller
         } else {
             die('Something went wrong');
         }
+    } else {
+        $data = ['name' => ''];
+        $this->view('admin/subjects/insert', $data);
     }
-
         }
     }
     public function edit($id){

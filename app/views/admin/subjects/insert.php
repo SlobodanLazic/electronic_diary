@@ -1,5 +1,4 @@
 <?php require APPROOT . '/views/inc/admin/header.php'; ?>
-<?php require APPROOT . '/views/inc/navigation.php'; ?>
 
 <div id="page-wrapper">
 
@@ -17,7 +16,7 @@
                     <form action="<?php echo URLROOT; ?>/subjects/insert" method="post">
                         <div class="form-group">
                             <label>Subject Name:</label>
-                            <input type="text" name="name" class="form-control form-control-lg <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['subject']->name; ?>">
+                            <input for="name" type="text" value="Create subject">
                             <span class="invalid-feedback text-danger"></span>
                         </div>
                         <input type="hidden" id="id_subject" name="id_subject" value="<?php echo $data['subject']->id_subject; ?>">

@@ -1,8 +1,7 @@
-.buttons-pos {
+td.buttons-pos {
     display: inline-flex;
     border: 0;
 }
-.button-pos a,
-.button-pos form {
-    margin-right: 5px;
+td.button-pos a {
+    margin-right: 15px;
 }

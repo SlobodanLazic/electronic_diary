@@ -1,5 +1,4 @@
 <?php require APPROOT . '/views/inc/admin/header.php'; ?>
-<?php require APPROOT . '/views/inc/navigation.php'; ?>
 
 
 
@@ -13,7 +12,7 @@
                 <h1 class="page-header">
                     Subjects
                 </h1>
-                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT . "/subjects/insert/" ?>">Insert subject</a>
+                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT . "/subjects/insert" ?>">Insert subject</a>
                 <?php flash('subject_message') ?>
                 <?php flash('subject_updated') ?>
                 <?php flash('subject_deleted_msg') ?>
