@@ -13,7 +13,7 @@
                 <h1 class="page-header">
                     Subjects
                 </h1>
-                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="edit.php">Insert subject</a>
+                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT . "/subjects/insert/" ?>">Insert subject</a>
                 <?php flash('subject_message') ?>
                 <?php flash('subject_updated') ?>
                 <?php flash('subject_deleted_msg') ?>
@@ -37,11 +37,12 @@
       echo '
         <td>' . ++$i . '</td>
         <td>' . $subject->name . '</td>
-        <td><a href=' . URLROOT . "/subjects/edit/" . $subject->id_subject . '>Edit</a>
+        <td class="buttons-pos">
+        <a class="btn btn-primary" href=' . URLROOT . "/subjects/edit/" . $subject->id_subject . '>Edit</a>
         '?>
         <form action="<?php echo URLROOT . "/subjects/delete/" . $subject->id_subject ?>" method="POST">
 
-        <input type="submit" name="delete" value="Delete">
+        <button class="btn btn-primary" type="submit" name="delete">Delete</button>
 
     </form></td>
     </tr>

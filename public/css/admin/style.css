@@ -1,0 +1,8 @@
+.buttons-pos {
+    display: inline-flex;
+    border: 0;
+}
+.button-pos a,
+.button-pos form {
+    margin-right: 5px;
+}
