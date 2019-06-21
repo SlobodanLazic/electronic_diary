@@ -14,12 +14,12 @@
                 <div class="card card-body bg-light mt-5">
 
                     <form action="<?php echo URLROOT; ?>/subjects/insert" method="post">
+
                         <div class="form-group">
-                            <label>Subject Name:</label>
-                            <input for="name" type="text" value="Create subject">
-                            <span class="invalid-feedback text-danger"></span>
+                            <label for="last_name">Subject Name: <sup>*</sup></label>
+                            <input type="text" name="name" class="form-control form-control-lg <?php echo (!empty($data['name_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['name']; ?>">
+                            <span class="invalid-feedback text-danger"><?php echo $data['name_err']; ?></span>
                         </div>
-                        <input type="hidden" id="id_subject" name="id_subject" value="<?php echo $data['subject']->id_subject; ?>">
 
                         <input type="submit" class="btn btn-success" value="Insert">
                     </form>
