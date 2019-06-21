@@ -12,6 +12,7 @@
       // Instatiate model
       return new $model();
     }
+    
 
     // Load view
     public function view($view, $data = []){
