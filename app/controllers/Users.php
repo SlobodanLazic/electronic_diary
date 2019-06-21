@@ -136,6 +136,10 @@ class Users extends Controller
                 }
             } else {
                 // Load view with errors
+                $classes = $this->classModel->showAllClasses();
+
+                $data['classes'] = $classes;
+
                 $this->view('users/insert', $data);
             }
         } else {
