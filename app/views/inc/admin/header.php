@@ -177,7 +177,7 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo1"><i class="fa fa-fw fa-arrows-v"></i>Students <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo1" class="collapse">
                             <li>
-                                <a href="<?php echo URLROOT . '/students'; ?>">All Students</a>
+                                <a href="<?php echo URLROOT . '/students'; ?>">Students</a>
                             </li>
                         </ul>
 
@@ -209,7 +209,7 @@
 
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo4"><i class="fa fa-fw fa-arrows-v"></i> Class Schedules <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo4"><i class="fa fa-fw fa-arrows-v"></i>Schedules <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo4" class="collapse">
                             <li>
                                 <a href="#">Insert Schedule</a>
@@ -225,13 +225,10 @@
 
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo5"><i class="fa fa-fw fa-arrows-v"></i>School Classes <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo5"><i class="fa fa-fw fa-arrows-v"></i>Classes <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo5" class="collapse">
                             <li>
-                                <a href="<?php echo URLROOT . '/classes'; ?>">All Class</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo URLROOT . '/classes/insert'; ?>">Insert Class</a>
+                                <a href="<?php echo URLROOT . '/classes'; ?>">Classes</a>
                             </li>
                         </ul>
 
