@@ -11,6 +11,9 @@
                     Insert Class
                 </h1>
 
+                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT; ?>/classes/insert">Insert class</a>
+
+
                 <div class="card card-body bg-light mt-5">
 
                     <form action="<?php echo URLROOT; ?>/classes/insert" method="post">

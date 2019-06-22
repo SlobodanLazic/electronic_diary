@@ -13,27 +13,8 @@
                 <?php flash('student_message') ?>
                 <?php flash('student_updated') ?>
                 <?php flash('student_deleted_msg') ?>
-                <!-- 
-                <form action="" method="post">
 
-                    <div class="form-group">
-                        <label>Select class:</label>
-                        <select name='id_class' class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-
-
-                            <?php foreach ($data['classes'] as $class) : ?>
-
-                                    <?php echo "<option value=\"$class->id_school_class\">$class->name</option>"; ?>
-
-                            <?php endforeach; ?>
-
-                        </select>
-
-                        <input type="submit" class="btn btn-success" value="Show">
-
-                    </div>
-
-                </form> -->
+                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT; ?>/classes/insert">Insert class</a>
 
                 <table class="table table-striped">
 
