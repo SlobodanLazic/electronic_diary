@@ -14,7 +14,9 @@ class Users extends Controller
     }
 
     public function index()
-    { }
+    { 
+
+    }
 
     public function insert()
     {
@@ -173,6 +175,27 @@ class Users extends Controller
         }
     }
 
+    public function delete()
+    {   
+        
+        // Check for POST
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            
+            $id = $_POST['id_user'];
+            if ($this->userModel->deleteUser($id)) {
+      
+              flash('user_deleted_msg', 'User Deleted');
+              $this->view('users/delete');
+              
+            } else {
+      
+              die('Something went wrong');
+            }
+
+        } else {
+            $this->view('users/delete');
+        }
+    }
     public function login()
     {
         // Check for POST
@@ -299,6 +322,17 @@ class Users extends Controller
 
         return $user_roles;
     }
+    // this function gets all data for user including username, email and user role from User model
+    public function GetAllUsersAndAllRoles()
+    {
+        $usersFromModel = $this->userModel->GetAllUsersAndRoles();
+
+        foreach ($usersFromModel as $key => $value) {
+            $users[$key] = $value;
+        }
+
+        return $users;
+    }
 
     public function isLoggedIn()
     {
@@ -308,4 +342,6 @@ class Users extends Controller
             return false;
         }
     }
+
+    
 }
