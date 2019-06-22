@@ -30,7 +30,13 @@
         // Login User
         public function login($email,$password)
         {
-            $this->db->query('SELECT * FROM users WHERE email = :email');
+            $this->db->query('SELECT u.id_user,
+                            u.username,
+                            u.password,
+                            u.email,
+                            u.id_user_role 
+                            FROM users AS u 
+                            WHERE email = :email');
             $this->db->bind(':email', $email);
 
             $row = $this->db->single();
@@ -46,7 +52,13 @@
         // Find user by email
         public function findUserByEmail($email)
         {
-            $this->db->query('SELECT * FROM users WHERE email = :email');
+            $this->db->query('SELECT u.id_user,
+                              u.username,
+                              u.password,
+                              u.email,
+                              u.id_user_role 
+                              FROM users AS u
+                              WHERE email = :email');
             // Bind value
             $this->db->bind(':email', $email);
 
@@ -63,7 +75,13 @@
         // Get User by ID
         public function getUserById($id)
         {
-            $this->db->query('SELECT * FROM users WHERE id_user = :id');
+            $this->db->query('SELECT u.id_user,
+                              u.username,
+                              u.password,
+                              u.email,
+                              u.id_user_role
+                              FROM users 
+                              WHERE id_user = :id');
             // Bind value
             $this->db->bind(':id', $id);
 
@@ -81,7 +99,10 @@
         // Retrieve all user roles from database
         public function GetAllUserRoles()
         {
-            $this->db->query('SELECT * FROM user_roles');
+            $this->db->query('SELECT ur.id_user_role,
+                              ur.name,
+                              ur.description 
+                              FROM user_roles AS ur');
 
             $allUserRoles = $this->db->resultSet();
             
