@@ -25,7 +25,7 @@ class Schedules extends Controller
 
             'classes' => $classes
 
-        ];
+         ];
 
         $this->view('admin/schedules/index', $data);
     }
@@ -151,16 +151,16 @@ class Schedules extends Controller
                 if ($this->schedulesModel->insertSchedule($data)) {
                     // Redirect to login
                     flash('schedule_message', 'Schedule Created');
-                    redirect('/schedules');
+                    redirect('schedules');
                 } else {
                     die('Something went wrong');
                 }
             } else {
                 // Load view with errors
 
-                // $classes = $this->classModel->showAllClasses();
+                $classes = $this->classModel->showAllClasses();
 
-                // $data['classes'] = $classes;
+                $data['classes'] = $classes;
 
                 $this->view('admin/schedules/insert', $data);
             }
@@ -213,12 +213,12 @@ class Schedules extends Controller
 
             ];
 
-            // $classes = $this->classModel->showAllClasses();
+            $classes = $this->classModel->showAllClasses();
 
 
-            // $data['classes'] = $classes;
+            $data['classes'] = $classes;
 
-            $this->view('admin/schedules/insert');
+            $this->view('admin/schedules/insert', $data);
         }
     }
 }
