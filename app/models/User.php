@@ -30,7 +30,13 @@
         // Login User
         public function login($email,$password)
         {
-            $this->db->query('SELECT * FROM users WHERE email = :email');
+            $this->db->query('SELECT u.id_user,
+                            u.username,
+                            u.password,
+                            u.email,
+                            u.id_user_role 
+                            FROM users AS u 
+                            WHERE email = :email');
             $this->db->bind(':email', $email);
 
             $row = $this->db->single();
@@ -46,7 +52,13 @@
         // Find user by email
         public function findUserByEmail($email)
         {
-            $this->db->query('SELECT * FROM users WHERE email = :email');
+            $this->db->query('SELECT u.id_user,
+                              u.username,
+                              u.password,
+                              u.email,
+                              u.id_user_role 
+                              FROM users AS u
+                              WHERE email = :email');
             // Bind value
             $this->db->bind(':email', $email);
 
@@ -63,7 +75,13 @@
         // Get User by ID
         public function getUserById($id)
         {
-            $this->db->query('SELECT * FROM users WHERE id_user = :id');
+            $this->db->query('SELECT u.id_user,
+                              u.username,
+                              u.password,
+                              u.email,
+                              u.id_user_role
+                              FROM users 
+                              WHERE id_user = :id');
             // Bind value
             $this->db->bind(':id', $id);
 
@@ -73,11 +91,57 @@
         }
 
         // Edit(update) user
-        public function UpdateUser($data)
+        public function updateUser($data)
         {
             # code...
         }
 
+<<<<<<< HEAD
+=======
+        // Delete user
+        public function deleteUser($id)
+        {
+            $this->db->query('DELETE FROM users WHERE id_user = :id_user');
+
+            $this->db->bind(':id_user', $id);
+
+            if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        // Retrieve all user roles from database
+        public function GetAllUserRoles()
+        {
+            $this->db->query('SELECT ur.id_user_role,
+                              ur.name,
+                              ur.description 
+                              FROM user_roles AS ur');
+
+            $allUserRoles = $this->db->resultSet();
+            
+            return $allUserRoles;
+        }
+
+        // Retrieve all users from database and their user roles
+        public function GetAllUsersAndRoles()
+        {
+            $this->db->query('  SELECT u.id_user,
+                                u.username,
+                                u.email,
+                                ur.id_user_role,
+                                ur.name
+                                FROM users AS u 
+                                    JOIN user_roles AS ur ON u.id_user_role = ur.id_user_role
+                            ');
+            $allUsers = $this->db->resultSet();
+
+            return $allUsers;
+        }
+
+>>>>>>> master
     }
     
 ?>
