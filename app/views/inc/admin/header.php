@@ -212,7 +212,7 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo4"><i class="fa fa-fw fa-arrows-v"></i>Schedules <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo4" class="collapse">
                             <li>
-                                <a href="<?php echo URLROOT . '/schedules'; ?>">Insert Schedule</a>
+                                <a href="<?php echo URLROOT . '/schedules/insert'; ?>">Insert Schedule</a>
                             </li>
                             <li>
                                 <a href="#">Edit Schedule</a>
