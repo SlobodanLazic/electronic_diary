@@ -11,7 +11,7 @@
                     Schedules
                 </h1>
                 <form action="<?php echo URLROOT; ?>/schedules/insert" method="POST">
-                    <table class="table table-striped">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col"></th>
@@ -224,7 +224,7 @@
 
                         <label for="id_school_class">Student Class<sup>*</sup></label>
                         <select name="id_school_class" id="id_school_class" class="form-control form-control-lg">
-                            <option value='' selected>.....Select a class.....</option>
+                            <option value='0' selected>.....Select a class.....</option>
                             <?php foreach ($data['classes'] as $class) : ?>
 
                                 <?php echo "<option value=\"$class->id_school_class\">$class->name</option>"; ?>
