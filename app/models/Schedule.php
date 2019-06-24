@@ -263,4 +263,34 @@ class Schedule
 
         return $schedules;
     }
+
+    public function getScheduleById($id)
+    {
+        $this->db->query('SELECT * FROM schedules WHERE id_schedules = :id_schedule');
+
+        $this->db->bind(':id_schedule', $id);
+
+        $row = $this->db->single();
+
+        return $row;
+    }
+
+    public function update($data)
+    {
+
+
+        $this->db->query('UPDATE schedules SET subject_name = :name WHERE id_schedules = :id');
+
+        $this->db->bind(':id', $data['id_schedules']);
+
+        $this->db->bind(':name', $data['name']);
+
+
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

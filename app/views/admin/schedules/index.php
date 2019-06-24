@@ -53,33 +53,33 @@
                     if ($schedule->order_id == 1) {
 
 
-                        $row1[] =  $schedule->subject_name;
+                        $row1[] =  $schedule;
                     }
 
                     if ($schedule->order_id == 2) {
 
-                        $row2[] =  $schedule->subject_name;
+                        $row2[] =  $schedule;
                     }
 
                     if ($schedule->order_id == 3) {
 
-                        $row3[] =  $schedule->subject_name;
+                        $row3[] =  $schedule;
                     }
                     if ($schedule->order_id == 4) {
 
-                        $row4[] =  $schedule->subject_name;
+                        $row4[] =  $schedule;
                     }
                     if ($schedule->order_id == 5) {
 
-                        $row5[] =  $schedule->subject_name;
+                        $row5[] =  $schedule;
                     }
                     if ($schedule->order_id == 6) {
 
-                        $row6[] =  $schedule->subject_name;
+                        $row6[] =  $schedule;
                     }
                     if ($schedule->order_id == 7) {
 
-                        $row7[] =  $schedule->subject_name;
+                        $row7[] =  $schedule;
                     }
                 }
 
@@ -107,7 +107,7 @@
 
                                 echo "<td>1</td>";
                                 foreach ($row1 as $r) {
-                                    echo "<td>$r</td>";
+                                    echo "<td><a href=" . URLROOT . "/schedules/show/$r->id_schedules>" . $r->subject_name . "</a></td>";
                                 }
 
                                 ?>
@@ -117,7 +117,7 @@
                                 echo "<td>2</td>";
                                 foreach ($row2 as $v) {
 
-                                    echo "<td>$v</td>";
+                                    echo "<td><a href=" . URLROOT . "/schedules/show/$v->id_schedules>" . $v->subject_name . "</a></td>";
                                 }
                                 ?>
                             </tr>
@@ -125,7 +125,8 @@
                                 <?php
                                 echo "<td>3</td>";
                                 foreach ($row3 as $c) {
-                                    echo "<td>$c</td>";
+
+                                    echo "<td><a href=" . URLROOT . "/schedules/show/$c->id_schedules>" . $c->subject_name . "</a></td>";
                                 }
                                 ?>
                             </tr>
@@ -133,7 +134,8 @@
                                 <?php
                                 echo "<td>4</td>";
                                 foreach ($row4 as $f) {
-                                    echo "<td>$f</td>";
+
+                                    echo "<td><a href=" . URLROOT . "/schedules/show/$f->id_schedules>" . $f->subject_name . "</a></td>";
                                 }
                                 ?>
                             </tr>
@@ -141,7 +143,8 @@
                                 <?php
                                 echo "<td>5</td>";
                                 foreach ($row5 as $e) {
-                                    echo "<td>$e</td>";
+
+                                    echo "<td><a href=" . URLROOT . "/schedules/show/$e->id_schedules>" . $e->subject_name . "</a></td>";
                                 }
                                 ?>
                             </tr>
@@ -149,7 +152,8 @@
                                 <?php
                                 echo "<td>6</td>";
                                 foreach ($row6 as $g) {
-                                    echo "<td>$g</td>";
+
+                                    echo "<td><a href=" . URLROOT . "/schedules/show/$g->id_schedules>" . $g->subject_name . "</a></td>";
                                 }
                                 ?>
                             </tr>
@@ -157,7 +161,8 @@
                                 <?php
                                 echo "<td>7</td>";
                                 foreach ($row7 as $h) {
-                                    echo "<td>$h</td>";
+
+                                    echo "<td><a href=" . URLROOT . "/schedules/show/$h->id_schedules>" . $h->subject_name . "</a></td>";
                                 }
                                 ?>
                             </tr>

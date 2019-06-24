@@ -224,4 +224,66 @@ class Schedules extends Controller
             $this->view('admin/schedules/insert', $data);
         }
     }
+
+    public function show($id)
+    {
+
+        $schedule = $this->schedulesModel->getScheduleById($id);
+
+        $data['schedule'] = $schedule;
+
+        $this->view('admin/schedules/show', $data);
+    }
+
+    public function update()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Sanitize POST
+            $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data = [
+
+                'name' => trim($_POST['name']),
+
+                'id_schedules' => trim($_POST['id_schedule']),
+
+                'name_err' => '',
+
+            ];
+
+
+            // Validate first name
+            if (empty($data['name'])) {
+                $data['name_err'] = 'Please enter name';
+            }
+
+
+            // Make sure there are no errors
+            if (empty($data['name_err'])) {
+                // Validation passed
+                //Execute
+                if ($this->schedulesModel->update($data)) {
+                    // Redirect to login
+                    flash('schedule_updated', 'Schedule Updated');
+                    redirect('schedules');
+                } else {
+                    die('Something went wrong');
+                }
+            } else {
+                // Load view with errors
+
+                $this->view('admin/schedules/update', $data);
+            }
+        } else {
+            $data = [
+
+                'name' => '',
+
+
+            ];
+
+
+            $this->view('admin/schedules/update', $data);
+        }
+    }
 }
