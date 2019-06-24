@@ -96,8 +96,6 @@
             # code...
         }
 
-<<<<<<< HEAD
-=======
         // Delete user
         public function deleteUser($id)
         {
@@ -135,13 +133,13 @@
                                 ur.name
                                 FROM users AS u 
                                     JOIN user_roles AS ur ON u.id_user_role = ur.id_user_role
+                                ORDER BY ur.name;
                             ');
             $allUsers = $this->db->resultSet();
 
             return $allUsers;
         }
 
->>>>>>> master
     }
     
 ?>

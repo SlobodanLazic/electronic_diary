@@ -13,10 +13,7 @@ class Users extends Controller
         $this->User_Student = $this->model('User_Student');
     }
 
-    public function index()
-    { 
-
-    }
+    
 
     public function insert()
     {
@@ -179,7 +176,7 @@ class Users extends Controller
     {   
         
         // Check for POST
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["id_user"])) {
             
             $id = $_POST['id_user'];
             if ($this->userModel->deleteUser($id)) {

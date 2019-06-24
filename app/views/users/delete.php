@@ -13,6 +13,26 @@
                 <?php flash('user_message') ?>
                 <?php flash('user_deleted_msg') ?>
 
+                <form action="" method="post">
+
+                    <div class="form-group">
+                        <label>Select class:</label>
+                        <select name="user_role" id="user_role" class="form-control form-control-lg <?php echo (!empty($data['user_role_err'])) ? 'is-invalid' : '' ?>">
+                                <option value='' selected>.....Select a role.....</option>
+                                <?php
+                                $users = new Users();
+                                foreach ($users->GetUserRoles() as $id_user_role => $name) :
+                                    ?>
+                                    <option value='<?php echo $id_user_role; ?>'><?php print($name); ?></option>
+                                <?php endforeach; ?>    
+                        </select>
+
+                        <input type="submit" class="btn btn-success" value="Show">
+
+                    </div>
+
+                </form>
+
                 <div class="table-responsive">
                     <table class="table table-striped">
 
