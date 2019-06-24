@@ -253,4 +253,14 @@ class Schedule
             return false;
         }
     }
+
+    public function showAllFromSchedule()
+    {
+
+        $this->db->query('SELECT id_schedules, subject_name, order_id, day_id, class_id FROM schedules');
+
+        $schedules = $this->db->resultSet();
+
+        return $schedules;
+    }
 }

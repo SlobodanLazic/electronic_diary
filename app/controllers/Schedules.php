@@ -19,13 +19,16 @@ class Schedules extends Controller
 
         $classes = $this->classModel->showAllClasses();
 
+        $schedules = $this->schedulesModel->showAllFromSchedule();
+
 
 
         $data = [
 
-            'classes' => $classes
+            'classes' => $classes,
 
-         ];
+            'schedules' => $schedules
+        ];
 
         $this->view('admin/schedules/index', $data);
     }

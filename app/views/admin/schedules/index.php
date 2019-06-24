@@ -10,7 +10,7 @@
                 <h1 class="page-header">
                     Schedules
                 </h1>
-             
+
                 <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT; ?>/schedules/insert">Insert schedule</a>
 
                 <form action="" method="post">
@@ -34,62 +34,137 @@
 
                 </form>
 
-                <table class="table table-striped">
 
+                <?php
+
+                foreach ($data['schedules'] as $schedule) {
+
+                    if (isset($_POST['id_class'])) {
+
+                        $postClass = htmlspecialchars($_POST['id_class']);
+
+                        if ($schedule->class_id != (int)$postClass) {
+
+                            continue;
+                        }
+                    }
+
+
+                    if ($schedule->order_id == 1) {
+
+
+                        $row1[] =  $schedule->subject_name;
+                    }
+
+                    if ($schedule->order_id == 2) {
+
+                        $row2[] =  $schedule->subject_name;
+                    }
+
+                    if ($schedule->order_id == 3) {
+
+                        $row3[] =  $schedule->subject_name;
+                    }
+                    if ($schedule->order_id == 4) {
+
+                        $row4[] =  $schedule->subject_name;
+                    }
+                    if ($schedule->order_id == 5) {
+
+                        $row5[] =  $schedule->subject_name;
+                    }
+                    if ($schedule->order_id == 6) {
+
+                        $row6[] =  $schedule->subject_name;
+                    }
+                    if ($schedule->order_id == 7) {
+
+                        $row7[] =  $schedule->subject_name;
+                    }
+                }
+
+                ?>
+
+
+
+                <table class="table">
                     <thead>
-
                         <tr>
-                            <th></th>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Class</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th scope="col"></th>
+                            <th scope="col">Monday</th>
+                            <th scope="col">Tuesday</th>
+                            <th scope="col">Wednesday</th>
+                            <th scope="col">Thursday</th>
+                            <th scope="col">Friday</th>
                         </tr>
                     </thead>
+                    <tbody>
 
-                    <?php $i = 0; ?>
+                        <tr>
+                            <?php
 
-                    <!-- <?php foreach ($data['students'] as $student) : ?> -->
+                            if (isset($row1, $row2, $row3, $row4, $row5, $row6, $row7)) {
 
-                        <tbody>
-
-                            <tr>
-
-                                <?php
-
-                                $postClass =  1;
-
-                                if (isset($_POST['id_class'])) {
-
-                                    $postClass = htmlspecialchars($_POST['id_class']);
-                                }
-
-                                if ($student->id_school_class != (int)$postClass) {
-
-                                    continue;
+                                echo "<td>1</td>";
+                                foreach ($row1 as $r) {
+                                    echo "<td>$r</td>";
                                 }
 
                                 ?>
+                            </tr>
+                            <tr>
+                                <?php
+                                echo "<td>2</td>";
+                                foreach ($row2 as $v) {
 
-
-                                <?php echo '<td>' . ++$i . '</td><td>' . $student->first_name . '</td><td>' . $student->last_name . '</td><td>'
-
-                                    . $student->name . '</td><td>' . '<a href =' . URLROOT . "/students/edit/" . $student->id_student . '>Edit</a>' . '</td><td>' ?>
-
-                                <form action="<?php echo URLROOT . "/students/delete/" . $student->id_student ?>" method="POST">
-
-                                    <input type="submit" name="delete" value="Delete">
-
-                                </form>
-
-
+                                    echo "<td>$v</td>";
+                                }
+                                ?>
+                            </tr>
+                            <tr>
+                                <?php
+                                echo "<td>3</td>";
+                                foreach ($row3 as $c) {
+                                    echo "<td>$c</td>";
+                                }
+                                ?>
+                            </tr>
+                            <tr>
+                                <?php
+                                echo "<td>4</td>";
+                                foreach ($row4 as $f) {
+                                    echo "<td>$f</td>";
+                                }
+                                ?>
+                            </tr>
+                            <tr>
+                                <?php
+                                echo "<td>5</td>";
+                                foreach ($row5 as $e) {
+                                    echo "<td>$e</td>";
+                                }
+                                ?>
+                            </tr>
+                            <tr>
+                                <?php
+                                echo "<td>6</td>";
+                                foreach ($row6 as $g) {
+                                    echo "<td>$g</td>";
+                                }
+                                ?>
+                            </tr>
+                            <tr>
+                                <?php
+                                echo "<td>7</td>";
+                                foreach ($row7 as $h) {
+                                    echo "<td>$h</td>";
+                                }
+                                ?>
                             </tr>
 
-                        </tbody>
+                        <?php } ?>
 
-                    <?php endforeach; ?>
-
+                    </tbody>
                 </table>
 
             </div>
