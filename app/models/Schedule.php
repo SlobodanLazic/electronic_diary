@@ -293,4 +293,16 @@ class Schedule
             return false;
         }
     }
+
+    public function getScheduleByClassId($id)
+    {
+
+        $this->db->query('SELECT * FROM schedules WHERE class_id = :id');
+
+        $this->db->bind(':id', $id);
+
+        $row = $this->db->resultSet();
+
+        return $row;
+    }
 }

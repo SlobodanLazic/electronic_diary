@@ -21,15 +21,13 @@ class Schedules extends Controller
 
         $classes = $this->classModel->showAllClasses();
 
-        $schedules = $this->schedulesModel->showAllFromSchedule();
-
-
+        // $schedules = $this->schedulesModel->showAllFromSchedule();
 
         $data = [
 
-            'classes' => $classes,
+            'classes' => $classes
 
-            'schedules' => $schedules
+            // 'schedules' => $schedules
         ];
 
         $this->view('admin/schedules/index', $data);
@@ -53,6 +51,7 @@ class Schedules extends Controller
                 'a6' => trim($_POST['a6']),
                 'a7' => trim($_POST['a7']),
                 'day1' => trim($_POST['day1']),
+
 
 
                 //tuesday
@@ -106,50 +105,18 @@ class Schedules extends Controller
                 'class_num6' => trim($_POST['class_num6']),
                 'class_num7' => trim($_POST['class_num7']),
                 'class_id' => trim($_POST['id_school_class']),
-                'a1_err' => '',
-                'a2_err' => '',
-                'a3_err'  => '',
-                'a4_err' => '',
-                'a5_err' => '',
-                'a6_err' => '',
-                'a7_err' => '',
-                'monday1_err' => '',
-                'monday2_err' => '',
-                'monda3_err' => '',
-                'monday4_err' => '',
-                'monday5_err' => '',
-                'monday6_err' => '',
-                'monday7_err' => '',
-                'class_num1_err' => '',
-                'class_num2_err' => '',
-                'class_num3_err' => '',
-                'class_num4_err' => '',
-                'class_num5_err' => '',
-                'class_num6_err' => '',
-                'class_num7_err' => '',
+
             ];
 
-            // // Validate first name
-            // if (empty($data['first_name'])) {
-            //     $data['first_name_err'] = 'Please enter first name';
-            // }
+            // Validate class
+            if (empty($data['class_id'])) {
+                $data['class_err'] = 'Please choose class';
+            }
 
-            // // Validate last name
-            // if (empty($data['last_name'])) {
-            //     $data['last_name_err'] = 'Please enter last name';
-            // }
-
-            // // Validate class 
-
-            // if (empty($data['id_school_class'])) {
-            //     $data['id_school_class_err'] = 'Please select class';
-            // }
 
             // Make sure there are no errors
             if (
-                empty($data['a1_err']) && empty($data['a2_err'])
-
-                && empty($data['a4_err']) && empty($data['a5_err']) && empty($data['a6_err']) && empty($data['a7_err'])
+                empty($data['class_err'])
             ) {
                 // Validation passed
                 //Execute
@@ -218,7 +185,9 @@ class Schedules extends Controller
                 'e5' => '',
                 'e6' => '',
                 'e7' => '',
-                'day5' => ''
+                'day5' => '',
+                'id_class' => '',
+                'class_err' => ''
 
             ];
 
@@ -235,14 +204,14 @@ class Schedules extends Controller
         }
     }
 
-    public function show($id)
+    public function edit($id)
     {
 
         $schedule = $this->schedulesModel->getScheduleById($id);
 
         $data['schedule'] = $schedule;
 
-        $this->view('admin/schedules/show', $data);
+        $this->view('admin/schedules/edit', $data);
     }
 
     public function update()
@@ -295,5 +264,21 @@ class Schedules extends Controller
 
             $this->view('admin/schedules/update', $data);
         }
+    }
+
+    public function show()
+    {
+
+        $id = htmlspecialchars($_POST['id_class']);
+
+        $schedules = $this->schedulesModel->getScheduleByClassId($id);
+
+        $data['schedules'] = $schedules;
+
+        $classes = $this->classModel->showAllClasses();
+
+        $data['classes'] = $classes;
+
+        $this->view('admin/schedules/index', $data);
     }
 }

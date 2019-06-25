@@ -10,6 +10,8 @@
                 <h1 class="page-header">
                     Schedules
                 </h1>
+
+                <span class="invalid-feedback text-danger"><?php echo $data['class_err']; ?></span>
                 <form action="<?php echo URLROOT; ?>/schedules/insert" method="POST">
                     <table class="table">
                         <thead>
@@ -211,7 +213,7 @@
                                     <input type="hidden" id="1" name="class_num7" value="7">
                                 </td>
                                 <td>
-                                    <input type="text"  name='e7' size="12">
+                                    <input type="text" name='e7' size="12">
 
                                     <input type="hidden" id="1" name="class_num7" value="7">
                                 </td>
@@ -224,7 +226,7 @@
 
                         <label for="id_school_class">Student Class<sup>*</sup></label>
                         <select name="id_school_class" id="id_school_class" class="form-control form-control-lg">
-                            <option value='0' selected>.....Select a class.....</option>
+                            <option value='' selected>.....Select a class.....</option>
                             <?php foreach ($data['classes'] as $class) : ?>
 
                                 <?php echo "<option value=\"$class->id_school_class\">$class->name</option>"; ?>
@@ -239,18 +241,20 @@
                     <input type="hidden" name="day3" value="3">
                     <input type="hidden" name="day4" value="4">
                     <input type="hidden" name="day5" value="5">
-                    <!-- <input type="hidden" name="class_id" value="3"> -->
+
                     <input type="submit" name="insert" value="Insert">
 
                 </form>
 
+
+
                 <div class="jumbotron text-center m-1">
-                
-                <?php foreach ($data['subjects'] as $subject) : ?>
 
-                    <?php echo "<p>$subject->name</p>" ?>
+                    <?php foreach ($data['subjects'] as $subject) : ?>
 
-                <?php endforeach; ?>
+                        <?php echo "<p>$subject->name</p>" ?>
+
+                    <?php endforeach; ?>
 
                 </div>
 
