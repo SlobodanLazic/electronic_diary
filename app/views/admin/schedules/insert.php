@@ -211,7 +211,7 @@
                                     <input type="hidden" id="1" name="class_num7" value="7">
                                 </td>
                                 <td>
-                                    <input type="text" name='e7' size="12">
+                                    <input type="text"  name='e7' size="12">
 
                                     <input type="hidden" id="1" name="class_num7" value="7">
                                 </td>
@@ -243,6 +243,17 @@
                     <input type="submit" name="insert" value="Insert">
 
                 </form>
+
+                <div class="jumbotron text-center m-1">
+                
+                <?php foreach ($data['subjects'] as $subject) : ?>
+
+                    <?php echo "<p>$subject->name</p>" ?>
+
+                <?php endforeach; ?>
+
+                </div>
+
             </div> <!-- /.row -->
 
         </div>
@@ -250,5 +261,7 @@
 
     </div>
     <!-- /#page-wrapper -->
+
+
 
     <?php require APPROOT . '/views/inc/admin/footer.php'; ?>

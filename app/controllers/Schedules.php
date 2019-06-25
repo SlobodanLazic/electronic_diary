@@ -9,6 +9,8 @@ class Schedules extends Controller
         $this->schedulesModel = $this->model('Schedule');
 
         $this->classModel = $this->model('School_Class');
+
+        $this->subjectModel = $this->model('Subject');
     }
 
 
@@ -165,6 +167,10 @@ class Schedules extends Controller
 
                 $data['classes'] = $classes;
 
+                $subjects = $this->subjectModel->showallSubjects();
+
+                $data['subjects'] = $subjects;
+
                 $this->view('admin/schedules/insert', $data);
             }
         } else {
@@ -220,6 +226,10 @@ class Schedules extends Controller
 
 
             $data['classes'] = $classes;
+
+            $subjects = $this->subjectModel->showallSubjects();
+
+            $data['subjects'] = $subjects;
 
             $this->view('admin/schedules/insert', $data);
         }
