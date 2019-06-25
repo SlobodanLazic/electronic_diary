@@ -218,13 +218,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_user`, `username`, `password`, `email`, `id_user_role`) VALUES
-(2, 'administrator', '$2y$10$2hg/V3YhIgKl2XNe0fNij.0DrBdXzns5AaeWu.j6h5QnXLjZNvEsW', 'administrator@gmail.com', 1),
-(4, 'Milan', '$2y$10$BV8K9.rhH8t6em8.EyTDQO9G97YpDaiFAkNsQ65hhwqkfDMRxx45W', 'milan@gmail.com', 4),
-(5, 'Milan', '$2y$10$.uyW2q994Nv446YbrUmZse.f9vJdc5Lw3Ns8cnjewMYpvz024OEVm', 'milaerwern@gmail.com', 4),
-(6, 'Milan', '$2y$10$WzuoWqUXkPLWVJcmgVlMPetNqdqD8SH64RY7y/eNJtSW57aGQmupu', 'milfgan@gmail.com', 4),
-(7, 'Anaa', '$2y$10$9XUwH9VukFkbE.g9GiSRBuGomnyvBNqhvX7rn1fIJBPJOuMVLAtJS', 'milanz@gmail.com', 2),
-(8, 'Milan', '$2y$10$9pGqF7hBapUZiyML1pChauc8CAGeBWnq4JZW9msVqElg5c0lw3Zu2', 'mdfilan@gmail.com', 4);
+INSERT INTO `users` VALUES (2,'administrator','$2y$10$2hg/V3YhIgKl2XNe0fNij.0DrBdXzns5AaeWu.j6h5QnXLjZNvEsW','administrator@gmail.com',1),(6,'director','$2y$10$YG.Ity62kSWi1j9xz0EdKeR96pITfKLX5Go7wocI/oCrg794HqZVm','director@gmail.com',2),(8,'teacher','$2y$10$91fxW1z3ChSXmhFh2Qy2U.7/ipBBotLWeSS2fspc27I2CbPfjldha','teacher@gmail.com',3),(9,'parent1','$2y$10$pqGLfLKdzegK.hM3vsooiueZPq1dSJfq/TM2umYkjIt25tkTot4dS','parent1@gmail.com',4);
 
 -- --------------------------------------------------------
 
@@ -279,11 +273,7 @@ CREATE TABLE IF NOT EXISTS `user_roles` (
 -- Dumping data for table `user_roles`
 --
 
-INSERT INTO `user_roles` (`id_user_role`, `name`, `description`) VALUES
-(1, 'Administrator', 'Administrator can delete update edit users,user roles,schedules,notifications'),
-(2, 'Teacher', ''),
-(3, 'Director', NULL),
-(4, 'Parent', NULL);
+INSERT INTO `user_roles` VALUES (1,'Administrator','Administrator can delete update edit users,user roles,schedules,notifications'),(2,'Director','have access to statistics on the efficiency of the classroomto have access to statistics on the efficiency of subjects at the school level'),(3,'Teacher','can have 1 class and access to only that class,access their department and write, delete, and conclude grades,can accept and reject the request for parents to come to the open door,message section , schedule'),(4,'Parent','has access to and grades only for his child,has access to the part of the application where he will schedule the arrival at the open door,messages, notification access');
 
 --
 -- Constraints for dumped tables
