@@ -13,7 +13,7 @@
                 <?php flash('user_message') ?>
                 <?php flash('user_deleted_msg') ?>
 
-                <form action="" method="post">
+                <form action="<?php echo URLROOT; ?>/users/delete" method="post">
 
                     <div class="form-group">
                         <label>Select class:</label>
@@ -27,8 +27,7 @@
                                 <?php endforeach; ?>    
                         </select>
 
-                        <input type="submit" class="btn btn-success" value="Show">
-
+                        <input type="submit" class="btn btn-success" value="Show">  
                     </div>
 
                 </form>
@@ -49,7 +48,7 @@
                         <?php 
                         $users = new Users();
 
-                        foreach ($users->GetAllUsersAndAllRoles() as $user) : ?>
+                        foreach ($users->GetUsersByUserRole($_POST["user_role"]) as $user) : ?>
 
                             <tbody>
 

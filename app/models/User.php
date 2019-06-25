@@ -124,7 +124,7 @@
         }
 
         // Retrieve all users from database and their user roles
-        public function GetAllUsersAndRoles()
+        public function GetUsersByRoles($id_user_role)
         {
             $this->db->query('  SELECT u.id_user,
                                 u.username,
@@ -133,8 +133,11 @@
                                 ur.name
                                 FROM users AS u 
                                     JOIN user_roles AS ur ON u.id_user_role = ur.id_user_role
+                                WHERE ur.id_user_role = :id_user_role
                                 ORDER BY ur.name;
                             ');
+                        $this->db->bind(':id_user_role', $id_user_role);
+                        
             $allUsers = $this->db->resultSet();
 
             return $allUsers;
