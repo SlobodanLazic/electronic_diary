@@ -85,7 +85,7 @@ class Users extends Controller
                 }
             }
 
-
+            // If user role is parent
             if ($data['user_role'] === 4) {
                 // Validate first name
                 if (empty($data['first_name'])) {
@@ -179,6 +179,7 @@ class Users extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["id_user"])) {
             
             $id = $_POST['id_user'];
+            
             if ($this->userModel->deleteUser($id)) {
       
               flash('user_deleted_msg', 'User Deleted');
@@ -319,16 +320,26 @@ class Users extends Controller
 
         return $user_roles;
     }
-    // this function gets all data for user including username, email and user role from User model
-    public function GetAllUsersAndAllRoles()
+    
+    /*  this function gets all data for user including username, email and user role from 
+        User model sorted by role or empty array if user role is not selected
+    */
+    public function GetUsersByUserRole($id_user_role)
     {
-        $usersFromModel = $this->userModel->GetAllUsersAndRoles();
+        if($id_user_role !== '')
+        {
+            $usersFromModel = $this->userModel->GetUsersByRoles($id_user_role);
 
-        foreach ($usersFromModel as $key => $value) {
-            $users[$key] = $value;
+            foreach ($usersFromModel as $key => $value) {
+                $users[$key] = $value;
+            }
+            
+            return $users;
         }
-
-        return $users;
+        else
+        {
+            return [];
+        }
     }
 
     public function isLoggedIn()
