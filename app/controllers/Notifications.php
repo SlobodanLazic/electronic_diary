@@ -46,19 +46,16 @@ class Notifications extends Controller
 
 
 
-      public function edit($id)
-      {
+      public function edit(){
+        $notification = $this->notificationModel->getMessage();
 
-            $notifications = $this->notificationModel->showAllNotifications();
+        $data = [
+            'notification' => $notification
+            
+        ];
 
-
-            $data = [
-
-              'notifications' => $notifications
-
-            ];
-
-        }
+        $this->view('/notification/edit', $data);
+    }
 
         // public function show($id)
         // {
