@@ -52,13 +52,13 @@
 
        }
 
-       public function update($data)
-       {
-           $this->db->query('UPDATE parent_notifications SET id_parent_notification = :id_parent_notification, notification_content = :notification_content WHERE id_parent_notification = :id');
+    //    public function update($data)
+    //    {
+    //        $this->db->query('UPDATE parent_notifications SET id_parent_notification = :id_parent_notification, notification_content = :notification_content WHERE id_parent_notification = :id');
 
-           $this->db->bind(':id_parent_notification', $data['id_parent_notification']);
-           $this->db->bind(':notification_content', $data['notification_content']);
-        }
+    //        $this->db->bind(':id_parent_notification', $data['id_parent_notification']);
+    //        $this->db->bind(':notification_content', $data['notification_content']);
+    //     }
 
 
 
