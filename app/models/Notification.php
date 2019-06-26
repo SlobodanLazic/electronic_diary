@@ -51,7 +51,6 @@
             }
 
        }
-
        public function update($data)
        {
            $this->db->query('UPDATE parent_notifications SET id_parent_notification = :id_parent_notification, notification_content = :notification_content WHERE id_parent_notification = :id');

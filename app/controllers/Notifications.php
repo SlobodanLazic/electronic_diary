@@ -26,7 +26,7 @@ class Notifications extends Controller
             if ($this->notificationModel->insertNotification($data)) {
             
               flash('notification_message', 'Notification Added');
-              redirect('/notification');
+              redirect('notifications');
             } else {
               die('Something went wrong');
             }
@@ -57,25 +57,25 @@ class Notifications extends Controller
         $this->view('/notification/edit', $data);
     }
 
-        // public function show($id)
-        // {
+         public function show($id)
+         {
       
-        //   $notification = $this->notificationModel()->getMessageById($id);
+           $notification = $this->notificationModel()->getMessageById($id);
       
-        //   $data = [
+           $data = [
       
-        //     'notification' => $notification
+            'notification' => $notification
       
-        //   ];
+           ];
       
-        //   $this->view();
-        // }
+           $this->view();
+         }
 
         public function index()
         {
-          $message = $this->notificationModel->getMessage();
+          $notifications = $this->notificationModel->getMessage();
           $data = [
-            'message' => $message 
+            'notifications' => $notifications
           ];
           $this->view('notification/index', $data);
 
@@ -92,7 +92,7 @@ class Notifications extends Controller
       
               flash('notification_deleted_msg', 'Notification Deleted');
       
-              redirect('notifications');
+              redirect('notification');
             } else {
       
               die('Something went wrong');
