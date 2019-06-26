@@ -351,5 +351,7 @@ class Users extends Controller
         }
     }
 
-    
+    public function index(){
+        $this->view('teacher/index');
+    }
 }

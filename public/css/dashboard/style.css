@@ -1,0 +1,12 @@
+td.buttons-pos {
+    display: inline-flex;
+    border: 0;
+}
+td.button-pos a {
+    margin-right: 15px;
+}
+.inputfornotification {
+    width: 500px;
+    padding-bottom: 200px;
+    font-size: 16px;
+}
