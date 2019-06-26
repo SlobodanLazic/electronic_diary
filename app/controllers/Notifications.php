@@ -46,8 +46,8 @@ class Notifications extends Controller
 
 
 
-      public function edit(){
-        $notification = $this->notificationModel->getMessage();
+      public function edit($id){
+        $notification = $this->notificationModel->getNotificationId($id);
 
         $data = [
             'notification' => $notification
@@ -95,48 +95,38 @@ class Notifications extends Controller
           }
       }
 
-        public function update()
-        {
-          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-          
-            $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+      public function update(){
+
+      
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
-              'notification_content' => trim($_POST['notification_content']),
+                'notification_content' => trim($_POST['notification_content']),
+                'id_parent_notification' => trim($_POST['id_parent_notification']),
 
-              'notification_content_err' => ''
-            ];
-
-           
-            if (empty($data['notification_content'])) {
-              $data['notification_content_err'] = 'Please enter your message';
-            }
-
-
-        
-            if (empty($data['notification_content_err'])) {
-              if ($this->notificationModel->update($data)) {
-                flash('notification_updated', 'Notification Updated');
-                redirect('notification/insert.php');
-              } else {
-                die('Something went wrong');
-              }
-            } else {
-
-              $this->view('notification/insert.php', $data);
-            }
-          } else {
-            $data = [
-
-              'notification_content' => '',
-              'notification_content_err' => '',
-
+                'notification_content_err' => ''
             ];
 
 
-       
-          }
+        // Validate for notification_content
+        if(empty($data['notification_content'])) {
+            $data['notification_content_err'] = 'Please enter a subject';
         }
+
+        if(empty($data['notification_content_err'])) {
+            if($this->notificationModel->update($data)) {
+                flash('notification_updated', 'Notification Updated');
+                redirect('notifications');
+            } else {
+                die('Something went wrong');
+            }
+        } else {
+            $this->view('notifications/update', $data);
+        }
+
+        }
+    }
           
     }
   

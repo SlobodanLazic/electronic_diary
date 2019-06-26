@@ -8,40 +8,21 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    Edit Notification
+                    Update Notification
                 </h1>
 
                 <div class="card card-body bg-light mt-5">
 
-                    <form action="<?php echo URLROOT; ?>/notification/edit" method="post">
+                    <form action="<?php echo URLROOT; ?>/notifications/update/<?php echo $data['notification']->id_parent_notification; ?>" method="post">
                         <div class="form-group">
-                                <textarea name="notification_content" id="notification_content" cols="100" rows="15">
-                                        <?php foreach ($data['notification'] as $notification) : ?>
-
-                                        <?php echo $notification->notification_content; ?>
-
-                                        <?php endforeach; ?> 
-
-                                </textarea>
-                         
+                            <label>Notification Content:</label>
+                            <input type="text" name="notification_content" class="form-control form-control-lg <?php echo (!empty($data['notification_content_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['notification']->notification_content; ?>">
+                            <span class="invalid-feedback text-danger"></span>
                         </div>
-                  
-                       
+                        <input type="hidden" id="id_parent_notification" name="id_parent_notification" value="<?php echo $data['notification']->id_parent_notification; ?>">
 
+                        <input type="submit" class="btn btn-success" value="Update">
                     </form>
-                </div>
-                         
-                          
-
-
-
-
-
-
-
-
-
-
                 </div>
 
 

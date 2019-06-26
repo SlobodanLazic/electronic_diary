@@ -25,13 +25,22 @@
 
         public function getMessage()
         {
-            $this->db->query('SELECT * FROM parent_notifications');
+            $this->db->query('SELECT id_parent_notification, notification_content FROM parent_notifications');
             $notification = $this->db->resultSet();
             return $notification;
     
         }
 
-        
+        public function getNotificationId($id)
+    {
+        $this->db->query('SELECT * FROM parent_notifications WHERE id_parent_notification = :id_parent_notification');
+
+        $this->db->bind(':id_parent_notification', $id);
+
+        $row = $this->db->single();
+
+        return $row;
+    }
 
         public function editNotification()
         {
@@ -54,10 +63,16 @@
        }
        public function update($data)
        {
-           $this->db->query('UPDATE parent_notifications SET id_parent_notification = :id_parent_notification, notification_content = :notification_content WHERE id_parent_notification = :id');
+           $this->db->query('UPDATE parent_notifications SET  notification_content = :notification_content WHERE id_parent_notification = :id_parent_notification');
 
            $this->db->bind(':id_parent_notification', $data['id_parent_notification']);
            $this->db->bind(':notification_content', $data['notification_content']);
+           
+           if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
         }
 
 
