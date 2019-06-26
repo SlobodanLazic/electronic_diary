@@ -47,8 +47,8 @@
                         
                         <?php 
                         $users = new Users();
-
-                        foreach ($users->GetUsersByUserRole($_POST["user_role"]) as $user) : ?>
+                        // if isset post user role get that value if not get ''
+                        foreach ($users->GetUsersByUserRole($_POST["user_role"] ?? '') as $user) : ?>
 
                             <tbody>
 
