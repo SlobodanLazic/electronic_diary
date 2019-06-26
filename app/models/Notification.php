@@ -41,7 +41,8 @@
 
        public function deleteNotification($id)
        {
-           $this->db->query('DELETE FROM parent_notifications');
+           $this->db->query('DELETE FROM parent_notifications WHERE id_parent_notification = :id_parent_notification');
+           $this->db->bind(':id_parent_notification', $id);
          
 
            if($this->db->execute()){

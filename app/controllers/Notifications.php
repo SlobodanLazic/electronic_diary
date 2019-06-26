@@ -82,26 +82,18 @@ class Notifications extends Controller
         }
 
 
-
-        public function delete($id)
-        {
-      
-          if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      
-            if ($this->notificationModel->deleteNotification($id)) {
-      
-              flash('notification_deleted_msg', 'Notification Deleted');
-      
-              redirect('notification');
-            } else {
-      
-              die('Something went wrong');
-            }
+        public function delete($id){
+          if($_SERVER['REQUEST_METHOD'] == 'POST') {
+              if($this->notificationModel->deleteNotification($id)) {
+                  flash('notification_deleted_msg', 'Notification Deleted');
+                  redirect('notifications');
+              } else {
+                  die('Something went wrong');
+              }
           } else {
-      
-            redirect('notification/insert.php');
+              redirect('pages');
           }
-        }
+      }
 
         public function update()
         {
