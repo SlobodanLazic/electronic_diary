@@ -78,91 +78,93 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
 
                     ?>
 
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col"></th>
-                                <th scope="col">Monday</th>
-                                <th scope="col">Tuesday</th>
-                                <th scope="col">Wednesday</th>
-                                <th scope="col">Thursday</th>
-                                <th scope="col">Friday</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <tr>
-                                <?php
-
-                                if (isset($row1, $row2, $row3, $row4, $row5, $row6, $row7)) {
-
-                                    echo "<td>1</td>";
-                                    foreach ($row1 as $r) {
-                                        echo "<td><a href=" . URLROOT . "/schedules/edit/$r->id_schedules>" . $r->subject_name . "</a></td>";
-                                    }
-
-                                    ?>
+                    <div class="table-responsive">
+                        <table class="table table-hover bg-info text-warning table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Monday</th>
+                                    <th scope="col">Tuesday</th>
+                                    <th scope="col">Wednesday</th>
+                                    <th scope="col">Thursday</th>
+                                    <th scope="col">Friday</th>
                                 </tr>
+                            </thead>
+                            <tbody>
+
                                 <tr>
                                     <?php
-                                    echo "<td>2</td>";
-                                    foreach ($row2 as $v) {
 
-                                        echo "<td><a href=" . URLROOT . "/schedules/edit/$v->id_schedules>" . $v->subject_name . "</a></td>";
-                                    }
-                                    ?>
-                                </tr>
-                                <tr>
-                                    <?php
-                                    echo "<td>3</td>";
-                                    foreach ($row3 as $c) {
+                                    if (isset($row1, $row2, $row3, $row4, $row5, $row6, $row7)) {
 
-                                        echo "<td><a href=" . URLROOT . "/schedules/edit/$c->id_schedules>" . $c->subject_name . "</a></td>";
-                                    }
-                                    ?>
-                                </tr>
-                                <tr>
-                                    <?php
-                                    echo "<td>4</td>";
-                                    foreach ($row4 as $f) {
+                                        echo "<td>1</td>";
+                                        foreach ($row1 as $r) {
+                                            echo "<td><a href=" . URLROOT . "/schedules/edit/$r->id_schedules>" . $r->subject_name . "</a></td>";
+                                        }
 
-                                        echo "<td><a href=" . URLROOT . "/schedules/edit/$f->id_schedules>" . $f->subject_name . "</a></td>";
-                                    }
-                                    ?>
-                                </tr>
-                                <tr>
-                                    <?php
-                                    echo "<td>5</td>";
-                                    foreach ($row5 as $e) {
+                                        ?>
+                                    </tr>
+                                    <tr>
+                                        <?php
+                                        echo "<td>2</td>";
+                                        foreach ($row2 as $v) {
 
-                                        echo "<td><a href=" . URLROOT . "/schedules/edit/$e->id_schedules>" . $e->subject_name . "</a></td>";
-                                    }
-                                    ?>
-                                </tr>
-                                <tr>
-                                    <?php
-                                    echo "<td>6</td>";
-                                    foreach ($row6 as $g) {
+                                            echo "<td><a href=" . URLROOT . "/schedules/edit/$v->id_schedules>" . $v->subject_name . "</a></td>";
+                                        }
+                                        ?>
+                                    </tr>
+                                    <tr>
+                                        <?php
+                                        echo "<td>3</td>";
+                                        foreach ($row3 as $c) {
 
-                                        echo "<td><a href=" . URLROOT . "/schedules/edit/$g->id_schedules>" . $g->subject_name . "</a></td>";
-                                    }
-                                    ?>
-                                </tr>
-                                <tr>
-                                    <?php
-                                    echo "<td>7</td>";
-                                    foreach ($row7 as $h) {
+                                            echo "<td><a href=" . URLROOT . "/schedules/edit/$c->id_schedules>" . $c->subject_name . "</a></td>";
+                                        }
+                                        ?>
+                                    </tr>
+                                    <tr>
+                                        <?php
+                                        echo "<td>4</td>";
+                                        foreach ($row4 as $f) {
 
-                                        echo "<td><a href=" . URLROOT . "/schedules/edit/$h->id_schedules>" . $h->subject_name . "</a></td>";
-                                    }
-                                    ?>
-                                </tr>
+                                            echo "<td><a href=" . URLROOT . "/schedules/edit/$f->id_schedules>" . $f->subject_name . "</a></td>";
+                                        }
+                                        ?>
+                                    </tr>
+                                    <tr>
+                                        <?php
+                                        echo "<td>5</td>";
+                                        foreach ($row5 as $e) {
 
-                            <?php }
-                    } ?>
+                                            echo "<td><a href=" . URLROOT . "/schedules/edit/$e->id_schedules>" . $e->subject_name . "</a></td>";
+                                        }
+                                        ?>
+                                    </tr>
+                                    <tr>
+                                        <?php
+                                        echo "<td>6</td>";
+                                        foreach ($row6 as $g) {
 
-                    </tbody>
-                </table>
+                                            echo "<td><a href=" . URLROOT . "/schedules/edit/$g->id_schedules>" . $g->subject_name . "</a></td>";
+                                        }
+                                        ?>
+                                    </tr>
+                                    <tr>
+                                        <?php
+                                        echo "<td>7</td>";
+                                        foreach ($row7 as $h) {
+
+                                            echo "<td><a href=" . URLROOT . "/schedules/edit/$h->id_schedules>" . $h->subject_name . "</a></td>";
+                                        }
+                                        ?>
+                                    </tr>
+
+                                <?php }
+                        } ?>
+
+                        </tbody>
+                    </table>
+                </div>
 
             </div>
         </div>

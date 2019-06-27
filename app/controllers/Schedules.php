@@ -21,8 +21,6 @@ class Schedules extends Controller
 
         $classes = $this->classModel->showAllClasses();
 
-        // $schedules = $this->schedulesModel->showAllFromSchedule();
-
         $data = [
 
             'classes' => $classes
@@ -134,6 +132,10 @@ class Schedules extends Controller
 
                 $data['classes'] = $classes;
 
+                $schedules = $this->schedulesModel->getClassWithSchedule();
+
+                $data['schedule_class'] = $schedules;
+
                 $subjects = $this->subjectModel->showallSubjects();
 
                 $data['subjects'] = $subjects;
@@ -193,8 +195,11 @@ class Schedules extends Controller
 
             $classes = $this->classModel->showAllClasses();
 
-
             $data['classes'] = $classes;
+
+            $schedules = $this->schedulesModel->getClassWithSchedule();
+
+            $data['schedule_class'] = $schedules;
 
             $subjects = $this->subjectModel->showallSubjects();
 

@@ -305,4 +305,16 @@ class Schedule
 
         return $row;
     }
+
+    public function getClassWithSchedule()
+    {
+
+        $this->db->query('SELECT DISTINCT name FROM school_classes JOIN schedules ON school_classes.id_school_class = 
+        
+        schedules.class_id ');
+
+        $row = $this->db->resultSet();
+
+        return $row;
+    }
 }
