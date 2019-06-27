@@ -30,7 +30,7 @@ class Users extends Controller
                 'password' => htmlspecialchars(trim($_POST['password'])),
                 'confirm_password' => htmlspecialchars(trim($_POST['confirm_password'])),
                 'user_role' => htmlspecialchars(trim($_POST['user_role'])),
-                'first_name' => trim($_POST['first_name']),
+                'name' => trim($_POST['name']),
                 'last_name' => trim($_POST['last_name']),
                 'id_school_class' => trim($_POST['id_school_class']),
                 'name_err' => '',
@@ -38,7 +38,7 @@ class Users extends Controller
                 'password_err' => '',
                 'confirm_password_err' => '',
                 'user_role_err' => '',
-                'first_name_err' => '',
+                'name_err' => '',
                 'last_name_err' => '',
                 'id_school_class_err' => ''
             ];
@@ -88,8 +88,8 @@ class Users extends Controller
             // If user role is parent
             if ($data['user_role'] === 4) {
                 // Validate first name
-                if (empty($data['first_name'])) {
-                    $data['first_name_err'] = 'Please enter first name';
+                if (empty($data['name'])) {
+                    $data['name_err'] = 'Please enter first name';
                 }
 
                 // Validate last name
@@ -106,7 +106,7 @@ class Users extends Controller
 
 
             // Make sure errors are empty
-            if (empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err']) && empty($data['first_name_err']) && empty($data['last_name_err']) && empty($data['id_school_class_err'])) {
+            if (empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err']) && empty($data['name_err']) && empty($data['last_name_err']) && empty($data['id_school_class_err'])) {
                 // Validated
 
                 // Hash Password
@@ -121,7 +121,7 @@ class Users extends Controller
                 }
 
 
-                if (!empty($data['first_name'] && !empty($data['last_name']) && !empty($data['id_school_class']))) {
+                if (!empty($data['name'] && !empty($data['last_name']) && !empty($data['id_school_class']))) {
                     if ($this->studentModel->insertStudent($data)) {
 
                         if ($this->User_Student->insertInUserStudentTable()) {
@@ -149,7 +149,7 @@ class Users extends Controller
                 'password' => '',
                 'confirm_password' => '',
                 'user_role' => '',
-                'first_name' => '',
+                'name' => '',
                 'last_name' => '',
                 'id_school_class' => '',
 
@@ -158,7 +158,7 @@ class Users extends Controller
                 'password_err' => '',
                 'confirm_password_err' => '',
                 'user_role_err' => '',
-                'first_name_err' => '',
+                'name_err' => '',
                 'last_name_err' => '',
                 'id_school_class_err' => ''
             ];
@@ -192,6 +192,80 @@ class Users extends Controller
 
         } else {
             $this->view('users/delete');
+        }
+    }
+
+    public function update($id = '')
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // Sanitize POST
+        $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+        $data = [
+            'name' => trim($_POST['name']),
+            'email' => trim($_POST['email']),
+            'user_role' => trim($_POST['user_role']),
+
+            'name_err' => '',
+            'email_err' => '',
+            'user_role_err' => '',
+        ];
+
+        // Validate Name
+        if (empty($data['name'])) {
+            $data['name_err'] = 'Please enter name';
+        }
+
+        // Validate Email
+        if (empty($data['email'])) {
+            $data['email_err'] = 'Please enter email';
+        } else {
+            // Check email
+            if ($this->userModel->findUserByEmail($data['email'])) {
+                $data['email_err'] = 'Email is already taken';
+            }
+        }
+
+        // Validate User Role
+        if (empty($data['user_role'])) {
+            $data['user_role_err'] = 'Please select user role';
+        } else {
+            /* this 2nd condition checks out that value sent from dropdown menu(users/insert.php) matches
+                id_user_roles in values database
+             */
+            if (is_numeric($data['user_role']) && in_array($data['user_role'], range(1, 4, 1), true)) {
+                $data['user_role_err'] = 'User role does not exist';
+            }
+        }
+
+            // Make sure there are no errors
+            if (empty($data['name_err']) && empty($data['email_err']) && empty($data['id_school_class_err'])) {
+                // Validation passed
+                //Execute
+                if ($this->userModel->update($data)) {
+                // Redirect to login
+                flash('user_updated', 'User Updated');
+                redirect('users');
+                } else {
+                die('Something went wrong');
+                }
+            } else {
+                // Load view with errors
+
+                $this->view('users/update', $data);
+            }
+        } else {
+            $data = [
+
+                'name' => '',
+                'email' => '',
+                'user_role' => '',
+                'name_err' => '',
+                'email_err' => '',
+                'user_role_err' => '',
+            ];
+
+            $this->view('users/update', $data);
         }
     }
     public function login()
