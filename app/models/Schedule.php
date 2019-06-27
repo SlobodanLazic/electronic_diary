@@ -313,7 +313,7 @@ class Schedule
         
         schedules.class_id ');
 
-        $row = $this->db->resultSet();
+        $row = $this->db->resultSet(PDO::FETCH_ASSOC);
 
         return $row;
     }

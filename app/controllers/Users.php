@@ -420,13 +420,8 @@ class Users extends Controller
         }
     }
 
-<<<<<<< HEAD
     public function index()
     {
-        $this->view('teacher/index');
-=======
-    public function index(){
         $this->view('users/index');
->>>>>>> update_user
     }
 }
