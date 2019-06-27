@@ -30,7 +30,7 @@
                         <input type="submit" class="btn btn-success" value="Show">  
                     </div>
 
-                </form>
+                </form> 
 
                 <div class="table-responsive">
                     <table class="table table-striped">
