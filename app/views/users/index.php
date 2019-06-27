@@ -8,12 +8,13 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    Delete Users
+                    Users
                 </h1>
                 <?php flash('user_message') ?>
+                <?php flash('user_updated') ?>
                 <?php flash('user_deleted_msg') ?>
 
-                <form action="<?php echo URLROOT; ?>/users/delete" method="post">
+                <form action="<?php echo URLROOT; ?>/users/" method="post">
 
                     <div class="form-group">
                         <label>Select role:</label>
@@ -32,6 +33,8 @@
 
                 </form> 
 
+
+
                 <div class="table-responsive">
                     <table class="table table-striped">
 
@@ -41,6 +44,8 @@
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>User Role</th>
+                                <th>Insert</th>
+                                <th>Update</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -57,6 +62,18 @@
                                     <td><?php print($user->email); ?></td>
                                     <td><?php printf($user->name); ?></td>
                                     <td>
+                                        <form action="<?php echo URLROOT . '/users/insert/'; ?>" method="POST">
+                                            <input class="hidden" name="id_user" type="text" value="<?php echo $user->id_user; ?>">
+                                            <input type="submit" value="Insert" class="btn btn-dark btn-block">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="<?php echo URLROOT . '/users/update/'; ?>" method="POST">
+                                            <input class="hidden" name="id_user" type="text" value="<?php echo $user->id_user; ?>">
+                                            <input type="submit" value="Update" class="btn btn-dark btn-block">
+                                        </form>
+                                    </td>
+                                    <td>
                                         <form action="<?php echo URLROOT . '/users/delete/'; ?>" method="POST">
                                             <input class="hidden" name="id_user" type="text" value="<?php echo $user->id_user; ?>">
                                             <input type="submit" value="Delete" class="btn btn-dark btn-block">
@@ -70,6 +87,7 @@
 
                     </table>
                 </div>
+
             </div>
         </div>
         <!-- /.row -->

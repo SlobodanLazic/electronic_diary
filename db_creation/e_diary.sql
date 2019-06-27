@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 27, 2019 at 08:59 AM
--- Server version: 5.7.19
--- PHP Version: 7.1.9
+-- Generation Time: Jun 27, 2019 at 03:46 PM
+-- Server version: 5.7.24
+-- PHP Version: 7.1.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `e_diary`
 --
+DROP DATABASE IF EXISTS `e_diary`;
+CREATE DATABASE IF NOT EXISTS `e_diary` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `e_diary`;
 
 -- --------------------------------------------------------
 
@@ -91,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `schedules` (
   `day_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
   PRIMARY KEY (`id_schedules`)
-) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `schedules`
@@ -167,7 +170,42 @@ INSERT INTO `schedules` (`id_schedules`, `subject_name`, `order_id`, `day_id`, `
 (67, 'Fizicko vaspitanje', 4, 5, 2),
 (68, 'Matematika', 5, 5, 2),
 (69, 'Engleski jezik', 6, 5, 2),
-(70, '', 7, 5, 2);
+(70, '', 7, 5, 2),
+(106, '', 1, 1, 1),
+(107, '', 2, 1, 1),
+(108, '', 3, 1, 1),
+(109, '', 4, 1, 1),
+(110, '', 5, 1, 1),
+(111, '', 6, 1, 1),
+(112, '', 7, 1, 1),
+(113, '', 1, 2, 1),
+(114, '', 2, 2, 1),
+(115, '', 3, 2, 1),
+(116, '', 4, 2, 1),
+(117, '', 5, 2, 1),
+(118, '', 6, 2, 1),
+(119, '', 7, 2, 1),
+(120, '', 1, 3, 1),
+(121, '', 2, 3, 1),
+(122, '', 3, 3, 1),
+(123, '', 4, 3, 1),
+(124, '', 5, 3, 1),
+(125, '', 6, 3, 1),
+(126, '', 7, 3, 1),
+(127, '', 1, 4, 1),
+(128, '', 2, 4, 1),
+(129, '', 3, 4, 1),
+(130, '', 4, 4, 1),
+(131, '', 5, 4, 1),
+(132, '', 6, 4, 1),
+(133, '', 7, 4, 1),
+(134, '', 2, 5, 1),
+(135, '', 1, 5, 1),
+(136, '', 3, 5, 1),
+(137, '', 4, 5, 1),
+(138, '', 5, 5, 1),
+(139, '', 6, 5, 1),
+(140, '', 7, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -240,14 +278,15 @@ CREATE TABLE IF NOT EXISTS `students` (
   `id_school_class` int(11) NOT NULL,
   PRIMARY KEY (`id_student`),
   KEY `fk_students_school_classes1_idx` (`id_school_class`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `students`
 --
 
 INSERT INTO `students` (`id_student`, `first_name`, `last_name`, `id_school_class`) VALUES
-(5, 'student', 'student', 1);
+(5, 'student', 'student', 1),
+(6, 'student2', 'student2', 1);
 
 -- --------------------------------------------------------
 
@@ -310,7 +349,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id_user_role` int(11) NOT NULL DEFAULT '4',
   PRIMARY KEY (`id_user`),
   KEY `fk_users_user_roles_idx` (`id_user_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
@@ -320,7 +359,8 @@ INSERT INTO `users` (`id_user`, `username`, `password`, `email`, `id_user_role`)
 (2, 'administrator', '$2y$10$2hg/V3YhIgKl2XNe0fNij.0DrBdXzns5AaeWu.j6h5QnXLjZNvEsW', 'administrator@gmail.com', 1),
 (6, 'director', '$2y$10$YG.Ity62kSWi1j9xz0EdKeR96pITfKLX5Go7wocI/oCrg794HqZVm', 'director@gmail.com', 2),
 (8, 'teacher', '$2y$10$91fxW1z3ChSXmhFh2Qy2U.7/ipBBotLWeSS2fspc27I2CbPfjldha', 'teacher@gmail.com', 3),
-(15, 'parent', '$2y$10$3VngNhp8CWN2rL3nOXK6Au8jtqqTAGGg9g3/Nm7jXCpDr216.fCYe', 'parent@gmail.com', 4);
+(15, 'parent', '$2y$10$3VngNhp8CWN2rL3nOXK6Au8jtqqTAGGg9g3/Nm7jXCpDr216.fCYe', 'parent@gmail.com', 4),
+(16, 'parent2', '$2y$10$zSftZHwrEQatTsL/C8QBNOeze3fkwWkH2MRU/9G5scowdMycMGLfW', 'parent2@gmail.com', 4);
 
 -- --------------------------------------------------------
 
@@ -341,7 +381,8 @@ CREATE TABLE IF NOT EXISTS `users_students` (
 --
 
 INSERT INTO `users_students` (`id_user`, `id_student`) VALUES
-(15, 5);
+(15, 5),
+(16, 6);
 
 -- --------------------------------------------------------
 
