@@ -30,7 +30,7 @@ class Users extends Controller
                 'password' => htmlspecialchars(trim($_POST['password'])),
                 'confirm_password' => htmlspecialchars(trim($_POST['confirm_password'])),
                 'user_role' => htmlspecialchars(trim($_POST['user_role'])),
-                'name' => trim($_POST['name']),
+                'first_name' => trim($_POST['name']),
                 'last_name' => trim($_POST['last_name']),
                 'id_school_class' => trim($_POST['id_school_class']),
                 'name_err' => '',
@@ -38,7 +38,7 @@ class Users extends Controller
                 'password_err' => '',
                 'confirm_password_err' => '',
                 'user_role_err' => '',
-                'name_err' => '',
+                'first_name_err' => '',
                 'last_name_err' => '',
                 'id_school_class_err' => ''
             ];
