@@ -13,7 +13,7 @@ class Users extends Controller
         $this->User_Student = $this->model('User_Student');
     }
 
-    
+
 
     public function insert()
     {
@@ -30,7 +30,7 @@ class Users extends Controller
                 'password' => htmlspecialchars(trim($_POST['password'])),
                 'confirm_password' => htmlspecialchars(trim($_POST['confirm_password'])),
                 'user_role' => htmlspecialchars(trim($_POST['user_role'])),
-                'name' => trim($_POST['name']),
+                'first_name' => trim($_POST['name']),
                 'last_name' => trim($_POST['last_name']),
                 'id_school_class' => trim($_POST['id_school_class']),
                 'name_err' => '',
@@ -38,7 +38,7 @@ class Users extends Controller
                 'password_err' => '',
                 'confirm_password_err' => '',
                 'user_role_err' => '',
-                'name_err' => '',
+                'first_name_err' => '',
                 'last_name_err' => '',
                 'id_school_class_err' => ''
             ];
@@ -149,7 +149,7 @@ class Users extends Controller
                 'password' => '',
                 'confirm_password' => '',
                 'user_role' => '',
-                'name' => '',
+                'first_name' => '',
                 'last_name' => '',
                 'id_school_class' => '',
 
@@ -158,7 +158,7 @@ class Users extends Controller
                 'password_err' => '',
                 'confirm_password_err' => '',
                 'user_role_err' => '',
-                'name_err' => '',
+                'first_name_err' => '',
                 'last_name_err' => '',
                 'id_school_class_err' => ''
             ];
@@ -173,23 +173,21 @@ class Users extends Controller
     }
 
     public function delete()
-    {   
-        
+    {
+
         // Check for POST
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["id_user"])) {
-            
-            $id = $_POST['id_user'];
-            
-            if ($this->userModel->deleteUser($id)) {
-      
-              flash('user_deleted_msg', 'User Deleted');
-              $this->view('users/delete');
-              
-            } else {
-      
-              die('Something went wrong');
-            }
 
+            $id = $_POST['id_user'];
+
+            if ($this->userModel->deleteUser($id)) {
+
+                flash('user_deleted_msg', 'User Deleted');
+                $this->view('users/delete');
+            } else {
+
+                die('Something went wrong');
+            }
         } else {
             $this->view('users/delete');
         }
@@ -198,56 +196,56 @@ class Users extends Controller
     public function update($id = '')
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        // Sanitize POST
-        $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            // Sanitize POST
+            $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-        $data = [
-            'name' => trim($_POST['name']),
-            'email' => trim($_POST['email']),
-            'user_role' => trim($_POST['user_role']),
+            $data = [
+                'name' => trim($_POST['name']),
+                'email' => trim($_POST['email']),
+                'user_role' => trim($_POST['user_role']),
 
-            'name_err' => '',
-            'email_err' => '',
-            'user_role_err' => '',
-        ];
+                'name_err' => '',
+                'email_err' => '',
+                'user_role_err' => '',
+            ];
 
-        // Validate Name
-        if (empty($data['name'])) {
-            $data['name_err'] = 'Please enter name';
-        }
-
-        // Validate Email
-        if (empty($data['email'])) {
-            $data['email_err'] = 'Please enter email';
-        } else {
-            // Check email
-            if ($this->userModel->findUserByEmail($data['email'])) {
-                $data['email_err'] = 'Email is already taken';
+            // Validate Name
+            if (empty($data['name'])) {
+                $data['name_err'] = 'Please enter name';
             }
-        }
 
-        // Validate User Role
-        if (empty($data['user_role'])) {
-            $data['user_role_err'] = 'Please select user role';
-        } else {
-            /* this 2nd condition checks out that value sent from dropdown menu(users/insert.php) matches
+            // Validate Email
+            if (empty($data['email'])) {
+                $data['email_err'] = 'Please enter email';
+            } else {
+                // Check email
+                if ($this->userModel->findUserByEmail($data['email'])) {
+                    $data['email_err'] = 'Email is already taken';
+                }
+            }
+
+            // Validate User Role
+            if (empty($data['user_role'])) {
+                $data['user_role_err'] = 'Please select user role';
+            } else {
+                /* this 2nd condition checks out that value sent from dropdown menu(users/insert.php) matches
                 id_user_roles in values database
              */
-            if (is_numeric($data['user_role']) && in_array($data['user_role'], range(1, 4, 1), true)) {
-                $data['user_role_err'] = 'User role does not exist';
+                if (is_numeric($data['user_role']) && in_array($data['user_role'], range(1, 4, 1), true)) {
+                    $data['user_role_err'] = 'User role does not exist';
+                }
             }
-        }
 
             // Make sure there are no errors
             if (empty($data['name_err']) && empty($data['email_err']) && empty($data['id_school_class_err'])) {
                 // Validation passed
                 //Execute
                 if ($this->userModel->update($data)) {
-                // Redirect to login
-                flash('user_updated', 'User Updated');
-                redirect('users');
+                    // Redirect to login
+                    flash('user_updated', 'User Updated');
+                    redirect('users');
                 } else {
-                die('Something went wrong');
+                    die('Something went wrong');
                 }
             } else {
                 // Load view with errors
@@ -394,24 +392,21 @@ class Users extends Controller
 
         return $user_roles;
     }
-    
+
     /*  this function gets all data for user including username, email and user role from 
         User model sorted by role or empty array if user role is not selected
     */
     public function GetUsersByUserRole($id_user_role)
     {
-        if($id_user_role !== '')
-        {
+        if ($id_user_role !== '') {
             $usersFromModel = $this->userModel->GetUsersByRoles($id_user_role);
 
             foreach ($usersFromModel as $key => $value) {
                 $users[$key] = $value;
             }
-            
+
             return $users;
-        }
-        else
-        {
+        } else {
             return [];
         }
     }
@@ -425,7 +420,8 @@ class Users extends Controller
         }
     }
 
-    public function index(){
+    public function index()
+    {
         $this->view('teacher/index');
     }
 }
