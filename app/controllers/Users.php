@@ -429,6 +429,29 @@ class Users extends Controller
             return false;
         }
     }
+                        
+    
+    
+    
+    
+    
+    
+                /* TEACHER PART */
+
+    public function teacher() {
+        $this->view('teacher/index');
+        
+    }
+    public function classes(){
+        $this->view('teacher/classes/index');
+    }
+                /* TEACHER PART END */
+
+
+
+
+
+
 
     public function index()
     {
