@@ -12,6 +12,10 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
                     Schedules
                 </h1>
 
+                <?php flash('schedule_deleted_msg') ?>
+                <?php flash('schedule_insert_message') ?>
+                <?php flash('schedule_update_message') ?>
+
                 <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT; ?>/schedules/insert">Insert schedule</a>
 
                 <form action="<?php echo URLROOT; ?>/schedules/show/" method="post">

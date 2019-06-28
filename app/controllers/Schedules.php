@@ -119,7 +119,7 @@ class Schedules extends Controller
                 //Execute
                 if ($this->schedulesModel->insertSchedule($data)) {
                     // Redirect to login
-                    flash('schedule_message', 'Schedule Created');
+                    flash('schedule_insert_message', 'Schedule Created');
                     redirect('schedules');
                 } else {
                     die('Something went wrong');
@@ -247,7 +247,7 @@ class Schedules extends Controller
                 //Execute
                 if ($this->schedulesModel->update($data)) {
                     // Redirect to login
-                    flash('schedule_updated', 'Schedule Updated');
+                    flash('schedule_update_message', 'Schedule Updated');
                     redirect('schedules');
                 } else {
                     die('Something went wrong');
