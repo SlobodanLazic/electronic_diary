@@ -14,7 +14,7 @@
                 <?php flash('user_updated') ?>
                 <?php flash('user_deleted_msg') ?>
 
-                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT; ?>/users/insert">Insert schedule</a>
+                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT; ?>/users/insert">Insert user</a>
                 
                 <form action="<?php echo URLROOT; ?>/users/" method="post">
 
@@ -65,7 +65,9 @@
                                     <td>
                                         <form action="<?php echo URLROOT . '/users/update/'; ?>" method="POST">
                                             <input class="hidden" name="id_user" type="text" value="<?php echo $user->id_user; ?>">
-                                            <input type="submit" value="Update" class="btn btn-dark btn-block">
+                                            <button class="btn btn-dark btn-block">
+                                                <a href="<?php echo URLROOT . '/users/update/'; ?>" class="link-unstyled">Update</a>
+                                            </button>
                                         </form>
                                     </td>
                                     <td>
