@@ -306,7 +306,7 @@ class Schedule
         return $row;
     }
 
-    
+
 
     public function getClassNameByClassId($id)
     {
@@ -330,5 +330,18 @@ class Schedule
         $row = $this->db->resultSet(PDO::FETCH_ASSOC);
 
         return $row;
+    }
+
+    public function deleteSchedule($id)
+    {
+        $this->db->query('DELETE FROM schedules WHERE class_id = :class_id');
+
+        $this->db->bind(':class_id', $id);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
