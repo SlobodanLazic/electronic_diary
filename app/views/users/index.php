@@ -46,7 +46,7 @@
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>User Role</th>
-                                <th>Update</th>
+                                <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -63,17 +63,15 @@
                                     <td><?php print($user->email); ?></td>
                                     <td><?php printf($user->name); ?></td>
                                     <td>
-                                        <form action="<?php echo URLROOT . '/users/update/'; ?>" method="POST">
+                                        <form action="<?php echo URLROOT . '/users/edit/'. $user->id_user; ?>" method="POST">
                                             <input class="hidden" name="id_user" type="text" value="<?php echo $user->id_user; ?>">
-                                            <button class="btn btn-dark btn-block">
-                                                <a href="<?php echo URLROOT . '/users/update/'; ?>" class="link-unstyled">Update</a>
-                                            </button>
+                                            <a href="<?php echo URLROOT . '/users/edit/' . $user->id_user;; ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Edit</a>
                                         </form>
                                     </td>
                                     <td>
                                         <form action="<?php echo URLROOT . '/users/delete/'; ?>" method="POST">
                                             <input class="hidden" name="id_user" type="text" value="<?php echo $user->id_user; ?>">
-                                            <input type="submit" value="Delete" class="btn btn-dark btn-block">
+                                            <input type="submit" value="Delete" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                                         </form>
                                     </td>
                                 </tr>

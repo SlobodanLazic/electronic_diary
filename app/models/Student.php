@@ -69,7 +69,12 @@ class Student
 
     public function update($data)
     {
-        $this->db->query('UPDATE students SET first_name = :first_name, last_name = :last_name, id_school_class = :id_school_class WHERE id_student = :id');
+        $this->db->query('UPDATE students 
+                          SET   first_name = :first_name, 
+                                last_name = :last_name, 
+                                id_school_class = :id_school_class 
+                          WHERE id_student = :id'
+                        );
              
         $this->db->bind(':first_name', $data['first_name']);
         $this->db->bind(':last_name', $data['last_name']);

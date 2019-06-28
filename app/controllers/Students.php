@@ -228,7 +228,7 @@ class Students extends Controller
       ];
 
 
-      $this->view('admin/students/update', $data);
+      $this->view('admin/students/update', $data); 
     }
   }
 }
