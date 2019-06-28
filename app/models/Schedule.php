@@ -306,6 +306,20 @@ class Schedule
         return $row;
     }
 
+    
+
+    public function getClassNameByClassId($id)
+    {
+
+        $this->db->query('SELECT name FROM school_classes WHERE id_school_class = :id');
+
+        $this->db->bind(':id', $id);
+
+        $row = $this->db->resultSet();
+
+        return $row;
+    }
+
     public function getClassWithSchedule()
     {
 

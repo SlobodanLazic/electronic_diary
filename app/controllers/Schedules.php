@@ -280,6 +280,10 @@ class Schedules extends Controller
 
         $data['schedules'] = $schedules;
 
+        $class_name = $this->schedulesModel->getClassNameByClassId($id);
+
+        $data['class_name'] =  $class_name;
+
         $classes = $this->classModel->showAllClasses();
 
         $data['classes'] = $classes;

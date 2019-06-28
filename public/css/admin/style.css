@@ -25,3 +25,7 @@ td.button-pos a {
 .btn-margin {
     margin: 0px 10px 0px 10px;
 }
+
+.sw-resize { cursor: move; }
+
+

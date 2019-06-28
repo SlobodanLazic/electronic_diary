@@ -14,7 +14,7 @@
                     <span class="invalid-feedback text-danger"><?php echo $data['class_err']; ?></span>
                     <form action="<?php echo URLROOT; ?>/schedules/insert" method="POST">
                         <div class="table-responsive col-sm-6">
-                            <table class="table-sm">
+                            <table class="table-sm ">
                                 <thead>
                                     <tr>
                                         <th scope="col"></th>
@@ -29,30 +29,30 @@
                                     <tr>
                                         <th scope="row">1</th>
                                         <td>
-                                            <input type="text" name='a1' size="12">
+                                            <input type="text" class='form-control'name='a1' size="12">
 
                                             <input type="hidden" id="1" name="class_num1" value="1">
                                         </td>
                                         <td>
-                                            <input type="text" name='b1' size="12">
+                                            <input type="text" class='form-control'name='b1' size="12">
 
                                             <input type="hidden" name="class_num1" value="1">
 
                                         </td>
                                         <td>
-                                            <input type="text" name='c1' size="12">
+                                            <input type="text" class='form-control'name='c1' size="12">
 
                                             <input type="hidden" name="class_num1" value="1">
 
                                         </td>
                                         <td>
-                                            <input type="text" name='d1' size="12">
+                                            <input type="text" class='form-control'name='d1' size="12">
 
                                             <input type="hidden" name="class_num1" value="1">
 
                                         </td>
                                         <td>
-                                            <input type="text" name='e1' size="12">
+                                            <input type="text" class='form-control'name='e1' size="12">
 
                                             <input type="hidden" name="class_num1" value="1">
                                         </td>
@@ -60,26 +60,26 @@
                                     <tr>
                                         <th scope="row">2</th>
                                         <td>
-                                            <input type="text" name='a2' size="12">
+                                            <input type="text" class='form-control'name='a2' size="12">
 
                                             <input type="hidden" id="1" name="class_num2" value="2">
                                         </td>
                                         <td>
-                                            <input type="text" name='b2' size="12">
+                                            <input type="text" class='form-control'name='b2' size="12">
                                             <input type="hidden" id="1" name="class_num2" value="2">
                                         </td>
                                         <td>
-                                            <input type="text" name='c2' size="12">
+                                            <input type="text" class='form-control'name='c2' size="12">
                                             <input type="hidden" id="1" name="class_num2" value="2">
 
                                         </td>
                                         <td>
-                                            <input type="text" name='d2' size="12">
+                                            <input type="text" class='form-control'name='d2' size="12">
                                             <input type="hidden" name="class_num2" value="2">
 
                                         </td>
                                         <td>
-                                            <input type="text" name='e2' size="12">
+                                            <input type="text" class='form-control'name='e2' size="12">
 
                                             <input type="hidden" name="class_num2" value="2">
                                         </td>
@@ -87,26 +87,26 @@
                                     <tr>
                                         <th scope="row">3</th>
                                         <td>
-                                            <input type="text" name='a3' size="12">
+                                            <input type="text" class='form-control'name='a3' size="12">
 
                                             <input type="hidden" id="1" name="class_num3" value="3">
                                         </td>
                                         <td>
-                                            <input type="text" name='b3' size="12">
+                                            <input type="text" class='form-control'name='b3' size="12">
                                             <input type="hidden" id="1" name="class_num3" value="3">
                                         </td>
                                         <td>
-                                            <input type="text" name='c3' size="12">
+                                            <input type="text" class='form-control'name='c3' size="12">
                                             <input type="hidden" id="1" name="class_num3" value="3">
                                         </td>
                                         <td>
-                                            <input type="text" name='d3' size="12">
+                                            <input type="text" class='form-control'name='d3' size="12">
 
                                             <input type="hidden" id="1" name="class_num3" value="3">
 
                                         </td>
                                         <td>
-                                            <input type="text" name='e3' size="12">
+                                            <input type="text" class='form-control'name='e3' size="12">
 
                                             <input type="hidden" id="1" name="class_num3" value="3">
                                         </td>
@@ -114,26 +114,26 @@
                                     <tr>
                                         <th scope="row">4</th>
                                         <td>
-                                            <input type="text" name='a4' size="12">
+                                            <input type="text" class='form-control'name='a4' size="12">
 
                                             <input type="hidden" id="1" name="class_num4" value="4">
                                         </td>
                                         <td>
-                                            <input type="text" name='b4' size="12">
+                                            <input type="text" class='form-control'name='b4' size="12">
                                             <input type="hidden" id="1" name="class_num4" value="4">
                                         </td>
                                         <td>
-                                            <input type="text" name='c4' size="12">
+                                            <input type="text" class='form-control'name='c4' size="12">
                                             <input type="hidden" id="1" name="class_num4" value="4">
 
                                         </td>
                                         <td>
-                                            <input type="text" name='d4' size="12">
+                                            <input type="text" class='form-control'name='d4' size="12">
 
                                             <input type="hidden" id="1" name="class_num4" value="4">
                                         </td>
                                         <td>
-                                            <input type="text" name='e4' size="12">
+                                            <input type="text" class='form-control'name='e4' size="12">
 
                                             <input type="hidden" id="1" name="class_num4" value="4">
                                         </td>
@@ -141,27 +141,27 @@
                                     <tr>
                                         <th scope="row">5</th>
                                         <td>
-                                            <input type="text" name='a5' size="12">
+                                            <input type="text" class='form-control'name='a5' size="12">
 
                                             <input type="hidden" id="1" name="class_num5" value="5">
                                         </td>
                                         <td>
-                                            <input type="text" name='b5' size="12">
+                                            <input type="text" class='form-control'name='b5' size="12">
                                             <input type="hidden" id="1" name="class_num5" value="5">
                                         </td>
                                         </td>
                                         <td>
-                                            <input type="text" name='c5' size="12">
+                                            <input type="text" class='form-control' name='c5' size="12">
                                             <input type="hidden" id="1" name="class_num5" value="5">
 
                                         </td>
                                         <td>
-                                            <input type="text" name='d5' size="12">
+                                            <input type="text" class='form-control' name='d5' size="12">
 
                                             <input type="hidden" id="1" name="class_num5" value="5">
                                         </td>
                                         <td>
-                                            <input type="text" name='e5' size="12">
+                                            <input type="text" class='form-control' name='e5' size="12">
 
                                             <input type="hidden" id="1" name="class_num5" value="5">
                                         </td>
@@ -169,26 +169,26 @@
                                     <tr>
                                         <th scope="row">6</th>
                                         <td>
-                                            <input type="text" name='a6' size="12">
+                                            <input type="text" class='form-control' name='a6' size="12">
 
                                             <input type="hidden" id="1" name="class_num6" value="6">
                                         </td>
                                         <td>
-                                            <input type="text" name='b6' size="12">
+                                            <input type="text" class='form-control' name='b6' size="12">
                                             <input type="hidden" id="1" name="class_num6" value="6">
                                         </td>
                                         <td>
-                                            <input type="text" name='c6' size="12">
+                                            <input type="text" class='form-control' name='c6' size="12">
                                             <input type="hidden" id="1" name="class_num6" value="6">
 
                                         </td>
                                         <td>
-                                            <input type="text" name='d6' size="12">
+                                            <input type="text" class='form-control' name='d6' size="12">
 
                                             <input type="hidden" id="1" name="class_num6" value="6">
                                         </td>
                                         <td>
-                                            <input type="text" name='e6' size="12">
+                                            <input type="text" class='form-control' name='e6' size="12">
 
                                             <input type="hidden" id="1" name="class_num6" value="6">
                                         </td>
@@ -196,25 +196,25 @@
                                     <tr>
                                         <th scope="row">7</th>
                                         <td>
-                                            <input type="text" name='a7' size="12">
+                                            <input type="text" class='form-control' name='a7' size="12">
 
                                             <input type="hidden" id="1" name="class_num7" value="7">
                                         </td>
                                         <td>
-                                            <input type="text" name='b7' size="12">
+                                            <input type="text" class='form-control' name='b7' size="12">
                                             <input type="hidden" id="1" name="class_num7" value="7">
                                         </td>
                                         <td>
-                                            <input type="text" name='c7' size="12">
+                                            <input type="text" class='form-control' name='c7' size="12">
                                             <input type="hidden" id="1" name="class_num7" value="7">
                                         </td>
                                         <td>
-                                            <input type="text" name='d7' size="12">
+                                            <input type="text" class='form-control' name='d7' size="12">
 
                                             <input type="hidden" id="1" name="class_num7" value="7">
                                         </td>
                                         <td>
-                                            <input type="text" name='e7' size="12">
+                                            <input type="text" class='form-control' name='e7' size="12">
 
                                             <input type="hidden" id="1" name="class_num7" value="7">
                                         </td>
@@ -294,13 +294,13 @@
 
                     <?php foreach ($data['subjects'] as $subject) : ?>
 
-                        <?php echo "<li class='list-group-item all-copy'> $subject->name </li>" ?>
+                        <?php echo "<li class='list-group-item all-copy list-group-item-success rounded-circle sw-resize'> $subject->name </li>" ?>
 
 
                     <?php endforeach; ?>
                 </ul>
 
-
+            
             </div>
 
 
