@@ -11,7 +11,7 @@
                     Users
                 </h1>
                 <?php flash('user_message') ?>
-                <?php flash('user_updated') ?>
+                <?php flash('user_edited') ?>
                 <?php flash('user_deleted_msg') ?>
 
                 <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT; ?>/users/insert">Insert user</a>
@@ -46,7 +46,7 @@
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>User Role</th>
-                                <th>Update</th>
+                                <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -63,10 +63,10 @@
                                     <td><?php print($user->email); ?></td>
                                     <td><?php printf($user->name); ?></td>
                                     <td>
-                                        <form action="<?php echo URLROOT . '/users/update/'; ?>" method="POST">
+                                        <form action="<?php echo URLROOT . '/users/edit/'; ?>" method="POST">
                                             <input class="hidden" name="id_user" type="text" value="<?php echo $user->id_user; ?>">
                                             <button class="btn btn-dark btn-block">
-                                                <a href="<?php echo URLROOT . '/users/update/'; ?>" class="link-unstyled">Update</a>
+                                                <a href="<?php echo URLROOT . '/users/edit/'; ?>" class="link-unstyled">Edit</a>
                                             </button>
                                         </form>
                                     </td>

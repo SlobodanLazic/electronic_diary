@@ -193,7 +193,17 @@ class Users extends Controller
         }
     }
 
-    public function update($id = '')
+    public function edit($id){
+        $user = $this->userModel->getUserById($id);
+
+        $data = [
+            'user' => $user
+        ];
+
+        $this->view('/users/edit', $data);
+    }
+
+    public function update()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Sanitize POST

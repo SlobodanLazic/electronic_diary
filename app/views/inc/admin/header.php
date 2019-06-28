@@ -172,7 +172,7 @@
                                 <a href="<?php echo URLROOT . "/users/insert"; ?>">Insert User</a>
                             </li>
                             <li>
-                                <a href="<?php echo URLROOT . "/users/update"; ?>">Edit User</a>
+                                <a href="<?php echo URLROOT . "/users/edit"; ?>">Edit User</a>
                             </li>
                             <li>
                                 <a href="<?php echo URLROOT . "/users/delete"; ?>">Delete User</a>
