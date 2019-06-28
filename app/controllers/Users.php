@@ -230,11 +230,6 @@ class Users extends Controller
             // Validate Email
             if (empty($data['email'])) {
                 $data['email_err'] = 'Please enter email';
-            } else {
-                // Check email
-                if ($this->userModel->findUserByEmail($data['email'])) {
-                    $data['email_err'] = 'Email is already taken';
-                }
             }
 
             // Validate User Role
@@ -250,7 +245,7 @@ class Users extends Controller
             }
 
             // Make sure there are no errors
-            if (true) {
+            if (empty($data['username_err']) && empty($data['email_err'])) {
                 // Validation passed
                 //Execute
                 if ($this->userModel->updateUser($data)) {
@@ -268,13 +263,13 @@ class Users extends Controller
         } else {
             $data = [
 
-                'name' => '',
+                'username' => '',
                 'email' => '',
                 'id_user' => '',
-                'user_role' => '',
-                'name_err' => '',
+                'id_user_role' => '',
+                'username_err' => '',
                 'email_err' => '',
-                'user_role_err' => '',
+                'id_user_role_err' => '',
             ];
 
             $this->view('users/update', $data);

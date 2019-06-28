@@ -168,15 +168,6 @@
                             <li>
                                 <a href="<?php echo URLROOT . "/users"; ?>">User</a>
                             </li>
-                            <li>
-                                <a href="<?php echo URLROOT . "/users/insert"; ?>">Insert User</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo URLROOT . "/users/update"; ?>">Edit User</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo URLROOT . "/users/delete"; ?>">Delete User</a>
-                            </li>
                         </ul>
 
                     </li>

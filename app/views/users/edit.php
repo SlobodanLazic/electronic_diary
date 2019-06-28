@@ -21,17 +21,17 @@
                     <p>Please fill out this form to update user</p>
                     <form action="<?php echo URLROOT; ?>/users/update/<?php echo $data['user']->id_user; ?>" method="post">
                         <div class="form-group">
-                            <label for="name">Name: <sup>*</sup></label>
-                            <input type="text" name="username" class="form-control form-control-lg <?php echo (!empty($data['name_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['user']->username; ?>">
-                            <span class="invalid-feedback text-danger"><?php echo $data['name_err']; ?></span>
+                            <label for="username">Name: <sup>*</sup></label>
+                            <input type="text" name="username" class="form-control form-control-lg <?php echo (!empty($data['username_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['user']->username; ?>">
+                            <span class="invalid-feedback text-danger"><?php echo isset($data['username_err']) ?? ''; ?></span>
                         </div>
                         <div class="form-group">
                             <label for="email">Email: <sup>*</sup></label>
                             <input type="email" name="email" class="form-control form-control-lg <?php echo (!empty($data['email_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['user']->email; ?>">
-                            <span class="invalid-feedback text-danger"><?php echo $data['email_err']; ?></span>
+                            <span class="invalid-feedback text-danger"><?php echo isset($data['email_err']) ?? ''; ?></span>
                         </div>
                         <div class="form-group">
-                            <label for="user_role">User Role <sup>*</sup></label>
+                            <label for="id_user_role">User Role <sup>*</sup></label>
                             <select name="id_user_role" id="user_role" class="form-control form-control-lg <?php echo (!empty($data['id_user_role_err'])) ? 'is-invalid' : '' ?>">
                                 <option value='' >.....Select a role.....</option>
                                 <?php
