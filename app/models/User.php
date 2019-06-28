@@ -92,7 +92,7 @@
 
         // Edit(update) user
         public function updateUser($data)
-        {
+        {var_dump($data);
             $this->db->query('UPDATE users 
                               SET   username = :username, 
                                     email = :email, 

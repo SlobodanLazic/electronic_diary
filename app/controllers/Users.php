@@ -206,24 +206,25 @@ class Users extends Controller
 
     public function update()
     {
+        //die("It is in here");
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Sanitize POST
             $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
-                'name' => trim($_POST['name']),
+                'username' => trim($_POST['username']),
                 'email' => trim($_POST['email']),
-                'user_role' => trim($_POST['user_role']),
+                'id_user_role' => trim($_POST['id_user_role']),
                 'id_user' => trim($_POST['id_user']),
 
-                'name_err' => '',
+                'username_err' => '',
                 'email_err' => '',
-                'user_role_err' => '',
+                'id_user_role_err' => '',
             ];
 
             // Validate Name
-            if (empty($data['name'])) {
-                $data['name_err'] = 'Please enter name';
+            if (empty($data['username'])) {
+                $data['username_err'] = 'Please enter username';
             }
 
             // Validate Email
@@ -237,19 +238,19 @@ class Users extends Controller
             }
 
             // Validate User Role
-            if (empty($data['user_role'])) {
-                $data['user_role_err'] = 'Please select user role';
+            if (empty($data['id_user_role'])) {
+                $data['id_user_role_err'] = 'Please select user role';
             } else {
                 /* this 2nd condition checks out that value sent from dropdown menu(users/insert.php) matches
                 id_user_roles in values database
              */
-                if (is_numeric($data['user_role']) && in_array($data['user_role'], range(1, 4, 1), true)) {
-                    $data['user_role_err'] = 'User role does not exist';
+                if (is_numeric($data['id_user_role']) && in_array($data['id_user_role'], range(1, 4, 1), true)) {
+                    $data['id_user_role_err'] = 'User role does not exist';
                 }
             }
 
             // Make sure there are no errors
-            if (empty($data['name_err']) && empty($data['email_err']) && empty($data['id_school_class_err'])) {
+            if (true) {
                 // Validation passed
                 //Execute
                 if ($this->userModel->updateUser($data)) {
