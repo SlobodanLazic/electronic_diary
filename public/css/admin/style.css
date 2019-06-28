@@ -1,3 +1,4 @@
+
 td.buttons-pos {
     display: inline-flex;
     border: 0;
@@ -20,4 +21,7 @@ td.button-pos a {
     /* IE 10+ */
     user-select: all;
     /* Likely future */
+}
+.btn-margin {
+    margin: 0px 10px 0px 10px;
 }

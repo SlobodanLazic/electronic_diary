@@ -37,7 +37,7 @@
         <td>' . ++$i . '</td>
         <td>' . $subject->name . '</td>
         <td class="buttons-pos">
-        <a class="btn btn-primary" href=' . URLROOT . "/subjects/edit/" . $subject->id_subject . '>Edit</a>
+        <a class="btn btn-primary btn-margin" href=' . URLROOT . "/subjects/edit/" . $subject->id_subject . '>Edit</a>
         '?>
         <form action="<?php echo URLROOT . "/subjects/delete/" . $subject->id_subject ?>" method="POST">
 

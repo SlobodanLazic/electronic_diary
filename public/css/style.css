@@ -1,3 +1,6 @@
+body {
+    background-size: cover;
+}
 td.buttons-pos {
     display: inline-flex;
     border: 0;
