@@ -80,7 +80,7 @@
                               u.password,
                               u.email,
                               u.id_user_role
-                              FROM users 
+                              FROM users AS u
                               WHERE id_user = :id');
             // Bind value
             $this->db->bind(':id', $id);
@@ -93,7 +93,23 @@
         // Edit(update) user
         public function updateUser($data)
         {
-            # code...
+            $this->db->query('UPDATE users 
+                              SET   username = :username, 
+                                    email = :email, 
+                                    id_user_role = :id_user_role
+                              WHERE id_user = :id'
+                            );
+                            
+            $this->db->bind(':username', $data['username']);
+            $this->db->bind(':email', $data['email']);
+            $this->db->bind(':id_user_role', $data['id_user_role']);
+            $this->db->bind(':id', $data['id_user']);
+
+            if ($this->db->execute()) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
         // Delete user

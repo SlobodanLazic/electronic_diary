@@ -193,7 +193,18 @@ class Users extends Controller
         }
     }
 
-    public function update($id = '')
+    public function edit($id)
+    {
+        $user = $this->userModel->getUserById($id);
+        
+        $data = [
+            'user' => $user
+        ];
+
+        $this->view("users/edit", $data);
+    }
+
+    public function update()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Sanitize POST
@@ -203,6 +214,7 @@ class Users extends Controller
                 'name' => trim($_POST['name']),
                 'email' => trim($_POST['email']),
                 'user_role' => trim($_POST['user_role']),
+                'id_user' => trim($_POST['id_user']),
 
                 'name_err' => '',
                 'email_err' => '',
@@ -240,7 +252,7 @@ class Users extends Controller
             if (empty($data['name_err']) && empty($data['email_err']) && empty($data['id_school_class_err'])) {
                 // Validation passed
                 //Execute
-                if ($this->userModel->update($data)) {
+                if ($this->userModel->updateUser($data)) {
                     // Redirect to login
                     flash('user_updated', 'User Updated');
                     redirect('users');
@@ -257,6 +269,7 @@ class Users extends Controller
 
                 'name' => '',
                 'email' => '',
+                'id_user' => '',
                 'user_role' => '',
                 'name_err' => '',
                 'email_err' => '',
