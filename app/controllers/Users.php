@@ -322,24 +322,28 @@ class Users extends Controller
 
                     /* id_user_role 1 is administrator,id_user role 2 is director,id_user_role 3 is teacher,
                         id_user_role 4 is parent so it will redirect it to proper page dependent of role */
-
-                    switch ($_SESSION['id_user_role']) {
-                        case 1:
-                            redirect('users/admin');
-                            break;
-                        case 2:
-                            redirect('users/director');
-                            break;
-                        case 3:
-                            redirect('users/teacher');
-                            break;
-                        case 4:
-                            redirect('users/parent');
-                            break;
-                        default:
-                            redirect('users/login');
-                            break;
+                    if(isset($_SESSION['id_user_role']) && isset($_SESSION['id_user'])){
+                        switch ($_SESSION['id_user_role']) {
+                            case 1:
+                                redirect('users/admin');
+                                break;
+                            case 2:
+                                redirect('users/director');
+                                break;
+                            case 3:
+                                redirect('users/teacher');
+                                break;
+                            case 4:
+                                redirect('users/parent');
+                                break;
+                            default:
+                                redirect('users/login');
+                                break;
+                        }
+                    } else {
+                        redirect('users/login');
                     }
+                    
                 } else {
                     $data['password_err'] = 'Password incorrect';
 
@@ -385,7 +389,12 @@ class Users extends Controller
     public function admin()
     {
         if (isset($_SESSION['id_user'])) {
-            $this->view('admin/index');
+            if($_SESSION['id_user_role'] == 1) {
+                $this->view('admin/index');
+            } else {
+                $this->logout();
+            }
+            
         } else {
             redirect('users/login');
         }
@@ -428,12 +437,6 @@ class Users extends Controller
             return false;
         }
     }
-                        
-    
-    
-    
-    
-    
     
                 /* TEACHER PART */
 
@@ -445,12 +448,6 @@ class Users extends Controller
         $this->view('teacher/classes/index');
     }
                 /* TEACHER PART END */
-
-
-
-
-
-
 
     public function index()
     {
