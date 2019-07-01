@@ -34,7 +34,7 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
                         </select>
 
 
-                        <input type="submit" class="btn btn-success" value="Show">
+                        <input type="submit" class="btn btn-dark" value="Show">
 
                     </div>
 
@@ -95,11 +95,11 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
                     ?>
 
                     <div class="table-responsive">
-                        <table class="table table-hover bg-info text-warning table-bordered">
+                        <table class="table table-hover table-bordered">
 
                             <thead>
 
-                                <tr>
+                                <tr class="bg-dark first_col">
                                     <th scope="col"></th>
                                     <th scope="col">Monday</th>
                                     <th scope="col">Tuesday</th>

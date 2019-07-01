@@ -6,14 +6,53 @@
 
         <!-- Page Heading -->
         <div class="row">
-            <div class="col-lg-12">
+            
                 <h1 class="page-header">
                     Schedules
                 </h1>
+                
+                </div>
+                
+                
+            <form action="<?php echo URLROOT; ?>/schedules/insert" method="POST">
+            <div class="col-lg-12">
+                    <div class="form-group">
+
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <label for="id_school_class">Student Class<sup>*</sup></label>
+                                <select name="id_school_class" id="id_school_class" class="form-control form-control-lg input-medium">
+                                    <option value='' selected>.....Select a class.....</option>
+                                    <?php foreach ($data['classes'] as $key => $class) {
+
+                                        if (in_array_r($class->name, $data['schedule_class'])) {
+
+                                            $class->name = '';
+
+                                            if ($class->name == '') {
+                                                continue;
+                                            }
+                                        }
+
+                                        echo "<option value=\"$class->id_school_class\">$class->name</option>";
+                                    } ?>
+
+                                </select>
+                            </div>
+                        </div>
+
+                <input type="hidden" name="day1" value="1">
+                <input type="hidden" name="day2" value="2">
+                <input type="hidden" name="day3" value="3">
+                <input type="hidden" name="day4" value="4">
+                <input type="hidden" name="day5" value="5">
+
+                    </div> <!-- formgroup end -->
+                </div> <!-- col end -->
                 <div class="row">
-                    <span class="invalid-feedback text-danger"><?php echo $data['class_err']; ?></span>
-                    <form action="<?php echo URLROOT; ?>/schedules/insert" method="POST">
-                        <div class="table-responsive col-sm-6">
+                    <div class="col-6">
+                        <span class="invalid-feedback text-danger"><?php echo $data['class_err']; ?></span>
+                        <div class="table-responsive col-sm">
                             <table class="table-sm ">
                                 <thead>
                                     <tr>
@@ -222,86 +261,50 @@
                                 </tbody>
 
                             </table>
+                            
                         </div>
 
-                        <div class='col-sm-6'>
-                            <h3>Already inserted schedules for classes</h3>
+                        
+                
+                
+                        </div>
+                        <div class="col">
+
+                            <p>Already inserted schedules for classes</p>
 
                             <ul class="list-inline">
                                 <?php
 
                                 foreach ($data['schedule_class'] as $class) {
 
-                                    echo  '<li>' . $class['name'] . '</li><i style="color:green;" class="fa fa-check-square-o"></i>';
+                                    echo  '<li>' . $class['name'] . '</li><i style="color:green;" class="fa fa-check-square"></i>';
                                 }
 
                                 ?>
                             </ul>
                         </div>
-                </div>
-
-                <div class="form-group">
-
-                    <div class="row">
-                        <div class="col-xs-2">
-                            <label for="id_school_class">Student Class<sup>*</sup></label>
-                            <select name="id_school_class" id="id_school_class" class="form-control form-control-lg input-medium">
-                                <option value='' selected>.....Select a class.....</option>
-                                <?php foreach ($data['classes'] as $key => $class) {
-
-                                    if (in_array_r($class->name, $data['schedule_class'])) {
-
-                                        $class->name = '';
-
-                                        if ($class->name == '') {
-                                            continue;
-                                        }
-                                    }
-
-                                    echo "<option value=\"$class->id_school_class\">$class->name</option>";
-                                } ?>
-
-                            </select>
+                        <div class="col">
+                            <div id="subjects_drag">
+                                <h2>Drop subject </h2>
+                                <div class="list-inline">
+                                    <?php foreach ($data['subjects'] as $subject) : ?>
+                                        <?php echo "<div class='list-group-item all-copy list-group-item-success sw-resize text'> $subject->name </div>" ?>
+                                    <?php endforeach; ?>
+                            </div>
+                            </div>
                         </div>
                     </div>
-
-
-
-                    <input type="hidden" name="day1" value="1">
-                    <input type="hidden" name="day2" value="2">
-                    <input type="hidden" name="day3" value="3">
-                    <input type="hidden" name="day4" value="4">
-                    <input type="hidden" name="day5" value="5">
-
-
-
                 </div>
+
+                
                 <div class="row">
                     <button class="btn btn-primary btn-lg" type="submit" name="insert">Insert</button>
                 </div>
-                </form>
+            </form>
             </div>
 
 
-            <div>
-
-
-                <h2>Drop subject </h2>
-
-                <ul class="list-inline">
-
-
-
-                    <?php foreach ($data['subjects'] as $subject) : ?>
-
-                        <?php echo "<li class='list-group-item all-copy list-group-item-success rounded-circle sw-resize'> $subject->name </li>" ?>
-
-
-                    <?php endforeach; ?>
-                </ul>
-
-            
-            </div>
+        
 
 
 
