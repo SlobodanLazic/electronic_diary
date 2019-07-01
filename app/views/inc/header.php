@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/style.css">
   <title><?php echo SITENAME; ?></title>
 </head>
-<body background="../images/2.jpg">
-  <?php require APPROOT . '/views/inc/navbar.php'; ?>
+<body background="../images/background.jpg">
   <div class="container">
   
