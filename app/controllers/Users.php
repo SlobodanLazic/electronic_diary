@@ -193,21 +193,7 @@ class Users extends Controller
         }
     }
 
-<<<<<<< HEAD
-    public function edit($id){
-        $user = $this->userModel->getUserById($id);
-
-        $data = [
-            'user' => $user
-        ];
-
-        $this->view('/users/edit', $data);
-    }
-
-    public function update()
-=======
     public function edit($id)
->>>>>>> master
     {
         $user = $this->userModel->getUserById($id);
         
