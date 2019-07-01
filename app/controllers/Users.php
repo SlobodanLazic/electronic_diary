@@ -13,8 +13,6 @@ class Users extends Controller
         $this->User_Student = $this->model('User_Student');
     }
 
-
-
     public function insert()
     {
         // Check for POST
@@ -314,7 +312,6 @@ class Users extends Controller
                 $data['email_err'] = 'No user found';
             }
 
-
             // Make sure errors are empty
             if (empty($data['email_err']) && empty($data['password_err'])) {
                 // Validated
@@ -326,7 +323,7 @@ class Users extends Controller
 
                     /* id_user_role 1 is administrator,id_user role 2 is director,id_user_role 3 is teacher,
                         id_user_role 4 is parent so it will redirect it to proper page dependent of role */
-                    if (isset($_SESSION['id_user_role']) && isset($_SESSION['id_user'])) {
+                    if (isset($_SESSION['id_user_role']) && $this->isLoggedIn() == true) {
                         switch ($_SESSION['id_user_role']) {
                             case 1:
                                 redirect('users/admin');
@@ -433,7 +430,7 @@ class Users extends Controller
 
     public function isLoggedIn()
     {
-        if (isset($_SESSION['user_id'])) {
+        if (isset($_SESSION['id_user'])) {
             return true;
         } else {
             return false;
@@ -462,6 +459,15 @@ class Users extends Controller
 
     public function index()
     {
-        $this->view('users/index');
+        if ($this->isLoggedIn()) {
+            if($_SESSION['id_user_role'] == 1){
+                $this->view('users/index');
+            } else {
+                $this->logout();
+            }    
+        } else {
+            redirect('users/login');
+        }
+        
     }
 }
