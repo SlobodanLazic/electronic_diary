@@ -276,7 +276,7 @@
 
                         foreach ($data['schedule_class'] as $class) {
 
-                            echo  '<li>' . $class['name'] . '</li><i style="color:green;" class="fa fa-check-square"></i>';
+                            echo  '<li>' . $class['name'] . '  <i style="color:green;" class="fa fa-check-square">  </i></li>';
                         }
 
                         ?>
