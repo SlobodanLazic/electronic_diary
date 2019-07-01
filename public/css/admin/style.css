@@ -11,3 +11,16 @@ td.button-pos a {
     padding-bottom: 200px;
     font-size: 16px;
 }
+.sw-resize {
+    cursor: move;
+}
+.all-copy {
+    -webkit-user-select: all;
+    /* Chrome all / Safari all */
+    -moz-user-select: all;
+    /* Firefox all */
+    -ms-user-select: all;
+    /* IE 10+ */
+    user-select: all;
+    /* Likely future */
+}

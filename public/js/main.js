@@ -38,8 +38,3 @@ function preventDragNDropChangesOn(inputElement) {
      isDragged && wasDropped && (e.target.value = previousValue))
   inputElement.addEventListener('dragend', () => isDragged = wasDropped = false)
 }
-
-var draggableDiv = $('#subjects_drag');
-draggableDiv.draggable({
-  handle: $('.text', draggableDiv)
-});
