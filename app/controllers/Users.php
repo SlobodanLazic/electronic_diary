@@ -13,8 +13,6 @@ class Users extends Controller
         $this->User_Student = $this->model('User_Student');
     }
 
-
-
     public function insert()
     {
         // Check for POST
@@ -22,6 +20,8 @@ class Users extends Controller
             // Process form 
             // Sanitize POST data
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+
 
             // Init data
             $data = [
@@ -33,6 +33,8 @@ class Users extends Controller
                 'first_name' => trim($_POST['first_name']),
                 'last_name' => trim($_POST['last_name']),
                 'id_school_class' => trim($_POST['id_school_class']),
+                'teacher_class_id' => trim($_POST['teacher_class_id']),
+
                 'name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
@@ -40,7 +42,9 @@ class Users extends Controller
                 'user_role_err' => '',
                 'first_name_err' => '',
                 'last_name_err' => '',
-                'id_school_class_err' => ''
+                'id_school_class_err' => '',
+                'id_teacher_class_err' => ''
+
             ];
 
 
@@ -107,9 +111,19 @@ class Users extends Controller
                 }
             }
 
+            // if user role is teacher
+
+            if ($data['user_role'] == 3) {
+                // Validate teacher class
+                if (empty($data['teacher_class_id'])) {
+
+                    $data['id_teacher_class_err'] = 'Please select Teacher Class';
+                }
+            }
+
 
             // Make sure errors are empty
-            if (empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err']) && empty($data['first_name_err']) && empty($data['last_name_err']) && empty($data['id_school_class_err'])) {
+            if (empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err']) && empty($data['first_name_err']) && empty($data['last_name_err']) && empty($data['id_school_class_err']) && empty($data['id_teacher_class_err'])) {
                 // Validated
 
                 // Hash Password
@@ -117,6 +131,8 @@ class Users extends Controller
 
                 // Add User
                 if ($this->userModel->insert($data)) {
+
+                    // Add Student
 
                     if (!empty($data['first_name'] && !empty($data['last_name']) && !empty($data['id_school_class']))) {
 
@@ -131,6 +147,7 @@ class Users extends Controller
                             die('Something went wrong');
                         }
                     }
+
 
                     flash('register_success', 'You have added a user');
                     redirect('/users/insert');
@@ -156,6 +173,7 @@ class Users extends Controller
                 'first_name' => '',
                 'last_name' => '',
                 'id_school_class' => '',
+                'teacher_class_id' => '',
 
                 'name_err' => '',
                 'email_err' => '',
@@ -164,7 +182,8 @@ class Users extends Controller
                 'user_role_err' => '',
                 'first_name_err' => '',
                 'last_name_err' => '',
-                'id_school_class_err' => ''
+                'id_school_class_err' => '',
+                'id_teacher_class_err' => ''
             ];
 
             $classes = $this->classModel->showAllClasses();
@@ -314,7 +333,6 @@ class Users extends Controller
                 $data['email_err'] = 'No user found';
             }
 
-
             // Make sure errors are empty
             if (empty($data['email_err']) && empty($data['password_err'])) {
                 // Validated
@@ -326,7 +344,7 @@ class Users extends Controller
 
                     /* id_user_role 1 is administrator,id_user role 2 is director,id_user_role 3 is teacher,
                         id_user_role 4 is parent so it will redirect it to proper page dependent of role */
-                    if (isset($_SESSION['id_user_role']) && isset($_SESSION['id_user'])) {
+                    if (isset($_SESSION['id_user_role']) && $this->isLoggedIn() == true) {
                         switch ($_SESSION['id_user_role']) {
                             case 1:
                                 redirect('users/admin');
@@ -433,7 +451,7 @@ class Users extends Controller
 
     public function isLoggedIn()
     {
-        if (isset($_SESSION['user_id'])) {
+        if (isset($_SESSION['id_user'])) {
             return true;
         } else {
             return false;
@@ -462,6 +480,15 @@ class Users extends Controller
 
     public function index()
     {
-        $this->view('users/index');
+        if ($this->isLoggedIn()) {
+            if($_SESSION['id_user_role'] == 1){
+                $this->view('users/index');
+            } else {
+                $this->logout();
+            }    
+        } else {
+            redirect('users/login');
+        }
+        
     }
 }
