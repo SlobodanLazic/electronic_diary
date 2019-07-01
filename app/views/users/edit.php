@@ -46,7 +46,6 @@
                         <div class="row hidden">
                             <input type="hidden" id="id_user" name="id_user" value="<?php echo $data['user']->id_user; ?>">
                         </div>
-                        <?php print_r($data);?>
                         <div class="row">
                             <div class="col">
                                 <input type="submit" value="Update" class="btn btn-primary btn-block">

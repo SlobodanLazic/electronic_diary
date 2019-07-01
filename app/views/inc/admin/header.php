@@ -1,3 +1,9 @@
+<?php
+    if(!isset($_SESSION["id_user"]))
+    {
+      redirect("users/login");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 

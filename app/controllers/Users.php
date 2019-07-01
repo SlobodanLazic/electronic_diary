@@ -332,7 +332,7 @@ class Users extends Controller
                 // User not found
                 $data['email_err'] = 'No user found';
             }
-
+            
             // Make sure errors are empty
             if (empty($data['email_err']) && empty($data['password_err'])) {
                 // Validated
@@ -405,6 +405,28 @@ class Users extends Controller
         unset($_SESSION['id_user_role']);
         session_destroy();
         redirect('users/login');
+    }
+
+    /* this class wont let false user role to view pages of the different user role */
+    public static function FalseRolePrevention()
+    {
+        $url = $_SERVER["REQUEST_URI"];
+        $urlPartsArray = explode("/", $url);
+        $adminstratorPagesUrl[] = array("edit", "update", "delete");
+        $loginUrl = 'login';
+
+        if(isset($_SESSION["id_user_role"]) && $_SESSION["id_user_role"] == 1 && in_array($adminstratorPagesUrl,$urlPartsArray))
+        {
+            return false;
+        }
+        else if (in_array($loginUrl,$urlPartsArray))
+        {
+            return false;
+        }
+        else {
+            return true;
+        }
+        
     }
 
     public function admin()
