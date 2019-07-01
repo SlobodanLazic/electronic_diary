@@ -30,7 +30,7 @@ class Users extends Controller
                 'password' => htmlspecialchars(trim($_POST['password'])),
                 'confirm_password' => htmlspecialchars(trim($_POST['confirm_password'])),
                 'user_role' => htmlspecialchars(trim($_POST['user_role'])),
-                'first_name' => trim($_POST['name']),
+                'first_name' => trim($_POST['first_name']),
                 'last_name' => trim($_POST['last_name']),
                 'id_school_class' => trim($_POST['id_school_class']),
                 'name_err' => '',
@@ -42,6 +42,8 @@ class Users extends Controller
                 'last_name_err' => '',
                 'id_school_class_err' => ''
             ];
+
+
             // Validate Email
             if (empty($data['email'])) {
                 $data['email_err'] = 'Please enter email';
@@ -86,27 +88,28 @@ class Users extends Controller
             }
 
             // If user role is parent
-            if ($data['user_role'] === 4) {
+            if ($data['user_role'] == 4) {
                 // Validate first name
-                if (empty($data['name'])) {
-                    $data['name_err'] = 'Please enter first name';
+                if (empty($data['first_name'])) {
+
+                    $data['first_name_err'] = 'Please enter Student first name';
                 }
 
                 // Validate last name
                 if (empty($data['last_name'])) {
-                    $data['last_name_err'] = 'Please enter last name';
+                    $data['last_name_err'] = 'Please enter Student last name';
                 }
 
                 // Validate class 
 
                 if (empty($data['id_school_class'])) {
-                    $data['id_school_class_err'] = 'Please select class';
+                    $data['id_school_class_err'] = 'Please select Student class';
                 }
             }
 
 
             // Make sure errors are empty
-            if (empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err']) && empty($data['name_err']) && empty($data['last_name_err']) && empty($data['id_school_class_err'])) {
+            if (empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err']) && empty($data['first_name_err']) && empty($data['last_name_err']) && empty($data['id_school_class_err'])) {
                 // Validated
 
                 // Hash Password
@@ -114,24 +117,25 @@ class Users extends Controller
 
                 // Add User
                 if ($this->userModel->insert($data)) {
+
+                    if (!empty($data['first_name'] && !empty($data['last_name']) && !empty($data['id_school_class']))) {
+
+                        if ($this->studentModel->insertStudent($data)) {
+
+                            if ($this->User_Student->insertInUserStudentTable()) {
+
+                                flash('student_message', 'Student Added');
+                                redirect('/students');
+                            }
+                        } else {
+                            die('Something went wrong');
+                        }
+                    }
+
                     flash('register_success', 'You have added a user');
                     redirect('/users/insert');
                 } else {
                     die('Something went wrong');
-                }
-
-
-                if (!empty($data['name'] && !empty($data['last_name']) && !empty($data['id_school_class']))) {
-                    if ($this->studentModel->insertStudent($data)) {
-
-                        if ($this->User_Student->insertInUserStudentTable()) {
-
-                            flash('student_message', 'Student Added');
-                            redirect('/students');
-                        }
-                    } else {
-                        die('Something went wrong');
-                    }
                 }
             } else {
                 // Load view with errors
@@ -196,7 +200,7 @@ class Users extends Controller
     public function edit($id)
     {
         $user = $this->userModel->getUserById($id);
-        
+
         $data = [
             'user' => $user
         ];
@@ -322,7 +326,7 @@ class Users extends Controller
 
                     /* id_user_role 1 is administrator,id_user role 2 is director,id_user_role 3 is teacher,
                         id_user_role 4 is parent so it will redirect it to proper page dependent of role */
-                    if(isset($_SESSION['id_user_role']) && isset($_SESSION['id_user'])){
+                    if (isset($_SESSION['id_user_role']) && isset($_SESSION['id_user'])) {
                         switch ($_SESSION['id_user_role']) {
                             case 1:
                                 redirect('users/admin');
@@ -343,7 +347,6 @@ class Users extends Controller
                     } else {
                         redirect('users/login');
                     }
-                    
                 } else {
                     $data['password_err'] = 'Password incorrect';
 
@@ -389,12 +392,11 @@ class Users extends Controller
     public function admin()
     {
         if (isset($_SESSION['id_user'])) {
-            if($_SESSION['id_user_role'] == 1) {
+            if ($_SESSION['id_user_role'] == 1) {
                 $this->view('admin/index');
             } else {
                 $this->logout();
             }
-            
         } else {
             redirect('users/login');
         }
@@ -437,26 +439,26 @@ class Users extends Controller
             return false;
         }
     }
-    
-                /* TEACHER PART */
 
-    public function teacher() {
+    /* TEACHER PART */
+
+    public function teacher()
+    {
         if (isset($_SESSION['id_user'])) {
-            if($_SESSION['id_user_role'] == 3) {
+            if ($_SESSION['id_user_role'] == 3) {
                 $this->view('teacher/index');
             } else {
                 $this->logout();
             }
-            
         } else {
             redirect('users/login');
         }
-        
     }
-    public function classes(){
+    public function classes()
+    {
         $this->view('teacher/classes/index');
     }
-                /* TEACHER PART END */
+    /* TEACHER PART END */
 
     public function index()
     {

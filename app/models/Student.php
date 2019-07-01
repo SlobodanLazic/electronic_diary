@@ -11,6 +11,8 @@ class Student
 
     public function insertStudent($data)
     {
+
+
         $this->db->query('INSERT INTO students (first_name , last_name , id_school_class) VALUES (:first_name , :last_name , :id_school_class)');
 
         $this->db->bind(':first_name', $data['first_name']);
@@ -48,7 +50,7 @@ class Student
         return $students;
     }
 
-    
+
 
 
     public function getStudentById($id)
@@ -64,20 +66,21 @@ class Student
 
     public function update($data)
     {
-        $this->db->query('UPDATE students 
+        $this->db->query(
+            'UPDATE students 
                           SET   first_name = :first_name, 
                                 last_name = :last_name, 
                                 id_school_class = :id_school_class 
                           WHERE id_student = :id'
-                        );
-             
+        );
+
         $this->db->bind(':first_name', $data['first_name']);
         $this->db->bind(':last_name', $data['last_name']);
         $this->db->bind(':id_school_class', $data['id_school_class']);
         $this->db->bind(':id', $data['student_id']);
 
 
-             
+
         if ($this->db->execute()) {
             return true;
         } else {

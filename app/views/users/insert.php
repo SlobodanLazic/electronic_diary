@@ -45,7 +45,7 @@
                             </select>
                             <span class="invalid-feedback text-danger"><?php echo $data['user_role_err']; ?></span>
                         </div>
-                        <div id="Server">
+                        <div id="student">
                             <div class="form-group">
                                 <label for="first_name">Student First Name: <sup>*</sup></label>
                                 <input type="text" name="first_name" class="form-control form-control-lg <?php echo (!empty($data['first_name_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['first_name']; ?>">
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                         <div id="teacher">
-                        <div class="form-group">
+                            <div class="form-group">
                                 <label for="id_school_class">Class<sup>*</sup></label>
                                 <select name="id_teacher_class" id="id_teacher_class" class="form-control form-control-lg <?php echo (!empty($data['id_school_class_err'])) ? 'is-invalid' : '' ?>">
                                     <option value='' selected>.....Select a class.....</option>
