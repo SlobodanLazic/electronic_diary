@@ -21,6 +21,8 @@ class Users extends Controller
             // Sanitize POST data
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
+
+
             // Init data
             $data = [
                 'name' => htmlspecialchars(trim($_POST['name'])),
@@ -31,6 +33,8 @@ class Users extends Controller
                 'first_name' => trim($_POST['first_name']),
                 'last_name' => trim($_POST['last_name']),
                 'id_school_class' => trim($_POST['id_school_class']),
+                'teacher_class_id' => trim($_POST['teacher_class_id']),
+
                 'name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
@@ -38,7 +42,9 @@ class Users extends Controller
                 'user_role_err' => '',
                 'first_name_err' => '',
                 'last_name_err' => '',
-                'id_school_class_err' => ''
+                'id_school_class_err' => '',
+                'id_teacher_class_err' => ''
+
             ];
 
 
@@ -105,9 +111,19 @@ class Users extends Controller
                 }
             }
 
+            // if user role is teacher
+
+            if ($data['user_role'] == 3) {
+                // Validate teacher class
+                if (empty($data['teacher_class_id'])) {
+
+                    $data['id_teacher_class_err'] = 'Please select Teacher Class';
+                }
+            }
+
 
             // Make sure errors are empty
-            if (empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err']) && empty($data['first_name_err']) && empty($data['last_name_err']) && empty($data['id_school_class_err'])) {
+            if (empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err']) && empty($data['first_name_err']) && empty($data['last_name_err']) && empty($data['id_school_class_err']) && empty($data['id_teacher_class_err'])) {
                 // Validated
 
                 // Hash Password
@@ -115,6 +131,8 @@ class Users extends Controller
 
                 // Add User
                 if ($this->userModel->insert($data)) {
+
+                    // Add Student
 
                     if (!empty($data['first_name'] && !empty($data['last_name']) && !empty($data['id_school_class']))) {
 
@@ -129,6 +147,7 @@ class Users extends Controller
                             die('Something went wrong');
                         }
                     }
+
 
                     flash('register_success', 'You have added a user');
                     redirect('/users/insert');
@@ -154,6 +173,7 @@ class Users extends Controller
                 'first_name' => '',
                 'last_name' => '',
                 'id_school_class' => '',
+                'teacher_class_id' => '',
 
                 'name_err' => '',
                 'email_err' => '',
@@ -162,7 +182,8 @@ class Users extends Controller
                 'user_role_err' => '',
                 'first_name_err' => '',
                 'last_name_err' => '',
-                'id_school_class_err' => ''
+                'id_school_class_err' => '',
+                'id_teacher_class_err' => ''
             ];
 
             $classes = $this->classModel->showAllClasses();
