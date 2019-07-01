@@ -19,6 +19,7 @@ class Students extends Controller
 
     $classes = $this->classModel->showAllClasses();
 
+
     $data = [
 
       'students' => $students,
