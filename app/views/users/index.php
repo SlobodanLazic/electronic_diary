@@ -64,14 +64,14 @@
                                     <td><?php printf($user->name); ?></td>
                                     <td>
                                         <form action="<?php echo URLROOT . '/users/edit/'. $user->id_user; ?>" method="POST">
-                                            <input class="hidden" name="id_user" type="text" value="<?php echo $user->id_user; ?>">
+                                            
                                             <a href="<?php echo URLROOT . '/users/edit/' . $user->id_user;; ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Edit</a>
                                         </form>
                                     </td>
                                     <td>
                                         <form action="<?php echo URLROOT . '/users/delete/'; ?>" method="POST">
-                                            <input class="hidden" name="id_user" type="text" value="<?php echo $user->id_user; ?>">
-                                            <input type="submit" value="Delete" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+
+                                            <input type="submit" value="Delete" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
                                         </form>
                                     </td>
                                 </tr>
