@@ -1,6 +1,14 @@
+td.buttons-pos {
+    list-style-type: none;
+    display: inline-flex;
 
+}
 td.button-pos a {
     margin-right: 15px;
+    text-align: center;
+}
+.btn-margin {
+    margin-right: 10px;
 }
 .inputfornotification {
     width: 500px;

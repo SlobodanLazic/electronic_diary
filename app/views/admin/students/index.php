@@ -46,8 +46,7 @@
                             <th>Firstname</th>
                             <th>Lastname</th>
                             <th>Class</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
 
@@ -76,13 +75,15 @@
                                 ?>
 
 
-                                <?php echo '<td>' . ++$i . '</td><td>' . $student->first_name . '</td><td>' . $student->last_name . '</td><td>'
-
-                                    . $student->name . '</td><td>' . '<a href =' . URLROOT . "/students/edit/" . $student->id_student . '>Edit</a>' . '</td><td>' ?>
+                                <?php echo '<td>' . ++$i . '</td><td>' . $student->first_name . '</td><td>' . $student->last_name . '</td><td>' . 
+                                $student->name . '</td>
+                                <td class="buttons-pos">
+                                ' . '
+                                <a class="btn btn-primary btn-margin" href =' . URLROOT . "/students/edit/" . $student->id_student . '>Edit</a>' . '' ?>
 
                                 <form action="<?php echo URLROOT . "/students/delete/" . $student->id_student ?>" method="POST">
 
-                                    <input type="submit" name="delete" value="Delete">
+                                <button class="btn btn-danger" type="submit" name="delete">Delete</button>
 
                                 </form>
 

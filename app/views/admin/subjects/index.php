@@ -41,7 +41,7 @@
         '?>
         <form action="<?php echo URLROOT . "/subjects/delete/" . $subject->id_subject ?>" method="POST">
 
-        <button class="btn btn-primary" type="submit" name="delete">Delete</button>
+        <button class="btn btn-danger" type="submit" name="delete">Delete</button>
 
     </form></td>
     </tr>

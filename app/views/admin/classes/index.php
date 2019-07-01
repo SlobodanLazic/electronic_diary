@@ -23,35 +23,30 @@
                         <tr>
                             <th></th>
                             <th>Class</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
 
                     <?php $i = 0; ?>
 
                     <?php foreach ($data['classes'] as $class) : ?>
-
-                        <tbody>
-
-                            <tr>
-
-
-
-
-                                <?php echo '<td>' . ++$i . '</td><td>' . $class->name . '</td><td>'
-
-                                    . '<a href =' . URLROOT . "/classes/edit/" . $class->id_school_class . '>Edit</a>' . '</td><td>' ?>
-
-
+                        <tr>
+                            <?php 
+                            echo '
+                                <td>' . ++$i . '</td>
+                                <td>' . $class->name . '</td>
+                                <td class="buttons-pos">
+                                <a class="btn btn-primary btn-margin" href=' . URLROOT . "/classes/edit/" . $class->id_school_class . '>Edit</a>
+                                '?>
                                 <form action="<?php echo URLROOT . "/classes/delete/" . $class->id_school_class ?>" method="POST">
 
-                                    <input type="submit" name="delete" value="Delete">
+                                <button class="btn btn-danger" type="submit" name="delete">Delete</button>
 
-                                </form>
+                            </form></td>
+                        </tr>
+                        <tbody>
 
-
-                            </tr>
+                            
 
                         </tbody>
 
