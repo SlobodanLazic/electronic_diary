@@ -8,14 +8,18 @@
 
         <!-- Page Heading -->
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-sm">
                 <h1 class="page-header">
                     Subjects
                 </h1>
-                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT . "/subjects/insert" ?>">Insert subject</a>
                 <?php flash('subject_message') ?>
                 <?php flash('subject_updated') ?>
                 <?php flash('subject_deleted_msg') ?>
+            </div>
+            <div class="col-sm">
+              <div class="buttons-loc">
+                <a class=" btn  btn-primary" href="<?php echo URLROOT . "/subjects/insert" ?>">Insert subject</a>
+              </div>
             </div>
         </div>
         <!-- /.row -->
