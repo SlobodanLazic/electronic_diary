@@ -80,7 +80,7 @@
                         <div id="teacher">
                             <div class="form-group">
                                 <label for="id_school_class">Class<sup>*</sup></label>
-                                <select name="id_teacher_class" id="id_teacher_class" class="form-control form-control-lg <?php echo (!empty($data['id_school_class_err'])) ? 'is-invalid' : '' ?>">
+                                <select name="teacher_class_id" id="teacher_class_id" class="form-control form-control-lg <?php echo (!empty($data['id_teacher_class_err'])) ? 'is-invalid' : '' ?>">
                                     <option value='' selected>.....Select a class.....</option>
                                     <?php foreach ($data['classes'] as $class) : ?>
 
@@ -90,7 +90,7 @@
                                     <?php endforeach; ?>
 
                                 </select>
-                                <span class="invalid-feedback text-danger"><?php echo $data['id_school_class_err']; ?></span>
+                                <span class="invalid-feedback text-danger"><?php echo $data['id_teacher_class_err']; ?></span>
                             </div>
                         </div>
                         <div class="row">
