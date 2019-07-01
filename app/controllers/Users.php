@@ -344,7 +344,7 @@ class Users extends Controller
 
                     /* id_user_role 1 is administrator,id_user role 2 is director,id_user_role 3 is teacher,
                         id_user_role 4 is parent so it will redirect it to proper page dependent of role */
-                    if (isset($_SESSION['id_user_role']) && $this->isLoggedIn() == true) {
+                    if (isset($_SESSION['id_user_role']) && $this->isLoggedIn()) {
                         switch ($_SESSION['id_user_role']) {
                             case 1:
                                 redirect('users/admin');
