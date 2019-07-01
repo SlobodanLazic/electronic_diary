@@ -6,7 +6,7 @@
                     <div class="col">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">
+                                <h1 class="h4 mb-4">
                                 <?php flash('register_success'); ?>
                                     Login Page
                                 </h1>
@@ -14,20 +14,18 @@
                         
                 
 
-                <form action="<?php echo URLROOT; ?>/users/login" method="post">
-                    <div class="user">
-                        <label for="email">Email: <sup>*</sup></label>
-                        <input type="email" name="email" class="form-control form-control-lg <?php echo(!empty($data['email_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['email'];?>">
+                <form class="user" action="<?php echo URLROOT; ?>/users/login" method="post">
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control form-control-user <?php echo(!empty($data['email_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['email'];?>" placeholder="Email">
                         <span class="invalid-feedback"><?php echo $data['email_err']; ?></span>
                     </div>
                     <div class="form-group">
-                        <label for="password">Password: <sup>*</sup></label>
-                        <input type="password" name="password" class="form-control form-control-lg <?php echo(!empty($data['password_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['password'];?>">
+                        <input type="password" name="password" class="form-control form-control-user <?php echo(!empty($data['password_err'])) ? 'is-invalid' : '' ?>" value="<?php echo $data['password'];?>" placeholder="Password">
                         <span class="invalid-feedback"><?php echo $data['password_err']; ?></span>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <input type="submit" value="Login" class="btn btn-dark btn-block">
+                            <input type="submit" value="Login" class="btn btn-primary btn-user btn-block">
                         </div>
                     </div>
                 </form>
