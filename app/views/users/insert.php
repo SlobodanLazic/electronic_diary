@@ -40,7 +40,9 @@
                                 $users = new Users();
                                 foreach ($users->GetUserRoles() as $id_user_role => $name) :
                                     ?>
-                                    <option value='<?php echo $id_user_role; ?>'><?php print($name); ?></option>
+                                    <option value='<?php echo $id_user_role; ?>' <?php if ($data['user_role'] == $id_user_role) {
+                                                                                        echo 'selected';
+                                                                                    } ?>><?php print($name); ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <span class="invalid-feedback text-danger"><?php echo $data['user_role_err']; ?></span>
@@ -63,7 +65,11 @@
                                     <option value='' selected>.....Select a class.....</option>
                                     <?php foreach ($data['classes'] as $class) : ?>
 
-                                        <?php echo "<option value=\"$class->id_school_class\">$class->name</option>"; ?>
+
+                                        <option value='<?php echo $class->id_school_class; ?>' <?php if ($data['id_school_class'] == $class->id_school_class) {
+                                                                                                    echo 'selected';
+                                                                                                } ?>><?php print($class->name); ?></option>
+
 
                                     <?php endforeach; ?>
 
@@ -77,6 +83,7 @@
                                 <select name="id_teacher_class" id="id_teacher_class" class="form-control form-control-lg <?php echo (!empty($data['id_school_class_err'])) ? 'is-invalid' : '' ?>">
                                     <option value='' selected>.....Select a class.....</option>
                                     <?php foreach ($data['classes'] as $class) : ?>
+
 
                                         <?php echo "<option value=\"$class->id_school_class\">$class->name</option>"; ?>
 
