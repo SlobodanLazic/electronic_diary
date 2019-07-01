@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 27, 2019 at 03:46 PM
+-- Generation Time: Jul 01, 2019 at 05:55 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.1.26
 
@@ -21,7 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `e_diary`
 --
-DROP DATABASE IF EXISTS `e_diary`;
 CREATE DATABASE IF NOT EXISTS `e_diary` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `e_diary`;
 
@@ -94,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `schedules` (
   `day_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
   PRIMARY KEY (`id_schedules`)
-) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=176 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `schedules`
@@ -105,107 +104,37 @@ INSERT INTO `schedules` (`id_schedules`, `subject_name`, `order_id`, `day_id`, `
 (2, 'Matematika', 2, 1, 1),
 (3, 'Likovno', 3, 1, 1),
 (4, 'Biologija', 4, 1, 1),
-(5, 'Fizicko vaspitanje', 5, 1, 1),
+(5, '', 5, 1, 1),
 (6, '', 6, 1, 1),
 (7, '', 7, 1, 1),
 (8, 'Istorija', 1, 2, 1),
-(9, 'Fizicko vaspitanje', 2, 2, 1),
-(10, 'Likovno', 3, 2, 1),
-(11, 'Srpski jezik i knjizevnost', 4, 2, 1),
-(12, 'Hemija', 5, 2, 1),
-(13, 'Engleski jezik', 6, 2, 1),
+(9, 'Matematika', 2, 2, 1),
+(10, 'Srpski jezik i knjizevnost', 3, 2, 1),
+(11, 'Fizicko vaspitanje', 4, 2, 1),
+(12, 'Engleski jezik', 5, 2, 1),
+(13, '', 6, 2, 1),
 (14, '', 7, 2, 1),
-(15, 'Fizicko vaspitanje', 1, 3, 1),
-(16, 'Biologija', 2, 3, 1),
-(17, 'Informatika', 3, 3, 1),
-(18, 'Matematika', 4, 3, 1),
-(19, 'Likovno', 5, 3, 1),
-(20, 'Hemija', 6, 3, 1),
-(21, 'Srpski jezik i knjizevnost', 7, 3, 1),
-(22, 'Likovno', 1, 4, 1),
-(23, 'Engleski jezik', 2, 4, 1),
-(24, 'Informatika', 3, 4, 1),
-(25, 'Hemija', 4, 4, 1),
-(26, 'Srpski jezik i knjizevnost', 5, 4, 1),
-(27, '', 6, 4, 1),
-(28, '', 7, 4, 1),
-(29, 'Biologija', 2, 5, 1),
-(30, 'Engleski jezik', 1, 5, 1),
-(31, 'Fizicko vaspitanje', 3, 5, 1),
-(32, 'Istorija', 4, 5, 1),
-(33, 'Informatika', 5, 5, 1),
-(34, 'Matematika', 6, 5, 1),
-(35, '', 7, 5, 1),
-(36, 'Matematika', 1, 1, 2),
-(37, 'Likovno', 2, 1, 2),
-(38, 'Srpski jezik i knjizevnost', 3, 1, 2),
-(39, 'Fizicko vaspitanje', 4, 1, 2),
-(40, '', 5, 1, 2),
-(41, '', 6, 1, 2),
-(42, '', 7, 1, 2),
-(43, 'Biologija', 1, 2, 2),
-(44, 'Matematika', 2, 2, 2),
-(45, 'Geografija', 3, 2, 2),
-(46, 'Informatika', 4, 2, 2),
-(47, 'Hemija', 5, 2, 2),
-(48, 'Likovno', 6, 2, 2),
-(49, '', 7, 2, 2),
-(50, 'Srpski jezik i knjizevnost', 1, 3, 2),
-(51, 'Likovno', 2, 3, 2),
-(52, 'Matematika', 3, 3, 2),
-(53, 'Engleski jezik', 4, 3, 2),
-(54, 'Informatika', 5, 3, 2),
-(55, 'Hemija', 6, 3, 2),
-(56, '', 7, 3, 2),
-(57, 'Fizicko vaspitanje', 1, 4, 2),
-(58, 'Likovno', 2, 4, 2),
-(59, 'Srpski jezik i knjizevnost', 3, 4, 2),
-(60, 'Engleski jezik', 4, 4, 2),
-(61, 'Informatika', 5, 4, 2),
-(62, '', 6, 4, 2),
-(63, '', 7, 4, 2),
-(64, 'Fizicko vaspitanje', 2, 5, 2),
-(65, 'Hemija', 1, 5, 2),
-(66, 'Fizicko vaspitanje', 3, 5, 2),
-(67, 'Fizicko vaspitanje', 4, 5, 2),
-(68, 'Matematika', 5, 5, 2),
-(69, 'Engleski jezik', 6, 5, 2),
-(70, '', 7, 5, 2),
-(106, '', 1, 1, 1),
-(107, '', 2, 1, 1),
-(108, '', 3, 1, 1),
-(109, '', 4, 1, 1),
-(110, '', 5, 1, 1),
-(111, '', 6, 1, 1),
-(112, '', 7, 1, 1),
-(113, '', 1, 2, 1),
-(114, '', 2, 2, 1),
-(115, '', 3, 2, 1),
-(116, '', 4, 2, 1),
-(117, '', 5, 2, 1),
-(118, '', 6, 2, 1),
-(119, '', 7, 2, 1),
-(120, '', 1, 3, 1),
-(121, '', 2, 3, 1),
-(122, '', 3, 3, 1),
-(123, '', 4, 3, 1),
-(124, '', 5, 3, 1),
-(125, '', 6, 3, 1),
-(126, '', 7, 3, 1),
-(127, '', 1, 4, 1),
-(128, '', 2, 4, 1),
-(129, '', 3, 4, 1),
-(130, '', 4, 4, 1),
-(131, '', 5, 4, 1),
-(132, '', 6, 4, 1),
-(133, '', 7, 4, 1),
-(134, '', 2, 5, 1),
-(135, '', 1, 5, 1),
-(136, '', 3, 5, 1),
-(137, '', 4, 5, 1),
-(138, '', 5, 5, 1),
-(139, '', 6, 5, 1),
-(140, '', 7, 5, 1);
+(15, 'Srpski jezik i knjizevnost', 1, 3, 1),
+(16, 'Informatika', 2, 3, 1),
+(17, 'Hemija', 3, 3, 1),
+(18, 'Geografija', 4, 3, 1),
+(19, 'Veronauka', 5, 3, 1),
+(20, 'Likovno', 6, 3, 1),
+(21, '', 7, 3, 1),
+(22, 'Engleski jezik', 1, 4, 1),
+(23, 'Srpski jezik i knjizevnost', 2, 4, 1),
+(24, 'Fizicko vaspitanje', 3, 4, 1),
+(25, 'Engleski jezik', 4, 4, 1),
+(26, 'Informatika', 5, 4, 1),
+(27, 'Matematika', 6, 4, 1),
+(28, 'Srpski jezik i knjizevnost', 7, 4, 1),
+(29, 'Likovno', 2, 5, 1),
+(30, 'Veronauka', 1, 5, 1),
+(31, 'Istorija', 3, 5, 1),
+(32, 'Engleski jezik', 4, 5, 1),
+(33, 'Hemija', 5, 5, 1),
+(34, 'Istorija', 6, 5, 1),
+(35, '', 7, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -232,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `school_classes` (
   `id_school_class` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(10) NOT NULL,
   PRIMARY KEY (`id_school_class`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `school_classes`
@@ -262,7 +191,7 @@ INSERT INTO `school_classes` (`id_school_class`, `name`) VALUES
 (21, '4-3'),
 (22, '4-4'),
 (23, '4-5'),
-(24, '4-6');
+(25, '4-6');
 
 -- --------------------------------------------------------
 
@@ -278,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `students` (
   `id_school_class` int(11) NOT NULL,
   PRIMARY KEY (`id_student`),
   KEY `fk_students_school_classes1_idx` (`id_school_class`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `students`
@@ -286,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `students` (
 
 INSERT INTO `students` (`id_student`, `first_name`, `last_name`, `id_school_class`) VALUES
 (5, 'student', 'student', 1),
-(6, 'student2', 'student2', 1);
+(6, 'student2', 'student2', 2);
 
 -- --------------------------------------------------------
 
@@ -316,7 +245,7 @@ CREATE TABLE IF NOT EXISTS `subjects` (
   `id_subject` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id_subject`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `subjects`
@@ -332,7 +261,8 @@ INSERT INTO `subjects` (`id_subject`, `name`) VALUES
 (7, 'Istorija'),
 (8, 'Engleski jezik'),
 (9, 'Informatika'),
-(10, 'Hemija');
+(10, 'Hemija'),
+(11, 'Veronauka');
 
 -- --------------------------------------------------------
 
@@ -347,20 +277,23 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(255) CHARACTER SET utf8 NOT NULL,
   `email` varchar(255) NOT NULL,
   `id_user_role` int(11) NOT NULL DEFAULT '4',
+  `teacher_class_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   KEY `fk_users_user_roles_idx` (`id_user_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_user`, `username`, `password`, `email`, `id_user_role`) VALUES
-(2, 'administrator', '$2y$10$2hg/V3YhIgKl2XNe0fNij.0DrBdXzns5AaeWu.j6h5QnXLjZNvEsW', 'administrator@gmail.com', 1),
-(6, 'director', '$2y$10$YG.Ity62kSWi1j9xz0EdKeR96pITfKLX5Go7wocI/oCrg794HqZVm', 'director@gmail.com', 2),
-(8, 'teacher', '$2y$10$91fxW1z3ChSXmhFh2Qy2U.7/ipBBotLWeSS2fspc27I2CbPfjldha', 'teacher@gmail.com', 3),
-(15, 'parent', '$2y$10$3VngNhp8CWN2rL3nOXK6Au8jtqqTAGGg9g3/Nm7jXCpDr216.fCYe', 'parent@gmail.com', 4),
-(16, 'parent2', '$2y$10$zSftZHwrEQatTsL/C8QBNOeze3fkwWkH2MRU/9G5scowdMycMGLfW', 'parent2@gmail.com', 4);
+INSERT INTO `users` (`id_user`, `username`, `password`, `email`, `id_user_role`, `teacher_class_id`) VALUES
+(2, 'administrator', '$2y$10$2hg/V3YhIgKl2XNe0fNij.0DrBdXzns5AaeWu.j6h5QnXLjZNvEsW', 'administrator@gmail.com', 1, 0),
+(6, 'director', '$2y$10$YG.Ity62kSWi1j9xz0EdKeR96pITfKLX5Go7wocI/oCrg794HqZVm', 'director@gmail.com', 2, 0),
+(8, 'teacher', '$2y$10$91fxW1z3ChSXmhFh2Qy2U.7/ipBBotLWeSS2fspc27I2CbPfjldha', 'teacher@gmail.com', 3, 0),
+(15, 'parent', '$2y$10$3VngNhp8CWN2rL3nOXK6Au8jtqqTAGGg9g3/Nm7jXCpDr216.fCYe', 'parent@gmail.com', 4, 0),
+(16, 'parent2', '$2y$10$zSftZHwrEQatTsL/C8QBNOeze3fkwWkH2MRU/9G5scowdMycMGLfW', 'parent2@gmail.com', 4, 0),
+(34, 'teacher1', '$2y$10$e4dRFqGtFyjXaRARefmHP.PujuGjm3o63pZmEp4b7uORKewBPuvda', 'teacher1@gmail.com', 3, 4),
+(37, 'teacher2', '$2y$10$0suu4xPQqZogXoHUkji24.wsgGuJYkNzcbPo8o.9U3Au147UjPoY.', 'teacher2@gmail.com', 3, 3);
 
 -- --------------------------------------------------------
 
