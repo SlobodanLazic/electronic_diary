@@ -161,13 +161,13 @@
                         <a href="<?php echo URLROOT . '/users/admin'; ?>"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
 
-
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>Users <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
                                 <a href="<?php echo URLROOT . "/users"; ?>">User</a>
                             </li>
+<<<<<<< HEAD
                             <li>
                                 <a href="<?php echo URLROOT . "/users/insert"; ?>">Insert User</a>
                             </li>
@@ -177,6 +177,8 @@
                             <li>
                                 <a href="<?php echo URLROOT . "/users/delete"; ?>">Delete User</a>
                             </li>
+=======
+>>>>>>> master
                         </ul>
 
                     </li>

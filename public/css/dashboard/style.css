@@ -1,13 +1,4 @@
 
-body {
-    margin: 0;
-    font-size: 2rem;
-    font-weight: 400;
-    color: #858796;
-    text-align: left;
-    background-color: #fff;
-    font-family: sans-serif;
-}
 td.buttons-pos {
     display: inline-flex;
     border: 0;

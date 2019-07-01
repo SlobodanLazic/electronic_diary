@@ -193,6 +193,7 @@ class Users extends Controller
         }
     }
 
+<<<<<<< HEAD
     public function edit($id){
         $user = $this->userModel->getUserById($id);
 
@@ -204,53 +205,64 @@ class Users extends Controller
     }
 
     public function update()
+=======
+    public function edit($id)
+>>>>>>> master
     {
+        $user = $this->userModel->getUserById($id);
+        
+        $data = [
+            'user' => $user
+        ];
+
+        $this->view("users/edit", $data);
+    }
+
+    public function update()
+    {
+        //die("It is in here");
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Sanitize POST
             $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
-                'name' => trim($_POST['name']),
+                'username' => trim($_POST['username']),
                 'email' => trim($_POST['email']),
-                'user_role' => trim($_POST['user_role']),
+                'id_user_role' => trim($_POST['id_user_role']),
+                'id_user' => trim($_POST['id_user']),
 
-                'name_err' => '',
+                'username_err' => '',
                 'email_err' => '',
-                'user_role_err' => '',
+                'id_user_role_err' => '',
             ];
 
             // Validate Name
-            if (empty($data['name'])) {
-                $data['name_err'] = 'Please enter name';
+            if (empty($data['username'])) {
+                $data['username_err'] = 'Please enter username';
             }
 
             // Validate Email
             if (empty($data['email'])) {
                 $data['email_err'] = 'Please enter email';
-            } else {
-                // Check email
-                if ($this->userModel->findUserByEmail($data['email'])) {
-                    $data['email_err'] = 'Email is already taken';
-                }
             }
 
             // Validate User Role
-            if (empty($data['user_role'])) {
-                $data['user_role_err'] = 'Please select user role';
+            if (empty($data['id_user_role'])) {
+                $data['id_user_role_err'] = 'Please select user role';
             } else {
                 /* this 2nd condition checks out that value sent from dropdown menu(users/insert.php) matches
                 id_user_roles in values database
              */
-                if (is_numeric($data['user_role']) && in_array($data['user_role'], range(1, 4, 1), true)) {
-                    $data['user_role_err'] = 'User role does not exist';
+                if (is_numeric($data['id_user_role']) && in_array($data['id_user_role'], range(1, 4, 1), true)) {
+                    $data['id_user_role_err'] = 'User role does not exist';
                 }
             }
 
             // Make sure there are no errors
-            if (empty($data['name_err']) && empty($data['email_err']) && empty($data['id_school_class_err'])) {
+            if (empty($data['username_err']) && empty($data['email_err'])) {
                 // Validation passed
                 //Execute
-                if ($this->userModel->update($data)) {
+                if ($this->userModel->updateUser($data)) {
                     // Redirect to login
                     flash('user_updated', 'User Updated');
                     redirect('users');
@@ -265,12 +277,13 @@ class Users extends Controller
         } else {
             $data = [
 
-                'name' => '',
+                'username' => '',
                 'email' => '',
-                'user_role' => '',
-                'name_err' => '',
+                'id_user' => '',
+                'id_user_role' => '',
+                'username_err' => '',
                 'email_err' => '',
-                'user_role_err' => '',
+                'id_user_role_err' => '',
             ];
 
             $this->view('users/update', $data);
@@ -323,24 +336,28 @@ class Users extends Controller
 
                     /* id_user_role 1 is administrator,id_user role 2 is director,id_user_role 3 is teacher,
                         id_user_role 4 is parent so it will redirect it to proper page dependent of role */
-
-                    switch ($_SESSION['id_user_role']) {
-                        case 1:
-                            redirect('users/admin');
-                            break;
-                        case 2:
-                            redirect('users/director');
-                            break;
-                        case 3:
-                            redirect('users/teacher');
-                            break;
-                        case 4:
-                            redirect('users/parent');
-                            break;
-                        default:
-                            redirect('users/login');
-                            break;
+                    if(isset($_SESSION['id_user_role']) && isset($_SESSION['id_user'])){
+                        switch ($_SESSION['id_user_role']) {
+                            case 1:
+                                redirect('users/admin');
+                                break;
+                            case 2:
+                                redirect('users/director');
+                                break;
+                            case 3:
+                                redirect('users/teacher');
+                                break;
+                            case 4:
+                                redirect('users/parent');
+                                break;
+                            default:
+                                redirect('users/login');
+                                break;
+                        }
+                    } else {
+                        redirect('users/login');
                     }
+                    
                 } else {
                     $data['password_err'] = 'Password incorrect';
 
@@ -386,7 +403,12 @@ class Users extends Controller
     public function admin()
     {
         if (isset($_SESSION['id_user'])) {
-            $this->view('admin/index');
+            if($_SESSION['id_user_role'] == 1) {
+                $this->view('admin/index');
+            } else {
+                $this->logout();
+            }
+            
         } else {
             redirect('users/login');
         }
@@ -429,29 +451,26 @@ class Users extends Controller
             return false;
         }
     }
-                        
-    
-    
-    
-    
-    
     
                 /* TEACHER PART */
 
     public function teacher() {
-        $this->view('teacher/index');
+        if (isset($_SESSION['id_user'])) {
+            if($_SESSION['id_user_role'] == 3) {
+                $this->view('teacher/index');
+            } else {
+                $this->logout();
+            }
+            
+        } else {
+            redirect('users/login');
+        }
         
     }
     public function classes(){
         $this->view('teacher/classes/index');
     }
                 /* TEACHER PART END */
-
-
-
-
-
-
 
     public function index()
     {

@@ -12,13 +12,17 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
                     Schedules
                 </h1>
 
+                <?php flash('schedule_deleted_msg') ?>
+                <?php flash('schedule_insert_message') ?>
+                <?php flash('schedule_update_message') ?>
+
                 <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT; ?>/schedules/insert">Insert schedule</a>
 
                 <form action="<?php echo URLROOT; ?>/schedules/show/" method="post">
 
                     <div class="form-group">
                         <label>Select class:</label>
-                        <select name='id_class'  class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                        <select name='id_class' class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
 
 
                             <?php foreach ($data['classes'] as $class) : ?>
@@ -29,7 +33,7 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
 
                         </select>
 
-            
+
                         <input type="submit" class="btn btn-success" value="Show">
 
                     </div>
@@ -40,17 +44,15 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
                 <?php
 
 
-                  if(isset($data['class_name'])){
+                if (isset($data['class_name'])) {
 
                     foreach ($data['class_name'] as $schedule) {
 
                         echo "<h2>Selected class: $schedule->name</h2>";
-                       
                     }
-
                 }
 
-                   
+
 
                 if (isset($data['schedules'])) {
 
@@ -94,9 +96,9 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
 
                     <div class="table-responsive">
                         <table class="table table-hover bg-info text-warning table-bordered">
-                       
+
                             <thead>
-                            
+
                                 <tr>
                                     <th scope="col"></th>
                                     <th scope="col">Monday</th>
@@ -107,7 +109,7 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
                                 </tr>
                             </thead>
                             <tbody>
-                            
+
                                 <tr>
                                     <?php
 
@@ -181,7 +183,7 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
                         </tbody>
                     </table>
 
-                    <form action="">
+                    <form action="<?php echo URLROOT; ?>/schedules/delete/<?php echo $data['id_clas'] ?? ''; ?>" method="post">
 
                         <input type="submit" class="btn btn-danger" value="Delete Schedule">
 

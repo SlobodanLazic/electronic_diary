@@ -11,16 +11,12 @@
 
     <title>Teacher</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="<?php echo URLROOT; ?>/css/dashboard/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
     <link href="<?php echo URLROOT; ?>/css/dashboard/sb-admin.css" rel="stylesheet">
     <link href="<?php echo URLROOT; ?>/css/dashboard/style.css" rel="stylesheet">
 
 
     <!-- Custom Fonts -->
-    <link href="<?php echo URLROOT; ?>/font-awesome_admin/css/font-awesome.min.css" rel="stylesheet">
     <link href="<?php echo URLROOT; ?>/css/dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -36,13 +32,13 @@
 <body id="page-top">
 
     <!-- Page Wrapper -->
-  <div id="wrapper">
+  <div id="wrapper"> 
 
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo URLROOT . '/users/teacher'; ?>">
     <div class="sidebar-brand-icon rotate-n-15">
       <i class="fas fa-laugh-wink"></i>
     </div>
@@ -54,7 +50,7 @@
 
   <!-- Nav Item - Dashboard -->
   <li class="nav-item active">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="<?php echo URLROOT . '/users/teacher'; ?>">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Dashboard</span></a>
   </li>
@@ -62,14 +58,14 @@
   <!-- Divider -->
   <hr class="sidebar-divider">
 
-  <!-- Heading -->
+  <!-- classes -->
   <div class="sidebar-heading">
     all about classes
   </div>
 
   <!-- Nav Item - Pages Collapse Menu -->
   <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+    <a class="nav-link collapsed" href="<?php echo URLROOT . '/users/t-students'; ?>" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-fw fa-cog"></i>
       <span>Students</span>
     </a>
@@ -289,7 +285,7 @@
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Teacher</span>
             <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
           </a>
           <!-- Dropdown - User Information -->
@@ -307,7 +303,7 @@
               Activity Log
             </a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+            <a class="dropdown-item" href="<?php echo URLROOT; ?>/users/logout">
               <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
               Logout
             </a>

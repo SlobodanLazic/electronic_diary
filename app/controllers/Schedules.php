@@ -25,7 +25,6 @@ class Schedules extends Controller
 
             'classes' => $classes
 
-            // 'schedules' => $schedules
         ];
 
         $this->view('admin/schedules/index', $data);
@@ -120,7 +119,7 @@ class Schedules extends Controller
                 //Execute
                 if ($this->schedulesModel->insertSchedule($data)) {
                     // Redirect to login
-                    flash('schedule_message', 'Schedule Created');
+                    flash('schedule_insert_message', 'Schedule Created');
                     redirect('schedules');
                 } else {
                     die('Something went wrong');
@@ -248,7 +247,7 @@ class Schedules extends Controller
                 //Execute
                 if ($this->schedulesModel->update($data)) {
                     // Redirect to login
-                    flash('schedule_updated', 'Schedule Updated');
+                    flash('schedule_update_message', 'Schedule Updated');
                     redirect('schedules');
                 } else {
                     die('Something went wrong');
@@ -274,7 +273,7 @@ class Schedules extends Controller
     public function show()
     {
 
-        $id = htmlspecialchars($_POST['id_class']);
+        $id = htmlspecialchars($_POST['id_class'] ?? '');
 
         $schedules = $this->schedulesModel->getScheduleByClassId($id);
 
@@ -288,6 +287,30 @@ class Schedules extends Controller
 
         $data['classes'] = $classes;
 
+        $data['id_clas'] = $id;
+
         $this->view('admin/schedules/index', $data);
+    }
+
+    public function delete($id)
+    {
+
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+            if ($this->schedulesModel->deleteSchedule($id)) {
+
+                flash('schedule_deleted_msg', 'Schedule Deleted');
+
+                redirect('schedules');
+            } else {
+
+                die('Something went wrong');
+            }
+        } else {
+
+            redirect('pages');
+        }
     }
 }
