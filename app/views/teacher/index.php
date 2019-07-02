@@ -13,7 +13,7 @@
     <div class="card-body">
       <div class="row no-gutters align-items-center">
         <div class="col mr-2">
-          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Prosjek razreda</div>
+          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Average grade</div>
           <div class="h5 mb-0 font-weight-bold text-gray-800">4</div>
         </div>
         <div class="col-auto">
@@ -30,7 +30,7 @@
     <div class="card-body">
       <div class="row no-gutters align-items-center">
         <div class="col mr-2">
-          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Ukupno učenika u razredu</div>
+          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total number of students in class</div>
           <div class="h5 mb-0 font-weight-bold text-gray-800">30</div>
         </div>
         <div class="col-auto">
@@ -47,7 +47,7 @@
     <div class="card-body">
       <div class="row no-gutters align-items-center">
         <div class="col mr-2">
-          <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Pohađanje nastave</div>
+          <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Presence on lectures</div>
           <div class="row no-gutters align-items-center">
             <div class="col-auto">
               <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">70%</div>
