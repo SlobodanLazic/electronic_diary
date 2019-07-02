@@ -117,7 +117,16 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
 
                                         echo "<td>1</td>";
                                         foreach ($row1 as $r) {
+
+                                            if(!empty( $r->subject_name)){
+
                                             echo "<td><a href=" . URLROOT . "/schedules/edit/$r->id_schedules>" . $r->subject_name . "</a></td>";
+
+                                            }else{
+                                                
+                                                echo "<td><a href=" . URLROOT . "/schedules/edit/$r->id_schedules>" . 'N/A' . "</a></td>";
+
+                                            }
                                         }
 
                                         ?>
@@ -127,7 +136,15 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
                                         echo "<td>2</td>";
                                         foreach ($row2 as $v) {
 
-                                            echo "<td><a href=" . URLROOT . "/schedules/edit/$v->id_schedules>" . $v->subject_name . "</a></td>";
+                                            if(!empty( $v->subject_name)){
+
+                                                echo "<td><a href=" . URLROOT . "/schedules/edit/$v->id_schedules>" . $v->subject_name . "</a></td>";
+    
+                                                }else{
+                                                    
+                                                    echo "<td><a href=" . URLROOT . "/schedules/edit/$v->id_schedules>" . 'N/A' . "</a></td>";
+    
+                                                }
                                         }
                                         ?>
                                     </tr>
@@ -136,7 +153,15 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
                                         echo "<td>3</td>";
                                         foreach ($row3 as $c) {
 
-                                            echo "<td><a href=" . URLROOT . "/schedules/edit/$c->id_schedules>" . $c->subject_name . "</a></td>";
+                                            if(!empty( $c->subject_name)){
+
+                                                echo "<td><a href=" . URLROOT . "/schedules/edit/$c->id_schedules>" . $c->subject_name . "</a></td>";
+    
+                                                }else{
+                                                    
+                                                    echo "<td><a href=" . URLROOT . "/schedules/edit/$c->id_schedules>" . 'N/A' . "</a></td>";
+    
+                                                }
                                         }
                                         ?>
                                     </tr>
@@ -145,8 +170,18 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
                                         echo "<td>4</td>";
                                         foreach ($row4 as $f) {
 
-                                            echo "<td><a href=" . URLROOT . "/schedules/edit/$f->id_schedules>" . $f->subject_name . "</a></td>";
-                                        }
+                                            if(!empty( $f->subject_name)){
+
+                                                echo "<td><a href=" . URLROOT . "/schedules/edit/$f->id_schedules>" . $f->subject_name . "</a></td>";
+    
+                                                }else{
+                                                    
+                                                    echo "<td><a href=" . URLROOT . "/schedules/edit/$f->id_schedules>" . 'N/A' . "</a></td>";
+    
+                                                    
+                                                }
+
+                                            }
                                         ?>
                                     </tr>
                                     <tr>
@@ -154,8 +189,19 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
                                         echo "<td>5</td>";
                                         foreach ($row5 as $e) {
 
-                                            echo "<td><a href=" . URLROOT . "/schedules/edit/$e->id_schedules>" . $e->subject_name . "</a></td>";
-                                        }
+                                            if(!empty( $e->subject_name)){
+
+                                                echo "<td><a href=" . URLROOT . "/schedules/edit/$e->id_schedules>" . $e->subject_name . "</a></td>";
+    
+                                                }else{
+                                                    
+                                                    echo "<td><a href=" . URLROOT . "/schedules/edit/$e->id_schedules>" . 'N/A' . "</a></td>";
+    
+                                                    
+                                                }
+
+                                            }
+                                        
                                         ?>
                                     </tr>
                                     <tr>
@@ -163,8 +209,19 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
                                         echo "<td>6</td>";
                                         foreach ($row6 as $g) {
 
-                                            echo "<td><a href=" . URLROOT . "/schedules/edit/$g->id_schedules>" . $g->subject_name . "</a></td>";
-                                        }
+                                            if(!empty( $g->subject_name)){
+
+                                                echo "<td><a href=" . URLROOT . "/schedules/edit/$g->id_schedules>" . $g->subject_name . "</a></td>";
+    
+                                                }else{
+                                                    
+                                                    echo "<td><a href=" . URLROOT . "/schedules/edit/$g->id_schedules>" . 'N/A' . "</a></td>";
+    
+                                                    
+                                                }
+
+                                            }
+                                        
                                         ?>
                                     </tr>
                                     <tr>
@@ -172,8 +229,19 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
                                         echo "<td>7</td>";
                                         foreach ($row7 as $h) {
 
-                                            echo "<td><a href=" . URLROOT . "/schedules/edit/$h->id_schedules>" . $h->subject_name . "</a></td>";
-                                        }
+                                            if(!empty( $h->subject_name)){
+
+                                                echo "<td><a href=" . URLROOT . "/schedules/edit/$h->id_schedules>" . $h->subject_name . "</a></td>";
+    
+                                                }else{
+                                                    
+                                                    echo "<td><a href=" . URLROOT . "/schedules/edit/$h->id_schedules>" . 'N/A' . "</a></td>";
+    
+                                                    
+                                                }
+
+                                            }
+                                        
                                         ?>
                                     </tr>
 
