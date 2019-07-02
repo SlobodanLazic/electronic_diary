@@ -33,7 +33,7 @@ class Users extends Controller
                 'first_name' => trim($_POST['first_name']),
                 'last_name' => trim($_POST['last_name']),
                 'id_school_class' => trim($_POST['id_school_class']),
-                'teacher_class_id' => trim($_POST['teacher_class_id']),
+                'teacher_class_id' => (int) trim($_POST['teacher_class_id']),
 
                 'name_err' => '',
                 'email_err' => '',
@@ -332,7 +332,7 @@ class Users extends Controller
                 // User not found
                 $data['email_err'] = 'No user found';
             }
-            
+
             // Make sure errors are empty
             if (empty($data['email_err']) && empty($data['password_err'])) {
                 // Validated
@@ -410,33 +410,27 @@ class Users extends Controller
     /* this class wont let false user role to view pages of the different user role */
     public function FalseRolePrevention()
     {
-        
+
         $coreObj = new Core();
         $url = $coreObj->getUrl();
-        
+
         $adminstratorPagesUrl = array("edit", "update", "delete", "admin");
         $loginUrl = 'login';
 
-        $resultOfArray = in_array($adminstratorPagesUrl,$url, true);
+        $resultOfArray = in_array($adminstratorPagesUrl, $url, true);
 
-        foreach($adminstratorPagesUrl as $page)
-        {
-            $resultOfArray[] = in_array($page,$url);
+        foreach ($adminstratorPagesUrl as $page) {
+            $resultOfArray[] = in_array($page, $url);
         }
-        
+
         var_dump($resultOfArray);
-        if($_SESSION["id_user_role"] == 1 && in_array(true,$resultOfArray))
-        { 
+        if ($_SESSION["id_user_role"] == 1 && in_array(true, $resultOfArray)) {
             return false;
-        }
-        else if (in_array($loginUrl,$url))
-        {
+        } else if (in_array($loginUrl, $url)) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
-        
     }
 
     public function admin()
@@ -513,19 +507,19 @@ class Users extends Controller
     public function index()
     {
         if ($this->isLoggedIn()) {
-            if($_SESSION['id_user_role'] == 1){
+            if ($_SESSION['id_user_role'] == 1) {
                 $this->view('users/index');
             } else {
                 $this->logout();
-            }    
+            }
         } else {
             redirect('users/login');
         }
-        
     }
 
     /* PARENT PART */
-    public function parent() {
+    public function parent()
+    {
         if (isset($_SESSION['id_user'])) {
             if ($_SESSION['id_user_role'] == 4) {
                 $this->view('parent/index');
