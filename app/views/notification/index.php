@@ -1,7 +1,4 @@
 <?php require APPROOT . '/views/inc/admin/header.php'; ?>
-
-
-
 <div id="page-wrapper">
 
     <div class="container-fluid">
