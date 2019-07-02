@@ -17,22 +17,24 @@
                 <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT; ?>/users/insert">Insert user</a>
                 
                 <form action="<?php echo URLROOT; ?>/users/" method="post">
-
-                    <div class="form-group">
-                        <label>Select role:</label>
-                        <select name="user_role" id="user_role" class="form-control form-control-lg <?php echo (!empty($data['user_role_err'])) ? 'is-invalid' : '' ?>">
-                                <option value='' selected>.....Select a role.....</option>
-                                <?php
-                                $users = new Users();
-                                foreach ($users->GetUserRoles() as $id_user_role => $name) :
-                                    ?>
-                                    <option value='<?php echo $id_user_role; ?>'><?php print($name); ?></option>
-                                <?php endforeach; ?>    
-                        </select>
-
-                        <input type="submit" class="btn btn-success" value="Show">  
-                    </div>
-
+                    <div class="row select_role">
+                    <div class="col">
+                        <div class="form-group">
+                            <select name="user_role" id="user_role" class="form-control form-control-lg <?php echo (!empty($data['user_role_err'])) ? 'is-invalid' : '' ?>">
+                                    <option value='' selected>.....Select a role.....</option>
+                                    <?php
+                                    $users = new Users();
+                                    foreach ($users->GetUserRoles() as $id_user_role => $name) :
+                                        ?>
+                                        <option value='<?php echo $id_user_role; ?>'><?php print($name); ?></option>
+                                    <?php endforeach; ?>    
+                            </select>
+                            </div></div>
+                            <div class="col">            
+                                <input type="submit" class="btn btn-success" value="Show">
+                            </div> 
+                        </div>
+                    </div>             
                 </form> 
 
 
