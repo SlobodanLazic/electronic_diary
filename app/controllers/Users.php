@@ -408,18 +408,28 @@ class Users extends Controller
     }
 
     /* this class wont let false user role to view pages of the different user role */
-    public static function FalseRolePrevention()
+    public function FalseRolePrevention()
     {
-        $url = $_SERVER["REQUEST_URI"];
-        $urlPartsArray = explode("/", $url);
-        $adminstratorPagesUrl[] = array("edit", "update", "delete");
+        
+        $coreObj = new Core();
+        $url = $coreObj->getUrl();
+        
+        $adminstratorPagesUrl = array("edit", "update", "delete", "admin");
         $loginUrl = 'login';
 
-        if(isset($_SESSION["id_user_role"]) && $_SESSION["id_user_role"] == 1 && in_array($adminstratorPagesUrl,$urlPartsArray))
+        $resultOfArray = in_array($adminstratorPagesUrl,$url, true);
+
+        foreach($adminstratorPagesUrl as $page)
         {
+            $resultOfArray[] = in_array($page,$url);
+        }
+        
+        var_dump($resultOfArray);
+        if($_SESSION["id_user_role"] == 1 && in_array(true,$resultOfArray))
+        { 
             return false;
         }
-        else if (in_array($loginUrl,$urlPartsArray))
+        else if (in_array($loginUrl,$url))
         {
             return false;
         }
