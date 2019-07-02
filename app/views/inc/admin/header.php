@@ -1,12 +1,10 @@
 <?php
+
     if(!isset($_SESSION["id_user"]))
     {
       redirect("users/login");
     }
 
-    //$users = new Users();
-    //$value = $users->FalseRolePrevention();
-    //var_dump($value);
 ?>
 <!DOCTYPE html>
 <html lang="en">

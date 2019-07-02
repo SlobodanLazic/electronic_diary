@@ -407,32 +407,6 @@ class Users extends Controller
         redirect('users/login');
     }
 
-    /* this class wont let false user role to view pages of the different user role */
-    public function FalseRolePrevention()
-    {
-
-        $coreObj = new Core();
-        $url = $coreObj->getUrl();
-
-        $adminstratorPagesUrl = array("edit", "update", "delete", "admin");
-        $loginUrl = 'login';
-
-        $resultOfArray = in_array($adminstratorPagesUrl, $url, true);
-
-        foreach ($adminstratorPagesUrl as $page) {
-            $resultOfArray[] = in_array($page, $url);
-        }
-
-        var_dump($resultOfArray);
-        if ($_SESSION["id_user_role"] == 1 && in_array(true, $resultOfArray)) {
-            return false;
-        } else if (in_array($loginUrl, $url)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     public function admin()
     {
         if (isset($_SESSION['id_user'])) {
