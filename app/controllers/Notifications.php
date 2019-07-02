@@ -127,6 +127,16 @@ class Notifications extends Controller
 
         }
     }
+    
+    public function parent(){
+      
+      $notifications = $this->notificationModel->getMessage();
+      $data = [
+        'notifications' => $notifications
+      ];
+      $this->view('parent/notification/index', $data);
+
+    }
           
     }
   

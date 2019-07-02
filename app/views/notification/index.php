@@ -1,7 +1,4 @@
-<?php require APPROOT . '/views/inc/parent/header.php'; ?>
-
-
-
+<?php require APPROOT . '/views/inc/admin/header.php'; ?>
 <div id="page-wrapper">
 
     <div class="container-fluid">
@@ -54,4 +51,4 @@
 </div>
 <!-- /#page-wrapper -->
 
-<?php require APPROOT . '/views/inc/parent/header.php'; ?>
+<?php require APPROOT . '/views/inc/admin/footer.php'; ?>

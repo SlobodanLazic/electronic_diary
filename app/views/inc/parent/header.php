@@ -65,7 +65,7 @@
 
    <!-- Nav Item - Utilities Collapse Menu -->
    <li class="nav-item">
-    <a class="nav-link" href="<?php echo URLROOT . '/users/parent/notification'; ?>" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+    <a class="nav-link" href="<?php echo URLROOT . '/notifications/parent'; ?>" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
       <i class="fas fa-fw fa-wrench"></i>
       <span>Parent notifications</span>
     </a>

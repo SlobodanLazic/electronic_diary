@@ -1,4 +1,4 @@
-<?php require APPROOT . '/views/inc/admin/header.php'; ?>
+<?php require APPROOT . '/views/inc/parent/header.php'; ?>
 
 <div id="page-wrapper">
 
@@ -10,18 +10,26 @@
                 <h1 class="page-header">
                   Notifications
                 </h1>
-                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT . "/notifications/insert" ?>">Insert subject</a>
-                <?php flash('notification_message') ?>
-                <?php flash('notification_updated') ?>
-                <?php flash('notification_deleted_msg') ?>
+            </div>
+        </div>
+        <!-- /.row -->
+        <?php foreach ($data['notifications'] as $notification) : ?>
+
+        <!-- Page Body -->
+        <div class="row">
+            <div class="col-lg-12">
+                
+                <?php echo $notification->notification_content; ?>
+                
             </div>
         </div>
         <!-- /.row -->
         
+        <?php endforeach; ?>
     </div>
     <!-- /.container-fluid -->
 
 </div>
 <!-- /#page-wrapper -->
 
-<?php require APPROOT . '/views/inc/admin/footer.php'; ?>
+<?php require APPROOT . '/views/inc/parent/footer.php'; ?>
