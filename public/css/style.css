@@ -1,5 +1,6 @@
 body {
     background-size: cover;
+    background-image: url("../images/background.jpg");
 }
 td.buttons-pos {
     display: inline-flex;

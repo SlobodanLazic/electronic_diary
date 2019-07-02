@@ -27,6 +27,6 @@
 
 
 </head>
-<body background="../images/background.jpg">
+<body>
   <div class="container">
   
