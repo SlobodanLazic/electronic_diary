@@ -505,4 +505,9 @@ class Users extends Controller
             redirect('users/login');
         }
     }
+
+    public function notification()
+    {
+        $this->view('parent/notification');
+    }
 }
