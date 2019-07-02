@@ -42,7 +42,7 @@
     <div class="sidebar-brand-icon rotate-n-15">
       <i class="fas fa-laugh-wink"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">Teacher</div>
+    <div class="sidebar-brand-text mx-3">Parent</div>
   </a>
 
   <!-- Divider -->
@@ -50,7 +50,7 @@
 
   <!-- Nav Item - Dashboard -->
   <li class="nav-item active">
-    <a class="nav-link" href="<?php echo URLROOT . '/users/teacher'; ?>">
+    <a class="nav-link" href="<?php echo URLROOT . '/users/parent'; ?>">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Dashboard</span></a>
   </li>
@@ -63,19 +63,12 @@
     all about classes
   </div>
 
-  <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="<?php echo URLROOT . '/users/t-students'; ?>" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-cog"></i>
-      <span>Students</span>
+   <!-- Nav Item - Utilities Collapse Menu -->
+   <li class="nav-item">
+    <a class="nav-link" href="<?php echo URLROOT . '/users/parent/notification'; ?>" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+      <i class="fas fa-fw fa-wrench"></i>
+      <span>Parent notifications</span>
     </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Menu:</h6>
-        <a class="collapse-item" href="<?php echo URLROOT . '/users/t_students'; ?>">Students list</a>
-        <a class="collapse-item" href="#">Index 2</a>
-      </div>
-    </div>
   </li>
 
   <!-- Nav Item - Utilities Collapse Menu -->
@@ -104,12 +97,12 @@
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
       <i class="fas fa-fw fa-folder"></i>
-      <span>Parents</span>
+      <span>Teacher</span>
     </a>
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">###</h6>
-        <a class="collapse-item" href="#">All Parents</a>
+        <a class="collapse-item" href="#">Open door requests</a>
         <a class="collapse-item" href="#">Messages</a>
       </div>
     </div>
@@ -285,7 +278,7 @@
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Teacher</span>
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Parent</span>
             <img class="img-profile rounded-circle" src="">
           </a>
           <!-- Dropdown - User Information -->

@@ -472,9 +472,9 @@ class Users extends Controller
             redirect('users/login');
         }
     }
-    public function classes()
+    public function t_students()
     {
-        $this->view('teacher/classes/index');
+        $this->view('teacher/t_students/index');
     }
     /* TEACHER PART END */
 
@@ -491,6 +491,7 @@ class Users extends Controller
         }
     }
 
+
     /* PARENT PART */
     public function parent()
     {
@@ -503,5 +504,10 @@ class Users extends Controller
         } else {
             redirect('users/login');
         }
+    }
+
+    public function notification()
+    {
+        $this->view('parent/notification');
     }
 }
