@@ -58,7 +58,7 @@
                                     <td><?php printf($user->name); ?></td>
                                     <td>
                                         <form action="<?php echo URLROOT . '/users/delete/'; ?>" method="POST">
-                                            <input class="hidden" name="id_user" type="text" value="<?php echo $user->id_user; ?>">
+                                            <input  name="id_user" type="hidden" value="<?php echo $user->id_user; ?>">
                                             <input type="submit" value="Delete" class="btn btn-dark btn-block">
                                         </form>
                                     </td>

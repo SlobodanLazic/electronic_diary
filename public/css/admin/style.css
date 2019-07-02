@@ -28,3 +28,7 @@ td.button-pos a {
     user-select: all;
     /* Likely future */
 }
+
+row.select_role {
+    padding: 15px 0px;
+}

@@ -523,4 +523,17 @@ class Users extends Controller
         }
         
     }
+
+    /* PARENT PART */
+    public function parent() {
+        if (isset($_SESSION['id_user'])) {
+            if ($_SESSION['id_user_role'] == 4) {
+                $this->view('parent/index');
+            } else {
+                $this->logout();
+            }
+        } else {
+            redirect('users/login');
+        }
+    }
 }
