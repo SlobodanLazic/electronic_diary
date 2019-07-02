@@ -476,6 +476,10 @@ class Users extends Controller
     {
         $this->view('teacher/t_students/index');
     }
+    public function grades()
+    {
+        $this->view('t_students/grades');
+    }
     /* TEACHER PART END */
 
     public function index()

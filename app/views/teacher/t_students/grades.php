@@ -42,11 +42,19 @@
                                                     <span class="icon text-white-50">
                                                     <i class="fas fa-edit"></i>
                                                     </span>
-                                                    <span class="text">Grades </span>
+                                                    <span class="text">Edit </span>
                                                 </a>
+                                            <form action="<?php echo URLROOT . "/t_students/delete" ?>" method="post">
+                                                <a href="#" class="btn btn-danger btn-icon-split">
+                                                    <span class="icon text-white-50">
+                                                    <i class="fas fa-trash"></i>
+                                                    </span>
+                                                    <span class="text">Delete</span>
+                                                </a>
+                                            </form>
                                         </td>
                                         <td>
-                                            <p class="text-success">Yes</p>
+                                            Status
                                         </td>
                                         </form>
                                     </tr>
