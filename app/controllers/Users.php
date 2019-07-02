@@ -474,7 +474,15 @@ class Users extends Controller
     }
     public function t_students()
     {
-        $this->view('teacher/students/index');
+        if (isset($_SESSION['id_user'])) {
+            if ($_SESSION['id_user_role'] == 3) {
+                $this->view('t_students/index');
+            } else {
+                $this->logout();
+            }
+        } else {
+            redirect('users/login');
+        }
     }
     /* TEACHER PART END */
 
