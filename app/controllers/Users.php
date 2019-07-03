@@ -472,7 +472,8 @@ class Users extends Controller
             redirect('users/login');
         }
     }
-
+    /* this method is enabling teacher/t_student/index page to show all students 
+    from teacher's grade by using method contained in Student model*/
     public function t_students()
     {
         $students = $this->studentModel->showStudentsToTeacher();

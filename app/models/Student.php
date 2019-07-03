@@ -57,7 +57,7 @@ class Student
         return $students;
     }
 
-    /* this function is showing all students for perticular teacher */
+    /* this method is showing all students for perticular teacher */
     public function showStudentsToTeacher()
     {
 
