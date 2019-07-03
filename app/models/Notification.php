@@ -35,7 +35,7 @@
         }
 
         public function getNotificationId($id)
-    {
+        {
 
         // removed *
 
@@ -47,7 +47,7 @@
         $row = $this->db->single();
 
         return $row;
-    }
+        }
 
         public function editNotification()
         {
@@ -77,9 +77,9 @@
            
            if ($this->db->execute()) {
             return true;
-        } else {
-            return false;
-        }
+            } else {
+                return false;
+            }
         }
 
 
