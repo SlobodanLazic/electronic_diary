@@ -22,10 +22,10 @@ class Classes extends Controller
     ];
 
     $this->view('admin/classes/index', $data);
-  }
+  } 
 
 
-
+  //This function edition classes
   public function edit($id)
   {
 
