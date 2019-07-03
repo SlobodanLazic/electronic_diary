@@ -54,8 +54,11 @@ class Student
 
 
     public function getStudentById($id)
+
+      // removed *
+
     {
-        $this->db->query('SELECT * FROM students WHERE id_student = :id_student');
+        $this->db->query('SELECT students.id_student,  students.first_name , students.last_name , students.id_school_class FROM students WHERE id_student = :id_student');
 
         $this->db->bind(':id_student', $id);
 

@@ -25,7 +25,10 @@
 
         public function getMessage()
         {
-            $this->db->query('SELECT id_parent_notification, notification_content FROM parent_notifications');
+
+            // removed *
+
+            $this->db->query('SELECT parent_notifications.id_parent_notification, parent_notifications.notification_content FROM parent_notifications');
             $notification = $this->db->resultSet();
             return $notification;
     
@@ -33,7 +36,11 @@
 
         public function getNotificationId($id)
     {
-        $this->db->query('SELECT * FROM parent_notifications WHERE id_parent_notification = :id_parent_notification');
+
+        // removed *
+
+
+        $this->db->query('SELECT parent_notifications.id_parent_notification , parent_notifications.notification_content FROM parent_notifications WHERE id_parent_notification = :id_parent_notification');
 
         $this->db->bind(':id_parent_notification', $id);
 
