@@ -12,7 +12,7 @@
                 <h1 class="page-header">
                   Notifications
                 </h1>
-                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT . "/notifications/insert" ?>">Insert notification</a>
+                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm " href="<?php echo URLROOT . "/notifications/insert" ?>">Insert notification</a>
                 <?php flash('notification_message') ?>
                 <?php flash('notification_updated') ?>
                 <?php flash('notification_deleted_msg') ?>
@@ -41,7 +41,7 @@
         '?>
         <form action="<?php echo URLROOT . "/notifications/delete/" . $notification->id_parent_notification ?>" method="POST">
 
-        <button class="btn btn-primary" type="submit" name="delete">Delete</button>
+        <button class="btn btn-danger ml-1" type="submit" name="delete">Delete</button>
 
     </form></td>
     </tr>
