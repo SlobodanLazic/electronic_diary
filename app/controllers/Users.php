@@ -472,10 +472,20 @@ class Users extends Controller
             redirect('users/login');
         }
     }
+
     public function t_students()
     {
-        $this->view('teacher/t_students/index');
+        $students = $this->studentModel->showAllStudentsJoinClasses();
+
+        $data = [
+
+        'students' => $students
+
+        ];
+        
+        $this->view('teacher/t_students/index', $data);
     }
+
     public function grades()
     {
         $this->view('t_students/grades');
