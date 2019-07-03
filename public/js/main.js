@@ -21,20 +21,20 @@ function toggleFields() {
 
 
 
-const inputElement = document.querySelector(".js-controlled-input")
+// const inputElement = document.querySelector(".js-controlled-input")
 
-preventDragNDropChangesOn(inputElement)
+// preventDragNDropChangesOn(inputElement)
 
-function preventDragNDropChangesOn(inputElement) {
-   let previousValue = inputElement.value
-   let isDragged = false
-   let wasDropped = false
+// function preventDragNDropChangesOn(inputElement) {
+//    let previousValue = inputElement.value
+//    let isDragged = false
+//    let wasDropped = false
 
 
-   inputElement.addEventListener('dragstart', () => isDragged = true)
-   document.body.addEventListener('drop', () =>
-      (wasDropped = isDragged) && (previousValue = inputElement.value))
-   inputElement.addEventListener('change', (e) =>
-      isDragged && wasDropped && (e.target.value = previousValue))
-   inputElement.addEventListener('dragend', () => isDragged = wasDropped = false)
-}
+//    inputElement.addEventListener('dragstart', () => isDragged = true)
+//    document.body.addEventListener('drop', () =>
+//       (wasDropped = isDragged) && (previousValue = inputElement.value))
+//    inputElement.addEventListener('change', (e) =>
+//       isDragged && wasDropped && (e.target.value = previousValue))
+//    inputElement.addEventListener('dragend', () => isDragged = wasDropped = false)
+// }
