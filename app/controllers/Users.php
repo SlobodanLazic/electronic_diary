@@ -475,7 +475,7 @@ class Users extends Controller
 
     public function t_students()
     {
-        $students = $this->studentModel->showAllStudentsJoinClasses();
+        $students = $this->studentModel->showStudentsToTeacher();
 
         $data = [
 
