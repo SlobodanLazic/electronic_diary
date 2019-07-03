@@ -35,7 +35,10 @@ class Subject
     }
     public function getSubjectId($id)
     {
-        $this->db->query('SELECT * FROM subjects WHERE id_subject = :id_subject');
+
+        // removed *
+
+        $this->db->query('SELECT subjects.id_subject, subjects.name FROM subjects WHERE id_subject = :id_subject');
 
         $this->db->bind(':id_subject', $id);
 

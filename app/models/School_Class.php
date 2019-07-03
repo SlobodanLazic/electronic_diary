@@ -32,7 +32,9 @@ class School_class
     public function showAllClasses()
     {
 
-        $this->db->query('SELECT * FROM school_classes');
+        // removed *
+
+        $this->db->query('SELECT school_classes.id_school_class , school_classes.name FROM school_classes');
 
         $classes = $this->db->resultSet();
 
@@ -41,7 +43,10 @@ class School_class
 
     public function getClassById($id)
     {
-        $this->db->query('SELECT * FROM school_classes WHERE id_school_class = :id_class');
+
+        // removed *
+
+        $this->db->query('SELECT school_classes.id_school_class ,school_classes.name FROM school_classes WHERE id_school_class = :id_class');
 
         $this->db->bind(':id_class', $id);
 
