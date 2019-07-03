@@ -14,6 +14,9 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <div class="dataTables_wrapper dt-bootstrap4">
+                        <?php flash('student_grade_message') ?>
+                        <?php flash('student_grade_updated') ?>
+                        <?php flash('student_grade_deleted_msg') ?>
                         <table class="table table-bordered dataTable text-center">
 
                             <thead>
@@ -26,16 +29,17 @@
                                     <th>Grade status</th>
                                 </tr>
                             </thead>
+                                <?php foreach ($data['students'] as $student) : ?>
                                 <tbody>
                                     <tr>
                                         <td>
-                                            ID
+                                            <?php echo $student->id_student; ?>
                                         </td>
                                         <td>
-                                            First name
+                                            <?php echo $student->first_name; ?>
                                         </td>
                                         <td>
-                                            Last name
+                                            <?php echo $student->last_name; ?>
                                         </td>
                                         <td class="buttons-pos">
                                                 <a href="#" class="btn btn-success btn-icon-split m1">
@@ -51,6 +55,7 @@
                                         </form>
                                     </tr>
                                 </tbody>
+                                <?php endforeach; ?>
                         </table>
                 </div><!-- bt4 end -->
                 </div><!-- table responsive end -->
