@@ -479,10 +479,10 @@ class Users extends Controller
 
         $data = [
 
-        'students' => $students
+            'students' => $students
 
         ];
-        
+
         $this->view('teacher/t_students/index', $data);
     }
 
@@ -519,4 +519,32 @@ class Users extends Controller
             redirect('users/login');
         }
     }
+
+    /* DIRECTOR PART */
+
+    public function director()
+    {
+        if (isset($_SESSION['id_user'])) {
+            if ($_SESSION['id_user_role'] == 2) {
+                $this->view('director/index');
+            } else {
+                $this->logout();
+            }
+        } else {
+            redirect('users/login');
+        }
+    }
+
+    public function class_statistic()
+    {
+        $this->view('director/statistic/class_statistic');
+    }
+
+    public function school_statistic()
+    {
+        $this->view('director/statistic/school_statistic');
+    }
+
+
+    /* DIRECTOR PART END */
 }
