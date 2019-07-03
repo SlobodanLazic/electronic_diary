@@ -10,4 +10,5 @@ define('APPROOT', dirname(dirname(__FILE__)));
 // URL Root
 define('URLROOT', 'http://localhost/electronic_diary');
 // Site Name
+
 define('SITENAME', 'ELECTRONIC DIARY');
