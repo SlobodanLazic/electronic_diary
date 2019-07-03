@@ -40,7 +40,7 @@ class Notifications extends Controller
           ];
 
     
-          $this->view('notification/insert', $data);
+          $this->view('admin/notification/insert', $data);
         }
       }
 
@@ -54,7 +54,7 @@ class Notifications extends Controller
             
         ];
 
-        $this->view('/notification/edit', $data);
+        $this->view('admin/notification/edit', $data);
     }
 
          public function show($id)
@@ -77,7 +77,7 @@ class Notifications extends Controller
           $data = [
             'notifications' => $notifications
           ];
-          $this->view('notification/index', $data);
+          $this->view('admin/notification/index', $data);
 
         }
 
@@ -111,7 +111,7 @@ class Notifications extends Controller
 
         // Validate for notification_content
         if(empty($data['notification_content'])) {
-            $data['notification_content_err'] = 'Please enter a subject';
+            $data['notification_content_err'] = 'Please enter a notification';
         }
 
         if(empty($data['notification_content_err'])) {
@@ -122,7 +122,7 @@ class Notifications extends Controller
                 die('Something went wrong');
             }
         } else {
-            $this->view('notifications/update', $data);
+            $this->view('admin/notification/update', $data);
         }
 
         }

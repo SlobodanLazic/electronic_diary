@@ -265,8 +265,10 @@ class Schedule
     }
 
     public function getScheduleById($id)
+
+    //removed *
     {
-        $this->db->query('SELECT * FROM schedules WHERE id_schedules = :id_schedule');
+        $this->db->query('SELECT schedules.id_schedules, schedules.subject_name FROM schedules WHERE id_schedules = :id_schedule');
 
         $this->db->bind(':id_schedule', $id);
 
@@ -297,7 +299,9 @@ class Schedule
     public function getScheduleByClassId($id)
     {
 
-        $this->db->query('SELECT * FROM schedules WHERE class_id = :id');
+        // removed *
+
+        $this->db->query('SELECT schedules.id_schedules, schedules.subject_name , schedules.order_id FROM schedules WHERE class_id = :id');
 
         $this->db->bind(':id', $id);
 
