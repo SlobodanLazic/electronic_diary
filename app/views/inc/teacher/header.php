@@ -73,7 +73,7 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Menu:</h6>
         <a class="collapse-item" href="<?php echo URLROOT . '/users/t_students'; ?>">Students list</a>
-        <a class="collapse-item" href="<?php echo URLROOT . '/users/t_students/grades.php'; ?>">Insert grades</a>
+        <a class="collapse-item" href="<?php echo URLROOT . '/users/insertg'; ?>">Insert grades</a>
       </div>
     </div>
   </li>

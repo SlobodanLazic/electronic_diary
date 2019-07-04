@@ -29,36 +29,29 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            ID
+                                            id
                                         </td>
                                         <td>
-                                            First name
+                                            fnf
                                         </td>
                                         <td>
-                                            Last name
+                                            LN
                                         </td>
                                         <td class="buttons-pos">
-                                                <a href="#" class="btn btn-success btn-icon-split m1">
+                                                <a href="<?php echo URLROOT . "/users/insertg/12" ?>" class="btn btn-success btn-icon-split m1">
                                                     <span class="icon text-white-50">
                                                     <i class="fas fa-edit"></i>
                                                     </span>
-                                                    <span class="text">Edit </span>
+                                                    <span class="text">Grades </span>
                                                 </a>
-                                            <form action="<?php echo URLROOT . "/t_students/delete" ?>" method="post">
-                                                <a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="icon text-white-50">
-                                                    <i class="fas fa-trash"></i>
-                                                    </span>
-                                                    <span class="text">Delete</span>
-                                                </a>
-                                            </form>
                                         </td>
                                         <td>
-                                            Status
+                                            <p class="text-success">Yes</p>
                                         </td>
                                         </form>
                                     </tr>
                                 </tbody>
+
                         </table>
                 </div><!-- bt4 end -->
                 </div><!-- table responsive end -->

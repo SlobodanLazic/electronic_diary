@@ -11,6 +11,8 @@ class Users extends Controller
         $this->classModel = $this->model('School_class');
 
         $this->User_Student = $this->model('User_Student');
+
+        $this->gradeModel = $this->model('Grade');
     }
 
     public function insert()
@@ -486,10 +488,32 @@ class Users extends Controller
 
         $this->view('teacher/t_students/index', $data);
     }
+    public function grades(){
+        if (isset($_SESSION['id_user'])) {
+            if ($_SESSION['id_user_role'] == 3) {
+                $this->view('teacher/grades/index');
+            } else {
+                $this->logout();
+            }
+        } else {
+         $this->view('users/login');
+        }
+    }
+    public function insertg($id){
+        if (isset($_SESSION['id_user'])) {
+            if ($_SESSION['id_user_role'] == 3) {
+                $grade = $this->gradeModel->getGradeIdbyStudent($id);
+                $data = [
+                    'student' => $grade
+                ];
 
-    public function grades()
-    {
-        $this->view('t_students/grades');
+                $this->view('teacher/grades/insertg', $data);
+            } else {
+                $this->logout();
+            }
+        } else {
+         $this->view('users/login');
+        }
     }
     /* TEACHER PART END */
 

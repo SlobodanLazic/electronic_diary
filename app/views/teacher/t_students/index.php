@@ -42,11 +42,11 @@
                                             <?php echo $student->last_name; ?>
                                         </td>
                                         <td class="buttons-pos">
-                                                <a href="#" class="btn btn-success btn-icon-split m1">
+                                                <a href="<?php echo URLROOT . "/teacher/insertg/" . $student->id_student ?>" class="btn btn-success btn-icon-split m1">
                                                     <span class="icon text-white-50">
                                                     <i class="fas fa-edit"></i>
                                                     </span>
-                                                    <span class="text">Grades </span>
+                                                    <span class="text">Insert grades </span>
                                                 </a>
                                         </td>
                                         <td>
