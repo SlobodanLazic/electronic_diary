@@ -43,15 +43,34 @@ class Student
 
     public function showAllStudentsJoinClasses()
     {
-        $this->db->query('SELECT students.id_student , students.first_name , students.last_name , school_classes.name , school_classes.id_school_class FROM students JOIN school_classes ON students.id_school_class = school_classes.id_school_class ');
+        $this->db->query('SELECT students.id_student , 
+                                 students.first_name , 
+                                 students.last_name , 
+                                 school_classes.name , 
+                                 school_classes.id_school_class 
+                          FROM students 
+                          JOIN school_classes 
+                                ON students.id_school_class = school_classes.id_school_class ');
 
         $students = $this->db->resultSet();
 
         return $students;
     }
 
+    /* this method is showing all students for perticular teacher */
+    public function showStudentsToTeacher()
+    {
 
+        $this->db->query(' SELECT students.id_student,
+                                 students.first_name,
+                                 students.last_name
+                            FROM students 
+                                JOIN users ON users.teacher_class_id = students.id_school_class');
 
+        $students = $this->db->resultSet();
+
+        return $students;
+    }
 
     public function getStudentById($id)
 
