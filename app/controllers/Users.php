@@ -13,6 +13,8 @@ class Users extends Controller
         $this->User_Student = $this->model('User_Student');
 
         $this->gradeModel = $this->model('Grade');
+
+        $this->subjectModel = $this->model('Subject');
     }
 
     public function insert()
@@ -502,10 +504,35 @@ class Users extends Controller
     public function insertg($id){
         if (isset($_SESSION['id_user'])) {
             if ($_SESSION['id_user_role'] == 3) {
+                $grades = $this->gradeModel->showallgrades();
                 $grade = $this->gradeModel->getGradeIdbyStudent($id);
+                $subjects = $this->subjectModel->showAllSubjects();
+                $students = $this->studentModel->getStudentById($id);
                 $data = [
-                    'student' => $grade
+                    'grades'=> $grades,
+                    'grade' => $grade,
+                    'subjects' => $subjects,
+                    'student' => $students,
                 ];
+
+                // Sanitize POST
+                $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $data2 = [
+                    'grades' => $_POST['grades'],
+                    'grade_status' => $_POST['gradestatus'],
+                    'school_class_id' => $_POST['schoolclass'],
+                    'id_student' => $_POST['id_student'],
+                    'id_subject' => $_POST['id_subject'],
+                ];
+
+                if ($this->gradeModel->insertGrade($data2)) {
+                    // Redirect to login
+                    flash('grades_message', 'Grade Added');
+                    redirect('/grades');
+                  } else {
+                    die('Something went wrong');
+                  }
 
                 $this->view('teacher/grades/insertg', $data);
             } else {

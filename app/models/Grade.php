@@ -9,15 +9,15 @@ class Grade
     }
 
 
-    public function insertGrade($data)
+    public function insertGrade($data2)
     {
         $this->db->query('INSERT INTO students_subjects (grades, grade_status, school_class_id, id_student, id_subject) VALUES (:grades, :grade_status, :school_class_id, :id_student, :id_subject)');
 
-        $this->db->bind(':grades', $data['grades']);
-        $this->db->bind(':grade_status', $data['grade_status']);
-        $this->db->bind(':school_class_id', $data['school_class_id']);
-        $this->db->bind(':id_student', $data['id_student']);
-        $this->db->bind(':id_subject', $data['id_subject']);
+        $this->db->bind(':grades', $data2['grades']);
+        $this->db->bind(':grade_status', $data2['grade_status']);
+        $this->db->bind(':school_class_id', $data2['school_class_id']);
+        $this->db->bind(':id_student', $data2['id_student']);
+        $this->db->bind(':id_subject', $data2['id_subject']);
 
         if ($this->db->execute()) {
             return true;
@@ -50,7 +50,13 @@ class Grade
 
         return $row;
     }
+    public function showallgrades() {
+        $this->db->query('SELECT grades, grade_status, school_class_id, id_student, id_subject FROM students_subjects');
 
+        $grades = $this->db->resultSet();
+
+        return $grades;
+    }
     public function getGradeIdbyStudent($id) {
         $this->db->query('SELECT id_student FROM students_subjects WHERE id_student = :id_student');
 
