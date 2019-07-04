@@ -182,7 +182,7 @@
           <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-bell fa-fw"></i>
             <!-- Counter - Alerts -->
-            <span class="badge badge-danger badge-counter">3+</span>
+            <span id="new_notification" class="badge badge-danger badge-counter"></span>
           </a>
           <!-- Dropdown - Alerts -->
           <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
@@ -231,7 +231,7 @@
           <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-envelope fa-fw"></i>
             <!-- Counter - Messages -->
-            <span class="badge badge-danger badge-counter">7</span>
+            <span id="new_message" class="badge badge-danger badge-counter"></span>
           </a>
           <!-- Dropdown - Messages -->
           <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
@@ -278,7 +278,7 @@
                 <div class="small text-gray-500">Chicken the Dog · 2w</div>
               </div>
             </a>
-            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+            <a class="dropdown-item text-center small text-gray-500" href="<?php echo URLROOT . '/messages/all'; ?>">Read More Messages</a>
           </div>
         </li>
 
