@@ -1,6 +1,10 @@
   </div>
   <!-- /#wrapper -->
 
+  <!-- custom js function to prevent default event of submit on parrent page and send data 
+  to teacher request page using ajax call in json format -->
+  <script src="<?php echo URLROOT; ?>/js/parent/request.js"></script>
+  
   <!-- jQuery -->
   <script src="<?php echo URLROOT; ?>/js/dashboard/jquery.js"></script>
 

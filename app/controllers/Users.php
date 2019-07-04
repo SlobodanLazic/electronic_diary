@@ -549,9 +549,10 @@ class Users extends Controller
     /* DIRECTOR PART END */
 
     /* PARENT PART BEGGINING */
-    public function requests(Type $var = null)
+    /* this method will show the view for parent open door requests page */
+    public function requests()
     {
-        # code...
+        $this->view('parent/requests/index');
     }
     /* PARENT PART END */
 }
