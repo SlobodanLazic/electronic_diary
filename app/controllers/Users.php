@@ -515,24 +515,7 @@ class Users extends Controller
                     'student' => $students,
                 ];
 
-                // Sanitize POST
-                $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-                $data2 = [
-                    'grades' => $_POST['grades'],
-                    'grade_status' => $_POST['gradestatus'],
-                    'school_class_id' => $_POST['schoolclass'],
-                    'id_student' => $_POST['id_student'],
-                    'id_subject' => $_POST['id_subject'],
-                ];
-
-                if ($this->gradeModel->insertGrade($data2)) {
-                    // Redirect to login
-                    flash('grades_message', 'Grade Added');
-                    redirect('/grades');
-                  } else {
-                    die('Something went wrong');
-                  }
 
                 $this->view('teacher/grades/insertg', $data);
             } else {
