@@ -85,7 +85,9 @@
                                     <?php foreach ($data['classes'] as $class) : ?>
 
 
-                                        <?php echo "<option value=\"$class->id_school_class\">$class->name</option>"; ?>
+                                    <option value='<?php echo $class->id_school_class; ?>' <?php if ($data['teacher_class_id'] == $class->id_school_class) {
+                                                                                                    echo 'selected';
+                                                                                                } ?>><?php print($class->name); ?></option>
 
                                     <?php endforeach; ?>
 
