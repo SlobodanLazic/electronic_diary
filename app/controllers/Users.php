@@ -546,6 +546,12 @@ class Users extends Controller
         $this->view('director/statistic/school_statistic');
     }
 
-
     /* DIRECTOR PART END */
+
+    /* PARENT PART BEGGINING */
+    public function requests(Type $var = null)
+    {
+        # code...
+    }
+    /* PARENT PART END */
 }
