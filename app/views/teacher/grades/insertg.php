@@ -22,6 +22,23 @@
                     <form action="<?php echo URLROOT; ?>/users/insertg/<?php echo $data['student']->id_student ?>" method="POST">
                         <div class="row">
                             <div class="col">
+                                    <table class="text-center table table-responsive">
+                                            <thead>
+                                            <td>Subject Name</td>
+                                            <td>Grades</td>
+                                            </thead>    
+                                            <tbody>
+                                            <?php foreach ($data['allsubjects'] as $subject) : ?>
+                                            <tr>
+                                                <?php echo "<td>" . $subject->name . "</td>"; ?>
+                                                <?php echo "<td>" . $subject->grades . "</td>"; ?>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                            </tbody>   
+                                    </table>
+                            </div>
+
+                            <div class="col">
                                 <div class="form-group">
                                     <label>Select subject:</label>
                                 <select name='id_subject' class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">

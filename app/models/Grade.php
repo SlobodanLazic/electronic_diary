@@ -50,6 +50,14 @@ class Grade
 
         return $row;
     }
+    public function showgrade() {
+        $this->db->query('SELECT students_subjects.grades, subjects.name FROM students_subjects JOIN subjects WHERE subjects.id_subject = students_subjects.id_subject');
+
+
+        $row = $this->db->resultSet();
+
+        return $row;
+    }
     public function showallgrades() {
         $this->db->query('SELECT grades, grade_status, school_class_id, id_student, id_subject FROM students_subjects');
 
