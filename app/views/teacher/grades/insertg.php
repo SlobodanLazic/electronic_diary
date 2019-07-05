@@ -58,6 +58,7 @@
                                 <div class="form-group">
                                     <label for="grades">Select a grade</label>
                                     <select class="custom-select my-1 mr-sm-2" name="grades" id="grades">
+                                        <option default value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>

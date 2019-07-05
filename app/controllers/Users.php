@@ -507,7 +507,7 @@ class Users extends Controller
                 $grades = $this->gradeModel->showallgrades();
                 $grade = $this->gradeModel->getGradeIdbyStudent($id);
                 $subjects = $this->subjectModel->showAllSubjects();
-                $allsubjects = $this->gradeModel->showgrade();
+                $allsubjects = $this->gradeModel->showgrade($id);
                 $students = $this->studentModel->getStudentById($id);
                 $data = [
                     'allsubjects' => $allsubjects,
