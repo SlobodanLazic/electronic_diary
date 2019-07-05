@@ -10,7 +10,6 @@
                 <div class="card card-body bg-light mt-5">
                     <?php flash('request_success'); ?>
                     <table class="table table-bordered dataTable text-center">
-
                             <thead>
 
                                 <tr>
