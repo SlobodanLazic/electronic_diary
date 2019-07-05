@@ -490,7 +490,8 @@ class Users extends Controller
 
         $this->view('teacher/t_students/index', $data);
     }
-    public function grades(){
+    public function grades()
+    {
         if (isset($_SESSION['id_user'])) {
             if ($_SESSION['id_user_role'] == 3) {
                 $this->view('teacher/grades/index');
@@ -498,10 +499,11 @@ class Users extends Controller
                 $this->logout();
             }
         } else {
-         $this->view('users/login');
+            $this->view('users/login');
         }
     }
-    public function insertg($id){
+    public function insertg($id)
+    {
         if (isset($_SESSION['id_user'])) {
             if ($_SESSION['id_user_role'] == 3) {
                 $grades = $this->gradeModel->showallgrades();
@@ -511,14 +513,14 @@ class Users extends Controller
                 $students = $this->studentModel->getStudentById($id);
                 $data = [
                     'allsubjects' => $allsubjects,
-                    'grades'=> $grades,
+                    'grades' => $grades,
                     'grade' => $grade,
                     'subjects' => $subjects,
                     'student' => $students,
                 ];
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-                
+
                     $data2 = [
                         'grades' => $_POST['grades'],
                         'grade_status' => $_POST['grade_status'],
@@ -534,13 +536,13 @@ class Users extends Controller
                         }
                     }
                 }
-                
+
                 $this->view('teacher/grades/insertg', $data);
             } else {
                 $this->logout();
             }
         } else {
-         $this->view('users/login');
+            $this->view('users/login');
         }
     }
     /* TEACHER PART END */
@@ -616,7 +618,7 @@ class Users extends Controller
 
     /*TEACHER RESPONSE BEGGINING*/
 
-      public function responses()
+    public function responses()
     {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -629,10 +631,97 @@ class Users extends Controller
             $time = $_POST['time'];
 
             $date = $_POST['date'];
-
         }
-
     }
 
     /*END TEACHER RESPONSE */
+
+    /* ASSIGN USER */
+
+    public function assign()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Sanitize POST
+            $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data = [
+
+                'first_name_a' => trim($_POST['first_name_a']),
+                'last_name_a' => trim($_POST['last_name_a']),
+                'id_school_class_a' => trim($_POST['id_school_class_a']),
+                'email_p' => trim($_POST['email_p']),
+
+                'first_name_a_err' => '',
+                'last_name_a_err' => '',
+                'id_school_class_a_err' => '',
+                'email_p_err' => ''
+
+            ];
+
+
+            // Validate first name
+            if (empty($data['first_name_a'])) {
+                $data['first_name_a_err'] = 'Please enter first name';
+            }
+
+            // Validate last first name
+            if (empty($data['last_name_a'])) {
+                $data['last_name_a_err'] = 'Please last enter name';
+            }
+
+            // Validate email 
+
+            if (empty($data['email_p'])) {
+                $data['email_p_err'] = 'Please enter parent email';
+            }
+
+            // Validate class 
+
+            if (empty($data['id_school_class_a'])) {
+                $data['id_school_class_a_err'] = 'Please select Student class';
+            }
+
+
+            // Make sure there are no errors
+            if (empty($data['first_name_a_err']) && empty($data['last_name_a_err']) && empty($data['id_school_class_a_err']) && empty($data['email_p_err'])) {
+                // Validation passed
+                //Execute
+                if ($this->studentModel->assignStudent($data) && $this->studentModel->assignStudent2($data)) {
+                    // Redirect to login
+                    flash('assign_message', 'Student Assigned to parent');
+                    redirect('/students');
+                } else {
+                    die('Something went wrong');
+                }
+            } else {
+                // Load view with errors
+                $classes = $this->classModel->showAllClasses();
+
+                $data['classes'] = $classes;
+
+                $this->view('admin/students/assign_student', $data);
+            }
+        } else {
+            $data = [
+
+                'first_name_a' => '',
+                'last_name_a' => '',
+                'id_school_class_a' => '',
+                'email_p' => '',
+
+                'first_name_a_err' => '',
+                'last_name_a_err' => '',
+                'id_school_class_a_err' => '',
+                'email_p_err' => ''
+
+            ];
+
+            $classes = $this->classModel->showAllClasses();
+
+            $data['classes'] = $classes;
+
+            $this->view('admin/students/assign_student', $data);
+        }
+    }
 }
