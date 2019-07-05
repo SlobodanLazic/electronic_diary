@@ -77,6 +77,27 @@ class Student
 
         return $students;
     }
+    
+    /* this method is showing all students for perticular parent */
+    public function showStudentsToParent()
+    {
+
+    
+        $id_parent = (int)htmlspecialchars($_SESSION['id_user']);
+
+    
+        $this->db->query(' SELECT students.id_student,
+                                 students.first_name,
+                                 students.last_name
+                            FROM students 
+                                JOIN users ON users.teacher_class_id = students.id_school_class WHERE users.id_user = :id_parent');
+
+        $this->db->bind(':id_parent', $id_parent);
+
+        $students = $this->db->resultSet();
+
+        return $students;
+    }  
 
     public function getStudentById($id)
 
