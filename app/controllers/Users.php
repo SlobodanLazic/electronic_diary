@@ -514,9 +514,26 @@ class Users extends Controller
                     'subjects' => $subjects,
                     'student' => $students,
                 ];
-
-
-
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+                
+                    $data2 = [
+                        'grades' => $_POST['grades'],
+                        'grade_status' => $_POST['grade_status'],
+                        'school_class_id' => $_POST['school_class_id'],
+                        'id_subject' => $_POST['id_subject'],
+                        'id_student' => $_POST['id_student'],
+                    ];
+                    if (isset($_POST['submit'])) {
+                        if ($this->gradeModel->insertGrade($data2)) {
+                            flash('grades_message', 'grade added');
+                            redirect('users/grades');
+                        } else {
+                            die('problem');
+                        }
+                    }
+                }
+                
                 $this->view('teacher/grades/insertg', $data);
             } else {
                 $this->logout();

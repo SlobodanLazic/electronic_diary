@@ -19,7 +19,7 @@
                     <?php echo $data['student']->first_name . " " . $data['student']->last_name ?> <p>(<?php echo $data['student']->id_school_class ?>)</p>
                 </h3>
 
-                    <form action="<?php echo URLROOT; ?>/users/insertGrade" method="POST">
+                    <form action="<?php echo URLROOT; ?>/users/insertg/<?php echo $data['student']->id_student ?>" method="POST">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
@@ -62,9 +62,9 @@
                         </div>
                         
                         <div class="text-center">
-                        <input type="hidden" name="id_student" value="<?php echo $data['student']->id_student ?>">
-                        <input type="hidden" name="school_class_id" value="<?php echo $data['student']->id_school_class ?>">
-                            <input type="submit" class="btn btn-success text-center" value="Insert">
+                        <input type="hidden" name="id_student" id="id_student" value="<?php echo $data['student']->id_student ?>">
+                        <input type="hidden" name="school_class_id" id="school_class_id" value="<?php echo $data['student']->id_school_class ?>">
+                            <input type="submit" name="submit" class="btn btn-success text-center" value="Insert">
                         </div>
                     </form>
                 </div><!-- CARD-BODY END -->
