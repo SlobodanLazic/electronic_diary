@@ -529,7 +529,6 @@ class Users extends Controller
                     if (isset($_POST['submit'])) {
                         if ($this->gradeModel->insertGrade($data2)) {
                             flash('grades_message', 'grade added');
-                            redirect('users/grades');
                         } else {
                             die('problem');
                         }
