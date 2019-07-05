@@ -530,7 +530,7 @@ class Users extends Controller
                         if ($this->gradeModel->insertGrade($data2)) {
                             flash('grades_message', 'grade added');
                         } else {
-                            die('problem');
+                            die('problemm');
                         }
                     }
                 }
