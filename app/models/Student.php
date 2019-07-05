@@ -61,10 +61,10 @@ class Student
     public function showStudentsToTeacher()
     {
 
-    
-        $id_teacher = (int)htmlspecialchars($_SESSION['id_user']);
 
-    
+        $id_teacher = (int) htmlspecialchars($_SESSION['id_user']);
+
+
         $this->db->query(' SELECT students.id_student,
                                  students.first_name,
                                  students.last_name
@@ -77,12 +77,12 @@ class Student
 
         return $students;
     }
-    
+
     /* this method is showing all students for perticular parent */
     public function showStudentsToParent()
     {
-    
-        $id_parent = (int)htmlspecialchars($_SESSION['id_user']);
+
+        $id_parent = (int) htmlspecialchars($_SESSION['id_user']);
 
         $this->db->query(' SELECT students.id_student,
                                     students.first_name,
@@ -97,11 +97,11 @@ class Student
         $students = $this->db->resultSet();
 
         return $students;
-    }  
+    }
 
     public function getStudentById($id)
 
-      // removed *
+    // removed *
 
     {
         $this->db->query('SELECT students.id_student,  students.first_name , students.last_name , students.id_school_class FROM students WHERE id_student = :id_student');
@@ -129,6 +129,44 @@ class Student
         $this->db->bind(':id', $data['student_id']);
 
 
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function assignStudent($data)
+    {
+
+        $this->db->query('INSERT INTO students (students.first_name, students.last_name , students.id_school_class) VALUES
+        
+        (:first_name_a , :last_name_a, :id_school_class_a);
+        
+        ');
+
+        $this->db->bind(':first_name_a', $data['first_name_a']);
+
+        $this->db->bind(':last_name_a', $data['last_name_a']);
+
+        $this->db->bind(':id_school_class_a', $data['id_school_class_a']);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function assignStudent2($data)
+    {
+
+        $this->db->query('INSERT INTO users_students (id_user, id_student) VALUES
+        
+         ((SELECT id_user from users WHERE users.email = :email), (SELECT id_student FROM students ORDER BY id_student DESC LIMIT 1))');
+
+        $this->db->bind(':email', $data['email_p']);
 
         if ($this->db->execute()) {
             return true;
