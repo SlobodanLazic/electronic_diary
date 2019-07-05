@@ -4,23 +4,28 @@ requestOpenDoor.addEventListener("click",function (event) {
     
     event.preventDefault();
 
-    var xhttp = new XMLHttpRequest();
-
+    let xhttp = new XMLHttpRequest();
+    //console.log(xhttp);
     if(window.XMLHttpRequest) {
-        xhttp = new XMLHttpRequest();
+       let xhttp = new XMLHttpRequest();
     } else {
-        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+       let xhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
+
+    var inputTime = document.getElementById("time").value;
+    var inputDate = document.getElementById("date").value;
+
+    console.log(inputTime,inputDate);
 
     xhttp.onreadystatechange = function() {
         if(xhttp.readyState == 4 && xhttp.status == 200) {
-            var response = xhttp.responseText;
-            console.log(response);
+            var responseAJAX = xhttp.responseText;
+            console.log(responseAJAX);
         }
     };
 
-    xhttp.open("POST", "../app/view/teacher/requests/index.php", true);
-
-    xhttp.send();
+    xhttp.open("POST","http://localhost/electronic_diary/meetings",true);
+    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhttp.send("time=" + inputTime + "&date=" + inputDate);
     
 });
