@@ -8,7 +8,7 @@ class Messages extends Controller
     public function __construct()
     {
        $this->id_user = $_SESSION['id_user']; 
-       $this-messageModel = $this->model('Messages');  
+       $this->messageModel = $this->model('Message');
     }
 
     public function query_messages() {
