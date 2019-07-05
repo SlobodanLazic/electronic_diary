@@ -606,4 +606,26 @@ class Users extends Controller
         $this->view('parent/requests/index');
     }
     /* PARENT PART END */
+
+    /*TEACHER RESPONSE BEGGINING*/
+
+      public function responses()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Process form 
+            // Sanitize POST data
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $id_user = $_POST['id_user'];
+
+            $time = $_POST['time'];
+
+            $date = $_POST['date'];
+
+        }
+
+    }
+
+    /*END TEACHER RESPONSE */
 }
