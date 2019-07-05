@@ -18,6 +18,34 @@ USE `e_diary`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `meetings`
+--
+
+DROP TABLE IF EXISTS `meetings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `meetings` (
+  `id_meetings` int(11) NOT NULL AUTO_INCREMENT,
+  `meetings` datetime NOT NULL,
+  `meetings_status` tinyint(1) DEFAULT '0',
+  `from_id_user` int(11) NOT NULL,
+  `to_id_user` int(11) NOT NULL,
+  PRIMARY KEY (`id_meetings`),
+  KEY `fk_meeting_shedules_users1_idx` (`from_id_user`),
+  CONSTRAINT `fk_meeting_shedules_users1` FOREIGN KEY (`from_id_user`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `meetings`
+--
+
+LOCK TABLES `meetings` WRITE;
+/*!40000 ALTER TABLE `meetings` DISABLE KEYS */;
+/*!40000 ALTER TABLE `meetings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `messages`
 --
 
@@ -46,34 +74,6 @@ CREATE TABLE `messages` (
 LOCK TABLES `messages` WRITE;
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `open_doors`
---
-
-DROP TABLE IF EXISTS `open_doors`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `open_doors` (
-  `id_open_doors` int(11) NOT NULL AUTO_INCREMENT,
-  `open_doors` datetime NOT NULL,
-  `open_doors_status` tinyint(1) DEFAULT '0',
-  `from_id_user` int(11) NOT NULL,
-  `to_id_user` int(11) NOT NULL,
-  PRIMARY KEY (`id_open_doors`),
-  KEY `fk_meeting_shedules_users1_idx` (`from_id_user`),
-  CONSTRAINT `fk_meeting_shedules_users1` FOREIGN KEY (`from_id_user`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `open_doors`
---
-
-LOCK TABLES `open_doors` WRITE;
-/*!40000 ALTER TABLE `open_doors` DISABLE KEYS */;
-/*!40000 ALTER TABLE `open_doors` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -383,4 +383,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-05 15:39:15
+-- Dump completed on 2019-07-05 15:58:50
