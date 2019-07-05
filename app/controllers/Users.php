@@ -604,7 +604,13 @@ class Users extends Controller
     /* this method will show the view for parent open door requests page */
     public function requests()
     {
-        $this->view('parent/requests/index');
+        $students = $this->studentModel->showStudentsToParent();
+
+        $data = [
+            'students' => $students
+        ];
+
+        $this->view('parent/requests/index', $data);
     }
     /* PARENT PART END */
 

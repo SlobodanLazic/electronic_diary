@@ -90,7 +90,7 @@ class Student
                             FROM students 
                                 JOIN users_students ON students.id_student = users_students.id_student
                                 JOIN users ON users_students.id_user = users.id_user
-                            WHERE users_students.id_user = users.id_parent');
+                            WHERE users_students.id_user = :id_parent');
 
         $this->db->bind(':id_parent', $id_parent);
 

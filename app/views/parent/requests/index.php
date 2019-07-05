@@ -15,9 +15,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Firstname</th>
-                                    <th>Lastname</th>
-                                    <th>Options</th>
-                                    <th>Grade status</th>
+                                    <th>Lastname</th>                        
                                 </tr>
                             </thead>
                                 <?php foreach ($data['students'] as $student) : ?>
@@ -32,18 +30,6 @@
                                         <td>
                                             <?php echo $student->last_name; ?>
                                         </td>
-                                        <td class="buttons-pos">
-                                                <a href="<?php echo URLROOT . "/users/insertg/" . $student->id_student ?>" class="btn btn-success btn-icon-split m1">
-                                                    <span class="icon text-white-50">
-                                                    <i class="fas fa-edit"></i>
-                                                    </span>
-                                                    <span class="text">Insert grades </span>
-                                                </a>
-                                        </td>
-                                        <td>
-                                            <p class="text-success">Yes</p>
-                                        </td>
-                                        </form>
                                     </tr>
                                 </tbody>
                                 <?php endforeach; ?>
