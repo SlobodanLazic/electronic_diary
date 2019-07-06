@@ -9,6 +9,8 @@
             <div class="col-md-6 mx-auto">
                 <div class="card card-body bg-light mt-5">
                     <?php flash('request_success'); ?>
+                    <div id="responseText">
+                    </div>
                     <div class="table-responsive">
                     <table class="table table-bordered dataTable text-center">
                             <thead>

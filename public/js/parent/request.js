@@ -21,6 +21,7 @@ requestOpenDoor.addEventListener("click",function (event) {
         if(xhttp.readyState == 4 && xhttp.status == 200) {
             var responseAJAX = xhttp.responseText;
             console.log(responseAJAX);
+            document.getElementById("responseText").innerHTML = responseAJAX;
         }
     };
 
