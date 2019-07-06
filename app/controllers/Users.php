@@ -602,40 +602,6 @@ class Users extends Controller
 
     /* DIRECTOR PART END */
 
-    /* PARENT PART BEGGINING */
-    /* this method will show the view for parent open door requests page */
-    public function requests()
-    {
-        $students = $this->studentModel->showStudentsToParent();
-
-        $data = [
-            'students' => $students
-        ];
-
-        $this->view('parent/requests/index', $data);
-    }
-    /* PARENT PART END */
-
-    /*TEACHER RESPONSE BEGGINING*/
-
-    public function responses()
-    {
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Process form 
-            // Sanitize POST data
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
-            $id_user = $_POST['id_user'];
-
-            $time = $_POST['time'];
-
-            $date = $_POST['date'];
-        }
-    }
-
-    /*END TEACHER RESPONSE */
-
     /* ASSIGN USER */
 
     public function assign()
