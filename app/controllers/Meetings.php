@@ -10,7 +10,6 @@
         public function index()
         {
             print_r($_POST);
-            echo "test";
         }
     }
     

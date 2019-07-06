@@ -1,11 +1,11 @@
 var requestOpenDoor = document.getElementById("request-open-door");
-// preventing submiting and redirecting to other page
+/* preventing submiting and redirecting to other page while sending form data from parent
+to mettings.php controller */
 requestOpenDoor.addEventListener("click",function (event) {
     
     event.preventDefault();
 
     let xhttp = new XMLHttpRequest();
-    //console.log(xhttp);
     if(window.XMLHttpRequest) {
        let xhttp = new XMLHttpRequest();
     } else {
@@ -15,7 +15,7 @@ requestOpenDoor.addEventListener("click",function (event) {
     var inputTime = document.getElementById("time").value;
     var inputDate = document.getElementById("date").value;
 
-    console.log(inputTime,inputDate);
+    //console.log(inputTime,inputDate);
 
     xhttp.onreadystatechange = function() {
         if(xhttp.readyState == 4 && xhttp.status == 200) {
