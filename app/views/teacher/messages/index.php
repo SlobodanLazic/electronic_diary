@@ -12,6 +12,27 @@
                <!-- Users -->
                <div class="col-lg-4 p-1">
                     
+
+
+                <?php var_dump($_SESSION);?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                </div>
 
                <!-- Message -->
