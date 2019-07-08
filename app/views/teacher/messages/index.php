@@ -1,4 +1,4 @@
-<?php require APPROOT . '/views/inc/admin/header.php'; ?>
+<?php require APPROOT . '/views/inc/teacher/header.php'; ?>
 
 <div id="page-wrapper">
 
@@ -54,4 +54,4 @@
 </div>
 <!-- /#page-wrapper -->
 
-<?php require APPROOT . '/views/inc/admin/footer.php'; ?> 
+<?php require APPROOT . '/views/inc/teacher/footer.php'; ?> 
