@@ -24,3 +24,13 @@ td.button-pos a {
 .card h4 {
     color: #eee;
 }
+
+.message {
+    color: black; 
+    padding: 5px; 
+    border-radius: 5px; 
+    margin: 5px; 
+    position: absolute; 
+    left: 10px;
+    display: inline; 
+}

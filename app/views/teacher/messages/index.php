@@ -3,71 +3,39 @@
 <div id="page-wrapper">
 
     <div class="container-fluid">
+         <div class="container">
+             <h2>Messager</h2>
+         </div>
+        
+        <div class="container border">
+            <div class="row">
+               <!-- Users -->
+               <div class="col-lg-4 p-1">
+                    
+               </div>
 
-        <!-- Page Heading -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">
-                    Classes
-                </h1>
-                <?php flash('student_message') ?>
-                <?php flash('student_updated') ?>
-                <?php flash('student_deleted_msg') ?>
+               <!-- Message -->
 
-                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT; ?>/classes/insert">Insert class</a>
-
-                <table class="table table-striped">
-
-                    <thead>
-
-                        <tr>
-                            <th></th>
-                            <th>Class</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-
-                    <?php $i = 0; ?>
-
-                    <?php foreach ($data['classes'] as $class) : ?>
-
-                        <tbody>
-
-                            <tr>
-
-
-
-
-                                <?php echo '<td>' . ++$i . '</td><td>' . $class->name . '</td><td>'
-
-                                    . '<a href =' . URLROOT . "/classes/edit/" . $class->id_school_class . '>Edit</a>' . '</td><td>' ?>
-
-
-                                <form action="<?php echo URLROOT . "/classes/delete/" . $class->id_school_class ?>" method="POST">
-
-                                    <input type="submit" name="delete" value="Delete">
-
-                                </form>
-
-
-                            </tr>
-
-                        </tbody>
-
-                    <?php endforeach; ?>
-
-                </table>
-
-
-
-
-
-
+               <div class="col-lg-8 p-1">
+                    <input type="hidden" id="to_user" value='34'>
+                    <div id="messages" class="container-fluid position-relative" style="Height:60vh">
+                       <div class="bg-success message">
+                         Ovo je poruka 
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <textarea id="message" class="form-control" aria-label="With textarea"></textarea>
+                            </div>
+                            <div class="col-lg-2">
+                            <button type="button" class="btn btn-success m-2" onClick="sendMessage()">Send</button>
+                            </div>
+                        </div>
+                    </div>
+               </div>
             </div>
         </div>
-        <!-- /.row -->
-
     </div>
     <!-- /.container-fluid -->
 
