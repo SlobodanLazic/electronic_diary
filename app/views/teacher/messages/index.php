@@ -13,7 +13,8 @@
                <div class="col-lg-4 p-1">
                     
 
-                <h3>Parents</h3>
+
+               <h3>Parents</h3>
 
                 <?php foreach($data['parents'] as $parent){
                     
@@ -22,14 +23,12 @@
                 } ?>
 
 
-
-
                </div>
 
                <!-- Message -->
 
                <div class="col-lg-8 p-1">
-                    <input type="hidden" id="to_user" value='34'>
+                    <input type="hidden" id="to_id" value='34'>
                     <div id="messages" class="container-fluid position-relative" style="Height:60vh">
                        <div class="bg-success message">
                          Ovo je poruka 
@@ -53,5 +52,45 @@
 
 </div>
 <!-- /#page-wrapper -->
+
+<script>
+     var messages = document.getElementById('messages'); 
+     var id_user = document.getElementById('to_id').value;
+       
+
+     function sendMessage()
+     {
+        var message = document.getElementById('message').value;
+
+        var new_message = document.createElement("div"); 
+
+        new_message.className = 'bg-success message m-1';
+
+        var text = document.createTextNode(message); 
+
+        new_message.appendChild(text); 
+
+       document.getElementById('message').value = ""; 
+
+        messages.appendChild(new_message);
+     }
+
+
+     function readMessages(id)
+     {
+         id_user = id; 
+         
+         var xmlhttp = new XMLHttpRequest();
+                     xmlhttp.onreadystatechange = function() {
+               if (this.readyState == 4 && this.status == 200) {
+                 messages.innerHTML = this.responseText;
+                 }
+                };
+              xmlhttp.open("GET", "<?php echo URLROOT; ?> message/get_all?id_user=" + id_user, true);
+              xmlhttp.send();
+        
+     }
+
+</script>
 
 <?php require APPROOT . '/views/inc/teacher/footer.php'; ?> 
