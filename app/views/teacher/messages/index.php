@@ -30,8 +30,11 @@
                <div class="col-lg-8 p-1">
                     <input type="hidden" id="to_id" value='34'>
                     <div id="messages" class="container-fluid position-relative" style="Height:60vh">
+                    <div class="bg-success message">
+                          <span class="t_span">10:33</span>  <!-- Vreme nek bude tamno sive boje i float centar -->
+                        </div>   
                        <div class="bg-success message">
-                         Ovo je poruka 
+                          <span class="m_span">Ovo je poruka!!!</span>  <!-- poruke da idu levo i desno i razlicitih boja...   -->
                         </div>
                     </div>
                     <div class="container-fluid">
