@@ -34,12 +34,14 @@ class User
                             u.username,
                             u.password,
                             u.email,
-                            u.id_user_role 
+                            u.id_user_role,
+                            u.teacher_class_id
                             FROM users AS u 
                             WHERE email = :email');
         $this->db->bind(':email', $email);
 
         $row = $this->db->single();
+
 
         $hashed_password = $row->password;
         if (password_verify($password, $hashed_password)) {
@@ -56,7 +58,7 @@ class User
                               u.username,
                               u.password,
                               u.email,
-                              u.id_user_role 
+                              u.id_user_role
                               FROM users AS u
                               WHERE email = :email');
         // Bind value

@@ -399,6 +399,7 @@ class Users extends Controller
         $_SESSION['username'] = $user->username;
         $_SESSION['email'] = $user->email;
         $_SESSION['id_user_role'] = $user->id_user_role;
+        $_SESSION['teacher_class_id'] = $user->teacher_class_id;
     }
 
     public function logout()

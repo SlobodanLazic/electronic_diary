@@ -18,9 +18,15 @@ class Messages extends Controller
         } else {
              $from_id_user = 0; 
         }
-         $messages = $this->messageModel->getAll($this->to_id_user, $from_id_user); 
+         $messages = $this->messageModel->getAll($this->to_id_user, $from_id_user);
+         
+         $parents = $this->messageModel->user_teacher();
 
-         $data = ['messages' => $messages ];
+         $data = ['messages' => $messages,
+
+                 'parents' => $parents
+         
+                ];
 
          $this->view('teacher/messages/index', $data);
     }

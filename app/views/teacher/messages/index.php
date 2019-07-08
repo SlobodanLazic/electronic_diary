@@ -13,22 +13,13 @@
                <div class="col-lg-4 p-1">
                     
 
+                <h3>Parents</h3>
 
-                <?php var_dump($_SESSION);?>
+                <?php foreach($data['parents'] as $parent){
+                    
+                    echo "<p onClick($parent->id_user)>$parent->username</p>";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+                } ?>
 
 
 
