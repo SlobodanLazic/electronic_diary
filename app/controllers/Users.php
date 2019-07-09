@@ -661,6 +661,8 @@ class Users extends Controller
         }
     }
 
+    /* PARENT PART END*/
+
     /* DIRECTOR PART */
 
     public function director()
@@ -776,4 +778,6 @@ class Users extends Controller
             $this->view('admin/students/assign_student', $data);
         }
     }
+
+    /* ASSIGN USER END*/
 }
