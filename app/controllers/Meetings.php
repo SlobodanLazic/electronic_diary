@@ -29,10 +29,11 @@
             $students = $this->studentModel->showStudentsToParent();
 
             $data = [
-                'students' => $students
+                'students' => $students,
+                'requestMsg' => $requestMsg
             ];
-
-            $this->view('parent/requests/index', $data);
+            
+            $this->view('parent/requests/index', $data);    
         }
         /* PARENT PART END */
 
@@ -61,7 +62,7 @@
         public function index()
         {
             if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['id_user'])) {
-                $this->requests();
+                print_r($_POST);
             }
             
         }

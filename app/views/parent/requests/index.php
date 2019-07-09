@@ -8,8 +8,8 @@
         <div class="row">
             <div class="col-md-6 mx-auto">
                 <div class="card card-body bg-light mt-5">
-                    <?php flash('request_success'); ?>
                     <div id="responseText">
+                        <?php print($data['requestMsg']) ?? '' ?>
                     </div>
                     <h2>Send Request to Attend To Open Door Meeting</h2>
                     <p>Please fill out this form to send request</p>
