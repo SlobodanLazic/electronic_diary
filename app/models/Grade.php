@@ -66,7 +66,7 @@ class Grade
     }
 
     // Showing grades by students_subjects id
-    // This is uses for displaying grade in edit form
+    // This is used for displaying grade in edit form
 
     public function showGradeByIdStudentSubject($id)
     {
@@ -81,6 +81,7 @@ class Grade
     }
 
     // update grade 
+    // updates specific student grade
 
     public function updateGrade($data)
     {
