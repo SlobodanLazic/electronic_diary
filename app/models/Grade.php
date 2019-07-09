@@ -26,7 +26,8 @@ class Grade
         }
     }
 
-    public function showallSubjects() {
+    public function showallSubjects()
+    {
         $this->db->query('SELECT id_subject, name FROM subjects');
 
         $subjects = $this->db->resultSet();
@@ -50,22 +51,25 @@ class Grade
 
         return $row;
     }
-    public function showgrade($id) {
-        $this->db->query('SELECT students_subjects.grades, subjects.name, students_subjects.id_student FROM students_subjects JOIN subjects WHERE subjects.id_subject = students_subjects.id_subject');
+    public function showgrade($id)
+    {
+        $this->db->query('SELECT students_subjects.grades, subjects.name, students_subjects.id_student, students_subjects.grade_status FROM students_subjects JOIN subjects ON subjects.id_subject = students_subjects.id_subject WHERE students_subjects.id_student = :id_student');
 
         $this->db->bind(':id_student', $id);
         $row = $this->db->resultSet();
 
         return $row;
     }
-    public function showallgrades() {
+    public function showallgrades()
+    {
         $this->db->query('SELECT grades, grade_status, school_class_id, id_student, id_subject FROM students_subjects');
 
         $grades = $this->db->resultSet();
 
         return $grades;
     }
-    public function getGradeIdbyStudent($id) {
+    public function getGradeIdbyStudent($id)
+    {
         $this->db->query('SELECT id_student FROM students_subjects WHERE id_student = :id_student');
 
         $this->db->bind(':id_student', $id);

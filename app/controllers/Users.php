@@ -546,6 +546,23 @@ class Users extends Controller
             $this->view('users/login');
         }
     }
+
+    public function showg($id)
+    {
+
+
+        $student = $this->studentModel->getStudentById($id);
+
+        $student_grades = $this->gradeModel->showgrade($id);
+
+        $data = [
+            'student' => $student,
+            'student_grades' => $student_grades
+        ];
+
+        $this->view('teacher/grades/showg', $data);
+    }
+
     /* TEACHER PART END */
 
     public function index()
