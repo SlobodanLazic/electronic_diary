@@ -30,7 +30,7 @@ class Message
       return $messages; 
    }
 
-   //Insert message 
+   //Insert new message 
    public function new_message($to_user_id, $from_user_id, $message_content, $message_staus)
    {
       $this->db->query('INSERT INTO messages(id_messages, message_content, message_status, from_id_user, to_id_user) VALUE (null, :message_content, :message_status, :from_id_user, :to_id_user)');
@@ -40,7 +40,7 @@ class Message
       $this->db->bind('from_id_user', $from_user_id); 
       $this->db->dind('to_id_user', $to_user_id); 
 
-      if($this->bg->execut()) 
+      if($this->db->execut()) 
       {
           return true; 
       } else {
@@ -56,7 +56,7 @@ class Message
 
       $this->db->bind('id_message', $id_message); 
       
-      if($this->db->execut())
+      if($this->db->execute())
       {
          return true; 
       } else {
@@ -64,6 +64,31 @@ class Message
       }
    }
 
-   
+   public function user_teacher()
+   {
+
+      $this->db->query("SELECT users.username , users.id_user FROM users WHERE users.id_user_role = 4 AND users.id_user IN
+      
+      
+       (
+
+      
+         SELECT users_students.id_user FROM users_students WHERE users_students.id_student IN 
+         
+         (SELECT students.id_student FROM students WHERE students.id_school_class = :teacher_class_id)
+         
+         
+         )
+      
+         
+         ");
+
+         $this->db->bind(':teacher_class_id' , $_SESSION['teacher_class_id']);
+
+         $parents = $this->db->resultSet(); 
+
+         return $parents; 
+
+   }
 
 }
