@@ -4,6 +4,8 @@
 
     <div class="container-fluid">
 
+        <?php flash('grade_updated') ?>
+
         <!-- Page Heading -->
         <div class="row">
             <div class="col-lg-12">

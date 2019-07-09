@@ -51,15 +51,52 @@ class Grade
 
         return $row;
     }
+
+    // modified added id_student_subject 
+    // Showing all grades for specific student
+
     public function showgrade($id)
     {
-        $this->db->query('SELECT students_subjects.grades, subjects.name, students_subjects.id_student, students_subjects.grade_status FROM students_subjects JOIN subjects ON subjects.id_subject = students_subjects.id_subject WHERE students_subjects.id_student = :id_student');
+        $this->db->query('SELECT students_subjects.id_student_subject, students_subjects.grades, subjects.name, students_subjects.id_student, students_subjects.grade_status FROM students_subjects JOIN subjects ON subjects.id_subject = students_subjects.id_subject WHERE students_subjects.id_student = :id_student');
 
         $this->db->bind(':id_student', $id);
         $row = $this->db->resultSet();
 
         return $row;
     }
+
+    // Showing grades by students_subjects id
+    // This is uses for displaying grade in edit form
+
+    public function showGradeByIdStudentSubject($id)
+    {
+
+        $this->db->query('SELECT students_subjects.grades FROM students_subjects WHERE students_subjects.id_student_subject = :id_student_subject');
+
+        $this->db->bind(':id_student_subject', $id);
+
+        $row = $this->db->single();
+
+        return $row;
+    }
+
+    // update grade 
+
+    public function updateGrade($data)
+    {
+
+        $this->db->query('UPDATE students_subjects SET grades = :grade WHERE id_student_subject = :id_student_subject');
+
+        $this->db->bind(':grade', $data['grade']);
+        $this->db->bind(':id_student_subject', $data['id']);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function showallgrades()
     {
         $this->db->query('SELECT grades, grade_status, school_class_id, id_student, id_subject FROM students_subjects');

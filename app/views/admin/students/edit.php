@@ -34,14 +34,14 @@
 
                                     <?php echo "<option value=\"$class->id_school_class\">$class->name</option>"; ?>
 
-                                <?php endforeach; ?> 
+                                <?php endforeach; ?>
 
                             </select>
 
 
 
 
-                           <!--  <span class="invalid-feedback text-danger"><?php echo $data['id_school_class_err']; ?></span> -->
+                            <!--  <span class="invalid-feedback text-danger"><?php echo $data['id_school_class_err']; ?></span> -->
 
                         </div>
 

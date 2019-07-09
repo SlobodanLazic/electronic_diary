@@ -30,8 +30,8 @@
 
                                 <tr>
                                     <td> <?php echo $grades->name ?> </td>
-                                    <td><?php echo ($grades->grade_status == 0) ? "<a href='#'>$grades->grades</a>" : "$grades->grades" ?></td>
-                                    <td> <?php echo ($grades->grade_status == 0) ? 'Nije zakljucena' : 'Zakljucena' ?></td>
+                                    <td><?php echo ($grades->grade_status == 0) ? "<a href=".URLROOT."/users/editg/$grades->id_student_subject>$grades->grades</a>" : "$grades->grades" ?></td>
+                                    <td> <?php echo ($grades->grade_status == 0) ? 'Nije zakljucena' : 'Zaklucena' ?></td>
 
                                 </tr>
 

@@ -547,6 +547,8 @@ class Users extends Controller
         }
     }
 
+    // Showing all grades by subject for student
+
     public function showg($id)
     {
 
@@ -562,6 +564,72 @@ class Users extends Controller
 
         $this->view('teacher/grades/showg', $data);
     }
+
+    // Displaying form for editing grade by subject
+
+    public function editg($id)
+    {
+
+        $grade = $this->gradeModel->showGradeByIdStudentSubject($id);
+
+        $data = [
+
+            'grade' => $grade,
+            'id' => $id
+        ];
+
+        $this->view('teacher/grades/editg', $data);
+    }
+
+    public function updateGrade($id)
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Sanitize POST
+            $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data = [
+                'grade' => trim($_POST['grade']),
+                'id' => $id,
+
+                'grade_err' => '',
+            ];
+
+
+            // Validate Grade
+            if (empty($data['grade'])) {
+                $data['grade_err'] = 'Please enter grade';
+            }
+
+            // Make sure there are no errors
+            if (empty($data['grade_err'])) {
+                // Validation passed
+                //Execute
+
+                if ($this->gradeModel->updateGrade($data)) {
+                    // Redirect to login
+                    flash('grade_updated', 'Grade Updated');
+                    redirect('users/t_students');
+                } else {
+                    die('Something went wrong');
+                }
+            } else {
+                // Load view with errors
+
+                $this->view('teacher/grades/editg', $data);
+            }
+        } else {
+            $data = [
+
+                'grade' => '',
+                'id' => ''
+            ];
+
+            $this->view('teacher/grades/editg', $data);
+        }
+    }
+
+
 
     /* TEACHER PART END */
 
