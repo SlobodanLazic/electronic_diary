@@ -10,16 +10,18 @@
         }
         //Insert Request
         public function insertRequest($inputData)
-        {
+        {   
+            $meetings_status = 0;
+            $to_id_user = $this->getTeacherOfStudent($inputData['student']);
+
             $this->db->query('INSERT INTO meetings(meetings, meetings_status, from_id_user, to_id_user) 
                               VALUES (:meetings, :meetings_status, :from_id_user, :to_id_user)');
 
-            $to_id_user = $this->getTeacherOfStudent($inputData['student']);
             // Bind values
-            $this->db->bind(':meetings',$inputData['datetime']);
-            $this->db->bind('meetings_status','');
-            $this->db->bind(':from_id_user',$inputData['id_user']);
-            $this->db->bind(':to_id_user',$to_id_user);
+            $this->db->bind(':meetings', $inputData['datetime']);
+            $this->db->bind('meetings_status', $meetings_status);
+            $this->db->bind(':from_id_user', $inputData['id_user']);
+            $this->db->bind(':to_id_user', $to_id_user->id_user);
             
             // Execute
             if ($this->db->execute()) {
@@ -38,7 +40,7 @@
             $this->db->bind(':id_student', $id_student);
             
             $id_teacher =  $this->db->single();
-
+            
             return $id_teacher;
         }
     }
