@@ -21,6 +21,14 @@
         /* PARENT PART BEGGINING */
         public function requests()
         {
+            $inputData = [
+                'datetime' => $_POST['date'] . ' ' . $_POST['time'],
+                'student' => $_POST['student'],
+                'id_user' => $_SESSION['id_user']
+            ];
+
+            $this->meetingModel->insertRequest($inputData);
+
             $students = $this->studentModel->showStudentsToParent();
 
             $data = [

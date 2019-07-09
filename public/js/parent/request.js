@@ -14,6 +14,7 @@ requestOpenDoor.addEventListener("click",function (event) {
 
     var inputTime = document.getElementById("time").value;
     var inputDate = document.getElementById("date").value;
+    var inputStudent = document.getElementById("student").value;
 
     //console.log(inputTime,inputDate);
 
@@ -27,6 +28,6 @@ requestOpenDoor.addEventListener("click",function (event) {
 
     xhttp.open("POST","http://localhost/electronic_diary/meetings",true);
     xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xhttp.send("time=" + inputTime + "&date=" + inputDate);
+    xhttp.send("time=" + inputTime + "&date=" + inputDate + "&student=" + inputStudent);
     
 });

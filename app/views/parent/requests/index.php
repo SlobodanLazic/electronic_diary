@@ -11,32 +11,6 @@
                     <?php flash('request_success'); ?>
                     <div id="responseText">
                     </div>
-                    <div class="table-responsive">
-                    <table class="table table-bordered dataTable text-center">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Firstname</th>
-                                    <th>Lastname</th>                        
-                                </tr>
-                            </thead>
-                                <?php foreach ($data['students'] as $student) : ?>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <?php echo $student->id_student; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $student->first_name; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $student->last_name; ?>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <?php endforeach; ?>
-                    </table>
-                    </div>
                     <h2>Send Request to Attend To Open Door Meeting</h2>
                     <p>Please fill out this form to send request</p>
                     <form action="" method="post">
@@ -49,6 +23,18 @@
                             <label for="date">Date: <sup>*</sup></label>
                             <input type="date" name="date" id="date" class="form-control form-control-lg">
                             <span class="invalid-feedback text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="student">Student <sup>*</sup></label>
+                            <select name="student" id="student" class="form-control form-control-lg <?php echo (!empty($data['students_err'])) ? 'is-invalid' : '' ?>">
+                                <option value='' selected>.....Select a student.....</option>
+                                <?php foreach ($data['students'] as $student) : ?>
+                                   <option value="<?php echo $student->id_student; ?>">
+                                    <?php echo $student->first_name . " " . $student->last_name; ?>
+                                   </option>
+                                <?php endforeach; ?>
+                            </select>
+                            <span class="invalid-feedback text-danger"><?php echo $data['students_err']; ?></span>
                         </div>
                         <div class="row">
                             <div class="col">
