@@ -21,14 +21,20 @@
         /* PARENT PART BEGGINING */
         public function requests()
         {
-            $inputData = [
-                'datetime' => $_POST['date'] . ' ' . $_POST['time'],
-                'student' => $_POST['student'],
-                'id_user' => $_SESSION['id_user']
-            ];
+            if(isset($_POST['date'],$_POST['time'],$_POST['student'],$_SESSION['id_user']))
+            {
+                $inputData = [
+                    'datetime' => $_POST['date'] . ' ' . $_POST['time'],
+                    'student' => $_POST['student'],
+                    'id_user' => $_SESSION['id_user']
+                ];
 
-            $this->meetingModel->insertRequest($inputData);
+                $requestMsg = $this->meetingModel->insertRequest($inputData);
+                print_r($requestMsg);
+            }
+            
 
+            
             $students = $this->studentModel->showStudentsToParent();
 
             $data = [
