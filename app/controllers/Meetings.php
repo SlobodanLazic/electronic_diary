@@ -41,7 +41,7 @@
                 'students' => $students
             ];
 
-            $this->view('parent/requests/index', $data);
+           $this->view('parent/requests/index', $data);
         }
         /* PARENT PART END */
 

@@ -9,9 +9,26 @@ class Message
        $this->db = new Database(); 
     }
 
+    //Read new messager 
+    public function getMessage($data)
+    {
+       $this->db->query('SELECT messages.message_time, 
+                         messages.message_content
+                         FROM messages WHERE messages.to_id_user = :to_id_user and 
+                         messages.from_id_user = :from_id_user AND messages.message_status = :message_status'); 
+
+        $this->db->bind(':to_id_user', $data['to_id_user']); 
+        $this->db->bind(':from_id_user', $data['from_id_user']);
+        $this->db->bind(':message_status', $data['message_status']); 
+        
+        $messages = $this->db->resultSet(); 
+
+        return $messages; 
+    }
+
 
     //Read all messages from user
-   public function getAll($to_user_id, $from_user_id)
+   public function getAll($data)
    {
       $this->db->query('SELECT messages.id_messages,
 	   messages.message_time,
@@ -20,10 +37,11 @@ class Message
        messages.from_id_user,
        messages.to_id_user 
        FROM messages WHERE messages.to_id_user = :to_user_id and messages.from_id_user = :from_user_id 
-       or messages.from_id_user = :to_user_id and messages.to_id_user = :from_user_id'); 
+       or messages.from_id_user = :to_user_id and messages.to_id_user = :from_user_id 
+       ORDER BY messages.message_time asc '); 
 
-      $this->db->bind("to_user_id", $to_user_id);
-      $this->db->bind("from_user_id", $from_user_id);  
+      $this->db->bind("to_user_id", $data['to_id_user']);
+      $this->db->bind("from_user_id", $data['from_id_user']);  
 
       $messages = $this->db->resultSet(); 
 
@@ -31,21 +49,22 @@ class Message
    }
 
    //Insert new message 
-   public function new_message($to_user_id, $from_user_id, $message_content, $message_staus)
+   public function new_message($data)
    {
-      $this->db->query('INSERT INTO messages(id_messages, message_content, message_status, from_id_user, to_id_user) VALUE (null, :message_content, :message_status, :from_id_user, :to_id_user)');
+      $this->db->query('INSERT INTO messages( message_content, message_status, from_id_user, to_id_user) VALUE (:message_content, :message_status, :from_id_user, :to_id_user)');
 
-      $this->db->bind('message_content', $message_content); 
-      $this->db->bind('message_status', $message_staus); 
-      $this->db->bind('from_id_user', $from_user_id); 
-      $this->db->dind('to_id_user', $to_user_id); 
+      $this->db->bind(':message_content', $data['message_content']); 
+      $this->db->bind(':message_status', $data['message_status']); 
+      $this->db->bind(':from_id_user', $data['from_id_user']); 
+      $this->db->bind(':to_id_user', $data['to_id_user']); 
 
-      if($this->db->execut()) 
-      {
-          return true; 
-      } else {
-         return false; 
-      }
+       // Execute
+       if ($this->db->execute()) {
+         return true;
+     } else {
+         return false;
+     }
+
    }
 
 
