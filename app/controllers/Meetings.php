@@ -9,31 +9,22 @@
             $this->studentModel = $this->model('Student');
         }
 
-        public function index()
-        {
-            if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['id_user'])) {
-                print_r($_POST);
-            }
-            
-        }
-
         /* this method will show the view for parent open door requests page */
         /* PARENT PART BEGGINING */
         public function requests()
         {
-            if(isset($_POST['date'],$_POST['time'],$_POST['student'],$_SESSION['id_user']))
+            if(isset($_POST['date'],$_POST['time'],$_POST['student']))
             {
                 $inputData = [
                     'datetime' => $_POST['date'] . ' ' . $_POST['time'],
                     'student' => $_POST['student'],
                     'id_user' => $_SESSION['id_user']
                 ];
-
+                
                 $requestMsg = $this->meetingModel->insertRequest($inputData);
-                print_r($requestMsg);
-            }
-            
-
+                
+                echo $requestMsg;
+            }            
             
             $students = $this->studentModel->showStudentsToParent();
 
@@ -66,6 +57,14 @@
         }
 
         /*END TEACHER RESPONSE */
+
+        public function index()
+        {
+            if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['id_user'])) {
+                $this->requests();
+            }
+            
+        }
     }
     
 
