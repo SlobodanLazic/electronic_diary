@@ -683,8 +683,12 @@ class Users extends Controller
         $this->view('director/statistic/class_statistic');
     }
 
+    // this method gets average grade of entire school from Grade model
     public function school_statistic()
     {
+        $schoolGrades = $this->gradeModel->showAvgGradeOfSchool();
+
+        //echo(json_encode($schoolGrades));
         $this->view('director/statistic/school_statistic');
     }
 
