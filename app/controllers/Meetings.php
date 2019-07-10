@@ -13,24 +13,10 @@
         /* PARENT PART BEGGINING */
         public function requests()
         {
-            if(isset($_POST['date'],$_POST['time'],$_POST['student']))
-            {
-                $inputData = [
-                    'datetime' => $_POST['date'] . ' ' . $_POST['time'],
-                    'student' => $_POST['student'],
-                    'id_user' => $_SESSION['id_user']
-                ];
-                
-                $requestMsg = $this->meetingModel->insertRequest($inputData);
-                
-               // echo $requestMsg;
-            }            
-            
             $students = $this->studentModel->showStudentsToParent();
 
             $data = [
-                'students' => $students,
-                'requestMsg' => $requestMsg
+                'students' => $students
             ];
 
            $this->view('parent/requests/index', $data);
@@ -40,23 +26,28 @@
 
         public function add_meeting()
         {
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // Process form
+                // Sanitize POST data
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-            if(isset($_POST['date'],$_POST['time'],$_POST['student']))
-            {
-                $inputData = [
-                    'datetime' => $_POST['date'] . ' ' . $_POST['time'],
-                    'student' => $_POST['student'],
-                    'id_user' => $_SESSION['id_user']
-                ];
-                
-                $requestMsg = $this->meetingModel->insertRequest($inputData);
+                if (isset($_POST['date'],$_POST['time'],$_POST['student']) && $_POST['student'] != '') {
+                    $inputData = [
+                        'datetime' => trim($_POST['date']) . ' ' . trim($_POST['time']),
+                        'student' => trim($_POST['student']),
+                        'id_user' => trim($_SESSION['id_user'])
+                    ];
+                    
+                    $requestMsg = $this->meetingModel->insertRequest($inputData);
 
-                if($requestMsg) {
-                    echo "successfully submitted the request"; 
+                    if ($requestMsg) {
+                        echo "Successfully submitted the request";
+                    } else {
+                        echo "Request is not sent";
+                    }
                 } else {
-                    echo "request is not sent"; 
+                    echo "Request is not sent";
                 }
-
             }
          }
 

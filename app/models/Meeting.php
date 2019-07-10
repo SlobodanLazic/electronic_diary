@@ -13,7 +13,7 @@
         {   
             $meetings_status = 0;
             $to_id_user = $this->getTeacherOfStudent($inputData['student']);
-
+            
             $this->db->query('INSERT INTO meetings(meetings, meetings_status, from_id_user, to_id_user) 
                               VALUES (:meetings, :meetings_status, :from_id_user, :to_id_user)');
 
@@ -21,14 +21,21 @@
             $this->db->bind(':meetings', $inputData['datetime']);
             $this->db->bind('meetings_status', $meetings_status);
             $this->db->bind(':from_id_user', $inputData['id_user']);
-            $this->db->bind(':to_id_user', $to_id_user->id_user);
-            
-            // Execute
-            if ($this->db->execute()) {
-                return true;
-            } else {
+
+            if (!empty($to_id_user) && is_object($to_id_user)) {
+                $this->db->bind(':to_id_user', $to_id_user->id_user);
+
+                // Execute
+                if ($this->db->execute()) {
+                    return true;
+                } else {
+                    return false;
+                }
+                
+            } else if ($to_id_user === false) {
                 return false;
             }
+            
         }
         // This method gets teacher of perticular student
         protected function getTeacherOfStudent($id_student = '')
