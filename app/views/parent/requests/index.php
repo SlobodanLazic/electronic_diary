@@ -12,7 +12,7 @@
                         <?php print($data['requestMsg']) ?? '' ?>
                     </div>
                     <h2>Send Request to Attend To Open Door Meeting</h2>
-                    <p>Please fill out this form to send request</p>
+                    <p id="msg">Please fill out this form to send request</p>
                     <form action="" method="post">
                         <div class="form-group">
                             <label for="time">Time: <sup>*</sup></label>
@@ -38,7 +38,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <input type="submit" id="request-open-door" value="Request" class="btn btn-primary btn-block">
+                                <input type="button" id="request-open-door" value="Request" class="btn btn-primary btn-block">
                             </div>
                         </div>
                     </form>

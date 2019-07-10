@@ -23,7 +23,7 @@
                 
                 $requestMsg = $this->meetingModel->insertRequest($inputData);
                 
-                echo $requestMsg;
+               // echo $requestMsg;
             }            
             
             $students = $this->studentModel->showStudentsToParent();
@@ -32,15 +32,33 @@
                 'students' => $students,
                 'requestMsg' => $requestMsg
             ];
-<<<<<<< HEAD
 
            $this->view('parent/requests/index', $data);
-=======
-            
-            $this->view('parent/requests/index', $data);    
->>>>>>> 9925d413c093b53a1a05d021b8e27dcddf5ea247
+        
         }
         /* PARENT PART END */
+
+        public function add_meeting()
+        {
+
+            if(isset($_POST['date'],$_POST['time'],$_POST['student']))
+            {
+                $inputData = [
+                    'datetime' => $_POST['date'] . ' ' . $_POST['time'],
+                    'student' => $_POST['student'],
+                    'id_user' => $_SESSION['id_user']
+                ];
+                
+                $requestMsg = $this->meetingModel->insertRequest($inputData);
+
+                if($requestMsg) {
+                    echo "successfully submitted the request"; 
+                } else {
+                    echo "request is not sent"; 
+                }
+
+            }
+         }
 
         /*TEACHER RESPONSE BEGGINING*/
 

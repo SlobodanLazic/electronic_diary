@@ -63,7 +63,7 @@ class Messages extends Controller
         
 
         foreach($data['messages'] as $message) {
-
+           
           if($message->to_id_user == $this->to_id_user){
               
               echo "<div class='incoming_msg'>"; 
@@ -79,7 +79,7 @@ class Messages extends Controller
               echo "</div>";     
 
           } else {
-               
+            $status = $this->messageModel->update_status($message->id_messages);  
             echo "<div class='outgoing_msg message'>";
             echo "<div class='sent_msg'>"; 
             echo "<p>".$message->message_content."</p>"; 
@@ -110,7 +110,7 @@ class Messages extends Controller
                $data = ['messages' => $messages]; 
 
                foreach($data['messages'] as $message) {
-
+                $status = $this->messageModel->update_status($message->id_messages); 
                 echo "<div class='incoming_msg'>"; 
                 echo " <div class='incoming_msg_img'>";
                 echo "<img src='".URLROOT."/images/parenticon.png' alt='sunil'>";

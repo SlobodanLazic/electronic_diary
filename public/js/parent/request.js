@@ -20,13 +20,13 @@ requestOpenDoor.addEventListener("click",function (event) {
 
     xhttp.onreadystatechange = function() {
         if(xhttp.readyState == 4 && xhttp.status == 200) {
-            var responseAJAX = xhttp.responseText;
+            document.getElementById('responseText').innerHTML = xhttp.responseText;
             console.log(responseAJAX);
             //document.getElementById("responseText").innerHTML = responseAJAX;
         }
     };
 
-    xhttp.open("POST","http://localhost/electronic_diary/meetings",true);
+    xhttp.open("POST","http://localhost/electronic_diary/meetings/add_meeting",true);
     xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xhttp.send("time=" + inputTime + "&date=" + inputDate + "&student=" + inputStudent);
     
