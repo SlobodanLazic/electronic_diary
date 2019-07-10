@@ -9,110 +9,69 @@ am4core.ready(function () {
 
     // Add data
     chart.data = [{
-        "country": "Fizicko",
-        "visits": 4025,
-        "color": chart.colors.next()
-    }, {
-        "country": "Informatika",
-        "visits": 1882,
-        "color": chart.colors.next()
-    }, {
-        "country": "Geografija",
-        "visits": 1809,
-        "color": chart.colors.next()
-    }, {
-        "country": "Engleski jezik",
-        "visits": 1322,
-        "color": chart.colors.next()
-    }, {
-        "country": "Likovno",
-        "visits": 1122,
-        "color": chart.colors.next()
-    }, {
-        "country": "Muzicko",
-        "visits": 1114,
-        "color": chart.colors.next()
-    }, {
-        "country": "Fizika",
-        "visits": 984,
-        "color": chart.colors.next()
-    }, {
-        "country": "Biologija",
-        "visits": 711,
-        "color": chart.colors.next()
-    }, {
-        "country": "Matematika",
-        "visits": 665,
-        "color": chart.colors.next()
-    }, {
-        "country": "Muzicko",
-        "visits": 580,
-        "color": chart.colors.next()
-    }, {
-        "country": "Veronauka",
-        "visits": 443,
-        "color": chart.colors.next()
-    }, {
-        "country": "Geografija",
-        "visits": 441,
-        "color": chart.colors.next()
-    }, {
-        "country": "Srpski jezik",
-        "visits": 395,
-        "color": chart.colors.next()
-    }, {
-        "country": "Nemacki jezik",
-        "visits": 386,
-        "color": chart.colors.next()
-    }, {
-        "country": "Gradjansko",
-        "visits": 384,
-        "color": chart.colors.next()
-    }, {
-        "country": "Psihologija",
-        "visits": 338,
-        "color": chart.colors.next()
-    }, {
-        "country": "Filozofija",
-        "visits": 328,
-        "color": chart.colors.next()
-    }];
+            "subject": 'Srpski jezik i Knjizevnost',
+            "income": 23.5,
+            "color": chart.colors.next()
+        }, {
+            "subject": 'Likovno',
+            "income": 26.2,
+            "color": chart.colors.next()
+        }, {
+            "subject": 'Engleski jezik',
+            "income": 30.1,
+            "color": chart.colors.next()
+        }, {
+            "subject": 'Geografija',
+            "income": 29.5,
+            "color": chart.colors.next()
+        }, {
+            "subject": 'Istorija',
+            "income": 24.6,
+            "color": chart.colors.next()
+        }, {
+            "subject": 'Matematika',
+            "income": 24.6,
+            "color": chart.colors.next()
+        }, {
+            "subject": 'Biologija',
+            "income": 24.6,
+            "color": chart.colors.next()
+        }, {
+            "subject": 'Fizicko vaspitanje',
+            "income": 24.6,
+            "color": chart.colors.next()
+        }, {
+            "subject": 'Informatika',
+            "income": 24.6,
+            "color": chart.colors.next()
+        }, {
+            "subject": 'Veronauka',
+            "income": 24.6,
+            "color": chart.colors.next()
+        }, {
+            "subject": 'Hemija',
+            "income": 24.7,
+            "color": chart.colors.next()
+        }
+
+    ];
 
     // Create axes
-    var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-    categoryAxis.dataFields.category = "country";
-    categoryAxis.renderer.labels.template.rotation = 270;
-    categoryAxis.renderer.labels.template.hideOversized = false;
-    categoryAxis.renderer.minGridDistance = 20;
-    categoryAxis.renderer.labels.template.horizontalCenter = "right";
-    categoryAxis.renderer.labels.template.verticalCenter = "middle";
-    categoryAxis.tooltip.label.rotation = 270;
-    categoryAxis.tooltip.label.horizontalCenter = "right";
-    categoryAxis.tooltip.label.verticalCenter = "middle";
+    var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+    categoryAxis.dataFields.category = "subject";
+    categoryAxis.numberFormatter.numberFormat = "#";
+    categoryAxis.renderer.inversed = true;
 
-    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-    valueAxis.title.text = "Subjects";
-    valueAxis.title.fontWeight = "bold";
+    var valueAxis = chart.xAxes.push(new am4charts.ValueAxis());
 
     // Create series
     var series = chart.series.push(new am4charts.ColumnSeries3D());
-    series.dataFields.valueY = "visits";
-    series.dataFields.categoryX = "country";
-    series.name = "Visits";
-    series.tooltipText = "{categoryX}: [bold]{valueY}[/]";
-    series.columns.template.fillOpacity = .8;
+    series.dataFields.valueX = "income";
+    series.dataFields.categoryY = "subject";
+    series.name = "Income";
     series.columns.template.propertyFields.fill = "color";
-
-    var columnTemplate = series.columns.template;
-    columnTemplate.strokeWidth = 2;
-    columnTemplate.strokeOpacity = 1;
-    columnTemplate.stroke = am4core.color("#FFFFFF");
-
-    chart.cursor = new am4charts.XYCursor();
-    chart.cursor.lineX.strokeOpacity = 0;
-    chart.cursor.lineY.strokeOpacity = 0;
-
-    // Enable export
-    chart.exporting.menu = new am4core.ExportMenu();
+    series.columns.template.tooltipText = "{valueX}";
+    series.columns.template.column3D.stroke = am4core.color("#fff");
+    series.columns.template.column3D.strokeOpacity = 0.2;
 
 }); // end am4core.ready()
