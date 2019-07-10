@@ -728,6 +728,11 @@ class Users extends Controller
 
             if (empty($data['email_p'])) {
                 $data['email_p_err'] = 'Please enter parent email';
+            } else {
+                // Check email
+                if (!$this->studentModel->parentEmailExists($data['email_p'])) {
+                    $data['email_p_err'] = 'Parent Email not exists';
+                }
             }
 
             // Validate class 

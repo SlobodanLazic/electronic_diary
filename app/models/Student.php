@@ -174,4 +174,23 @@ class Student
             return false;
         }
     }
+
+    // checks if parent email exist in database
+
+    public function parentEmailExists($email)
+    {
+
+        $this->db->query('SELECT users.id_user FROM users WHERE email = :email');
+        // Bind value
+        $this->db->bind(':email', $email);
+
+        $row = $this->db->single();
+
+        // Check row
+        if ($this->db->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
