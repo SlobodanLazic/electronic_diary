@@ -15,7 +15,7 @@ class Message
        $this->db->query('SELECT messages.id_messages,
                          messages.message_time, 
                          messages.message_content
-                         FROM messages WHERE messages.to_id_user = :to_id_user and 
+                         FROM messages WHERE messages.to_id_user = :to_id_user AND
                          messages.from_id_user = :from_id_user AND messages.message_status = :message_status'); 
 
         $this->db->bind(':to_id_user', $data['to_id_user']); 
