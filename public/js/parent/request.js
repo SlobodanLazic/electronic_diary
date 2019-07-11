@@ -16,13 +16,16 @@ requestOpenDoor.addEventListener("click",function (event) {
     var inputDate = document.getElementById("date").value;
     var inputStudent = document.getElementById("student").value;
 
-    //console.log(inputTime,inputDate);
-
     xhttp.onreadystatechange = function() {
         if(xhttp.readyState == 4 && xhttp.status == 200) {
             document.getElementById('responseText').innerHTML = xhttp.responseText;
-            console.log(responseAJAX);
-            //document.getElementById("responseText").innerHTML = responseAJAX;
+            console.log(xhttp.responseText);
+            
+            if(xhttp.responseText == "Successfully submitted the request"){
+                document.getElementById('responseText').setAttribute("class","alert alert-success");
+            } else {
+                document.getElementById('responseText').setAttribute("class","alert alert-danger");
+            }
         }
     };
 

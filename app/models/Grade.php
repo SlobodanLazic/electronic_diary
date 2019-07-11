@@ -106,6 +106,20 @@ class Grade
 
         return $grades;
     }
+    // showing average grade for every subject of entire school
+    public function showAvgGradeOfSchool()
+    {
+        $this->db->query('SELECT AVG(grades) AS average_grade, subjects.name, subjects.id_subject
+                            FROM students_subjects 
+                            JOIN subjects ON students_subjects.id_subject = subjects.id_subject
+                            GROUP BY subjects.name, subjects.id_subject
+                            ORDER BY subjects.id_subject');
+
+        $schoolGrades = $this->db->resultSet();
+
+        return $schoolGrades;
+    }
+
     public function getGradeIdbyStudent($id)
     {
         $this->db->query('SELECT id_student FROM students_subjects WHERE id_student = :id_student');

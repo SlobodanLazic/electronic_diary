@@ -27,6 +27,9 @@ class Grades extends Controller
 
         $this->view('/admin/subjects/edit', $data);
     }
-
-
+    // this method gets average grade of entire school from Grade model
+    public function showSchoolStatistics()
+    {
+        # code...
+    }
 }
