@@ -108,7 +108,7 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">###</h6>
-            <a class="collapse-item" href="#">All Parents</a>
+            <a class="collapse-item" href="<?php echo URLROOT . '/meetings/responses'; ?>">Parent requests</a>
             <a class="collapse-item" href="<?php echo URLROOT . '/messages/get_messages'; ?>">Messages</a>
           </div>
         </div>
