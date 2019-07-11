@@ -1,4 +1,4 @@
-<?php require APPROOT . '/views/inc/teacher/header.php'; ?>
+<?php require APPROOT . '/views/inc/parent/header.php'; ?>
 
 
 
@@ -159,4 +159,4 @@
    
 </script>
 
-<?php require APPROOT . '/views/inc/teacher/footer.php'; ?> 
+<?php require APPROOT . '/views/inc/parent/footer.php'; ?> 

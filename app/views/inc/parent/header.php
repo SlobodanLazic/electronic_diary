@@ -103,7 +103,7 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">###</h6>
           <a class="collapse-item" href="<?php echo URLROOT . "/meetings/requests"; ?>">Open door requests</a>
-          <a class="collapse-item" href="#">Messages</a>
+          <a class="collapse-item" href="<?php echo URLROOT . "/messages/requests"; ?>">Messages</a>
         </div>
       </div>
     </li>
