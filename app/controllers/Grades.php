@@ -30,6 +30,18 @@ class Grades extends Controller
     // this method gets average grade of entire school from Grade model
     public function showSchoolStatistics()
     {
-        # code...
+        $schoolGradesDB = $this->gradeModel->showAvgGradeOfSchool();
+        
+        $arrayOfGrades = [];
+
+        foreach ($schoolGradesDB as $key => $value) {
+            array_push($arrayOfGrades,[
+                "average_grade" => $schoolGradesDB[$key]->average_grade,
+                "id_subject" => $schoolGradesDB[$key]->id_subject,
+                "name" => $schoolGradesDB[$key]->name 
+            ]);
+        }
+        
+        echo(json_encode($arrayOfGrades));
     }
 }
