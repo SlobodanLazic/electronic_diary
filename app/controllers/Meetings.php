@@ -32,13 +32,8 @@
                 'students' => $students,
                 'requestMsg' => $requestMsg
             ];
-<<<<<<< HEAD
 
            $this->view('parent/requests/index', $data);
-=======
-            
-            $this->view('parent/requests/index', $data);    
->>>>>>> 9925d413c093b53a1a05d021b8e27dcddf5ea247
         }
         /* PARENT PART END */
 

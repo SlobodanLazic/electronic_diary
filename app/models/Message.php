@@ -12,7 +12,8 @@ class Message
     //Read new messager 
     public function getMessage($data)
     {
-       $this->db->query('SELECT messages.message_time, 
+       $this->db->query('SELECT messages.id_messages,
+                         messages.message_time, 
                          messages.message_content
                          FROM messages WHERE messages.to_id_user = :to_id_user and 
                          messages.from_id_user = :from_id_user AND messages.message_status = :message_status'); 

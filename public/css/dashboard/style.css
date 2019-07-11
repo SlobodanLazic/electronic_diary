@@ -109,6 +109,10 @@ img {
   padding: 18px 16px 10px;
   cursor: pointer;
 }
+.chat_list:hover {
+  background-color: #fff; 
+}
+
 .inbox_chat { 
     height: 550px; 
     overflow-y: scroll;
@@ -162,7 +166,7 @@ img {
 }
 .outgoing_msg { 
     overflow:hidden; 
-    margin:26px 0 26px;
+    margin:6px 0 6px;
 }
 .sent_msg {
   float: right;

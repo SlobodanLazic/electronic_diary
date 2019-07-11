@@ -77,6 +77,7 @@ class Messages extends Controller
               echo "</div>";
               echo "</div>"; 
               echo "</div>";     
+              $status = $this->messageModel->update_status($message->id_messages);
 
           } else {
                
@@ -122,8 +123,9 @@ class Messages extends Controller
                 echo "</div>";
                 echo "</div>"; 
                 echo "</div>"; 
+                $status = $this->messageModel->update_status($message->id_messages);
 
-               }
+            }
             }
         }
     }
