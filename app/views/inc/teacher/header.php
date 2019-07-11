@@ -85,7 +85,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+        <a class="nav-link" href="<?php echo URLROOT . '/schedules/school_calendar'; ?>" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
           <span>School Calendar</span>
         </a>

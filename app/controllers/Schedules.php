@@ -312,4 +312,20 @@ class Schedules extends Controller
             redirect('pages');
         }
     }
+
+    public function school_calendar()
+    {
+
+        $class_id = (int) htmlspecialchars($_SESSION['teacher_class_id']);
+
+        $schedules = $this->schedulesModel->show_schedule_by_teacher_class_id($class_id);
+
+        $data = [
+
+            'schedules' => $schedules
+
+        ];
+
+        $this->view('teacher/classes/schedule', $data);
+    }
 }

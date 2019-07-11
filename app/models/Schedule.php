@@ -277,6 +277,20 @@ class Schedule
         return $row;
     }
 
+    // Get schedule by techer class
+
+    public function show_schedule_by_teacher_class_id($id)
+    {
+
+        $this->db->query('SELECT schedules.id_schedules, schedules.subject_name , schedules.order_id, schedules.day_id, schedules.class_id FROM schedules WHERE schedules.class_id = :teacher_class_id');
+
+        $this->db->bind(':teacher_class_id', $id);
+
+        $schedules = $this->db->resultSet();
+
+        return $schedules;
+    }
+
     public function update($data)
     {
 
