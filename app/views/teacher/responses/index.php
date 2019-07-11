@@ -2,96 +2,53 @@
 
 <div id="page-wrapper">
 
-    <div class="container-fluid">
+  <div class="container-fluid">
 
-        <!-- Content Row -->
-        <div class="row">
+    <!-- Content Row -->
+    <div class="row">
 
-<!-- Earnings (Monthly) Card Example -->
-<div class="col-xl-3 col-md-6 mb-4">
-  <div class="card border-left-primary shadow h-100 py-2">
-    <div class="card-body">
-      <div class="row no-gutters align-items-center">
-        <div class="col mr-2">
-          <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Average grade</div>
-          <div class="h5 mb-0 font-weight-bold text-gray-800">4</div>
-        </div>
-        <div class="col-auto">
-          <i class="fas fa-calendar fa-2x text-gray-300"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- Earnings (Monthly) Card Example -->
-<div class="col-xl-3 col-md-6 mb-4">
-  <div class="card border-left-success shadow h-100 py-2">
-    <div class="card-body">
-      <div class="row no-gutters align-items-center">
-        <div class="col mr-2">
-          <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total number of students in class</div>
-          <div class="h5 mb-0 font-weight-bold text-gray-800">30</div>
-        </div>
-        <div class="col-auto">
-          <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+      <table class="table table-striped">
 
-<?php die(var_dump($_POST))?>
-<!-- Earnings (Monthly) Card Example -->
-<div class="col-xl-3 col-md-6 mb-4">
-  <div class="card border-left-info shadow h-100 py-2">
-    <div class="card-body">
-      <div class="row no-gutters align-items-center">
-        <div class="col mr-2">
-          <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Presence on lectures</div>
-          <div class="row no-gutters align-items-center">
-            <div class="col-auto">
-              <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">70%</div>
-            </div>
-            <div class="col">
-              <div class="progress progress-sm mr-2">
-                <div class="progress-bar bg-info" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-auto">
-          <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+        <thead>
 
-<!-- Pending Requests Card Example -->
-<div class="col-xl-3 col-md-6 mb-4">
-  <div class="card border-left-warning shadow h-100 py-2">
-    <div class="card-body">
-      <div class="row no-gutters align-items-center">
-        <div class="col mr-2">
-          <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">All chats</div>
-          <div class="h5 mb-0 font-weight-bold text-gray-800">123</div>
-        </div>
-        <div class="col-auto">
-          <i class="fas fa-comments fa-2x text-gray-300"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+          <tr>
+            <th></th>
+            <th>Parent Name</th>
+            <th>Meeting Time</th>
+            <th colspan="2">Status</th>
+          </tr>
+        </thead>
 
-<!-- Content Row -->
+        <?php $i = 0; ?>
+
+        <?php foreach ($data['meetings'] as $meeting) : ?>
+
+          <tbody>
+
+            <tr>
+
+              <?php echo '<td>' . ++$i . '</td><td>' . $meeting->username . '</td><td>' . $meeting->meetings . '</td>'; ?>
+
+              <td><button id='aprove' value='1' class="btn btn-success" type="submit" onclick="aprove()">Accept</button></td>
+
+              <td><button id='denny' value='0' class="btn btn-danger" type="submit" onclick="un_aprove()">Denny</button></td>
+
+            </tr>
+
+          </tbody>
+
+        <?php endforeach; ?>
+
+      </table>
+
+
+      <!-- Content Row -->
 
     </div>
     <!-- /.container-fluid -->
 
-</div>
-<!-- /#page-wrapper -->
+  </div>
+  <!-- /#page-wrapper -->
 
-<?php require APPROOT . '/views/inc/teacher/footer.php'; ?>
+  <?php require APPROOT . '/views/inc/teacher/footer.php'; ?>
