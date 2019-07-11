@@ -66,10 +66,25 @@ class Meetings extends Controller
 
     /*END TEACHER RESPONSE */
 
+    /*TEACHER UPDATE MEETING STATUS BEGGINING*/
+
+    public function updateMeetingStatus()
+    {
+
+        $status = (int) htmlspecialchars($_POST['status']);
+
+        $id_meeting = (int) htmlspecialchars($_POST['id_meeting']);
+
+        $this->meetingModel->updateMeetingStatus($status, $id_meeting);
+    }
+
+
+    /*TEACHER UPDATE MEETING STATUS END*/
+
+
+
     public function index()
     {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['id_user'])) {
-            print_r($_POST);
-        }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['id_user'])) { }
     }
 }

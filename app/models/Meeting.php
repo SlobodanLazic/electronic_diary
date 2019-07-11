@@ -50,6 +50,8 @@ class Meeting
     }
 
 
+    // Returns all metting requests for logged teacher
+
     public function getMeetingsByTeacherId()
     {
 
@@ -63,5 +65,22 @@ class Meeting
         $meetings = $this->db->resultSet();
 
         return $meetings;
+    }
+
+    // upadtes metting status
+
+    public function updateMeetingStatus($meetingStatus, $id_meeting)
+    {
+
+        $this->db->query('UPDATE meetings SET meetings.meetings_status = :meeting_status WHERE meetings.id_meetings = :id_meeting');
+
+        $this->db->bind(':meeting_status', $meetingStatus);
+        $this->db->bind(':id_meeting', $id_meeting);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

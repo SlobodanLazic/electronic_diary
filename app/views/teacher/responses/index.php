@@ -28,11 +28,12 @@
 
             <tr>
 
+
               <?php echo '<td>' . ++$i . '</td><td>' . $meeting->username . '</td><td>' . $meeting->meetings . '</td>'; ?>
 
-              <td><button id='aprove' value='1' class="btn btn-success" type="submit" onclick="aprove()">Accept</button></td>
+              <td><button id='aprove' class="btn btn-success" type="submit" onclick="aprove(id_meeting = <?php echo $meeting->id_meetings; ?>)">Accept</button></td>
 
-              <td><button id='denny' value='0' class="btn btn-danger" type="submit" onclick="un_aprove()">Denny</button></td>
+              <td><button id='denny' class="btn btn-danger" type="submit" onclick="un_aprove(id_meeting = <?php echo $meeting->id_meetings; ?>)">Denny</button></td>
 
             </tr>
 

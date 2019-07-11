@@ -5,51 +5,55 @@ if (window.XMLHttpRequest) {
     let xhttp = new ActiveXObject("Microsoft.XMLHTTP");
 }
 
-var inputFromTeacher1 = document.getElementById("aprove").value;
-var inputFromTeacher2 = document.getElementById("denny").value;
 
-function aprove() {
 
-    console.log(inputFromTeacher1);
+
+function aprove(id_meeting) {
+
+
+
+    var xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function () {
-        if (xhttp.readyState == 4 && xhttp.status == 200) {
-            document.getElementById('responseText').innerHTML = xhttp.responseText;
-            console.log(xhttp.responseText);
 
-            if (xhttp.responseText == "Successfully submitted the request") {
-                document.getElementById('responseText').setAttribute("class", "alert alert-success");
-            } else {
-                document.getElementById('responseText').setAttribute("class", "alert alert-danger");
-            }
+        if (xhttp.readyState == 4) {
+
+            alert('Status upadted');
+
+
         }
-    };
 
-    xhttp.open("POST", "http://localhost/electronic_diary/meetings/add_meeting", true);
+    }
+
+    xhttp.open("POST", "http://localhost/electronic_diary/meetings/updatemeetingstatus", true);
+
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send();
 
+    var inputFromTeacher1 = "status=1&id_meeting=" + id_meeting;
+
+    xhttp.send(inputFromTeacher1);
 }
 
-function un_aprove() {
 
-    console.log(inputFromTeacher2);
 
-    // xhttp.onreadystatechange = function () {
-    //     if (xhttp.readyState == 4 && xhttp.status == 200) {
-    //         document.getElementById('responseText').innerHTML = xhttp.responseText;
-    //         console.log(xhttp.responseText);
+function un_aprove(id_meeting) {
 
-    //         if (xhttp.responseText == "Successfully submitted the request") {
-    //             document.getElementById('responseText').setAttribute("class", "alert alert-success");
-    //         } else {
-    //             document.getElementById('responseText').setAttribute("class", "alert alert-danger");
-    //         }
-    //     }
-    // };
+    var xhttp = new XMLHttpRequest();
 
-    // xhttp.open("POST", "http://localhost/electronic_diary/meetings/add_meeting", true);
-    // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    // xhttp.send();
+    xhttp.onreadystatechange = function () {
+
+        if (xhttp.readyState == 4) {
+            alert('Status upadted');
+        }
+
+    }
+
+    xhttp.open("POST", "http://localhost/electronic_diary/meetings/updatemeetingstatus", true);
+
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    var inputFromTeacher2 = "status=0&id_meeting=" + id_meeting;
+
+    xhttp.send(inputFromTeacher2);
 
 }
