@@ -207,3 +207,7 @@ img {
   height: 516px;
   overflow-y: auto;
 }
+
+.ring {
+  display: none; 
+}

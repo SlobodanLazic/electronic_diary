@@ -11,16 +11,19 @@
             <div class="recent_heading">
               <!-- <h4>Recent</h4>  -->
               <h4>Messaging</h4>
+              <p id="time"></p>
             </div>
+            
             <div class="srch_bar">
               <div class="stylish-input-group">
-                <input type="text" class="search-bar"  placeholder="Search" >
+            <!--    <input type="text" class="search-bar"  placeholder="Search" > -->
                 
                 <span class="input-group-addon">
-                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                <!-- <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>  -->
                 </span> </div>
-            </div>
+            </div> 
           </div>
+        
           <div class="inbox_chat">
               <?php foreach($data['parents'] as $parent) { ?>
             <div class="chat_list" >
@@ -46,6 +49,10 @@
           </div>
         </div>
       </div>
+
+      <audio class="ring" id="ring">
+         <source src="<?php echo URLROOT . "/public/music/msg_ton.mp3" ?>" type="audio/mpeg">
+      </audio>
       
     </div></div>
 
@@ -62,6 +69,11 @@
      var id_user = document.getElementById('to_id').value;
      var msg;
        
+     function ringMSG()
+     {
+       var ring = document.getElementById('ring'); 
+       ring.play();
+     }
 
      function sendMessage()
      {  
@@ -117,7 +129,7 @@
          var xmlhttp = new XMLHttpRequest();
                      xmlhttp.onreadystatechange = function() {
                if (this.readyState == 4 && this.status == 200) {
-                 messages.innerHTML = this.responseText;
+                 messages.innerHTML = this.responseText; 
                  }
                 };
               xmlhttp.open("GET", "<?php echo URLROOT; ?> /messages/get_all?id=" + id, true);
@@ -135,7 +147,9 @@
            var new_dir = document.createElement("div");
            new_dir.innerHTML =  this.responseText;
            messages.appendChild(new_dir);
-           scroll(); 
+           scroll();
+           ringMSG();
+           }
            }
         };
        xmlhttp.open("GET", "<?php echo URLROOT; ?> /messages/get_msg?id=" + id, true);
@@ -156,7 +170,20 @@
        messages.scrollTop = messages.scrolHeight; 
        return; 
      }
-   
+     
+     function new_time()
+     {
+       var time = document.getElementById('time');
+       
+       var d = new Date(); 
+
+       var t = d.toLocaleTimeString(); 
+
+       time.innerHTML = t
+
+     }
+
+     m = setInterval(new_time, 60000); 
 </script>
 
 <?php require APPROOT . '/views/inc/teacher/footer.php'; ?> 

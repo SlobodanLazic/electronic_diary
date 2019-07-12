@@ -22,12 +22,12 @@
             </div>
           </div>
           <div class="inbox_chat">
-              <?php foreach($data['parents'] as $parent) { ?>
+              <?php foreach($data['teacher'] as $parent) { ?>
             <div class="chat_list" >
               <div class="chat_people" onclick='readMessages(<?php echo $parent->id_user; ?>)'>
                 <div class="chat_img"> <img src="<?php echo URLROOT . "/images/parenticon.png" ?>" alt="sunil"> </div>
                 <div class="chat_ib">
-                  <?php echo "<h5> $parent->username "; ?><span class="chat_date"></span></h5>
+                  <?php echo "<h5> $parent->username "; ?><span class="chat_date">Date</span></h5>
                  
                 </div>
               </div>
@@ -40,12 +40,16 @@
           </div>
           <div id="type_msg" class="type_msg">
             <div class="input_msg_write">
-              <input type="text" onkeyup="keySend(event)" id="message" class="write_msg" placeholder="Type a message" />
+              <input type="text" onkeypress="keySend(event)" id="message" class="write_msg" placeholder="Type a message" />
               <button class="msg_send_btn" type="button" onClick="sendMessage()"><i class="fas fa-paper-plane" aria-hidden="true" ></i></button>
             </div>
           </div>
         </div>
       </div>
+
+      <audio class="ring" id="ring">
+         <source src="<?php echo URLROOT . "/public/music/msg_ton.mp3" ?>" type="audio/mpeg">
+      </audio>
       
     </div></div>
 
@@ -62,6 +66,11 @@
      var id_user = document.getElementById('to_id').value;
      var msg;
        
+     function ringMSG()
+     {
+       var ring = document.getElementById('ring'); 
+       ring.play();
+     }
 
      function sendMessage()
      {  
@@ -83,6 +92,10 @@
         outgoing.appendChild(par);
         outgoing.appendChild(date);
 
+        var d = new Date();
+        
+        
+
         var datetext = document.createTextNode(''); 
 
         date.appendChild(datetext);
@@ -103,7 +116,7 @@
                 };
               xmlhttp.open("GET", "<?php echo URLROOT; ?>/messages/new_message?id=" + id_user + "&message_content=" + message, true);
               xmlhttp.send();
-              scroll(); 
+              messages.scrollTop = messages.scrollHeight;
      } //end if 
 
      }
@@ -118,12 +131,18 @@
                      xmlhttp.onreadystatechange = function() {
                if (this.readyState == 4 && this.status == 200) {
                  messages.innerHTML = this.responseText;
+                 scroll(); 
                  }
                 };
               xmlhttp.open("GET", "<?php echo URLROOT; ?> /messages/get_all?id=" + id, true);
               xmlhttp.send();
-              scroll(); 
+
+
+        messages.scrollTop = messages.scrollHeight;
         msg = setInterval(queryMessager, 2000); 
+        
+
+
      }
 
      function queryMessager()
@@ -132,30 +151,35 @@
       var xmlhttp = new XMLHttpRequest();
       xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+           if(this.responseText != "") {  
            var new_dir = document.createElement("div");
            new_dir.innerHTML =  this.responseText;
            messages.appendChild(new_dir);
-           scroll(); 
+           scroll();
+           ringMSG(); 
+           }
            }
         };
-       xmlhttp.open("GET", "<?php echo URLROOT; ?> /messages/get_msg?id=" + id, true);
+       xmlhttp.open("GET", "<?php echo URLROOT; ?>/messages/get_msg?id=" + id, true);
        xmlhttp.send();
-      
+       
+       
     }
-     
-     function keySend(event)
-     {
-       var key = event.keyCode
-       if(key == 13) {
-         sendMessage(); 
-       }
-     }
 
-     function scroll() 
+    function keySend(event)
+    {
+      var key = event.keyCode;
+      if(key == 13) {
+        sendMessage(); 
+       }
+    }
+
+     function scroll()
      {
-       messages.scrollTop = messages.scrolHeight; 
-       return; 
+       messages.scrollTop = messages.scrollHeight;
+       return;
      }
+     
    
 </script>
 
