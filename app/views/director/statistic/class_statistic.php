@@ -13,6 +13,13 @@
             </div>
         </div>
         <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">
+                    Select Class , ovde ce ici select , za sada je hardkodiran id_class u bazi
+                    </h1>
+            </div>
+        </div>
 
 
         <!-- Page Body -->
@@ -32,4 +39,4 @@
 </div>
 <!-- /#page-wrapper -->
 
-<?php require APPROOT . '/views/inc/director/footer.php'; ?>
+<?php require APPROOT . '/views/inc/director/footer2.php'; ?>

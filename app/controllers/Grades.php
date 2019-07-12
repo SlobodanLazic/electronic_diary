@@ -3,10 +3,12 @@
 class Grades extends Controller
 {
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->gradeModel = $this->model('Grade');
     }
-    public function index(){
+    public function index()
+    {
         if (isset($_SESSION['id_user'])) {
             if ($_SESSION['id_user_role'] == 3) {
                 $this->view('grades/index');
@@ -14,11 +16,12 @@ class Grades extends Controller
                 $this->logout();
             }
         } else {
-         $this->view('users/login');
+            $this->view('users/login');
         }
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $subject = $this->subjectModel->getSubjectId($id);
 
         $data = [
@@ -31,17 +34,25 @@ class Grades extends Controller
     public function showSchoolStatistics()
     {
         $schoolGradesDB = $this->gradeModel->showAvgGradeOfSchool();
-        
+
         $arrayOfGrades = [];
 
         foreach ($schoolGradesDB as $key => $value) {
-            array_push($arrayOfGrades,[
+            array_push($arrayOfGrades, [
                 "average_grade" => $schoolGradesDB[$key]->average_grade,
                 "id_subject" => $schoolGradesDB[$key]->id_subject,
-                "name" => $schoolGradesDB[$key]->name 
+                "name" => $schoolGradesDB[$key]->name
             ]);
         }
-        
-        echo(json_encode($arrayOfGrades));
+
+        echo (json_encode($arrayOfGrades));
+    }
+
+    public function displayAvgGRadeByClasses()
+    {
+
+        $averageGradesByClasses = $this->gradeModel->showAvgGradesByClasses();
+
+        echo (json_encode($averageGradesByClasses));
     }
 }
