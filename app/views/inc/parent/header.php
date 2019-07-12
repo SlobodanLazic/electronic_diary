@@ -81,7 +81,7 @@
     <li class="nav-item">
       <a class="nav-link" href="#" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-fw fa-wrench"></i>
-        <span>School Calendar</span>
+        <span>Student grades</span>
       </a>
     </li>
 
@@ -90,7 +90,7 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-      ######
+      
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -101,9 +101,9 @@
       </a>
       <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <h6 class="collapse-header">###</h6>
+          <h6 class="collapse-header"></h6>
           <a class="collapse-item" href="<?php echo URLROOT . "/meetings/requests"; ?>">Open door requests</a>
-          <a class="collapses-item" href="<?php echo URLROOT . "/messages/get_parent"; ?>">Messages</a>
+          <a class="collapse-item" href="<?php echo URLROOT . "/messages/get_parent"; ?>">Messages</a>
         </div>
       </div>
     </li>
