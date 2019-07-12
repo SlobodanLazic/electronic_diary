@@ -111,4 +111,41 @@ class Message
 
    }
 
+   public function user_parent()
+   {
+
+      $this->db->query("SELECT users.id_user , users.username FROM users WHERE users.id_user_role = 3 AND users.teacher_class_id IN 
+
+      ( SELECT students.id_school_class FROM students WHERE students.id_student in 
+      (
+         SELECT users_students.id_student FROM users_students WHERE id_user = :id_user
+      )
+      )
+      
+         
+         ");
+
+         $this->db->bind(':id_user' , $_SESSION['id_user']);
+
+         $parents = $this->db->resultSet(); 
+
+         return $parents; 
+
+   }
+
+   public function notificatione()
+   {
+      $this->db->query("SELECT COUNT(DISTINCT to_id_user)AS number FROM messages 
+      WHERE messages.message_status = 1 AND messages.from_id_user = :id_user"); 
+
+      $this->db->bind(':id_user', $_SESSION['id_user']); 
+
+      $notifications = $this->db->single(); 
+
+      //var_dump($notifications);
+
+      return $notifications; 
+   }
+
+
 }

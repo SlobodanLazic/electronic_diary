@@ -1,4 +1,4 @@
-<?php require APPROOT . '/views/inc/teacher/header.php'; ?>
+<?php require APPROOT . '/views/inc/parent/header.php'; ?>
 
 
 
@@ -11,21 +11,18 @@
             <div class="recent_heading">
               <!-- <h4>Recent</h4>  -->
               <h4>Messaging</h4>
-              <p id="time"></p>
             </div>
-            
             <div class="srch_bar">
               <div class="stylish-input-group">
-            <!--    <input type="text" class="search-bar"  placeholder="Search" > -->
+                <input type="text" class="search-bar"  placeholder="Search" >
                 
                 <span class="input-group-addon">
-                <!-- <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>  -->
+                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
                 </span> </div>
-            </div> 
+            </div>
           </div>
-        
           <div class="inbox_chat">
-              <?php foreach($data['parents'] as $parent) { ?>
+              <?php foreach($data['teacher'] as $parent) { ?>
             <div class="chat_list" >
               <div class="chat_people" onclick='readMessages(<?php echo $parent->id_user; ?>)'>
                 <div class="chat_img"> <img src="<?php echo URLROOT . "/images/parenticon.png" ?>" alt="sunil"> </div>
@@ -133,7 +130,8 @@
          var xmlhttp = new XMLHttpRequest();
                      xmlhttp.onreadystatechange = function() {
                if (this.readyState == 4 && this.status == 200) {
-                 messages.innerHTML = this.responseText; 
+                 messages.innerHTML = this.responseText;
+                 scroll(); 
                  }
                 };
               xmlhttp.open("GET", "<?php echo URLROOT; ?> /messages/get_all?id=" + id, true);
@@ -158,7 +156,7 @@
            new_dir.innerHTML =  this.responseText;
            messages.appendChild(new_dir);
            scroll();
-           ringMSG();
+           ringMSG(); 
            }
            }
         };
@@ -182,19 +180,7 @@
        return;
      }
      
-     function new_time()
-     {
-       var time = document.getElementById('time');
-       
-       var d = new Date(); 
-
-       var t = d.toLocaleTimeString(); 
-
-       time.innerHTML = t
-
-     }
-
-     m = setInterval(new_time, 60000); 
+   
 </script>
 
-<?php require APPROOT . '/views/inc/teacher/footer.php'; ?> 
+<?php require APPROOT . '/views/inc/parent/footer.php'; ?> 

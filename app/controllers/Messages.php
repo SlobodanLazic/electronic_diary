@@ -23,6 +23,18 @@ class Messages extends Controller
 
          $this->view('teacher/messages/index', $data);
     }
+  
+     //Read all teacher 
+    public function get_parent() {
+        
+        $teacher = $this->messageModel->user_parent(); 
+
+        $data = [
+              'teacher'  => $teacher
+            ];
+
+            $this->view('parent/messages/index', $data);
+    }
 
 
     public function new_message() {
@@ -128,5 +140,14 @@ class Messages extends Controller
             }
             }
         }
+    }
+
+    ///Message notification 
+    public function notification()
+    {
+        $notificatione = $this->messageModel->notificatione(); 
+        
+       echo (int)$notificatione->number; 
+       
     }
 } 
