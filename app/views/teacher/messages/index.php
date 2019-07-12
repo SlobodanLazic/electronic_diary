@@ -11,7 +11,6 @@
             <div class="recent_heading">
               <!-- <h4>Recent</h4>  -->
               <h4>Messaging</h4>
-              <p id="time"></p>
             </div>
             
             <div class="srch_bar">
@@ -30,7 +29,7 @@
               <div class="chat_people" onclick='readMessages(<?php echo $parent->id_user; ?>)'>
                 <div class="chat_img"> <img src="<?php echo URLROOT . "/images/parenticon.png" ?>" alt="sunil"> </div>
                 <div class="chat_ib">
-                  <?php echo "<h5> $parent->username "; ?><span class="chat_date"></span></h5>
+                  <?php echo "<h5> $parent->username "; ?><span class="chat_date">Date</span></h5>
                  
                 </div>
               </div>
@@ -43,7 +42,7 @@
           </div>
           <div id="type_msg" class="type_msg">
             <div class="input_msg_write">
-              <input type="text" onkeyup="keySend(event)" id="message" class="write_msg" placeholder="Type a message" />
+              <input type="text" onkeypress="keySend(event)" id="message" class="write_msg" placeholder="Type a message" />
               <button class="msg_send_btn" type="button" onClick="sendMessage()"><i class="fas fa-paper-plane" aria-hidden="true" ></i></button>
             </div>
           </div>
@@ -95,6 +94,10 @@
         outgoing.appendChild(par);
         outgoing.appendChild(date);
 
+        var d = new Date();
+        
+        
+
         var datetext = document.createTextNode(''); 
 
         date.appendChild(datetext);
@@ -115,7 +118,7 @@
                 };
               xmlhttp.open("GET", "<?php echo URLROOT; ?>/messages/new_message?id=" + id_user + "&message_content=" + message, true);
               xmlhttp.send();
-              scroll(); 
+              messages.scrollTop = messages.scrollHeight;
      } //end if 
 
      }
@@ -134,8 +137,13 @@
                 };
               xmlhttp.open("GET", "<?php echo URLROOT; ?> /messages/get_all?id=" + id, true);
               xmlhttp.send();
-              scroll(); 
+
+
+        messages.scrollTop = messages.scrollHeight;
         msg = setInterval(queryMessager, 2000); 
+        
+
+
      }
 
      function queryMessager()
@@ -144,6 +152,7 @@
       var xmlhttp = new XMLHttpRequest();
       xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+           if(this.responseText != "") {  
            var new_dir = document.createElement("div");
            new_dir.innerHTML =  this.responseText;
            messages.appendChild(new_dir);
@@ -152,38 +161,27 @@
            }
            }
         };
-       xmlhttp.open("GET", "<?php echo URLROOT; ?> /messages/get_msg?id=" + id, true);
+       xmlhttp.open("GET", "<?php echo URLROOT; ?>/messages/get_msg?id=" + id, true);
        xmlhttp.send();
-      
-    }
-     
-     function keySend(event)
-     {
-       var key = event.keyCode
-       if(key == 13) {
-         sendMessage(); 
-       }
-     }
-
-     function scroll() 
-     {
-       messages.scrollTop = messages.scrolHeight; 
-       return; 
-     }
-     
-     function new_time()
-     {
-       var time = document.getElementById('time');
        
-       var d = new Date(); 
+       
+    }
 
-       var t = d.toLocaleTimeString(); 
+    function keySend(event)
+    {
+      var key = event.keyCode;
+      if(key == 13) {
+        sendMessage(); 
+       }
+    }
 
-       time.innerHTML = t
-
+     function scroll()
+     {
+       messages.scrollTop = messages.scrollHeight;
+       return;
      }
-
-     m = setInterval(new_time, 60000); 
+     
+   
 </script>
 
 <?php require APPROOT . '/views/inc/teacher/footer.php'; ?> 
