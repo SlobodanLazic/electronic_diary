@@ -562,7 +562,12 @@ class Users extends Controller
             'student_grades' => $student_grades
         ];
 
-        $this->view('teacher/grades/showg', $data);
+        if($_SESSION['id_user_role'] == 3) {
+            $this->view('teacher/grades/showg', $data);
+        } else if ($_SESSION['id_user_role'] == 4 ) {
+            $this->view('parent/grades/showg', $data);
+        }
+        
     }
 
     // Displaying form for editing grade by subject
@@ -646,7 +651,6 @@ class Users extends Controller
         }
     }
 
-
     /* PARENT PART */
     public function parent()
     {
@@ -660,7 +664,22 @@ class Users extends Controller
             redirect('users/login');
         }
     }
+    // this method shows children of each parent
+    public function p_students()
+    {
+        $parentId = $_SESSION['id_user'];
+        
+        if($_SESSION['id_user_role'] == 4){
+            
+            $students = $this->studentModel->showStudentsToParent();
 
+            $data = [
+                'students' => $students
+            ];
+
+            $this->view('parent/students/index', $data);
+        } 
+    }
     /* PARENT PART END*/
 
     /* DIRECTOR PART */
@@ -686,9 +705,6 @@ class Users extends Controller
     // this method gets average grade of entire school from Grade model
     public function school_statistic()
     {
-        $schoolGrades = $this->gradeModel->showAvgGradeOfSchool();
-
-        //echo(json_encode($schoolGrades));
         $this->view('director/statistic/school_statistic');
     }
 
