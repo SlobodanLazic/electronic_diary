@@ -15,9 +15,23 @@
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">
-                    Select Class , ovde ce ici select , za sada je hardkodiran id_class u bazi
-                    </h1>
+                <div class="form-group">
+                    <label>Select class:</label>
+                    <select name='id_school_class' class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                        <option value="" selected>Choose</option>
+
+                        <?php foreach ($data['classes'] as $class) : ?>
+
+                            <?php echo "<option value=\"$class->id_school_class\">$class->name</option>"; ?>
+
+                        <?php endforeach; ?>
+
+                    </select>
+
+                    <!--  <span class="invalid-feedback text-danger"><?php echo $data['id_school_class_err']; ?></span> -->
+
+                </div>
+
             </div>
         </div>
 

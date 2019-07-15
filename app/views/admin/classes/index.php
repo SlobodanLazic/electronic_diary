@@ -42,7 +42,7 @@
 
                                 <button class="btn btn-danger" type="submit" name="delete">Delete</button>
 
-                            </form></td>
+                                </form></td>
                         </tr>
                         <tbody>
 

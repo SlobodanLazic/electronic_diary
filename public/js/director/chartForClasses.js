@@ -1,15 +1,14 @@
 // Get data by using ajax call to comunnicate with Grades controller
-function loadGrades() {
+function loadGrades(idSchoolClass) {
     $.ajax({
-
         url: 'http://localhost/electronic_diary/grades/displayAvgGRadeByClasses',
         method: "POST",
-        data: '',
+        data: {'idSchoolClass' : idSchoolClass},
         dataType: 'json',
         success: function (data) {
 
             var data = data;
-
+            console.log(data);
             // Themes begin
             // Using default theme
             am4core.useTheme(am4themes_animated);
@@ -62,5 +61,6 @@ function loadGrades() {
 }
 //Ajax call when page is loaded
 $(document).ready(function () {
-    loadGrades();
+    var idSchoolClass = $('#inlineFormCustomSelectPref').children('option:selected').val();
+    loadGrades(idSchoolClass);
 });
