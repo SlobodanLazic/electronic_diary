@@ -62,5 +62,9 @@ function loadGrades(idSchoolClass) {
 //Ajax call when page is loaded
 $(document).ready(function () {
     var idSchoolClass = $('#inlineFormCustomSelectPref').children('option:selected').val();
-    loadGrades(idSchoolClass);
+    console.log(idSchoolClass);
+    $('#inlineFormCustomSelectPref').change(function () {
+        loadGrades(idSchoolClass);
+    });
+    
 });
