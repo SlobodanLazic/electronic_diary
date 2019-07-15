@@ -50,8 +50,11 @@ class Grades extends Controller
 
     public function displayAvgGRadeByClasses()
     {
-
-        $averageGradesByClasses = $this->gradeModel->showAvgGradesByClasses();
+        
+        
+        $id_class = $_POST['idSchoolClass'];
+        
+        $averageGradesByClasses = $this->gradeModel->showAvgGradesByClasses($id_class);
 
         echo (json_encode($averageGradesByClasses));
     }

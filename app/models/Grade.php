@@ -122,10 +122,17 @@ class Grade
 
     // showing average grades by classes for every subject
 
-    public function showAvgGradesByClasses()
+    public function showAvgGradesByClasses($id_class = '')
     {
-
-        $this->db->query('SELECT subjects.name , AVG(grades) as avg_grade FROM students_subjects JOIN subjects ON subjects.id_subject = students_subjects.id_subject  WHERE students_subjects.school_class_id = 2 GROUP BY(students_subjects.id_subject) ORDER BY avg_grade DESC');
+        
+        $this->db->query('SELECT subjects.name , AVG(grades) as avg_grade 
+                        FROM students_subjects 
+                            JOIN subjects ON subjects.id_subject = students_subjects.id_subject  
+                        WHERE students_subjects.school_class_id = :id_class 
+                        GROUP BY(students_subjects.id_subject) 
+                        ORDER BY avg_grade DESC');
+        
+        $this->db->bind(':id_class', $id_class);
 
         $averageGradesByClasses = $this->db->resultSet(PDO::FETCH_ASSOC);
 

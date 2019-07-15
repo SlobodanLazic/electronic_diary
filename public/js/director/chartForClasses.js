@@ -3,7 +3,7 @@ function loadGrades(idSchoolClass) {
     $.ajax({
         url: 'http://localhost/electronic_diary/grades/displayAvgGRadeByClasses',
         method: "POST",
-        data: {'idSchoolClass' : idSchoolClass},
+        data: {"idSchoolClass":idSchoolClass},
         dataType: 'json',
         success: function (data) {
 
