@@ -3,7 +3,29 @@
 <div id="page-wrapper">
 
     <div class="container-fluid">
-        
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card bg-light mt-5 card-body text-center">
+
+                <?php foreach($data['lists_s'] as $list) : ?>
+                <?php 
+                   if ($list->meetings_status == 0) {
+                       echo '<div class="row d-inline-flex">';
+                       echo '<div class="col-md-auto"><p class="">'. $list->to_id_user .'</p></div>';
+                       echo '<div class="col-sm"><p class=" text-danger">Declined</p></div>';
+                       echo '</div>'; // end row
+                   } else {
+                    echo '<div class="row d-inline-flex">';
+                    echo '<div class="col-md-auto"><p class="">'. $list->to_id_user .'</p></div>';
+                    echo '<div class="col-sm"><p class=" text-success">Approved</p></div>';
+                    echo '</div>'; // end row
+                   }
+                ?><hr>
+                <?php endforeach; ?>
+
+                </div>
+            </div>
+        </div>
         <!-- Page Heading -->
         <div class="row">
             <div class="col-md-6 mx-auto">
