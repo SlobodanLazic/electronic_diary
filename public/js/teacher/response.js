@@ -18,7 +18,7 @@ function aprove(id_meeting) {
 
         if (xhttp.readyState == 4) {
 
-            alert('Status upadted');
+            alert('Status updated');
 
 
         }
