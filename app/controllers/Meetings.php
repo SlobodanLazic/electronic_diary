@@ -13,10 +13,13 @@ class Meetings extends Controller
     /* PARENT PART BEGGINING */
     public function requests()
     {
+
         $students = $this->studentModel->showStudentsToParent();
+        $statuslist = $this->meetingModel->showAllStatus();
 
         $data = [
-            'students' => $students
+            'students' => $students,
+            'lists_s' => $statuslist
         ];
 
         $this->view('parent/requests/index', $data);

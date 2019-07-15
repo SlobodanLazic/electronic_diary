@@ -83,4 +83,13 @@ class Meeting
             return false;
         }
     }
+    
+    
+    public function showAllStatus() {
+        $this->db->query('SELECT meetings_status,to_id_user FROM meetings WHERE from_id_user');
+
+        
+        $meetings = $this->db->resultSet();
+        return $meetings;
+    }
 }

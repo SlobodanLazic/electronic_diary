@@ -211,3 +211,7 @@ img {
 .ring {
   display: none; 
 }
+
+.reqmargin {
+  margin: 0;
+}
