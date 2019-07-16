@@ -65,11 +65,21 @@ class Student
         $id_teacher = (int) htmlspecialchars($_SESSION['id_user']);
 
 
+        /* $this->db->query(' SELECT students.id_student,
+                                    students.first_name,
+                                    students.last_name
+                                FROM students 
+                                    JOIN users ON users.teacher_class_id = students.id_school_class WHERE users.id_user = :id_teacher'); */
+
         $this->db->query(' SELECT students.id_student,
-                                 students.first_name,
-                                 students.last_name
-                            FROM students 
-                                JOIN users ON users.teacher_class_id = students.id_school_class WHERE users.id_user = :id_teacher');
+                                    students.first_name,
+                                    students.last_name,
+                                    school_classes.name
+                                    FROM students 
+                                        JOIN users ON users.teacher_class_id = students.id_school_class 
+                                        JOIN school_classes ON students.id_school_class = users.teacher_class_id
+                                    WHERE users.id_user = :id_teacher AND users.teacher_class_id = school_classes.id_school_class
+                                    ');
 
         $this->db->bind(':id_teacher', $id_teacher);
 
@@ -189,5 +199,21 @@ class Student
         } else {
             return false;
         }
+    }
+
+    // counts number of students by class
+
+    public function count_students()
+    {
+
+        $this->db->query('SELECT count(*) as number_of_students FROM students WHERE students.id_school_class = :id_class');
+
+        $id_class = (int) htmlspecialchars($_SESSION['teacher_class_id']);
+
+        $this->db->bind(':id_class', $id_class);
+
+        $numer_of_students = $this->db->single(PDO::FETCH_ASSOC);
+
+        return $numer_of_students;
     }
 }

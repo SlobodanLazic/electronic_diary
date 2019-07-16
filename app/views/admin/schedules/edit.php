@@ -11,7 +11,7 @@
                     Update
                 </h1>
 
-                <div class="card card-body bg-light mt-5">
+                <div class="card card-body bg-light mt-5 col-sm-4 float-left">
 
 
                     <form action="<?php echo URLROOT; ?>/schedules/update/<?php echo $data['schedule']->id_schedules; ?>" method="post">
@@ -24,6 +24,16 @@
 
                         <input type="submit" class="btn btn-success" value="Update">
                     </form>
+                </div>
+                <div class="col-sm-2 float-left">
+                    <div id="subjects_drag">
+                        <h2>Drop subject </h2>
+                        <div class="list-inline">
+                            <?php foreach ($data['subjects'] as $subject) : ?>
+                                <?php echo "<div class='list-group-item all-copy list-group-item-success sw-resize text'> $subject->name </div>" ?>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
                 </div>
 
 

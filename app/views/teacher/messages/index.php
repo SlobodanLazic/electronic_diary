@@ -49,9 +49,7 @@
         </div>
       </div>
 
-      <audio class="ring" id="ring">
-         <source src="<?php echo URLROOT . "/public/music/msg_ton.mp3" ?>" type="audio/mpeg">
-      </audio>
+     
       
     </div></div>
 
@@ -67,12 +65,6 @@
      var messages = document.getElementById('messages'); 
      var id_user = document.getElementById('to_id').value;
      var msg;
-       
-     function ringMSG()
-     {
-       var ring = document.getElementById('ring'); 
-       ring.play();
-     }
 
      function sendMessage()
      {  

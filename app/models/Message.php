@@ -136,7 +136,7 @@ class Message
    public function notificatione()
    {
       $this->db->query("SELECT COUNT(DISTINCT to_id_user)AS number FROM messages 
-      WHERE messages.message_status = 1 AND messages.from_id_user = :id_user"); 
+      WHERE messages.message_status = 1 AND messages.to_id_user = :id_user"); 
 
       $this->db->bind(':id_user', $_SESSION['id_user']); 
 

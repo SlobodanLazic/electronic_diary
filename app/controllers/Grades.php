@@ -51,9 +51,24 @@ class Grades extends Controller
     public function displayAvgGRadeByClasses()
     {
         $id_class = $_POST['idSchoolClass'];
-        
+
         $averageGradesByClasses = $this->gradeModel->showAvgGradesByClasses($id_class);
 
         echo (json_encode($averageGradesByClasses));
+    }
+
+
+    public function delete($id)
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($this->gradeModel->delete($id)) {
+                flash('grade_deleted_msg', 'Grade Deleted');
+                redirect('users\t_students');
+            } else {
+                die('Something went wrong');
+            }
+        } else {
+            redirect('users');
+        }
     }
 }

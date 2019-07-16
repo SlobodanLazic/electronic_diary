@@ -40,7 +40,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo URLROOT . '/users/teacher'; ?>">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+          <i class="fas fa-chalkboard-teacher"></i>
         </div>
         <div class="sidebar-brand-text mx-3">Teacher</div>
       </a>
@@ -63,27 +63,13 @@
         all about classes
       </div>
 
-      <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="<?php echo URLROOT . '/users/t-students'; ?>" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
+        <a class="nav-link" href="<?php echo URLROOT . '/users/t_students'; ?>" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fas fa-fw fa-wrench"></i>
           <span>Students</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Menu:</h6>
-            <a class="collapse-item" href="<?php echo URLROOT . '/users/t_students'; ?>">Students list</a>
-          </div>
-        </div>
       </li>
 
-      <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link" href="#" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Class</span>
-        </a>
-      </li>
       <li class="nav-item">
         <a class="nav-link" href="<?php echo URLROOT . '/schedules/school_calendar'; ?>" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
@@ -96,7 +82,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        ######
+
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -107,7 +93,7 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">###</h6>
+            <h6 class="collapse-header"></h6>
             <a class="collapse-item" href="<?php echo URLROOT . '/meetings/responses'; ?>">Parent requests</a>
             <a class="collapse-item" href="<?php echo URLROOT . '/messages/get_messages'; ?>">Messages</a>
           </div>
@@ -227,12 +213,12 @@
 
             <!-- Nav Item - Messages -->
             <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="<?php echo URLROOT . '/messages/get_messages'; ?>" id="messagesDropdown">
                 <i class="fas fa-envelope fa-fw"></i>
                 <!-- Counter - Messages -->
                 <span id="new_message" class="badge badge-danger badge-counter"></span>
               </a>
-              <!-- Dropdown - Messages -->
+              <!-- Dropdown - Messages 
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header">
                   Message Center
@@ -280,7 +266,7 @@
                 <a class="dropdown-item text-center small text-gray-500" href="<?php echo URLROOT . '/messages/all'; ?>">Read More Messages</a>
               </div>
             </li>
-
+            -->
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->

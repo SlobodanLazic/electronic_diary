@@ -1,3 +1,6 @@
+<audio class="ring" id="ring">
+         <source src="<?php echo URLROOT . "/public/music/msg_ton.mp3" ?>" type="audio/mpeg">
+</audio>
   </div>
   <!-- /#wrapper -->
 
@@ -21,30 +24,12 @@
 
 <!-- Detect new Notification and Message  -->
 <script>
-     /*
-      var notification = document.getElementById("new_notification")
-      var message = document.getElementById("new_message")
-
-
-      function message_query() {
-            
-        xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-              if(this.message_number > 0) {
-               message.innerHTML = this.messages_number;
-              } else {
-                message.innerHTML = "";
-              }
-         }
-        };
-          xhttp.open("GET", "", true);
-          xhttp.send();  
-
-       }
-
-      setTimeout(message_query,3000); 
-      */
-
+  
+      function ringMSG()
+     {
+       var ring = document.getElementById('ring'); 
+       ring.play();
+     }
        
 
       function notification_message()
@@ -54,19 +39,25 @@
         var xmlhttp = new XMLHttpRequest();
       xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-           
+          if(this.responseText > 0 ) {
            new_message.innerHTML =  this.responseText;
-           
-           
-           }
+          } 
+          else
+           {
+            new_message.innerHTML = ""; 
+            }
+        }
         };
-       xmlhttp.open("GET", "<?php echo URLROOT; ?>/messages/notification", true);
-       xmlhttp.send();
-       
-
+ 
+        xmlhttp.open("GET", "<?php echo URLROOT; ?>/messages/notification", true);
+        
+        xmlhttp.send();
+   
       }
-      notification_message(); 
-     $d = setTimeout(notification_message,1000); 
+
+
+     $d = setInterval(notification_message, 1000); 
+
 </script>
 
   </body>
