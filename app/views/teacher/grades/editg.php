@@ -21,11 +21,14 @@
                         <form action="<?php echo URLROOT; ?>/users/updateGrade/<?php echo $data['id']; ?>" method="POST">
                             <div class="form-group row">
                                 <div class="col-xs-2">
-                                    <input type="number" name='grade' min="1" max="5" class="form-control <?php echo (!empty($data['grade_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['grade']->grades ?? '' ?>">
-                                    <span class="invalid-feedback text-danger"><?php echo $data['grade_err']; ?></span>
-
-                                    <input type="hidden" name="grade_id" value="<?php echo $data['id']; ?>">
-                                    <input type="submit" value="Update garde">
+                                    <div class="mb-2">
+                                        <input type="number" name='grade' min="1" max="5" class="form-control <?php echo (!empty($data['grade_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['grade']->grades ?? '' ?>">
+                                        <span class="invalid-feedback text-danger"><?php echo $data['grade_err']; ?></span>
+                                    </div>
+                                    <div>
+                                        <input type="hidden" name="grade_id" value="<?php echo $data['id']; ?>">
+                                        <input type="submit" class="btn btn-primary btn-block" value="Update grade">
+                                    </div>
                                 </div>
                             </div>
                         </form>
