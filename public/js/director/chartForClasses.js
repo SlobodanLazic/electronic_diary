@@ -8,7 +8,12 @@ function loadGrades(idSchoolClass) {
         success: function (data) {
 
             var data = data;
-            console.log(data);
+            
+            if(data.length == 0){
+                document.getElementById('chartdiv').style.display = "none";
+            } else {
+                document.getElementById('chartdiv').style.display = "block";
+            }
             // Themes begin
             // Using default theme
             am4core.useTheme(am4themes_animated);
@@ -55,16 +60,18 @@ function loadGrades(idSchoolClass) {
                     }
                 }]
             }, "chartdiv", am4charts.XYChart3D);
+            
+            
 
         }
     });
 }
 //Ajax call when page is loaded
 $(document).ready(function () {
-    var idSchoolClass = $('#inlineFormCustomSelectPref').children('option:selected').val();
-    console.log(idSchoolClass);
+    
     $('#inlineFormCustomSelectPref').change(function () {
-        loadGrades(idSchoolClass);
+        var idSchoolClass = $('#inlineFormCustomSelectPref').val();
+            loadGrades(idSchoolClass);
     });
     
 });
