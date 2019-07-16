@@ -65,11 +65,21 @@ class Student
         $id_teacher = (int) htmlspecialchars($_SESSION['id_user']);
 
 
-        $this->db->query(' SELECT students.id_student,
-                                 students.first_name,
-                                 students.last_name
-                            FROM students 
-                                JOIN users ON users.teacher_class_id = students.id_school_class WHERE users.id_user = :id_teacher');
+           /* $this->db->query(' SELECT students.id_student,
+                                    students.first_name,
+                                    students.last_name
+                                FROM students 
+                                    JOIN users ON users.teacher_class_id = students.id_school_class WHERE users.id_user = :id_teacher'); */
+
+                $this->db->query(' SELECT students.id_student,
+                                    students.first_name,
+                                    students.last_name,
+                                    school_classes.name
+                                    FROM students 
+                                        JOIN users ON users.teacher_class_id = students.id_school_class 
+                                        JOIN school_classes ON students.id_school_class = users.teacher_class_id
+                                    WHERE users.id_user = :id_teacher AND users.teacher_class_id = school_classes.id_school_class
+                                    ');
 
         $this->db->bind(':id_teacher', $id_teacher);
 
