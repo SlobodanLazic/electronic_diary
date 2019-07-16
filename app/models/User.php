@@ -162,4 +162,22 @@ class User
 
         return $allUsers;
     }
+
+    // get number of classes for teacher by day
+
+    public function get_number_of_classes()
+    {
+
+        $integerOfDay = idate('w', time());
+
+        $this->db->query("SELECT count(*) as number_of_classes FROM schedules WHERE schedules.day_id = $integerOfDay AND schedules.subject_name != '' AND schedules.class_id = :id_class");
+
+        $id_class = (int) htmlspecialchars($_SESSION['teacher_class_id']);
+
+        $this->db->bind(':id_class', $id_class);
+
+        $number_of_classes = $this->db->single(PDO::FETCH_ASSOC);
+
+        return $number_of_classes;
+    }
 }

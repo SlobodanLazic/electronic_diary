@@ -469,7 +469,18 @@ class Users extends Controller
     {
         if (isset($_SESSION['id_user'])) {
             if ($_SESSION['id_user_role'] == 3) {
-                $this->view('teacher/index');
+
+                $number_of_students = $this->studentModel->count_students();
+
+                $number_of_classes = $this->userModel->get_number_of_classes();
+
+                $data = [
+
+                    'n_students' => $number_of_students,
+                    'n_classes' => $number_of_classes
+                ];
+
+                $this->view('teacher/index', $data);
             } else {
                 $this->logout();
             }
@@ -481,16 +492,19 @@ class Users extends Controller
     from teacher's grade by using method contained in Student model*/
     public function t_students()
     {
+
+
         $students = $this->studentModel->showStudentsToTeacher();
 
         $data = [
 
             'students' => $students
-
         ];
 
         $this->view('teacher/t_students/index', $data);
     }
+
+
     public function grades()
     {
         if (isset($_SESSION['id_user'])) {
@@ -562,12 +576,11 @@ class Users extends Controller
             'student_grades' => $student_grades
         ];
 
-        if($_SESSION['id_user_role'] == 3) {
+        if ($_SESSION['id_user_role'] == 3) {
             $this->view('teacher/grades/showg', $data);
-        } else if ($_SESSION['id_user_role'] == 4 ) {
+        } else if ($_SESSION['id_user_role'] == 4) {
             $this->view('parent/grades/showg', $data);
         }
-        
     }
 
     // Displaying form for editing grade by subject
@@ -668,9 +681,9 @@ class Users extends Controller
     public function p_students()
     {
         $parentId = $_SESSION['id_user'];
-        
-        if($_SESSION['id_user_role'] == 4){
-            
+
+        if ($_SESSION['id_user_role'] == 4) {
+
             $students = $this->studentModel->showStudentsToParent();
 
             $data = [
@@ -678,7 +691,7 @@ class Users extends Controller
             ];
 
             $this->view('parent/students/index', $data);
-        } 
+        }
     }
     /* PARENT PART END*/
 
@@ -706,7 +719,7 @@ class Users extends Controller
             'classes' => $classes
 
         ];
-        
+
         $this->view('director/statistic/class_statistic', $data);
     }
 
