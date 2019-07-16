@@ -18,8 +18,9 @@
                             <div class="dataTables_wrapper dt-bootstrap4">
                                 <?php flash('student_grade_message') ?>
                                 <?php flash('student_grade_updated') ?>
-                                <?php flash('student_grade_deleted_msg') ?>
-                                <?php echo '<p> Class ' .$data['students'][0]->name. '</p>';  ?>
+                                <?php flash('grade_deleted_msg') ?>
+
+                                <?php echo '<p> Class ' . $data['students'][0]->name . '</p>';  ?>
                                 <table class="table table-bordered dataTable text-center">
                                     <thead>
 

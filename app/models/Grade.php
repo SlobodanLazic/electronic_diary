@@ -124,14 +124,14 @@ class Grade
 
     public function showAvgGradesByClasses($id_class = '')
     {
-        
+
         $this->db->query('SELECT subjects.name , AVG(grades) as avg_grade 
                         FROM students_subjects 
                             JOIN subjects ON subjects.id_subject = students_subjects.id_subject  
                         WHERE students_subjects.school_class_id = :id_class 
                         GROUP BY(students_subjects.id_subject) 
                         ORDER BY avg_grade DESC');
-        
+
         $this->db->bind(':id_class', $id_class);
 
         $averageGradesByClasses = $this->db->resultSet(PDO::FETCH_ASSOC);
@@ -168,6 +168,21 @@ class Grade
 
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':id_subject', $data['id_subject']);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // delete grade by id
+
+    public function delete($id_student_subject)
+    {
+
+        $this->db->query('DELETE FROM students_subjects WHERE students_subjects.id_student_subject = :id_student_subject');
+        $this->db->bind(':id_student_subject', $id_student_subject);
 
         if ($this->db->execute()) {
             return true;
