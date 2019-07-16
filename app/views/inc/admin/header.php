@@ -57,7 +57,7 @@ if (!isset($_SESSION["id_user"])) {
 
       <!-- Nav Item - Admin -->
       <li class="nav-item active">
-        <a class="nav-link" href="<?php echo URLROOT . '/users/teacher'; ?>">
+        <a class="nav-link" href="<?php echo URLROOT . '/users/admin'; ?>">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Admin</span></a>
       </li>
@@ -71,17 +71,12 @@ if (!isset($_SESSION["id_user"])) {
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
+
       <li class="nav-item">
-        <a class="nav-link collapsed" href="<?php echo URLROOT . '/users/'; ?>" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link" href="<?php echo URLROOT . '/users/'; ?>" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-users"></i>
           <span>Users</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Menu:</h6>
-            <a class="collapse-item" href="<?php echo URLROOT . '/users/'; ?>">Users</a>
-          </div>
-        </div>
       </li>
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
