@@ -18,7 +18,7 @@
             </div>
             <div class="col-sm">
               <div class="buttons-loc">
-                <a class=" btn  btn-primary" href="<?php echo URLROOT . "/subjects/insert" ?>">Insert subject</a>
+                <a class="btn btn-primary" href="<?php echo URLROOT . "/subjects/insert" ?>">Insert subject</a>
               </div>
             </div>
         </div>

@@ -6,7 +6,7 @@
 
         <!-- Page Heading -->
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-sm-12 col-lg-3">
                 <h1 class="page-header">
                     Classes
                 </h1>
@@ -14,7 +14,7 @@
                 <?php flash('student_updated') ?>
                 <?php flash('student_deleted_msg') ?>
 
-                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT; ?>/classes/insert">Insert class</a>
+                <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mt-2 mb-2" href="<?php echo URLROOT; ?>/classes/insert">Insert class</a>
 
                 <table class="table table-striped">
 
