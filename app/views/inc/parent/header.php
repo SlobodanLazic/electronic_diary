@@ -9,11 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-<<<<<<< HEAD
       <title>Parent</title>
-=======
-  <title>Teacher</title>
->>>>>>> master
 
   <!-- Custom CSS -->
   <link href="<?php echo URLROOT; ?>/css/dashboard/sb-admin.css" rel="stylesheet">

@@ -12,15 +12,6 @@
               <!-- <h4>Recent</h4>  -->
               <h4>Messaging</h4>
             </div>
-            
-            <div class="srch_bar">
-              <div class="stylish-input-group">
-            <!--    <input type="text" class="search-bar"  placeholder="Search" > -->
-                
-                <span class="input-group-addon">
-                <!-- <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>  -->
-                </span> </div>
-            </div> 
           </div>
         
           <div class="inbox_chat">
@@ -88,7 +79,7 @@
 
         var d = new Date();
         
-        
+        ///////////////////////////////////
 
         var datetext = document.createTextNode(''); 
 
