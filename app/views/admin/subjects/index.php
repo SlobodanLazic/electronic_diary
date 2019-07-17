@@ -8,7 +8,7 @@
 
         <!-- Page Heading -->
         <div class="row">
-            <div class="col-sm">
+            <div class="col-sm-12 col-lg-3">
                 <h1 class="page-header">
                     Subjects
                 </h1>
@@ -23,7 +23,7 @@
             </div>
         </div>
         <!-- /.row -->
-        <table class="table table-hover">
+        <table class="table table-hover col-5">
   <thead>
     <tr>
       <th scope="col">ID</th>
