@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-sm-2 float-left">
                     <div id="subjects_drag">
-                        <h2>Drop subject </h2>
+                        <h2>Drag subject </h2>
                         <div class="list-inline">
                             <?php foreach ($data['subjects'] as $subject) : ?>
                                 <?php echo "<div class='list-group-item all-copy list-group-item-success sw-resize text'> $subject->name </div>" ?>
