@@ -75,8 +75,8 @@
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">All chats</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">123</div>
+                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">New messages</div>
+                <div id="dmsg" class="h5 mb-0 font-weight-bold text-gray-800"> </div>
               </div>
               <div class="col-auto">
                 <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -94,5 +94,17 @@
 
 </div>
 <!-- /#page-wrapper -->
+<script>
+var msg = document.getElementById('dmsg');
+
+function fmsg() {
+  if(new_message.innerHTML !== "") { 
+  msg.innerHTML = new_message.innerHTML; 
+  } else {
+    msg.innerHTML = "0"
+  } 
+}
+var m = setInterval(fmsg,100); 
+</script>
 
 <?php require APPROOT . '/views/inc/teacher/footer.php'; ?>
