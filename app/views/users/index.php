@@ -17,7 +17,7 @@
                 <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT; ?>/users/insert">Insert user</a>
                 <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo URLROOT; ?>/users/assign">Assign student</a>
 
-                <form action="<?php echo URLROOT; ?>/users/" method="post">
+                <form action="<?php echo URLROOT; ?>/users/" method="post" class='mt-4'>
                     <div class="row select_role">
                         <div class="col">
                             <div class="form-group">

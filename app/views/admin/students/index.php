@@ -18,7 +18,7 @@
 
                     <div class="form-group">
                         <label>Select class:</label>
-                        <select name='id_class' class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                        <select name='id_class' class="custom-select my-1 mr-sm-2 mb-4" id="inlineFormCustomSelectPref">
 
 
                             <?php foreach ($data['classes'] as $class) : ?>
