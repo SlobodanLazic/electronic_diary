@@ -410,7 +410,7 @@ class Users extends Controller
         unset($_SESSION['username']);
         unset($_SESSION['email']);
         unset($_SESSION['id_user_role']);
-        session_destroy(); 
+        session_destroy();
         redirect('users/login');
     }
 
@@ -670,8 +670,16 @@ class Users extends Controller
     public function parent()
     {
         if (isset($_SESSION['id_user'])) {
+
             if ($_SESSION['id_user_role'] == 4) {
-                $this->view('parent/index');
+
+                $num_of_classes_for_child = $this->classModel->get_number_of_classes_for_child();
+
+                $data = [
+                    'num_of_classes_for_child' => $num_of_classes_for_child
+                ];
+
+                $this->view('parent/index', $data);
             } else {
                 $this->logout();
             }
@@ -827,14 +835,15 @@ class Users extends Controller
         }
     }
 
-    public function show_log(){
-        $logs = $this->userModel->show_logs(); 
+    public function show_log()
+    {
+        $logs = $this->userModel->show_logs();
 
         $data = [
             'logs' => $logs
-        ]; 
+        ];
 
-        $this->view("teacher/teacher_log/index", $data); 
+        $this->view("teacher/teacher_log/index", $data);
     }
 
     /* ASSIGN USER END*/
