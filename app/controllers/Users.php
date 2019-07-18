@@ -852,7 +852,6 @@ class Users extends Controller
                 $this->view("parent/parent_log/index", $data);
                 break;
         }
-        $this->view("teacher/teacher_log/index", $data);
     }
 
     /* ASSIGN USER END*/
