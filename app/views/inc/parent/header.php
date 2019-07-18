@@ -71,17 +71,8 @@
         </a>
       </li>
 
-      <!-- Nav Item - Utilities Collapse Menu 
+
       <li class="nav-item">
-<<<<<<< HEAD
-=======
-        <a class="nav-link" href="#" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-          <i class="fas fa-fw fa-wrench"></i>
-          <span>Class</span>
-        </a>
-      </li>  -->
-      <li class="nav-item">
->>>>>>> messager
         <a class="nav-link" href="<?php echo URLROOT . '/users/p_students'; ?>" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Student grades</span>
