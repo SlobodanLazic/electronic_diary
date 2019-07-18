@@ -835,10 +835,13 @@ class Users extends Controller
         ]; 
 
         $role = $_SESSION['id_user_role']; 
-        if($role == 3) {
-        $this->view("teacher/teacher_log/index", $data); 
-        } else if ($role == 4) {
-        $this->view("parent/parent_log/index", $data);     
+        switch($role) {
+            case 3: 
+                $this->view("teacher/teacher_log/index", $data);
+                break; 
+            case 4: 
+                $this->view("parent/parent_log/index", $data);
+                break; 
         }
     }
 
