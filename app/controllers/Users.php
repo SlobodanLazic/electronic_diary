@@ -345,6 +345,7 @@ class Users extends Controller
                 if ($loggedInUser) {
                     // Create Session
                     $this->createUserSession($loggedInUser);
+                    $this->userModel->LoginTimeInsert();
 
                     /* id_user_role 1 is administrator,id_user role 2 is director,id_user_role 3 is teacher,
                         id_user_role 4 is parent so it will redirect it to proper page dependent of role */
@@ -404,11 +405,12 @@ class Users extends Controller
 
     public function logout()
     {
+        $this->userModel->LogoutTimeUpdate();
         unset($_SESSION['id_user']);
         unset($_SESSION['username']);
         unset($_SESSION['email']);
         unset($_SESSION['id_user_role']);
-        session_destroy();
+        session_destroy(); 
         redirect('users/login');
     }
 
@@ -823,6 +825,16 @@ class Users extends Controller
 
             $this->view('admin/students/assign_student', $data);
         }
+    }
+
+    public function show_log(){
+        $logs = $this->userModel->show_logs(); 
+
+        $data = [
+            'logs' => $logs
+        ]; 
+
+        $this->view("teacher/teacher_log/index", $data); 
     }
 
     /* ASSIGN USER END*/

@@ -147,10 +147,10 @@ class Message
       return $notifications; 
    }
 
-   public function notificationeAkll()
+   public function notificationeAll()
    {
-      $this->db->query("SELECT COUNT(DISTINCT from_id_user)AS number FROM messages 
-      WHERE  messages.to_id_user = :id_user"); 
+      $this->db->query("SELECT COUNT(from_id_user)AS number FROM messages 
+      WHERE  messages.from_id_user = :id_user"); 
 
       $this->db->bind(':id_user', $_SESSION['id_user']); 
 
