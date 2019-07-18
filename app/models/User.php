@@ -219,7 +219,7 @@ class User
     }
 
     public function show_logs() {
-        $this->db->query("SELECT user_log.login_time, user_log.logout_time FROM user_log WHERE id_user = :user_id"); 
+        $this->db->query("SELECT user_log.login_time, user_log.logout_time FROM user_log WHERE id_user = :user_id ORDER BY id_log DESC"); 
         
         $user_id = (int)$_SESSION['id_user']; 
 

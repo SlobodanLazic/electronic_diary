@@ -834,7 +834,12 @@ class Users extends Controller
             'logs' => $logs
         ]; 
 
+        $role = $_SESSION['id_user_role']; 
+        if($role == 3) {
         $this->view("teacher/teacher_log/index", $data); 
+        } else if ($role == 4) {
+        $this->view("parent/parent_log/index", $data);     
+        }
     }
 
     /* ASSIGN USER END*/
