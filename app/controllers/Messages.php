@@ -147,4 +147,12 @@ class Messages extends Controller
        echo (int)$notificatione->number; 
        
     }
+     //Count all messages 
+    public function notificationAll()
+    {
+        $notificatione = $this->messageModel->notificatione(); 
+        
+       echo (int)$notificatione->number; 
+       
+    }
 } 

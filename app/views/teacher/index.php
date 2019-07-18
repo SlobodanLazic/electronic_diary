@@ -98,13 +98,10 @@
 var msg = document.getElementById('dmsg');
 
 function fmsg() {
-  if(new_message.innerHTML !== "") { 
-  msg.innerHTML = new_message.innerHTML; 
-  } else {
-    msg.innerHTML = "0"
-  } 
+ 
+   
 }
-var m = setInterval(fmsg,100); 
+var m = setInterval(fmsg,1000); 
 </script>
 
 <?php require APPROOT . '/views/inc/teacher/footer.php'; ?>
