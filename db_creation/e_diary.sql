@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 19, 2019 at 07:05 AM
--- Server version: 5.7.24
--- PHP Version: 7.2.14
+-- Generation Time: Jul 19, 2019 at 08:41 PM
+-- Server version: 5.7.26
+-- PHP Version: 7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -107,6 +107,35 @@ INSERT INTO `parent_notifications` (`id_parent_notification`, `notification_cont
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `professor_info`
+--
+
+DROP TABLE IF EXISTS `professor_info`;
+CREATE TABLE IF NOT EXISTS `professor_info` (
+  `id_professor` int(11) NOT NULL,
+  `id_class` int(11) NOT NULL,
+  `id_subject` int(11) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `professor_info`
+--
+
+INSERT INTO `professor_info` (`id_professor`, `id_class`, `id_subject`) VALUES
+(44, 3, 3),
+(45, 3, 3),
+(47, 1, 1),
+(47, 1, 1),
+(47, 1, 2),
+(47, 1, 3),
+(62, 1, 1),
+(62, 1, 2),
+(62, 1, 7),
+(63, 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `schedules`
 --
 
@@ -126,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `schedules` (
 
 INSERT INTO `schedules` (`id_schedules`, `subject_name`, `order_id`, `day_id`, `class_id`) VALUES
 (1, 'Srpski jezik i knjizevnost', 1, 1, 1),
-(2, 'Matematika', 2, 1, 1),
+(2, 'Likovno', 2, 1, 1),
 (3, 'Likovno', 3, 1, 1),
 (4, 'Biologija', 4, 1, 1),
 (5, '', 5, 1, 1),
@@ -393,7 +422,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `teacher_class_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   KEY `fk_users_user_roles_idx` (`id_user_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
@@ -405,7 +434,9 @@ INSERT INTO `users` (`id_user`, `username`, `password`, `email`, `id_user_role`,
 (8, 'teacher', '$2y$10$91fxW1z3ChSXmhFh2Qy2U.7/ipBBotLWeSS2fspc27I2CbPfjldha', 'teacher@gmail.com', 3, 1),
 (15, 'parent', '$2y$10$3VngNhp8CWN2rL3nOXK6Au8jtqqTAGGg9g3/Nm7jXCpDr216.fCYe', 'parent@gmail.com', 4, 0),
 (34, 'teacher1', '$2y$10$e4dRFqGtFyjXaRARefmHP.PujuGjm3o63pZmEp4b7uORKewBPuvda', 'teacher1@gmail.com', 3, 2),
-(40, 'parent2', '$2y$10$HsATeFX5yQzoTr26sFP./OuT5S4jHowTbVithPPBLeKlV3/Z0dNrC', 'parent2@gmail.com', 4, 0);
+(40, 'parent2', '$2y$10$HsATeFX5yQzoTr26sFP./OuT5S4jHowTbVithPPBLeKlV3/Z0dNrC', 'parent2@gmail.com', 4, 0),
+(62, 'profesor', '$2y$10$qIMEXgczNyzi8cq8hhGRc.09gVgN.md6y9fXollkNzXK2KiSpwyqG', 'profesor@gmail.com', 5, 0),
+(63, 'profesor1', '$2y$10$M.BlIGY4Xw7dAkGUfB7EgehE4urnDiuLO1jY./B2t0pKQ22sNu5Le', 'profesor1@gmail.com', 5, 0);
 
 -- --------------------------------------------------------
 
@@ -458,7 +489,7 @@ CREATE TABLE IF NOT EXISTS `user_log` (
   `ip_user` varchar(20) NOT NULL,
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_log`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_log`
@@ -475,7 +506,9 @@ INSERT INTO `user_log` (`id_log`, `login_time`, `logout_time`, `ip_user`, `id_us
 (8, '2019-07-18 18:27:15', '2019-07-18 18:27:15', '::1', 15),
 (9, '2019-07-18 19:42:16', '2019-07-18 19:44:28', '::1', 8),
 (10, '2019-07-18 19:44:48', '2019-07-19 08:49:37', '::1', 15),
-(11, '2019-07-19 08:49:45', '2019-07-19 08:49:45', '::1', 15);
+(11, '2019-07-19 08:49:45', '2019-07-19 08:49:45', '::1', 15),
+(12, '2019-07-19 22:38:34', '2019-07-19 22:38:44', '::1', 2),
+(13, '2019-07-19 22:38:52', '2019-07-19 22:38:52', '::1', 8);
 
 -- --------------------------------------------------------
 
@@ -489,7 +522,7 @@ CREATE TABLE IF NOT EXISTS `user_roles` (
   `name` varchar(45) NOT NULL,
   `description` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id_user_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user_roles`
@@ -499,7 +532,8 @@ INSERT INTO `user_roles` (`id_user_role`, `name`, `description`) VALUES
 (1, 'Administrator', 'Administrator can delete update edit users,user roles,schedules,notifications'),
 (2, 'Director', 'have access to statistics on the efficiency of the classroomto have access to statistics on the efficiency of subjects at the school level'),
 (3, 'Teacher', 'can have 1 class and access to only that class,access their department and write, delete, and conclude grades,can accept and reject the request for parents to come to the open door,message section , schedule'),
-(4, 'Parent', 'has access to and grades only for his child,has access to the part of the application where he will schedule the arrival at the open door,messages, notification access');
+(4, 'Parent', 'has access to and grades only for his child,has access to the part of the application where he will schedule the arrival at the open door,messages, notification access'),
+(5, 'Professor', 'Profesor can teach one or more subjects and can have 1 or more classes');
 
 --
 -- Constraints for dumped tables
