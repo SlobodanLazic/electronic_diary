@@ -17,6 +17,11 @@ function toggleFields() {
    } else {
       $("#teacher").hide();
    }
+   if ($("#user_role").val() === "5") {
+      $("#professor").show();
+   } else {
+      $("#professor").hide();
+   }
 }
 
 

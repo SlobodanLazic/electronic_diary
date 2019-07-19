@@ -26,7 +26,6 @@ class Users extends Controller
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
 
-
             // Init data
             $data = [
                 'name' => htmlspecialchars(trim($_POST['name'])),
@@ -38,6 +37,8 @@ class Users extends Controller
                 'last_name' => trim($_POST['last_name']),
                 'id_school_class' => trim($_POST['id_school_class']),
                 'teacher_class_id' => (int) trim($_POST['teacher_class_id']),
+                'professor_class_id' =>  (int) trim($_POST['professor_class_id']),
+                'subject_id' => $subject_id = array_map('trim', $_POST['subject_id']),
 
                 'name_err' => '',
                 'email_err' => '',
@@ -47,7 +48,9 @@ class Users extends Controller
                 'first_name_err' => '',
                 'last_name_err' => '',
                 'id_school_class_err' => '',
-                'id_teacher_class_err' => ''
+                'id_teacher_class_err' => '',
+                'id_professor_class_err' => '',
+                'id_subject_err' => ''
 
             ];
 
@@ -125,9 +128,36 @@ class Users extends Controller
                 }
             }
 
+            // if user role is professor
+
+            if ($data['user_role'] == 5) {
+                // Validate professor class
+                if (empty($data['professor_class_id'])) {
+
+                    $data['id_professor_class_err'] = 'Please select Professor Class';
+                }
+                if (empty($data['subject_id'])) {
+
+                    $data['subject_id_err'] = 'Please select Subject For Professor';
+                }
+            }
+
 
             // Make sure errors are empty
-            if (empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err']) && empty($data['first_name_err']) && empty($data['last_name_err']) && empty($data['id_school_class_err']) && empty($data['id_teacher_class_err'])) {
+            if (
+                empty($data['email_err'])
+                && empty($data['name_err'])
+                && empty($data['password_err'])
+                && empty($data['confirm_password_err'])
+                && empty($data['first_name_err'])
+                && empty($data['last_name_err'])
+                && empty($data['id_school_class_err'])
+                && empty($data['id_teacher_class_err'])
+                && empty($data['id_professor_class_err'])
+                && empty($data['subject_id_err'])
+
+            ) {
+
                 // Validated
 
                 // Hash Password
@@ -149,6 +179,15 @@ class Users extends Controller
                             }
                         } else {
                             die('Something went wrong');
+                        }
+                    }
+
+                    // Add in professor_info
+
+                    if (!empty($data['subject_id'] && !empty($data['professor_class_id']))) {
+
+                        for ($i = 0; $i < count($data['subject_id']); $i++) {
+                            $this->userModel->insertProfessorInfo($data['subject_id'][$i], $data);
                         }
                     }
 
@@ -178,6 +217,8 @@ class Users extends Controller
                 'last_name' => '',
                 'id_school_class' => '',
                 'teacher_class_id' => '',
+                'professor_class_id' => '',
+                'subject_id' => '',
 
                 'name_err' => '',
                 'email_err' => '',
@@ -191,8 +232,11 @@ class Users extends Controller
             ];
 
             $classes = $this->classModel->showAllClasses();
+            $subjects = $this->subjectModel->showallSubjects();
 
             $data['classes'] = $classes;
+
+            $data['subjects'] = $subjects;
 
             // Load view
             $this->view('users/insert', $data);
