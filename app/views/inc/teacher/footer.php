@@ -23,10 +23,26 @@
   <script src="<?php echo URLROOT; ?>/js/teacher/response.js"></script>
 
   <script>
-     var messages = document.getElementById('messages');
+var wrapper = document.getElementById("wrapper"); 
+var body = document.getElementsByTagName("body"); 
+
+var messages = document.getElementById('messages');
 var ring = document.getElementById('ring');
 var id_user = document.getElementById('to_id');
 var msg;
+
+// show background transparent and heidt
+function showBG() {
+    wrapper.insertAdjacentHTML("afterend", "  <div class='modal-backdrop fade show'></div>");
+}
+
+function heighBG() {
+    body.removeChild("weapper"); 
+}
+///// 
+
+
+
 
 //scroll div messager
 function scroll() {
