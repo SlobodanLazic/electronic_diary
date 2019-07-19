@@ -37,7 +37,7 @@ function toggleFields() {
 
 
 //    inputElement.addEventListener('dragstart', () => isDragged = true)
-//    document.body.addEventListener('drop', () =>
+//    document.body.addEventListener('drop', () =>subjects_drag
 //       (wasDropped = isDragged) && (previousValue = inputElement.value))
 //    inputElement.addEventListener('change', (e) =>
 //       isDragged && wasDropped && (e.target.value = previousValue))
