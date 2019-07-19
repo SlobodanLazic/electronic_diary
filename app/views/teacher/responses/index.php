@@ -8,7 +8,7 @@
     <div class="row">
 
 
-      <table class="table table-striped">
+      <table id="tabela1" class="table table-striped">
 
         <thead>
 
@@ -16,7 +16,8 @@
             <th></th>
             <th>Parent Name</th>
             <th>Meeting Time</th>
-            <th colspan="2">Status</th>
+            <th></th>
+            <th>Status</th>
           </tr>
         </thead>
 
@@ -25,18 +26,21 @@
         <?php foreach ($data['meetings'] as $meeting) : ?>
 
           <tbody>
-
-            <tr>
+            <?php if($meeting->meetings_status != 1) { ?>
+            <tr id="<?php echo $meeting->id_meetings; ?>">
 
 
               <?php echo '<td>' . ++$i . '</td><td>' . $meeting->username . '</td><td>' . $meeting->meetings . '</td>'; ?>
+               <?php if($meeting->meetings_status == 0) {?>
+              <td id="ab<?php echo $meeting->id_meetings; ?>"><button id='aprove' class="btn btn-success" type="button" onclick="aprove(<?php echo $meeting->id_meetings; ?>, 2, this)">Accept</button></td>
 
-              <td><button id='aprove' class="btn btn-success" type="submit" onclick="aprove(id_meeting = <?php echo $meeting->id_meetings; ?>)">Accept</button></td>
+              <td id="db<?php echo $meeting->id_meetings; ?>"><button id='denny' class="btn btn-danger" type="button" onclick="aprove(<?php echo $meeting->id_meetings; ?>, 1,this)">Denny</button></td>
+               <?php } else { ?>
 
-              <td><button id='denny' class="btn btn-danger" type="submit" onclick="un_aprove(id_meeting = <?php echo $meeting->id_meetings; ?>)">Denny</button></td>
-
+                <td></td><td><span class='text-success text-center'>Success</span></td>
+               <?php } ?>
             </tr>
-
+               <?php } ?>
           </tbody>
 
         <?php endforeach; ?>

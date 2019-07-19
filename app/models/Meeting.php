@@ -55,7 +55,11 @@ class Meeting
     public function getMeetingsByTeacherId()
     {
 
-        $this->db->query('SELECT meetings.id_meetings , meetings.meetings , meetings.meetings_status, users.username , meetings.to_id_user FROM meetings JOIN users ON users.id_user = meetings.from_id_user WHERE meetings.to_id_user = :id_teacher AND meetings.meetings_status = 0');
+        $this->db->query('SELECT meetings.id_meetings , meetings.meetings , meetings.meetings_status, users.username , meetings.to_id_user 
+                          FROM meetings 
+                           JOIN users ON users.id_user = meetings.from_id_user 
+                          WHERE meetings.to_id_user = :id_teacher AND meetings.meetings > now()
+                          ORDER BY meetings.meetings ASC');
 
         $id_teacher = (int) htmlspecialchars($_SESSION['id_user']);
 
@@ -84,11 +88,15 @@ class Meeting
         }
     }
     
-    
+    //Parent
     public function showAllStatus() {
-        $this->db->query('SELECT meetings_status,to_id_user FROM meetings WHERE from_id_user');
+        $this->db->query('SELECT meetings.meetings_status,meetings.to_id_user, meetings.meetings
+                          FROM meetings 
+                          WHERE meetings.from_id_user = :id_user AND meetings.meetings > now()
+                          ORDER BY meetings.meetings DESC');
 
-        
+        $id_user = (int)$_SESSION['id_user']; 
+        $this->db->bind(':id_user', $id_user); 
         $meetings = $this->db->resultSet();
         return $meetings;
     }
