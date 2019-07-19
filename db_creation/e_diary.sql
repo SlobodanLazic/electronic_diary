@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 18, 2019 at 04:29 PM
--- Server version: 5.7.26
--- PHP Version: 7.2.18
+-- Generation Time: Jul 19, 2019 at 07:05 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -35,11 +35,20 @@ CREATE TABLE IF NOT EXISTS `meetings` (
   `id_meetings` int(11) NOT NULL AUTO_INCREMENT,
   `meetings` datetime NOT NULL,
   `meetings_status` tinyint(1) DEFAULT '0',
+  `meeting_view` int(11) NOT NULL,
   `from_id_user` int(11) NOT NULL,
   `to_id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_meetings`),
   KEY `fk_meeting_shedules_users1_idx` (`from_id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `meetings`
+--
+
+INSERT INTO `meetings` (`id_meetings`, `meetings`, `meetings_status`, `meeting_view`, `from_id_user`, `to_id_user`) VALUES
+(1, '2019-07-19 19:10:00', 1, 0, 15, 8),
+(2, '2019-07-24 19:02:00', 1, 0, 15, 8);
 
 -- --------------------------------------------------------
 
@@ -58,20 +67,22 @@ CREATE TABLE IF NOT EXISTS `messages` (
   PRIMARY KEY (`id_messages`),
   KEY `fk_messages_users1_idx` (`from_id_user`),
   KEY `fk_messages_users2_idx` (`to_id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `messages`
 --
 
 INSERT INTO `messages` (`id_messages`, `message_time`, `message_content`, `message_status`, `from_id_user`, `to_id_user`) VALUES
-(1, '2019-07-18 16:15:42', 'fdgdfgfg', 1, 15, 8),
-(2, '2019-07-18 16:15:59', 'fdgfg', 1, 15, 8),
-(3, '2019-07-18 16:16:16', 'hgjghjhj', 1, 15, 8),
-(4, '2019-07-18 16:16:18', 'hgjhgjgh', 1, 15, 8),
-(5, '2019-07-18 16:16:29', 'hgjhgjhgjhgj', 1, 15, 8),
-(6, '2019-07-18 16:16:31', 'ghjhgjgh', 1, 15, 8),
-(7, '2019-07-18 16:16:32', 'hgjghj', 1, 15, 8);
+(1, '2019-07-18 16:15:42', 'fdgdfgfg', 0, 15, 8),
+(2, '2019-07-18 16:15:59', 'fdgfg', 0, 15, 8),
+(3, '2019-07-18 16:16:16', 'hgjghjhj', 0, 15, 8),
+(4, '2019-07-18 16:16:18', 'hgjhgjgh', 0, 15, 8),
+(5, '2019-07-18 16:16:29', 'hgjhgjhgjhgj', 0, 15, 8),
+(6, '2019-07-18 16:16:31', 'ghjhgjgh', 0, 15, 8),
+(7, '2019-07-18 16:16:32', 'hgjghj', 0, 15, 8),
+(8, '2019-07-18 19:42:50', 'csacasacds', 0, 8, 15),
+(9, '2019-07-18 19:42:56', 'cascaa', 0, 8, 15);
 
 -- --------------------------------------------------------
 
@@ -447,7 +458,7 @@ CREATE TABLE IF NOT EXISTS `user_log` (
   `ip_user` varchar(20) NOT NULL,
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_log`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_log`
@@ -461,7 +472,10 @@ INSERT INTO `user_log` (`id_log`, `login_time`, `logout_time`, `ip_user`, `id_us
 (5, '2019-07-18 18:15:30', '2019-07-18 18:15:33', '::1', 8),
 (6, '2019-07-18 18:16:36', '2019-07-18 18:16:36', '::1', 2),
 (7, '2019-07-18 18:19:12', '2019-07-18 18:27:06', '::1', 40),
-(8, '2019-07-18 18:27:15', '2019-07-18 18:27:15', '::1', 15);
+(8, '2019-07-18 18:27:15', '2019-07-18 18:27:15', '::1', 15),
+(9, '2019-07-18 19:42:16', '2019-07-18 19:44:28', '::1', 8),
+(10, '2019-07-18 19:44:48', '2019-07-19 08:49:37', '::1', 15),
+(11, '2019-07-19 08:49:45', '2019-07-19 08:49:45', '::1', 15);
 
 -- --------------------------------------------------------
 
