@@ -20,7 +20,7 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
 
                 <form action="<?php echo URLROOT; ?>/schedules/show/" method="post">
 
-                    <div class="form-group">
+                    <div class="form-group col-1">
                         <label>Select class:</label>
                         <select name='id_class' class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
 

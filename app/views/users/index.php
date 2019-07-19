@@ -19,10 +19,10 @@
 
                 <form action="<?php echo URLROOT; ?>/users/" method="post" class='mt-4'>
                     <div class="row select_role">
-                        <div class="col">
+                        <div class="col-2">
                             <div class="form-group">
-                                <select name="user_role" id="user_role" class="form-control form-control-lg <?php echo (!empty($data['user_role_err'])) ? 'is-invalid' : '' ?>">
-                                    <option value='' selected>.....Select a role.....</option>
+                                <select name="user_role" id="user_role" class="form-control form-control-lg<?php echo (!empty($data['user_role_err'])) ? 'is-invalid' : '' ?>">
+                                    <option value='' selected>--Select a role--</option>
                                     <?php
                                     $users = new Users();
                                     foreach ($users->GetUserRoles() as $id_user_role => $name) :
