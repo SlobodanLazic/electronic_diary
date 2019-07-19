@@ -75,8 +75,8 @@
           <div class="card-body">
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
-                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">New messages</div>
-                <div id="dmsg" class="h5 mb-0 font-weight-bold text-gray-800"> </div>
+                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Namber of sent messages</div>
+                <div id="all_msg" class="h5 mb-0 font-weight-bold text-gray-800"> </div>
               </div>
               <div class="col-auto">
                 <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -95,13 +95,29 @@
 </div>
 <!-- /#page-wrapper -->
 <script>
-var msg = document.getElementById('dmsg');
+//Notificatio ALL messages 
+function notification_all_message() {
+    var all_message = document.getElementById('all_msg');
 
-function fmsg() {
- 
-   
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText > 0) {
+                all_message.innerHTML = this.responseText;
+            }
+            else {
+                new_message.innerHTML = "";
+            }
+        }
+    };
+
+    xmlhttp.open("GET", "<?php echo URLROOT; ?>/messages/notificationAll", true);
+
+    xmlhttp.send();
+
 }
-var m = setInterval(fmsg,1000); 
+notification_all_message();
+$nn = setInterval(notification_all_message, 1000);
 </script>
 
 <?php require APPROOT . '/views/inc/teacher/footer.php'; ?>

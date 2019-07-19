@@ -150,7 +150,7 @@ class Messages extends Controller
      //Count all messages 
     public function notificationAll()
     {
-        $notificatione = $this->messageModel->notificatione(); 
+        $notificatione = $this->messageModel->notificationeAll(); 
         
        echo (int)$notificatione->number; 
        

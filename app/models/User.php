@@ -180,4 +180,54 @@ class User
 
         return $number_of_classes;
     }
+
+    public function LoginTimeInsert() {
+        $this->db->query("insert into user_log(ip_user, id_user) values (:ip_adress, :id_user) ");
+
+        $id_user = (int)$_SESSION['id_user'];
+        
+
+
+        $this->db->bind(':ip_adress', $_SERVER['REMOTE_ADDR']); 
+        $this->db->bind(':id_user', $id_user); 
+
+        if ($this->db->execute()) {
+            $id = $this->db->lastInsertId();
+            $_SESSION['last_id'] = $id; 
+            return true;
+        } else {
+            return false;
+        }
+
+
+    }
+ 
+    public function LogoutTimeUpdate() {
+        
+        $this->db->query("update user_log set logout_time = now() WHERE id_log = :id_log"); 
+        
+        $id_log = (int)$_SESSION['last_id'];
+
+        $this->db->bind(':id_log', $id_log); 
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public function show_logs() {
+        $this->db->query("SELECT user_log.login_time, user_log.logout_time FROM user_log WHERE id_user = :user_id ORDER BY id_log DESC"); 
+        
+        $user_id = (int)$_SESSION['id_user']; 
+
+        $this->db->bind('user_id', $user_id); 
+
+        $logs = $this->db->resultSet(); 
+
+        return $logs; 
+
+    }
 }

@@ -1,58 +1,54 @@
-CREATE DATABASE  IF NOT EXISTS `e_diary` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `e_diary`;
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1    Database: e_diary
--- ------------------------------------------------------
--- Server version	5.7.26
+-- Host: 127.0.0.1:3306
+-- Generation Time: Jul 18, 2019 at 04:29 PM
+-- Server version: 5.7.26
+-- PHP Version: 7.2.18
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `e_diary`
+--
+CREATE DATABASE IF NOT EXISTS `e_diary` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `e_diary`;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `meetings`
 --
 
 DROP TABLE IF EXISTS `meetings`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `meetings` (
+CREATE TABLE IF NOT EXISTS `meetings` (
   `id_meetings` int(11) NOT NULL AUTO_INCREMENT,
   `meetings` datetime NOT NULL,
   `meetings_status` tinyint(1) DEFAULT '0',
   `from_id_user` int(11) NOT NULL,
   `to_id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_meetings`),
-  KEY `fk_meeting_shedules_users1_idx` (`from_id_user`),
-  CONSTRAINT `fk_meeting_shedules_users1` FOREIGN KEY (`from_id_user`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_meeting_shedules_users1_idx` (`from_id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `meetings`
---
-
-LOCK TABLES `meetings` WRITE;
-/*!40000 ALTER TABLE `meetings` DISABLE KEYS */;
-/*!40000 ALTER TABLE `meetings` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `messages`
 --
 
 DROP TABLE IF EXISTS `messages`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `messages` (
+CREATE TABLE IF NOT EXISTS `messages` (
   `id_messages` int(11) NOT NULL AUTO_INCREMENT,
   `message_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `message_content` text,
@@ -61,158 +57,263 @@ CREATE TABLE `messages` (
   `to_id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_messages`),
   KEY `fk_messages_users1_idx` (`from_id_user`),
-  KEY `fk_messages_users2_idx` (`to_id_user`),
-  CONSTRAINT `fk_messages_users1` FOREIGN KEY (`from_id_user`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_messages_users2` FOREIGN KEY (`to_id_user`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  KEY `fk_messages_users2_idx` (`to_id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `messages`
 --
 
-LOCK TABLES `messages` WRITE;
-/*!40000 ALTER TABLE `messages` DISABLE KEYS */;
-/*!40000 ALTER TABLE `messages` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `messages` (`id_messages`, `message_time`, `message_content`, `message_status`, `from_id_user`, `to_id_user`) VALUES
+(1, '2019-07-18 16:15:42', 'fdgdfgfg', 1, 15, 8),
+(2, '2019-07-18 16:15:59', 'fdgfg', 1, 15, 8),
+(3, '2019-07-18 16:16:16', 'hgjghjhj', 1, 15, 8),
+(4, '2019-07-18 16:16:18', 'hgjhgjgh', 1, 15, 8),
+(5, '2019-07-18 16:16:29', 'hgjhgjhgjhgj', 1, 15, 8),
+(6, '2019-07-18 16:16:31', 'ghjhgjgh', 1, 15, 8),
+(7, '2019-07-18 16:16:32', 'hgjghj', 1, 15, 8);
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `parent_notifications`
 --
 
 DROP TABLE IF EXISTS `parent_notifications`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `parent_notifications` (
+CREATE TABLE IF NOT EXISTS `parent_notifications` (
   `id_parent_notification` int(11) NOT NULL AUTO_INCREMENT,
   `notification_content` text,
   PRIMARY KEY (`id_parent_notification`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `parent_notifications`
 --
 
-LOCK TABLES `parent_notifications` WRITE;
-/*!40000 ALTER TABLE `parent_notifications` DISABLE KEYS */;
-INSERT INTO `parent_notifications` VALUES (1,'Test notification');
-/*!40000 ALTER TABLE `parent_notifications` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `parent_notifications` (`id_parent_notification`, `notification_content`) VALUES
+(1, 'Test notification');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `schedules`
 --
 
 DROP TABLE IF EXISTS `schedules`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `schedules` (
+CREATE TABLE IF NOT EXISTS `schedules` (
   `id_schedules` int(11) NOT NULL AUTO_INCREMENT,
   `subject_name` varchar(255) NOT NULL,
   `order_id` int(11) NOT NULL,
   `day_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
   PRIMARY KEY (`id_schedules`)
-) ENGINE=InnoDB AUTO_INCREMENT=456 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=526 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `schedules`
 --
 
-LOCK TABLES `schedules` WRITE;
-/*!40000 ALTER TABLE `schedules` DISABLE KEYS */;
-INSERT INTO `schedules` VALUES (1,'Srpski jezik i knjizevnost',1,1,1),(2,'Matematika',2,1,1),(3,'Likovno',3,1,1),(4,'Biologija',4,1,1),(5,'N/A',5,1,1),(6,'',6,1,1),(7,'',7,1,1),(8,'Istorija',1,2,1),(9,'Matematika',2,2,1),(10,'Srpski jezik i knjizevnost',3,2,1),(11,'Fizicko vaspitanje',4,2,1),(12,'Engleski jezik',5,2,1),(13,'',6,2,1),(14,'',7,2,1),(15,'Srpski jezik i knjizevnost',1,3,1),(16,'Informatika',2,3,1),(17,'Hemija',3,3,1),(18,'Geografija',4,3,1),(19,'Veronauka',5,3,1),(20,'Likovno',6,3,1),(21,'',7,3,1),(22,'Engleski jezik',1,4,1),(23,'Srpski jezik i knjizevnost',2,4,1),(24,'Fizicko vaspitanje',3,4,1),(25,'Engleski jezik',4,4,1),(26,'Informatika',5,4,1),(27,'Matematika',6,4,1),(28,'Srpski jezik i knjizevnost',7,4,1),(29,'Likovno',2,5,1),(30,'Veronauka',1,5,1),(31,'Istorija',3,5,1),(32,'Engleski jezik',4,5,1),(33,'Hemija',5,5,1),(34,'Istorija',6,5,1),(35,'',7,5,1);
-/*!40000 ALTER TABLE `schedules` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `schedules` (`id_schedules`, `subject_name`, `order_id`, `day_id`, `class_id`) VALUES
+(1, 'Srpski jezik i knjizevnost', 1, 1, 1),
+(2, 'Matematika', 2, 1, 1),
+(3, 'Likovno', 3, 1, 1),
+(4, 'Biologija', 4, 1, 1),
+(5, '', 5, 1, 1),
+(6, '', 6, 1, 1),
+(7, '', 7, 1, 1),
+(8, 'Istorija', 1, 2, 1),
+(9, 'Matematika', 2, 2, 1),
+(10, 'Srpski jezik i knjizevnost', 3, 2, 1),
+(11, 'Fizicko vaspitanje', 4, 2, 1),
+(12, 'Engleski jezik', 5, 2, 1),
+(13, '', 6, 2, 1),
+(14, '', 7, 2, 1),
+(15, 'Srpski jezik i knjizevnost', 1, 3, 1),
+(16, 'Informatika', 2, 3, 1),
+(17, 'Hemija', 3, 3, 1),
+(18, 'Geografija', 4, 3, 1),
+(19, 'Veronauka', 5, 3, 1),
+(20, 'Likovno', 6, 3, 1),
+(21, '', 7, 3, 1),
+(22, 'Engleski jezik', 1, 4, 1),
+(23, 'Srpski jezik i knjizevnost', 2, 4, 1),
+(24, 'Fizicko vaspitanje', 3, 4, 1),
+(25, 'Engleski jezik', 4, 4, 1),
+(26, 'Informatika', 5, 4, 1),
+(27, 'Matematika', 6, 4, 1),
+(28, 'Srpski jezik i knjizevnost', 7, 4, 1),
+(29, 'Likovno', 2, 5, 1),
+(30, 'Veronauka', 1, 5, 1),
+(31, 'Istorija', 3, 5, 1),
+(32, 'Engleski jezik', 4, 5, 1),
+(33, 'Hemija', 5, 5, 1),
+(34, 'Istorija', 6, 5, 1),
+(35, '', 7, 5, 1),
+(456, 'Srpski jezik i knjizevnost', 1, 1, 2),
+(457, 'Matematika', 2, 1, 2),
+(458, 'Likovno', 3, 1, 2),
+(459, 'Geografija', 4, 1, 2),
+(460, 'Engleski jezik', 5, 1, 2),
+(461, '', 6, 1, 2),
+(462, '', 7, 1, 2),
+(463, 'Srpski jezik i knjizevnost', 1, 2, 2),
+(464, 'Istorija', 2, 2, 2),
+(465, 'Hemija', 3, 2, 2),
+(466, 'Srpski jezik i knjizevnost', 4, 2, 2),
+(467, 'Hemija', 5, 2, 2),
+(468, 'Veronauka', 6, 2, 2),
+(469, '', 7, 2, 2),
+(470, 'Likovno', 1, 3, 2),
+(471, 'Fizicko vaspitanje', 2, 3, 2),
+(472, 'Engleski jezik', 3, 3, 2),
+(473, 'Hemija', 4, 3, 2),
+(474, '', 5, 3, 2),
+(475, '', 6, 3, 2),
+(476, '', 7, 3, 2),
+(477, 'Istorija', 1, 4, 2),
+(478, 'Biologija', 2, 4, 2),
+(479, 'Informatika', 3, 4, 2),
+(480, 'Veronauka', 4, 4, 2),
+(481, 'Geografija', 5, 4, 2),
+(482, '', 6, 4, 2),
+(483, '', 7, 4, 2),
+(484, 'Srpski jezik i knjizevnost', 2, 5, 2),
+(485, 'Fizicko vaspitanje', 1, 5, 2),
+(486, 'Geografija', 3, 5, 2),
+(487, 'Istorija', 4, 5, 2),
+(488, 'Informatika', 5, 5, 2),
+(489, 'Hemija', 6, 5, 2),
+(490, 'Veronauka', 7, 5, 2),
+(491, 'Matematika', 1, 1, 3),
+(492, 'Biologija', 2, 1, 3),
+(493, 'Engleski jezik', 3, 1, 3),
+(494, 'Hemija', 4, 1, 3),
+(495, 'Biologija', 5, 1, 3),
+(496, 'Engleski jezik', 6, 1, 3),
+(497, 'Veronauka', 7, 1, 3),
+(498, 'Likovno', 1, 2, 3),
+(499, 'Srpski jezik i knjizevnost', 2, 2, 3),
+(500, 'Engleski jezik', 3, 2, 3),
+(501, 'Likovno', 4, 2, 3),
+(502, 'Hemija', 5, 2, 3),
+(503, '', 6, 2, 3),
+(504, '', 7, 2, 3),
+(505, 'Srpski jezik i knjizevnost', 1, 3, 3),
+(506, 'Engleski jezik', 2, 3, 3),
+(507, 'Fizicko vaspitanje', 3, 3, 3),
+(508, 'Hemija', 4, 3, 3),
+(509, 'Engleski jezik', 5, 3, 3),
+(510, '', 6, 3, 3),
+(511, '', 7, 3, 3),
+(512, 'Srpski jezik i knjizevnost', 1, 4, 3),
+(513, 'Istorija', 2, 4, 3),
+(514, 'Fizicko vaspitanje', 3, 4, 3),
+(515, 'Fizicko vaspitanje', 4, 4, 3),
+(516, '', 5, 4, 3),
+(517, '', 6, 4, 3),
+(518, '', 7, 4, 3),
+(519, 'Istorija', 2, 5, 3),
+(520, 'Srpski jezik i knjizevnost', 1, 5, 3),
+(521, 'Engleski jezik', 3, 5, 3),
+(522, 'Informatika', 4, 5, 3),
+(523, 'Veronauka', 5, 5, 3),
+(524, '', 6, 5, 3),
+(525, '', 7, 5, 3);
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `schedules_users`
 --
 
 DROP TABLE IF EXISTS `schedules_users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `schedules_users` (
+CREATE TABLE IF NOT EXISTS `schedules_users` (
   `id_user` int(11) NOT NULL,
   `id_schedules` int(11) NOT NULL,
   KEY `fk_schedules_has_users_users1_idx` (`id_user`),
-  KEY `fk_schedules_has_users_schedules1_idx` (`id_schedules`),
-  CONSTRAINT `fk_schedules_has_users_schedules1` FOREIGN KEY (`id_schedules`) REFERENCES `schedules` (`id_schedules`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_schedules_has_users_users1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_schedules_has_users_schedules1_idx` (`id_schedules`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `schedules_users`
---
-
-LOCK TABLES `schedules_users` WRITE;
-/*!40000 ALTER TABLE `schedules_users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `schedules_users` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `school_classes`
 --
 
 DROP TABLE IF EXISTS `school_classes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `school_classes` (
+CREATE TABLE IF NOT EXISTS `school_classes` (
   `id_school_class` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(10) NOT NULL,
   PRIMARY KEY (`id_school_class`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `school_classes`
 --
 
-LOCK TABLES `school_classes` WRITE;
-/*!40000 ALTER TABLE `school_classes` DISABLE KEYS */;
-INSERT INTO `school_classes` VALUES (1,'1-1'),(2,'1-2'),(3,'1-3'),(4,'1-4'),(5,'1-5'),(6,'1-6'),(7,'2-1'),(8,'2-2'),(9,'2-3'),(10,'2-4'),(11,'2-5'),(12,'2-6'),(13,'3-1'),(14,'3-2'),(15,'3-3'),(16,'3-4'),(17,'3-5'),(18,'3-6'),(19,'4-1'),(20,'4-2'),(21,'4-3'),(22,'4-4'),(23,'4-5'),(25,'4-6'),(26,'4-7');
-/*!40000 ALTER TABLE `school_classes` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `school_classes` (`id_school_class`, `name`) VALUES
+(1, '1-1'),
+(2, '1-2'),
+(3, '1-3'),
+(4, '1-4'),
+(5, '1-5'),
+(6, '1-6'),
+(7, '2-1'),
+(8, '2-2'),
+(9, '2-3'),
+(10, '2-4'),
+(11, '2-5'),
+(12, '2-6'),
+(13, '3-1'),
+(14, '3-2'),
+(15, '3-3'),
+(16, '3-4'),
+(17, '3-5'),
+(18, '3-6'),
+(19, '4-1'),
+(20, '4-2'),
+(21, '4-3'),
+(22, '4-4'),
+(23, '4-5'),
+(25, '4-6'),
+(26, '4-7');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `students`
 --
 
 DROP TABLE IF EXISTS `students`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `students` (
+CREATE TABLE IF NOT EXISTS `students` (
   `id_student` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(255) CHARACTER SET utf8 NOT NULL,
   `last_name` varchar(255) CHARACTER SET utf8 NOT NULL,
   `id_school_class` int(11) NOT NULL,
   PRIMARY KEY (`id_student`),
-  KEY `fk_students_school_classes1_idx` (`id_school_class`),
-  CONSTRAINT `fk_students_school_classes1` FOREIGN KEY (`id_school_class`) REFERENCES `school_classes` (`id_school_class`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  KEY `fk_students_school_classes1_idx` (`id_school_class`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `students`
 --
 
-LOCK TABLES `students` WRITE;
-/*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (6,'student2','student2',2),(26,'student3','student3',3),(27,'student1','student1',1),(28,'student4','student4',17);
-/*!40000 ALTER TABLE `students` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `students` (`id_student`, `first_name`, `last_name`, `id_school_class`) VALUES
+(6, 'student2', 'student2', 2),
+(26, 'student3', 'student3', 3),
+(27, 'student1', 'student1', 1),
+(28, 'student4', 'student4', 17),
+(29, 'student2', 'student2', 2),
+(30, 'student3', 'student3', 3);
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `students_subjects`
 --
 
 DROP TABLE IF EXISTS `students_subjects`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `students_subjects` (
+CREATE TABLE IF NOT EXISTS `students_subjects` (
   `id_student_subject` int(11) NOT NULL AUTO_INCREMENT,
   `grades` int(11) NOT NULL,
   `grade_status` tinyint(1) NOT NULL,
@@ -221,79 +322,58 @@ CREATE TABLE `students_subjects` (
   `id_subject` int(11) NOT NULL,
   PRIMARY KEY (`id_student_subject`),
   KEY `fk_students_subjects_students1_idx` (`id_student`),
-  KEY `fk_students_subjects_subjects1_idx` (`id_subject`),
-  CONSTRAINT `fk_students_subjects_students1` FOREIGN KEY (`id_student`) REFERENCES `students` (`id_student`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT `fk_students_subjects_subjects1` FOREIGN KEY (`id_subject`) REFERENCES `subjects` (`id_subject`) ON DELETE CASCADE ON UPDATE NO ACTION
+  KEY `fk_students_subjects_subjects1_idx` (`id_subject`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `students_subjects`
 --
 
-LOCK TABLES `students_subjects` WRITE;
-/*!40000 ALTER TABLE `students_subjects` DISABLE KEYS */;
-INSERT INTO `students_subjects` VALUES (9,5,0,1,27,1),(10,5,0,1,27,4),(11,4,0,1,27,6),(12,5,1,1,27,8),(13,5,1,1,27,2);
-/*!40000 ALTER TABLE `students_subjects` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `students_subjects` (`id_student_subject`, `grades`, `grade_status`, `school_class_id`, `id_student`, `id_subject`) VALUES
+(9, 5, 0, 1, 27, 1),
+(10, 5, 0, 1, 27, 4),
+(11, 4, 0, 1, 27, 6),
+(12, 5, 1, 1, 27, 8),
+(13, 5, 1, 1, 27, 2);
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `subjects`
 --
 
 DROP TABLE IF EXISTS `subjects`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `subjects` (
+CREATE TABLE IF NOT EXISTS `subjects` (
   `id_subject` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id_subject`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `subjects`
 --
 
-LOCK TABLES `subjects` WRITE;
-/*!40000 ALTER TABLE `subjects` DISABLE KEYS */;
-INSERT INTO `subjects` VALUES (1,'Srpski jezik i knjizevnost'),(2,'Matematika'),(3,'Likovno'),(4,'Biologija'),(5,'Fizicko vaspitanje'),(6,'Geografija'),(7,'Istorija'),(8,'Engleski jezik'),(9,'Informatika'),(10,'Hemija'),(11,'Veronauka');
-/*!40000 ALTER TABLE `subjects` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `subjects` (`id_subject`, `name`) VALUES
+(1, 'Srpski jezik i knjizevnost'),
+(2, 'Matematika'),
+(3, 'Likovno'),
+(4, 'Biologija'),
+(5, 'Fizicko vaspitanje'),
+(6, 'Geografija'),
+(7, 'Istorija'),
+(8, 'Engleski jezik'),
+(9, 'Informatika'),
+(10, 'Hemija'),
+(11, 'Veronauka');
 
---
--- Table structure for table `user_roles`
---
-
-DROP TABLE IF EXISTS `user_roles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_roles` (
-  `id_user_role` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  `description` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  PRIMARY KEY (`id_user_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user_roles`
---
-
-LOCK TABLES `user_roles` WRITE;
-/*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
-INSERT INTO `user_roles` VALUES (1,'Administrator','Administrator can delete update edit users,user roles,schedules,notifications'),(2,'Director','have access to statistics on the efficiency of the classroomto have access to statistics on the efficiency of subjects at the school level'),(3,'Teacher','can have 1 class and access to only that class,access their department and write, delete, and conclude grades,can accept and reject the request for parents to come to the open door,message section , schedule'),(4,'Parent','has access to and grades only for his child,has access to the part of the application where he will schedule the arrival at the open door,messages, notification access');
-/*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) CHARACTER SET utf8 NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 NOT NULL,
@@ -301,89 +381,170 @@ CREATE TABLE `users` (
   `id_user_role` int(11) NOT NULL DEFAULT '4',
   `teacher_class_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_user`),
-  KEY `fk_users_user_roles_idx` (`id_user_role`),
-  CONSTRAINT `fk_users_user_roles` FOREIGN KEY (`id_user_role`) REFERENCES `user_roles` (`id_user_role`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  KEY `fk_users_user_roles_idx` (`id_user_role`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'administrator','$2y$10$2hg/V3YhIgKl2XNe0fNij.0DrBdXzns5AaeWu.j6h5QnXLjZNvEsW','administrator@gmail.com',1,0),(6,'director','$2y$10$YG.Ity62kSWi1j9xz0EdKeR96pITfKLX5Go7wocI/oCrg794HqZVm','director@gmail.com',2,0),(8,'teacher','$2y$10$91fxW1z3ChSXmhFh2Qy2U.7/ipBBotLWeSS2fspc27I2CbPfjldha','teacher@gmail.com',3,1),(15,'parent','$2y$10$3VngNhp8CWN2rL3nOXK6Au8jtqqTAGGg9g3/Nm7jXCpDr216.fCYe','parent@gmail.com',4,0),(16,'parent2','$2y$10$zSftZHwrEQatTsL/C8QBNOeze3fkwWkH2MRU/9G5scowdMycMGLfW','parent2@gmail.com',4,0),(34,'teacher1','$2y$10$e4dRFqGtFyjXaRARefmHP.PujuGjm3o63pZmEp4b7uORKewBPuvda','teacher1@gmail.com',3,2);
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `users` (`id_user`, `username`, `password`, `email`, `id_user_role`, `teacher_class_id`) VALUES
+(2, 'administrator', '$2y$10$2hg/V3YhIgKl2XNe0fNij.0DrBdXzns5AaeWu.j6h5QnXLjZNvEsW', 'administrator@gmail.com', 1, 0),
+(6, 'director', '$2y$10$YG.Ity62kSWi1j9xz0EdKeR96pITfKLX5Go7wocI/oCrg794HqZVm', 'director@gmail.com', 2, 0),
+(8, 'teacher', '$2y$10$91fxW1z3ChSXmhFh2Qy2U.7/ipBBotLWeSS2fspc27I2CbPfjldha', 'teacher@gmail.com', 3, 1),
+(15, 'parent', '$2y$10$3VngNhp8CWN2rL3nOXK6Au8jtqqTAGGg9g3/Nm7jXCpDr216.fCYe', 'parent@gmail.com', 4, 0),
+(34, 'teacher1', '$2y$10$e4dRFqGtFyjXaRARefmHP.PujuGjm3o63pZmEp4b7uORKewBPuvda', 'teacher1@gmail.com', 3, 2),
+(40, 'parent2', '$2y$10$HsATeFX5yQzoTr26sFP./OuT5S4jHowTbVithPPBLeKlV3/Z0dNrC', 'parent2@gmail.com', 4, 0);
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `users_students`
 --
 
 DROP TABLE IF EXISTS `users_students`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users_students` (
+CREATE TABLE IF NOT EXISTS `users_students` (
   `id_user` int(11) NOT NULL,
   `id_student` int(11) NOT NULL,
   KEY `fk_users_students_users1_idx` (`id_user`),
-  KEY `fk_users_students_students1_idx` (`id_student`),
-  CONSTRAINT `fk_users_students_students1` FOREIGN KEY (`id_student`) REFERENCES `students` (`id_student`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT `fk_users_students_users1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE NO ACTION
+  KEY `fk_users_students_students1_idx` (`id_student`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `users_students`
 --
 
-LOCK TABLES `users_students` WRITE;
-/*!40000 ALTER TABLE `users_students` DISABLE KEYS */;
-INSERT INTO `users_students` VALUES (16,6),(16,26),(15,27);
-/*!40000 ALTER TABLE `users_students` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `users_students` (`id_user`, `id_student`) VALUES
+(15, 27),
+(40, 29),
+(40, 30);
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `users_subjects`
 --
 
 DROP TABLE IF EXISTS `users_subjects`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users_subjects` (
+CREATE TABLE IF NOT EXISTS `users_subjects` (
   `id_user` int(11) NOT NULL,
   `id_subject` int(11) NOT NULL,
   KEY `fk_users_subjects_users1_idx` (`id_user`),
-  KEY `fk_users_subjects_subjects1_idx` (`id_subject`),
-  CONSTRAINT `fk_users_subjects_subjects1` FOREIGN KEY (`id_subject`) REFERENCES `subjects` (`id_subject`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_users_subjects_users1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_users_subjects_subjects1_idx` (`id_subject`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `users_subjects`
+-- Table structure for table `user_log`
 --
 
-LOCK TABLES `users_subjects` WRITE;
-/*!40000 ALTER TABLE `users_subjects` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users_subjects` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `user_log`;
+CREATE TABLE IF NOT EXISTS `user_log` (
+  `id_log` int(11) NOT NULL AUTO_INCREMENT,
+  `login_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `logout_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ip_user` varchar(20) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  PRIMARY KEY (`id_log`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
--- Dumping events for database 'e_diary'
+-- Dumping data for table `user_log`
+--
+
+INSERT INTO `user_log` (`id_log`, `login_time`, `logout_time`, `ip_user`, `id_user`) VALUES
+(1, '2019-07-18 16:13:33', '2019-07-18 17:50:44', '::1', 15),
+(2, '2019-07-18 17:51:09', '2019-07-18 18:09:42', '::1', 2),
+(3, '2019-07-18 18:09:51', '2019-07-18 18:09:51', '::1', 15),
+(4, '2019-07-18 18:13:53', '2019-07-18 18:13:53', '::1', 15),
+(5, '2019-07-18 18:15:30', '2019-07-18 18:15:33', '::1', 8),
+(6, '2019-07-18 18:16:36', '2019-07-18 18:16:36', '::1', 2),
+(7, '2019-07-18 18:19:12', '2019-07-18 18:27:06', '::1', 40),
+(8, '2019-07-18 18:27:15', '2019-07-18 18:27:15', '::1', 15);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_roles`
+--
+
+DROP TABLE IF EXISTS `user_roles`;
+CREATE TABLE IF NOT EXISTS `user_roles` (
+  `id_user_role` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `description` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`id_user_role`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_roles`
+--
+
+INSERT INTO `user_roles` (`id_user_role`, `name`, `description`) VALUES
+(1, 'Administrator', 'Administrator can delete update edit users,user roles,schedules,notifications'),
+(2, 'Director', 'have access to statistics on the efficiency of the classroomto have access to statistics on the efficiency of subjects at the school level'),
+(3, 'Teacher', 'can have 1 class and access to only that class,access their department and write, delete, and conclude grades,can accept and reject the request for parents to come to the open door,message section , schedule'),
+(4, 'Parent', 'has access to and grades only for his child,has access to the part of the application where he will schedule the arrival at the open door,messages, notification access');
+
+--
+-- Constraints for dumped tables
 --
 
 --
--- Dumping routines for database 'e_diary'
+-- Constraints for table `meetings`
 --
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+ALTER TABLE `meetings`
+  ADD CONSTRAINT `fk_meeting_shedules_users1` FOREIGN KEY (`from_id_user`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Constraints for table `messages`
+--
+ALTER TABLE `messages`
+  ADD CONSTRAINT `fk_messages_users1` FOREIGN KEY (`from_id_user`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_messages_users2` FOREIGN KEY (`to_id_user`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `schedules_users`
+--
+ALTER TABLE `schedules_users`
+  ADD CONSTRAINT `fk_schedules_has_users_schedules1` FOREIGN KEY (`id_schedules`) REFERENCES `schedules` (`id_schedules`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_schedules_has_users_users1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `students`
+--
+ALTER TABLE `students`
+  ADD CONSTRAINT `fk_students_school_classes1` FOREIGN KEY (`id_school_class`) REFERENCES `school_classes` (`id_school_class`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `students_subjects`
+--
+ALTER TABLE `students_subjects`
+  ADD CONSTRAINT `fk_students_subjects_students1` FOREIGN KEY (`id_student`) REFERENCES `students` (`id_student`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_students_subjects_subjects1` FOREIGN KEY (`id_subject`) REFERENCES `subjects` (`id_subject`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `fk_users_user_roles` FOREIGN KEY (`id_user_role`) REFERENCES `user_roles` (`id_user_role`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `users_students`
+--
+ALTER TABLE `users_students`
+  ADD CONSTRAINT `fk_users_students_students1` FOREIGN KEY (`id_student`) REFERENCES `students` (`id_student`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_users_students_users1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `users_subjects`
+--
+ALTER TABLE `users_subjects`
+  ADD CONSTRAINT `fk_users_subjects_subjects1` FOREIGN KEY (`id_subject`) REFERENCES `subjects` (`id_subject`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_users_subjects_users1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2019-07-11 12:31:24

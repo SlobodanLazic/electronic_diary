@@ -345,6 +345,7 @@ class Users extends Controller
                 if ($loggedInUser) {
                     // Create Session
                     $this->createUserSession($loggedInUser);
+                    $this->userModel->LoginTimeInsert();
 
                     /* id_user_role 1 is administrator,id_user role 2 is director,id_user_role 3 is teacher,
                         id_user_role 4 is parent so it will redirect it to proper page dependent of role */
@@ -404,6 +405,7 @@ class Users extends Controller
 
     public function logout()
     {
+        $this->userModel->LogoutTimeUpdate();
         unset($_SESSION['id_user']);
         unset($_SESSION['username']);
         unset($_SESSION['email']);
@@ -668,8 +670,16 @@ class Users extends Controller
     public function parent()
     {
         if (isset($_SESSION['id_user'])) {
+
             if ($_SESSION['id_user_role'] == 4) {
-                $this->view('parent/index');
+
+                $num_of_classes_for_child = $this->classModel->get_number_of_classes_for_child();
+
+                $data = [
+                    'num_of_classes_for_child' => $num_of_classes_for_child
+                ];
+
+                $this->view('parent/index', $data);
             } else {
                 $this->logout();
             }
@@ -822,6 +832,25 @@ class Users extends Controller
             $data['classes'] = $classes;
 
             $this->view('admin/students/assign_student', $data);
+        }
+    }
+
+    public function show_log()
+    {
+        $logs = $this->userModel->show_logs();
+
+        $data = [
+            'logs' => $logs
+        ];
+
+        $role = $_SESSION['id_user_role'];
+        switch ($role) {
+            case 3:
+                $this->view("teacher/teacher_log/index", $data);
+                break;
+            case 4:
+                $this->view("parent/parent_log/index", $data);
+                break;
         }
     }
 

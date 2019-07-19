@@ -12,22 +12,14 @@
               <!-- <h4>Recent</h4>  -->
               <h4>Messaging</h4>
             </div>
-            <div class="srch_bar">
-              <div class="stylish-input-group">
-                <input type="text" class="search-bar"  placeholder="Search" >
-                
-                <span class="input-group-addon">
-                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-                </span> </div>
-            </div>
           </div>
           <div class="inbox_chat">
               <?php foreach($data['teacher'] as $parent) { ?>
             <div class="chat_list" >
               <div class="chat_people" onclick='readMessages(<?php echo $parent->id_user; ?>)'>
-                <div class="chat_img"> <img src="<?php echo URLROOT . "/images/parenticon.png" ?>" alt="sunil"> </div>
+                <div class="chat_img"> <i class="fas fa-chalkboard-teacher text-dark" style="font-size:25px;"></i> </div>
                 <div class="chat_ib">
-                  <?php echo "<h5> $parent->username "; ?><span class="chat_date">Date</span></h5>
+                  <?php echo "<h5> $parent->username "; ?><span class="chat_date"></span></h5>
                  
                 </div>
               </div>

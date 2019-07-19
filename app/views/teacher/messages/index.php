@@ -20,7 +20,7 @@
               <div class="chat_people" onclick='readMessages(<?php echo $parent->id_user; ?>)'>
                 <div class="chat_img"> <img src="<?php echo URLROOT . "/images/parenticon.png" ?>" alt="sunil"> </div>
                 <div class="chat_ib">
-                  <?php echo "<h5> $parent->username "; ?><span class="chat_date">Date</span></h5>
+                  <?php echo "<h5> $parent->username "; ?><span class="chat_date"></span></h5>
                  
                 </div>
               </div>

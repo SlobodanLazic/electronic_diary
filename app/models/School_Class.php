@@ -84,4 +84,22 @@ class School_class
             return false;
         }
     }
+
+    // get number of classes for parent child
+
+    public function get_number_of_classes_for_child()
+    {
+
+        $this->db->query('SELECT students.first_name , students.last_name , students.id_school_class, COUNT(schedules.id_schedules) AS class_count FROM students, schedules WHERE students.id_student IN (SELECT users_students.id_student FROM users_students WHERE users_students.id_user = :id_user) AND schedules.day_id = :id_day AND schedules.subject_name != "" ANd schedules.class_id = students.id_school_class GROUP BY students.id_student');
+
+        $id_day = idate('w', time());
+        $id_user = (int) $_SESSION['id_user'];
+
+        $this->db->bind(':id_user', $id_user);
+        $this->db->bind(':id_day', $id_day);
+
+        $num_of_classes_for_child = $this->db->resultSet();
+
+        return $num_of_classes_for_child;
+    }
 }
