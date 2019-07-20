@@ -239,21 +239,54 @@ class User
 
     // insert in table professor_info
 
-    public function insertProfessorInfo($class_id, $data)
+    public function insertProfessorInfo($subjects, $data)
     {
+
         $this->db->query('INSERT INTO professor_info (id_professor, id_class, id_subject) 
         
                            VALUES 
                            
-                           ((SELECT users.id_user FROM users WHERE users.id_user_role = 5 ORDER BY users.id_user DESC LIMIT 1) , :id_class, :id_subject)');
+                           (:id_professor , :id_class, :id_subject)');
 
-        $this->db->bind('id_class', $data['professor_class_id']);
-        $this->db->bind('id_subject', $class_id);
+
+        $this->db->bind('id_professor', $data['id_professor']);
+        $this->db->bind('id_class', $data['id_class']);
+        $this->db->bind('id_subject', $subjects);
 
         if ($this->db->execute()) {
             return true;
         } else {
             return false;
         }
+    }
+
+    // inserts in table Razredni
+
+    public function insertInTableRazredni($data)
+    {
+
+
+        $this->db->query('INSERT INTO razredni (id_professor , id_class) VALUES ((SELECT users.id_user FROM users WHERE users.id_user_role = 5 ORDER BY users.id_user DESC LIMIT 1) , :id_class)');
+
+        $this->db->bind('id_class', $data['professor_class_id']);
+
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // find all professors
+
+    public function find_all_professors()
+    {
+
+        $this->db->query('SELECT users.id_user, users.username , users.email FROM users WHERE users.id_user_role = 5');
+
+        $professors = $this->db->resultSet();
+
+        return $professors;
     }
 }

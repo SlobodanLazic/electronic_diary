@@ -100,10 +100,10 @@
 
                         <div id="professor">
                             <div class="form-group">
-                                <label for="id_school_class">Class<sup>*</sup></label>
-                                <select name="professor_class_id" id="professor_class_id" class=" form-control form-control-lg <?php echo (!empty($data['professor_class_err'])) ? 'is-invalid' : '' ?>">
+                                <label for="id_school_class">Razredni za odeljenje<sup>*</sup></label>
+                                <select name="professor_class_id" id="professor_class_id" class=" form-control form-control-lg">
 
-                                    <option value='' selected>.....Select a class.....</option>
+                                    <option value='0' selected>--Select a class--</option>
                                     <?php foreach ($data['classes'] as $class) : ?>
 
                                         <option value='<?php echo $class->id_school_class; ?>' <?php if ($data['professor_class_id'] == $class->id_school_class) {
@@ -113,9 +113,9 @@
                                     <?php endforeach; ?>
 
                                 </select>
-                                <span class="invalid-feedback text-danger"><?php echo $data['professor_class_err']; ?></span>
+                                
 
-                                <label for="id_school_class">Subject<sup>*</sup></label>
+                               <!--  <label for="id_school_class">Subject<sup>*</sup></label>
                                 <select name="subject_id[]" id="subject_id" multiple="multiple" class=" form-control form-control-lg <?php echo (!empty($data['id_subject_err'])) ? 'is-invalid' : '' ?>">
                                     <option value='' selected>.....Select subject.....</option>
                                     <?php foreach ($data['subjects'] as $subject) : ?>
@@ -129,7 +129,7 @@
 
                                 </select>
 
-                                <span class="invalid-feedback text-danger"><?php echo $data['id_subject_err']; ?></span>
+                                <span class="invalid-feedback text-danger"><?php echo $data['id_subject_err']; ?></span> -->
                             </div>
                         </div>
 

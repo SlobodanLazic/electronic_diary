@@ -38,7 +38,7 @@ class Users extends Controller
                 'id_school_class' => trim($_POST['id_school_class']),
                 'teacher_class_id' => (int) trim($_POST['teacher_class_id']),
                 'professor_class_id' =>  (int) trim($_POST['professor_class_id']),
-                'subject_id' => array_map('trim', $_POST['subject_id']),
+
 
                 'name_err' => '',
                 'email_err' => '',
@@ -49,11 +49,10 @@ class Users extends Controller
                 'last_name_err' => '',
                 'id_school_class_err' => '',
                 'id_teacher_class_err' => '',
-                'professor_class_err' => '',
-                'id_subject_err' => ''
+
+
 
             ];
-
 
             // Validate Email
             if (empty($data['email'])) {
@@ -128,21 +127,6 @@ class Users extends Controller
                 }
             }
 
-            // if user role is professor
-
-            if ($data['user_role'] == 5) {
-                // Validate professor class
-                if (empty($data['professor_class_id'])) {
-
-                    $data['professor_class_err'] = 'Please select Professor Class';
-                }
-                if (empty($data['subject_id[]'])) {
-
-                    $data['id_subject_err'] = 'Please select Subject("s") for Professor';
-                }
-            }
-
-
             // Make sure errors are empty
             if (
                 empty($data['email_err'])
@@ -153,8 +137,8 @@ class Users extends Controller
                 && empty($data['last_name_err'])
                 && empty($data['id_school_class_err'])
                 && empty($data['id_teacher_class_err'])
-                && empty($data['professor_class_err'])
-                && empty($data['id_subject_err'])
+                //&& empty($data['professor_class_err'])
+                //&& empty($data['id_subject_err'])
 
             ) {
 
@@ -182,13 +166,11 @@ class Users extends Controller
                         }
                     }
 
-                    // Add in professor_info
+                    // Add in table razredni
 
-                    if (!empty($data['subject_id'] && !empty($data['professor_class_id']))) {
+                    if (isset($data['professor_class_id'])) {
 
-                        for ($i = 0; $i < count($data['subject_id']); $i++) {
-                            $this->userModel->insertProfessorInfo($data['subject_id'][$i], $data);
-                        }
+                        $this->userModel->insertInTableRazredni($data);
                     }
 
 
@@ -201,11 +183,11 @@ class Users extends Controller
                 // Load view with errors
                 $classes = $this->classModel->showAllClasses();
 
-                $subjects = $this->subjectModel->showallSubjects();
+                //$subjects = $this->subjectModel->showallSubjects();
 
                 $data['classes'] = $classes;
 
-                $data['subjects'] = $subjects;
+                //$data['subjects'] = $subjects;
 
                 $this->view('users/insert', $data);
             }
@@ -222,7 +204,7 @@ class Users extends Controller
                 'id_school_class' => '',
                 'teacher_class_id' => '',
                 'professor_class_id' => '',
-                'subject_id' => '',
+                //'subject_id' => '',
 
                 'name_err' => '',
                 'email_err' => '',
@@ -233,16 +215,16 @@ class Users extends Controller
                 'last_name_err' => '',
                 'id_school_class_err' => '',
                 'id_teacher_class_err' => '',
-                'professor_class_err' => '',
-                'id_subject_err' => ''
+                //'professor_class_err' => '',
+                //'id_subject_err' => ''
             ];
 
             $classes = $this->classModel->showAllClasses();
-            $subjects = $this->subjectModel->showallSubjects();
+            //$subjects = $this->subjectModel->showallSubjects();
 
             $data['classes'] = $classes;
 
-            $data['subjects'] = $subjects;
+            //$data['subjects'] = $subjects;
 
             // Load view
             $this->view('users/insert', $data);
@@ -599,7 +581,7 @@ class Users extends Controller
                         if ($this->gradeModel->insertGrade($data2)) {
                             flash('grades_message', 'grade added');
                         } else {
-                            die('problemmmm');
+                            die('problem');
                         }
                     }
                 }
@@ -885,6 +867,26 @@ class Users extends Controller
         }
     }
 
+    // Assign to professor
+
+    public function assign_to_professor()
+    {
+
+        $professors = $this->userModel->find_all_professors();
+        $subjects = $this->subjectModel->showallSubjects();
+        $classes = $this->classModel->showAllClasses();
+
+        $data = [
+
+            'professors' => $professors,
+            'subjects' => $subjects,
+            'classes' => $classes
+
+        ];
+
+        $this->view('users/assign_to_professor', $data);
+    }
+
     public function show_log()
     {
         $logs = $this->userModel->show_logs();
@@ -892,12 +894,82 @@ class Users extends Controller
         $data = [
             'logs' => $logs
         ];
-        
-        if(isset($_SESSION['id_user']) && $_SESSION['id_user_role'] === '1')
-        {
+
+        if (isset($_SESSION['id_user']) && $_SESSION['id_user_role'] === '1') {
             $this->view("users/user_log", $data);
         }
     }
 
     /* ASSIGN USER END*/
+
+    // insert in professor info table
+
+    public function insert_in_professor_info()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data = [
+                'id_professor' => $_POST['professor_id'],
+                'id_subject' => $_POST['subject_id'],
+                'id_class' => $_POST['class_id'],
+
+                'id_professor_err' => '',
+                'id_subject_err' => '',
+                'id_class_err' => '',
+
+            ];
+
+
+            // Validate id_professor
+            if (empty($data['id_professor'])) {
+                $data['id_professor_err'] = 'Please select professor';
+            }
+
+            // subject
+            if (empty($data['id_subject'])) {
+                $data['id_subject_err'] = 'Please select subject';
+            }
+
+            // Validate class
+            if (empty($data['id_class'])) {
+                $data['id_class_err'] = 'Please select class';
+            }
+
+            if (
+                empty($data['email_err'])
+                && empty($data['id_professor_err'])
+                && empty($data['id_subject_err'])
+                && empty($data['id_class_err'])
+            ) {
+
+
+
+
+                for ($i = 0; $i < count($data['id_subject']); $i++) {
+
+                    $this->userModel->insertProfessorInfo($data['id_subject'][$i], $data);
+                }
+
+
+                flash('register_success', 'You have added a user');
+                redirect('/users/assign_to_professor');
+
+                $this->view('users/assign_to_professor');
+            } else {
+                // Load view with errors
+
+                $professors = $this->userModel->find_all_professors();
+                $subjects = $this->subjectModel->showallSubjects();
+                $classes = $this->classModel->showAllClasses();
+
+                $data['professors'] = $professors;
+                $data['subjects'] = $subjects;
+                $data['classes'] = $classes;
+
+                $this->view('users/assign_to_professor', $data);
+            }
+        }
+    }
 }

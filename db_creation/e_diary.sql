@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 19, 2019 at 08:41 PM
+-- Generation Time: Jul 20, 2019 at 11:59 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -112,26 +112,43 @@ INSERT INTO `parent_notifications` (`id_parent_notification`, `notification_cont
 
 DROP TABLE IF EXISTS `professor_info`;
 CREATE TABLE IF NOT EXISTS `professor_info` (
+  `id_professor_info` int(11) NOT NULL AUTO_INCREMENT,
   `id_professor` int(11) NOT NULL,
   `id_class` int(11) NOT NULL,
-  `id_subject` int(11) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+  `id_subject` int(11) NOT NULL,
+  PRIMARY KEY (`id_professor_info`)
+) ENGINE=MyISAM AUTO_INCREMENT=93 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `professor_info`
 --
 
-INSERT INTO `professor_info` (`id_professor`, `id_class`, `id_subject`) VALUES
-(44, 3, 3),
-(45, 3, 3),
-(47, 1, 1),
-(47, 1, 1),
-(47, 1, 2),
-(47, 1, 3),
-(62, 1, 1),
-(62, 1, 2),
-(62, 1, 7),
-(63, 1, 1);
+INSERT INTO `professor_info` (`id_professor_info`, `id_professor`, `id_class`, `id_subject`) VALUES
+(92, 75, 13, 6),
+(91, 75, 13, 2),
+(90, 73, 16, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `razredni`
+--
+
+DROP TABLE IF EXISTS `razredni`;
+CREATE TABLE IF NOT EXISTS `razredni` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_professor` int(11) NOT NULL,
+  `id_class` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `razredni`
+--
+
+INSERT INTO `razredni` (`id`, `id_professor`, `id_class`) VALUES
+(3, 73, 3),
+(5, 75, 10);
 
 -- --------------------------------------------------------
 
@@ -332,7 +349,7 @@ CREATE TABLE IF NOT EXISTS `students` (
   `id_school_class` int(11) NOT NULL,
   PRIMARY KEY (`id_student`),
   KEY `fk_students_school_classes1_idx` (`id_school_class`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `students`
@@ -344,7 +361,8 @@ INSERT INTO `students` (`id_student`, `first_name`, `last_name`, `id_school_clas
 (27, 'student1', 'student1', 1),
 (28, 'student4', 'student4', 17),
 (29, 'student2', 'student2', 2),
-(30, 'student3', 'student3', 3);
+(30, 'student3', 'student3', 3),
+(31, 'student4', 'student4@gmail.com', 15);
 
 -- --------------------------------------------------------
 
@@ -422,7 +440,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `teacher_class_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   KEY `fk_users_user_roles_idx` (`id_user_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
@@ -435,8 +453,9 @@ INSERT INTO `users` (`id_user`, `username`, `password`, `email`, `id_user_role`,
 (15, 'parent', '$2y$10$3VngNhp8CWN2rL3nOXK6Au8jtqqTAGGg9g3/Nm7jXCpDr216.fCYe', 'parent@gmail.com', 4, 0),
 (34, 'teacher1', '$2y$10$e4dRFqGtFyjXaRARefmHP.PujuGjm3o63pZmEp4b7uORKewBPuvda', 'teacher1@gmail.com', 3, 2),
 (40, 'parent2', '$2y$10$HsATeFX5yQzoTr26sFP./OuT5S4jHowTbVithPPBLeKlV3/Z0dNrC', 'parent2@gmail.com', 4, 0),
-(62, 'profesor', '$2y$10$qIMEXgczNyzi8cq8hhGRc.09gVgN.md6y9fXollkNzXK2KiSpwyqG', 'profesor@gmail.com', 5, 0),
-(63, 'profesor1', '$2y$10$M.BlIGY4Xw7dAkGUfB7EgehE4urnDiuLO1jY./B2t0pKQ22sNu5Le', 'profesor1@gmail.com', 5, 0);
+(73, 'profesor', '$2y$10$TrI2szvZ9KaefD2uSo9MHOvl5mUYNMujrfV6jD48S9r1UAHdbpfS.', 'profesor@gmail.com', 5, 0),
+(74, 'teacher2', '$2y$10$YWO7ubcCcM/QeOrBJHB44.YYe2k8Oye5iCDuUZgO26xrOjdDmqHFC', 'teacher2@gmail.com', 3, 12),
+(75, 'profesor1', '$2y$10$tQeK4FHTO2uzLEizujuu7OTH77k6c0AqMNethjj3DWElM3pECklg.', 'profesor1@gmail.com', 5, 0);
 
 -- --------------------------------------------------------
 
@@ -459,7 +478,8 @@ CREATE TABLE IF NOT EXISTS `users_students` (
 INSERT INTO `users_students` (`id_user`, `id_student`) VALUES
 (15, 27),
 (40, 29),
-(40, 30);
+(40, 30),
+(15, 31);
 
 -- --------------------------------------------------------
 
@@ -489,7 +509,7 @@ CREATE TABLE IF NOT EXISTS `user_log` (
   `ip_user` varchar(20) NOT NULL,
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_log`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_log`
@@ -508,7 +528,10 @@ INSERT INTO `user_log` (`id_log`, `login_time`, `logout_time`, `ip_user`, `id_us
 (10, '2019-07-18 19:44:48', '2019-07-19 08:49:37', '::1', 15),
 (11, '2019-07-19 08:49:45', '2019-07-19 08:49:45', '::1', 15),
 (12, '2019-07-19 22:38:34', '2019-07-19 22:38:44', '::1', 2),
-(13, '2019-07-19 22:38:52', '2019-07-19 22:38:52', '::1', 8);
+(13, '2019-07-19 22:38:52', '2019-07-19 22:38:52', '::1', 8),
+(14, '2019-07-20 08:34:19', '2019-07-20 08:34:47', '::1', 15),
+(15, '2019-07-20 08:34:57', '2019-07-20 08:34:57', '::1', 8),
+(16, '2019-07-20 08:45:56', '2019-07-20 08:45:56', '::1', 2);
 
 -- --------------------------------------------------------
 
