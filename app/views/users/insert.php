@@ -85,7 +85,7 @@
                                     <?php foreach ($data['classes'] as $class) : ?>
 
 
-                                    <option value='<?php echo $class->id_school_class; ?>' <?php if ($data['teacher_class_id'] == $class->id_school_class) {
+                                        <option value='<?php echo $class->id_school_class; ?>' <?php if ($data['teacher_class_id'] == $class->id_school_class) {
                                                                                                     echo 'selected';
                                                                                                 } ?>><?php print($class->name); ?></option>
 
@@ -95,6 +95,44 @@
                                 <span class="invalid-feedback text-danger"><?php echo $data['id_teacher_class_err']; ?></span>
                             </div>
                         </div>
+
+
+
+                        <div id="professor">
+                            <div class="form-group">
+                                <label for="id_school_class">Class<sup>*</sup></label>
+                                <select name="professor_class_id" id="professor_class_id" class=" form-control form-control-lg <?php echo (!empty($data['id_professor_class_err'])) ? 'is-invalid' : '' ?>">
+
+                                    <?php foreach ($data['classes'] as $class) : ?>
+
+
+                                        <option value='<?php echo $class->id_school_class; ?>' <?php if ($data['professor_class_id'] == $class->id_school_class) {
+                                                                                                    echo 'selected';
+                                                                                                } ?>><?php print($class->name); ?></option>
+
+                                    <?php endforeach; ?>
+
+                                </select>
+
+                                <label for="id_school_class">Subject<sup>*</sup></label>
+                                <select name="subject_id[]" id="subject_id" multiple="multiple" class=" form-control form-control-lg <?php echo (!empty($data['subject_id_err'])) ? 'is-invalid' : '' ?>">
+
+                                    <?php foreach ($data['subjects'] as $subject) : ?>
+
+
+                                        <option value='<?php echo $subject->id_subject; ?>' <?php if ($data['subject_id'] == $subject->id_subject) {
+                                                                                                echo 'selected';
+                                                                                            } ?>><?php print($subject->name); ?></option>
+
+                                    <?php endforeach; ?>
+
+                                </select>
+
+                                <span class="invalid-feedback text-danger"><?php echo $data['id_subject_err']; ?></span>
+                            </div>
+                        </div>
+
+
                         <div class="row">
                             <div class="col">
                                 <input type="submit" value="Insert" class="btn btn-primary btn-block">

@@ -181,44 +181,44 @@ class User
         return $number_of_classes;
     }
 
-    public function LoginTimeInsert() {
+    public function LoginTimeInsert()
+    {
         $this->db->query("insert into user_log(ip_user, id_user) values (:ip_adress, :id_user) ");
 
-        $id_user = (int)$_SESSION['id_user'];
-        
+        $id_user = (int) $_SESSION['id_user'];
 
 
-        $this->db->bind(':ip_adress', $_SERVER['REMOTE_ADDR']); 
-        $this->db->bind(':id_user', $id_user); 
+
+        $this->db->bind(':ip_adress', $_SERVER['REMOTE_ADDR']);
+        $this->db->bind(':id_user', $id_user);
 
         if ($this->db->execute()) {
             $id = $this->db->lastInsertId();
-            $_SESSION['last_id'] = $id; 
+            $_SESSION['last_id'] = $id;
             return true;
         } else {
             return false;
         }
-
-
     }
- 
-    public function LogoutTimeUpdate() {
-        
-        $this->db->query("update user_log set logout_time = now() WHERE id_log = :id_log"); 
-        
-        $id_log = (int)$_SESSION['last_id'];
 
-        $this->db->bind(':id_log', $id_log); 
+    public function LogoutTimeUpdate()
+    {
+
+        $this->db->query("update user_log set logout_time = now() WHERE id_log = :id_log");
+
+        $id_log = (int) $_SESSION['last_id'];
+
+        $this->db->bind(':id_log', $id_log);
 
         if ($this->db->execute()) {
             return true;
         } else {
             return false;
         }
-
     }
 
-    public function show_logs() {
+    public function show_logs()
+    {
         $this->db->query("  SELECT users.id_user,
                                 users.email,
                                 users.username,
@@ -228,9 +228,32 @@ class User
                                 JOIN users ON user_log.id_user = users.id_user
                             ORDER BY id_log DESC");
 
-        $logs = $this->db->resultSet(); 
+        $user_id = (int) $_SESSION['id_user'];
 
-        return $logs; 
+        $this->db->bind('user_id', $user_id);
 
+        $logs = $this->db->resultSet();
+
+        return $logs;
+    }
+
+    // insert in table professor_info
+
+    public function insertProfessorInfo($class_id, $data)
+    {
+        $this->db->query('INSERT INTO professor_info (id_professor, id_class, id_subject) 
+        
+                           VALUES 
+                           
+                           ((SELECT users.id_user FROM users WHERE users.id_user_role = 5 ORDER BY users.id_user DESC LIMIT 1) , :id_class, :id_subject)');
+
+        $this->db->bind('id_class', $data['professor_class_id']);
+        $this->db->bind('id_subject', $class_id);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
