@@ -38,7 +38,7 @@ class Users extends Controller
                 'id_school_class' => trim($_POST['id_school_class']),
                 'teacher_class_id' => (int) trim($_POST['teacher_class_id']),
                 'professor_class_id' =>  (int) trim($_POST['professor_class_id']),
-                'subject_id' => $subject_id = array_map('trim', $_POST['subject_id']),
+                'subject_id' => array_map('trim', $_POST['subject_id']),
 
                 'name_err' => '',
                 'email_err' => '',
@@ -49,7 +49,7 @@ class Users extends Controller
                 'last_name_err' => '',
                 'id_school_class_err' => '',
                 'id_teacher_class_err' => '',
-                'id_professor_class_err' => '',
+                'professor_class_err' => '',
                 'id_subject_err' => ''
 
             ];
@@ -134,11 +134,11 @@ class Users extends Controller
                 // Validate professor class
                 if (empty($data['professor_class_id'])) {
 
-                    $data['id_professor_class_err'] = 'Please select Professor Class';
+                    $data['professor_class_err'] = 'Please select Professor Class';
                 }
-                if (empty($data['subject_id'])) {
+                if (empty($data['subject_id[]'])) {
 
-                    $data['subject_id_err'] = 'Please select Subject For Professor';
+                    $data['id_subject_err'] = 'Please select Subject("s") for Professor';
                 }
             }
 
@@ -153,8 +153,8 @@ class Users extends Controller
                 && empty($data['last_name_err'])
                 && empty($data['id_school_class_err'])
                 && empty($data['id_teacher_class_err'])
-                && empty($data['id_professor_class_err'])
-                && empty($data['subject_id_err'])
+                && empty($data['professor_class_err'])
+                && empty($data['id_subject_err'])
 
             ) {
 
@@ -201,7 +201,11 @@ class Users extends Controller
                 // Load view with errors
                 $classes = $this->classModel->showAllClasses();
 
+                $subjects = $this->subjectModel->showallSubjects();
+
                 $data['classes'] = $classes;
+
+                $data['subjects'] = $subjects;
 
                 $this->view('users/insert', $data);
             }
@@ -228,7 +232,9 @@ class Users extends Controller
                 'first_name_err' => '',
                 'last_name_err' => '',
                 'id_school_class_err' => '',
-                'id_teacher_class_err' => ''
+                'id_teacher_class_err' => '',
+                'professor_class_err' => '',
+                'id_subject_err' => ''
             ];
 
             $classes = $this->classModel->showAllClasses();
