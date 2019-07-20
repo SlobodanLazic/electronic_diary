@@ -100,7 +100,7 @@
 
                         <div id="professor">
                             <div class="form-group">
-                                <label for="id_school_class">Razredni za odeljenje<sup>*</sup></label>
+                                <label for="id_school_class">Class master class<sup>*</sup></label>
                                 <select name="professor_class_id" id="professor_class_id" class=" form-control form-control-lg">
 
                                     <option value='0' selected>--Select a class--</option>
@@ -113,17 +113,17 @@
                                     <?php endforeach; ?>
 
                                 </select>
-                                
 
-                               <!--  <label for="id_school_class">Subject<sup>*</sup></label>
+
+                                <!--  <label for="id_school_class">Subject<sup>*</sup></label>
                                 <select name="subject_id[]" id="subject_id" multiple="multiple" class=" form-control form-control-lg <?php echo (!empty($data['id_subject_err'])) ? 'is-invalid' : '' ?>">
                                     <option value='' selected>.....Select subject.....</option>
                                     <?php foreach ($data['subjects'] as $subject) : ?>
 
 
-                                        <option value='<?php echo $subject->id_subject; ?>' <?php if ($data['subject_id'] == $subject->id_subject) {
-                                                                                                echo 'selected';
-                                                                                            } ?>><?php print($subject->name); ?></option>
+                                                <option value='<?php echo $subject->id_subject; ?>' <?php if ($data['subject_id'] == $subject->id_subject) {
+                                                                                                        echo 'selected';
+                                                                                                    } ?>><?php print($subject->name); ?></option>
 
                                     <?php endforeach; ?>
 

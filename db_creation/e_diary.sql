@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 20, 2019 at 11:59 AM
+-- Generation Time: Jul 20, 2019 at 12:45 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.18
 
@@ -23,6 +23,29 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `e_diary` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `e_diary`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `class_masters`
+--
+
+DROP TABLE IF EXISTS `class_masters`;
+CREATE TABLE IF NOT EXISTS `class_masters` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_professor` int(11) NOT NULL,
+  `id_class` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `class_masters`
+--
+
+INSERT INTO `class_masters` (`id`, `id_professor`, `id_class`) VALUES
+(3, 73, 3),
+(5, 75, 10),
+(6, 76, 17);
 
 -- --------------------------------------------------------
 
@@ -117,38 +140,25 @@ CREATE TABLE IF NOT EXISTS `professor_info` (
   `id_class` int(11) NOT NULL,
   `id_subject` int(11) NOT NULL,
   PRIMARY KEY (`id_professor_info`)
-) ENGINE=MyISAM AUTO_INCREMENT=93 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `professor_info`
 --
 
 INSERT INTO `professor_info` (`id_professor_info`, `id_professor`, `id_class`, `id_subject`) VALUES
+(95, 75, 15, 2),
+(99, 75, 13, 2),
+(98, 75, 13, 1),
+(97, 75, 18, 3),
+(96, 75, 18, 1),
+(94, 75, 15, 1),
+(93, 75, 15, 1),
 (92, 75, 13, 6),
 (91, 75, 13, 2),
-(90, 73, 16, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `razredni`
---
-
-DROP TABLE IF EXISTS `razredni`;
-CREATE TABLE IF NOT EXISTS `razredni` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_professor` int(11) NOT NULL,
-  `id_class` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `razredni`
---
-
-INSERT INTO `razredni` (`id`, `id_professor`, `id_class`) VALUES
-(3, 73, 3),
-(5, 75, 10);
+(90, 73, 16, 1),
+(100, 75, 13, 3),
+(101, 73, 15, 2);
 
 -- --------------------------------------------------------
 
@@ -440,7 +450,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `teacher_class_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_user`),
   KEY `fk_users_user_roles_idx` (`id_user_role`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
@@ -455,7 +465,8 @@ INSERT INTO `users` (`id_user`, `username`, `password`, `email`, `id_user_role`,
 (40, 'parent2', '$2y$10$HsATeFX5yQzoTr26sFP./OuT5S4jHowTbVithPPBLeKlV3/Z0dNrC', 'parent2@gmail.com', 4, 0),
 (73, 'profesor', '$2y$10$TrI2szvZ9KaefD2uSo9MHOvl5mUYNMujrfV6jD48S9r1UAHdbpfS.', 'profesor@gmail.com', 5, 0),
 (74, 'teacher2', '$2y$10$YWO7ubcCcM/QeOrBJHB44.YYe2k8Oye5iCDuUZgO26xrOjdDmqHFC', 'teacher2@gmail.com', 3, 12),
-(75, 'profesor1', '$2y$10$tQeK4FHTO2uzLEizujuu7OTH77k6c0AqMNethjj3DWElM3pECklg.', 'profesor1@gmail.com', 5, 0);
+(75, 'profesor1', '$2y$10$tQeK4FHTO2uzLEizujuu7OTH77k6c0AqMNethjj3DWElM3pECklg.', 'profesor1@gmail.com', 5, 0),
+(76, 'profesor2', '$2y$10$RZjTQfdDdHRmE9kk3vbnm.V/LWsA81WXqcrxpGd7zTTEuU3oCcN/C', 'profesor2@gmail.com', 5, 0);
 
 -- --------------------------------------------------------
 

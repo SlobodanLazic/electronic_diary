@@ -260,13 +260,13 @@ class User
         }
     }
 
-    // inserts in table Razredni
+    // inserts in table class_masters
 
-    public function insertInTableRazredni($data)
+    public function insertInTableClass_masters($data)
     {
 
 
-        $this->db->query('INSERT INTO razredni (id_professor , id_class) VALUES ((SELECT users.id_user FROM users WHERE users.id_user_role = 5 ORDER BY users.id_user DESC LIMIT 1) , :id_class)');
+        $this->db->query('INSERT INTO class_masters (id_professor , id_class) VALUES ((SELECT users.id_user FROM users WHERE users.id_user_role = 5 ORDER BY users.id_user DESC LIMIT 1) , :id_class)');
 
         $this->db->bind('id_class', $data['professor_class_id']);
 

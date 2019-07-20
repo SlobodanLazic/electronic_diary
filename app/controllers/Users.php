@@ -166,11 +166,11 @@ class Users extends Controller
                         }
                     }
 
-                    // Add in table razredni
+                    // Add in table class_masters
 
                     if (isset($data['professor_class_id'])) {
 
-                        $this->userModel->insertInTableRazredni($data);
+                        $this->userModel->insertInTableClass_masters($data);
                     }
 
 
