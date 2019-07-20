@@ -54,7 +54,7 @@ class Grades extends Controller
 
         $averageGradesByClasses = $this->gradeModel->showAvgGradesByClasses($id_class);
 
-        echo (json_encode($averageGradesByClasses));
+        echo(json_encode($averageGradesByClasses));
     }
 
 

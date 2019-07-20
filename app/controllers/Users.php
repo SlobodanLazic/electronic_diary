@@ -894,9 +894,13 @@ class Users extends Controller
         $data = [
             'logs' => $logs
         ];
-
+        
         if (isset($_SESSION['id_user']) && $_SESSION['id_user_role'] === '1') {
+
             $this->view("users/user_log", $data);
+
+            return json_encode($logs);
+        
         }
     }
 
