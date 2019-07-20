@@ -11,7 +11,7 @@
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -25,14 +25,14 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" onclick="hidenBG()" class="btn btn-secondary">Close</button>
+        <button type="button" onclick="heighBG()" class="btn btn-secondary">Close</button>
         <button type="button" class="btn btn-primary">Add</button>
       </div>
 
     </div>
   </div>
 </div>
-
+<!-- //////////////////////////////////////// -->
            </div>
 <hr>
            <div class="row">

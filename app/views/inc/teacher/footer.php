@@ -24,7 +24,8 @@
 
   <script>
 var wrapper = document.getElementById("wrapper"); 
-var body = document.getElementsByTagName("body"); 
+var body = document.getElementById("page-top");
+var model = document.getElementsByClassName("modal-backdrop"); 
 
 var messages = document.getElementById('messages');
 var ring = document.getElementById('ring');
@@ -33,11 +34,11 @@ var msg;
 
 // show background transparent and heidt
 function showBG() {
-    wrapper.insertAdjacentHTML("afterend", "  <div class='modal-backdrop fade show'></div>");
+    wrapper.insertAdjacentHTML("afterend", "<div class='modal-backdrop fade show'></div>");
 }
 
 function heighBG() {
-    body.removeChild("weapper"); 
+    body.removeChild(model); 
 }
 ///// 
 
