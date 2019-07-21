@@ -13,8 +13,8 @@ $(document).ready(function () {
             data: '',
             dataType: 'json',
             success: function (data) {
-                var data = data;
                 //Getting all log data from DB
+                var data = data;
                 console.log(data);
 
                 for (let i = 0; i < data.length; i++) {
