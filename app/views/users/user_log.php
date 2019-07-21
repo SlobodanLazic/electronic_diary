@@ -26,7 +26,7 @@
         <div class='col-lg-3 border-bottom pb-1'>
           TIME OF LOGOUT:
           <br> 
-          <b><?php echo $log->logout_time; ?></b>
+          <b class="logout-time"><?php echo $log->logout_time; ?></b>
         </div>
       
       <?php endforeach; ?>
