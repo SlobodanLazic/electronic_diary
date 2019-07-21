@@ -1,8 +1,10 @@
 $(document).ready(function () {
-    idRow = $('.row');
-    setInterval(checkUserActivity(idRow), 60000);
+    entireRow = $('.row');
+    lastLoggedInTime = $('.logout-time').html();
+    console.log(lastLoggedInTime);
+    setInterval(checkUserActivity(entireRow), 60000);
 
-    function checkUserActivity(idRow) {
+    function checkUserActivity(entireRow) {
         var currentTimeAndDate = new Date($.now());
         
         $.ajax({
