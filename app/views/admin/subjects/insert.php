@@ -6,7 +6,7 @@
 
         <!-- Page Heading -->
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-sm-4">
                 <h1 class="page-header">
                     Insert Subject
                 </h1>
@@ -26,6 +26,17 @@
                 </div>
 
 
+            </div>
+
+            <div class="col-sm-3 offset-1">
+                <div id="subjects_drag">
+                    <h2>Drag subject </h2>
+                    <div class="list-inline">
+                        <?php foreach ($data['subjects'] as $subject) : ?>
+                            <?php echo "<div class='list-group-item all-copy list-group-item-success sw-resize text'> $subject->name </div>" ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- /.row -->
