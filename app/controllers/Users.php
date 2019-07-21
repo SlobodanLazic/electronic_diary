@@ -889,19 +889,20 @@ class Users extends Controller
 
     public function show_log()
     {
-        $logs = $this->userModel->show_logs();
-
-        $data = [
-            'logs' => $logs
-        ];
         
         if (isset($_SESSION['id_user']) && $_SESSION['id_user_role'] === '1') {
 
-            $this->view("users/user_log", $data);
-
-            return json_encode($logs);
+            $this->view("users/user_log");
         
         }
+    }
+
+    public function showLastLoggedInTime()
+    {
+        $logsFromDb = $this->userModel->show_logs();
+        
+        print(json_encode($logsFromDb));
+        
     }
 
     /* ASSIGN USER END*/
