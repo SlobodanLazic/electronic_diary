@@ -24,6 +24,19 @@ function toggleFields() {
    }
 }
 
+function dragEnter(event) {
+   if (event.target.className == "form-control") {
+      event.target.style.border = "2px dotted blue";
+
+   }
+}
+
+function dragLeave(event) {
+   if (event.target.className == "form-control") {
+      event.target.style.border = "2px solid #d1d3e2";
+   }
+}
+
 
 
 // const inputElement = document.querySelector(".js-controlled-input")
