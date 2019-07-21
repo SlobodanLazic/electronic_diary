@@ -891,25 +891,11 @@ class Users extends Controller
 
     public function show_log()
     {
-<<<<<<< HEAD
-        $logs = $this->userModel->show_logs();
-
-        $data = [
-            'logs' => $logs
-        ];
-
-        if (isset($_SESSION['id_user']) && $_SESSION['id_user_role'] === '1') {
-
-            $this->view("users/user_log", $data);
-
-            return json_encode($logs);
-=======
         
         if (isset($_SESSION['id_user']) && $_SESSION['id_user_role'] === '1') {
 
             $this->view("users/user_log");
         
->>>>>>> meeting_requests
         }
     }
 
