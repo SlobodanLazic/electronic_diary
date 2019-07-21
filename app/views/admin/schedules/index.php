@@ -146,30 +146,13 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
 
                                             echo "<td>$i</td>";
 
-                                            //TESTING NEW CODE , LET'S STAY FORE SOME TIME IVAN
-
-                                            // foreach ($row1 as $r) {
-
-                                            //     if(!empty( $r->subject_name)){
-
-                                            //     echo "<td><a href=" . URLROOT . "/schedules/edit/$r->id_schedules>" . $r->subject_name . "</a></td>";
-
-                                            //     }else{
-
-                                            //         echo "<td><a href=" . URLROOT . "/schedules/edit/$r->id_schedules>" . 'N/A' . "</a></td>";
-
-                                            //     }
-                                            // }
-
-
-
                                             // make dynamic variable
 
                                             $var = "row$i";
 
                                             $row = $$var;
 
-                                            // Inide Url Helper folder , displays table cells and link
+                                            // Inside Url Helper folder , displays table cells and link
 
                                             display_row_with_link($row);
 
