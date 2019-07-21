@@ -14,7 +14,6 @@
 
         </div>
 
-
         <form action="<?php echo URLROOT; ?>/schedules/insert" method="POST">
             <div class="col-lg-12">
                 <div class="form-group">
@@ -23,7 +22,7 @@
                         <div class="col-xs-2">
                             <label for="id_school_class">Student Class<sup>*</sup></label>
                             <select name="id_school_class" id="id_school_class" class="form-control form-control-lg input-medium">
-                                <option value='' selected>.....Select a class.....</option>
+                                <option value='' selected>--Select a class--</option>
                                 <?php foreach ($data['classes'] as $key => $class) {
 
                                     if (in_array_r($class->name, $data['schedule_class'])) {
@@ -39,6 +38,8 @@
                                 } ?>
 
                             </select>
+                            <div class='text-danger'><?php echo $data['class_err']; ?></div>
+
                         </div>
                     </div>
 
@@ -263,11 +264,10 @@
 
                         </table>
                         <div class="col-4 mt-3 pl-3">
-                            <button class="btn btn-primary btn-lg insert-rand-button" type="submit" name="insert">Insert</button> 
+                            <button class="btn btn-primary btn-lg insert-rand-button" type="submit" name="insert">Insert</button>
                         </div>
+
                     </div>
-                    
-                        
                 </div>
 
                 <div class="col">

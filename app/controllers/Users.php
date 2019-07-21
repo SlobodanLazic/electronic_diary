@@ -880,7 +880,9 @@ class Users extends Controller
 
             'professors' => $professors,
             'subjects' => $subjects,
-            'classes' => $classes
+            'classes' => $classes,
+            'id_class' => '',
+            'id_professor' => ''
 
         ];
 
@@ -894,13 +896,12 @@ class Users extends Controller
         $data = [
             'logs' => $logs
         ];
-        
+
         if (isset($_SESSION['id_user']) && $_SESSION['id_user_role'] === '1') {
 
             $this->view("users/user_log", $data);
 
             return json_encode($logs);
-        
         }
     }
 
@@ -916,12 +917,13 @@ class Users extends Controller
 
             $data = [
                 'id_professor' => $_POST['professor_id'],
-                'id_subject' => $_POST['subject_id'],
+                'id_subject' => $_POST['subject_id'] ?? '',
                 'id_class' => $_POST['class_id'],
 
                 'id_professor_err' => '',
                 'id_subject_err' => '',
                 'id_class_err' => '',
+
 
             ];
 
@@ -933,6 +935,7 @@ class Users extends Controller
 
             // subject
             if (empty($data['id_subject'])) {
+
                 $data['id_subject_err'] = 'Please select subject';
             }
 
@@ -953,14 +956,17 @@ class Users extends Controller
 
                 for ($i = 0; $i < count($data['id_subject']); $i++) {
 
-                    $this->userModel->insertProfessorInfo($data['id_subject'][$i], $data);
+                    $success = $this->userModel->insertProfessorInfo($data['id_subject'][$i], $data);
                 }
 
+                if ($success) {
+                    flash('professor_msg', "Subject('s) addeded for professor");
+                    redirect('users/assign_to_professor');
 
-                flash('register_success', 'You have added a user');
-                redirect('/users/assign_to_professor');
-
-                $this->view('users/assign_to_professor');
+                    $this->view('users/assign_to_professor');
+                } else {
+                    die('Something went wrong');
+                }
             } else {
                 // Load view with errors
 
@@ -971,6 +977,7 @@ class Users extends Controller
                 $data['professors'] = $professors;
                 $data['subjects'] = $subjects;
                 $data['classes'] = $classes;
+
 
                 $this->view('users/assign_to_professor', $data);
             }

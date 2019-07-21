@@ -102,6 +102,8 @@ class Schedules extends Controller
                 'class_num7' => trim($_POST['class_num7']),
                 'class_id' => trim($_POST['id_school_class']),
 
+                'class_err' => ''
+
             ];
 
             // Validate class

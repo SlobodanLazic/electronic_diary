@@ -17,7 +17,7 @@
                     <form action="<?php echo URLROOT; ?>/schedules/update/<?php echo $data['schedule']->id_schedules; ?>" method="post">
                         <div class="form-group">
                             <label>Name:</label>
-                            <input type="text" name="name" class="form-control form-control-lg" value="<?php echo $data['schedule']->subject_name; ?>">
+                            <input type="text" name="name" class="form-control form-control-lg" value="">
                             <input type="hidden" id="id_schedule" name="id_schedule" value="<?php echo $data['schedule']->id_schedules; ?>">
                             <span class="invalid-feedback text-danger"></span>
                         </div>
