@@ -16,10 +16,7 @@
                     <form action="<?php echo URLROOT; ?>/notifications/insert" method="post">
                         <div class="form-group">
 
-
-                                <textarea name="notification_content" id="notification_content" cols="100" rows="15">
-
-                                </textarea>
+                            <textarea name="notification_content" id="notification_content" cols="100" rows="15"></textarea>
 
                             </select>
                         </div>
