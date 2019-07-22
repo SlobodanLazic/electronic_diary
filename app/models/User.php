@@ -152,7 +152,7 @@ class User
                                 ur.id_user_role,
                                 ur.name
                                 FROM users AS u 
-                                    JOIN user_roles AS ur ON u.id_user_role = ur.id_user_role
+                                JOIN user_roles AS ur ON u.id_user_role = ur.id_user_role
                                 WHERE ur.id_user_role = :id_user_role
                                 ORDER BY ur.name;
                             ');
@@ -283,7 +283,10 @@ class User
     public function find_all_professors()
     {
 
-        $this->db->query('SELECT users.id_user, users.username , users.email FROM users WHERE users.id_user_role = 5');
+        $this->db->query('SELECT users.id_user, users.username,
+                          users.email 
+                          FROM users 
+                          WHERE users.id_user_role = 5');
 
         $professors = $this->db->resultSet();
 

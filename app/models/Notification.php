@@ -28,7 +28,9 @@
 
             // removed *
 
-            $this->db->query('SELECT parent_notifications.id_parent_notification, parent_notifications.notification_content FROM parent_notifications');
+            $this->db->query('SELECT parent_notifications.id_parent_notification,
+                              parent_notifications.notification_content
+                              FROM parent_notifications');
             $notification = $this->db->resultSet();
             return $notification;
     
@@ -40,7 +42,9 @@
         // removed *
 
 
-        $this->db->query('SELECT parent_notifications.id_parent_notification , parent_notifications.notification_content FROM parent_notifications WHERE id_parent_notification = :id_parent_notification');
+        $this->db->query('SELECT parent_notifications.id_parent_notification,
+                           parent_notifications.notification_content 
+                           FROM parent_notifications WHERE id_parent_notification = :id_parent_notification');
 
         $this->db->bind(':id_parent_notification', $id);
 

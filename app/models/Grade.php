@@ -127,7 +127,7 @@ class Grade
 
         $this->db->query('SELECT subjects.name , AVG(grades) as avg_grade 
                         FROM students_subjects 
-                            JOIN subjects ON subjects.id_subject = students_subjects.id_subject  
+                        JOIN subjects ON subjects.id_subject = students_subjects.id_subject  
                         WHERE students_subjects.school_class_id = :id_class 
                         GROUP BY(students_subjects.id_subject) 
                         ORDER BY avg_grade DESC');

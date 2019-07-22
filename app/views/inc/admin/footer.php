@@ -18,9 +18,6 @@
 <!-- Custom scripts for all pages-->
 <script src="<?php echo URLROOT; ?>/js/dashboard/sb-admin.js"></script>
 
-<!-- Ajax call for users log page -->
-<script src="<?php echo URLROOT; ?>/js/admin/user_log.js"></script>
-
 <!-- Main js -->
 <script src="<?php echo URLROOT; ?>/js/main.js"></script>
 </body>
