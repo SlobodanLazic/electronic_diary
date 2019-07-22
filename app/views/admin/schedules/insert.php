@@ -14,7 +14,6 @@
 
         </div>
 
-
         <form action="<?php echo URLROOT; ?>/schedules/insert" method="POST">
             <div class="col-lg-12">
                 <div class="form-group">
@@ -23,7 +22,7 @@
                         <div class="col-xs-2">
                             <label for="id_school_class">Student Class<sup>*</sup></label>
                             <select name="id_school_class" id="id_school_class" class="form-control form-control-lg input-medium">
-                                <option value='' selected>.....Select a class.....</option>
+                                <option value='' selected>--Select a class--</option>
                                 <?php foreach ($data['classes'] as $key => $class) {
 
                                     if (in_array_r($class->name, $data['schedule_class'])) {
@@ -39,6 +38,8 @@
                                 } ?>
 
                             </select>
+                            <div class='text-danger'><?php echo $data['class_err']; ?></div>
+
                         </div>
                     </div>
 
@@ -67,59 +68,103 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row">1</th>
+                                    <?php 
+                                    
+                                    $letters = ['a', 'b', 'c','d','e'];
+                                    $c = 1;
+                                    $a = 1;
+                                    $e = 1;
+
+                                    for ($i=1; $i <= 7; $i++) { 
+                                        echo "<th scope='row'>".$i."</th>";
+                                        
+                                        for ($j=0; $j <= count($letters)-1 ; $j++) { 
+                                            echo "<td><input type='text'  class='form-control' name='".$letters[$j].$c."'size='12'></td>\n";
+                                            echo "<input type='hidden' id='1' name='class_num".$e++."' value='1'>";
+                                        }
+
+                                        $c++;
+                                        echo '</tr>';
+
+                                        
+                                    }
+                                    
+                                      
+                                    ?>
+
+                                    
+
+
+                                    <!-- <th scope="row">1</th>
                                     <td>
-                                        <input type="text" class='form-control' name='a1' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='a1' size="12">
 
                                         <input type="hidden" id="1" name="class_num1" value="1">
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='b1' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='b1' size="12">
 
                                         <input type="hidden" name="class_num1" value="1">
 
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='c1' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='c1' size="12">
 
                                         <input type="hidden" name="class_num1" value="1">
 
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='d1' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='d1' size="12">
 
                                         <input type="hidden" name="class_num1" value="1">
 
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='e1' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='e1' size="12">
 
                                         <input type="hidden" name="class_num1" value="1">
-                                    </td>
-                                </tr>
-                                <tr>
+                                    </td> -->
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <!-- <tr>
                                     <th scope="row">2</th>
                                     <td>
-                                        <input type="text" class='form-control' name='a2' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='a2' size="12">
 
                                         <input type="hidden" id="1" name="class_num2" value="2">
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='b2' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='b2' size="12">
                                         <input type="hidden" id="1" name="class_num2" value="2">
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='c2' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='c2' size="12">
                                         <input type="hidden" id="1" name="class_num2" value="2">
 
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='d2' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='d2' size="12">
                                         <input type="hidden" name="class_num2" value="2">
 
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='e2' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='e2' size="12">
 
                                         <input type="hidden" name="class_num2" value="2">
                                     </td>
@@ -127,26 +172,26 @@
                                 <tr>
                                     <th scope="row">3</th>
                                     <td>
-                                        <input type="text" class='form-control' name='a3' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='a3' size="12">
 
                                         <input type="hidden" id="1" name="class_num3" value="3">
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='b3' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='b3' size="12">
                                         <input type="hidden" id="1" name="class_num3" value="3">
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='c3' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='c3' size="12">
                                         <input type="hidden" id="1" name="class_num3" value="3">
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='d3' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='d3' size="12">
 
                                         <input type="hidden" id="1" name="class_num3" value="3">
 
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='e3' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='e3' size="12">
 
                                         <input type="hidden" id="1" name="class_num3" value="3">
                                     </td>
@@ -154,26 +199,26 @@
                                 <tr>
                                     <th scope="row">4</th>
                                     <td>
-                                        <input type="text" class='form-control' name='a4' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='a4' size="12">
 
                                         <input type="hidden" id="1" name="class_num4" value="4">
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='b4' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='b4' size="12">
                                         <input type="hidden" id="1" name="class_num4" value="4">
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='c4' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='c4' size="12">
                                         <input type="hidden" id="1" name="class_num4" value="4">
 
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='d4' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='d4' size="12">
 
                                         <input type="hidden" id="1" name="class_num4" value="4">
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='e4' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='e4' size="12">
 
                                         <input type="hidden" id="1" name="class_num4" value="4">
                                     </td>
@@ -181,27 +226,27 @@
                                 <tr>
                                     <th scope="row">5</th>
                                     <td>
-                                        <input type="text" class='form-control' name='a5' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='a5' size="12">
 
                                         <input type="hidden" id="1" name="class_num5" value="5">
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='b5' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='b5' size="12">
                                         <input type="hidden" id="1" name="class_num5" value="5">
                                     </td>
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='c5' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='c5' size="12">
                                         <input type="hidden" id="1" name="class_num5" value="5">
 
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='d5' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='d5' size="12">
 
                                         <input type="hidden" id="1" name="class_num5" value="5">
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='e5' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='e5' size="12">
 
                                         <input type="hidden" id="1" name="class_num5" value="5">
                                     </td>
@@ -209,26 +254,26 @@
                                 <tr>
                                     <th scope="row">6</th>
                                     <td>
-                                        <input type="text" class='form-control' name='a6' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='a6' size="12">
 
                                         <input type="hidden" id="1" name="class_num6" value="6">
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='b6' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='b6' size="12">
                                         <input type="hidden" id="1" name="class_num6" value="6">
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='c6' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='c6' size="12">
                                         <input type="hidden" id="1" name="class_num6" value="6">
 
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='d6' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='d6' size="12">
 
                                         <input type="hidden" id="1" name="class_num6" value="6">
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='e6' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='e6' size="12">
 
                                         <input type="hidden" id="1" name="class_num6" value="6">
                                     </td>
@@ -236,38 +281,37 @@
                                 <tr>
                                     <th scope="row">7</th>
                                     <td>
-                                        <input type="text" class='form-control' name='a7' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='a7' size="12">
 
                                         <input type="hidden" id="1" name="class_num7" value="7">
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='b7' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='b7' size="12">
                                         <input type="hidden" id="1" name="class_num7" value="7">
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='c7' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='c7' size="12">
                                         <input type="hidden" id="1" name="class_num7" value="7">
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='d7' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='d7' size="12">
 
                                         <input type="hidden" id="1" name="class_num7" value="7">
                                     </td>
                                     <td>
-                                        <input type="text" class='form-control' name='e7' size="12">
+                                        <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='e7' size="12">
 
                                         <input type="hidden" id="1" name="class_num7" value="7">
                                     </td>
-                                </tr>
+                                </tr> -->
                             </tbody>
 
                         </table>
                         <div class="col-4 mt-3 pl-3">
-                            <button class="btn btn-primary btn-lg insert-rand-button" type="submit" name="insert">Insert</button> 
+                            <button class="btn btn-primary btn-lg insert-rand-button" type="submit" name="insert">Insert</button>
                         </div>
+
                     </div>
-                    
-                        
                 </div>
 
                 <div class="col">
