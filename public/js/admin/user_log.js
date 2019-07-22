@@ -21,14 +21,17 @@ $(document).ready(function () {
                     
                     for (const jsonKey in data[i]) {
                         var div = document.createElement("div");
+                        var divRow = document.createElement("div");                        
 
                         if ( jsonKey === 'id_user') {
                             // we will not show id_user on the page
                             continue;
                         } else if ( jsonKey === 'logout_time') {
                             // added logout-time class so we can compare logout time to current time
+                            divRow.setAttribute("class","divRow");
                             div.setAttribute("class","col-lg-3 border-bottom pb-1 logout-time");
                         } else {
+                            divRow.setAttribute("class","divRow");
                             div.setAttribute("class","col-lg-3 border-bottom pb-1");
                         }
                         // for each json object it adds format of text like this key: value 
@@ -36,9 +39,11 @@ $(document).ready(function () {
                         // created text out of Json data
                         var contentDiv = document.createTextNode(contentOfDiv);
                         // filled each div with text into div with class column
+                        
+                        divRow.appendChild(div);
                         div.appendChild(contentDiv);
                         // filled entire row with all columns and their data
-                        entireRow.append(div);
+                        entireRow.append(divRow);
                     }                  
                     
                 }
