@@ -68,7 +68,34 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th scope="row">1</th>
+                                    <?php 
+                                    
+                                    $letters = ['a', 'b', 'c','d','e'];
+                                    $c = 1;
+                                    $a = 1;
+                                    $e = 1;
+
+                                    for ($i=1; $i <= 7; $i++) { 
+                                        echo "<th scope='row'>".$i."</th>";
+                                        
+                                        for ($j=0; $j <= count($letters)-1 ; $j++) { 
+                                            echo "<td><input type='text'  class='form-control' name='".$letters[$j].$c."'size='12'></td>\n";
+                                            echo "<input type='hidden' id='1' name='class_num".$e++."' value='1'>";
+                                        }
+
+                                        $c++;
+                                        echo '</tr>';
+
+                                        
+                                    }
+                                    
+                                      
+                                    ?>
+
+                                    
+
+
+                                    <!-- <th scope="row">1</th>
                                     <td>
                                         <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='a1' size="12">
 
@@ -96,9 +123,26 @@
                                         <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='e1' size="12">
 
                                         <input type="hidden" name="class_num1" value="1">
-                                    </td>
-                                </tr>
-                                <tr>
+                                    </td> -->
+                                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <!-- <tr>
                                     <th scope="row">2</th>
                                     <td>
                                         <input type="text" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)" class='form-control' name='a2' size="12">
@@ -259,7 +303,7 @@
 
                                         <input type="hidden" id="1" name="class_num7" value="7">
                                     </td>
-                                </tr>
+                                </tr> -->
                             </tbody>
 
                         </table>
