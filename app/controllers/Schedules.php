@@ -286,9 +286,12 @@ class Schedules extends Controller
         $this->view('admin/schedules/index', $data);
     }
 
-    public function delete($id)
+    public function delete($id = '')
     {
 
+        if ($id == '') {
+            die('Schedule not exists');
+        }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
