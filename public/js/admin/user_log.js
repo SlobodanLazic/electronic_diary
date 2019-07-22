@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var entireRow = $('.row');
-    var lastLoggedInTime = $('.logout-time').html();
-
+    
+    
     setInterval(checkUserActivity(entireRow), 60000);
 
     function checkUserActivity(entireRow) {
@@ -20,39 +20,38 @@ $(document).ready(function () {
                 for (let i = 0; i < data.length; i++) {
                     
                     for (const jsonKey in data[i]) {
-                        var div = document.createElement("div");
-                        var divRow = document.createElement("div");                        
+                        var logSection = document.createElement("div");
+                        // for each json object it adds format of text like this key: value 
+                        var contentOfDiv = jsonKey + ": " + data[i][jsonKey] + " ";
+                        // created text out of Json data
+                        var logDataText = document.createTextNode(contentOfDiv);
 
                         if ( jsonKey === 'id_user') {
                             // we will not show id_user on the page
                             continue;
                         } else if ( jsonKey === 'logout_time') {
+                            console.log(data[i][jsonKey]);
+                            var lastLoggedInTime = document.getElementsByClassName("logout-time");
                             // added logout-time class so we can compare logout time to current time
-                            divRow.setAttribute("class","divRow");
-                            div.setAttribute("class","col-lg-3 border-bottom pb-1 logout-time");
+                            logSection.setAttribute("class","col-lg-3 border-bottom pb-1 logout-time");
                         } else {
-                            divRow.setAttribute("class","divRow");
-                            div.setAttribute("class","col-lg-3 border-bottom pb-1");
+                            logSection.setAttribute("class","col-lg-3 border-bottom pb-1");
                         }
-                        // for each json object it adds format of text like this key: value 
-                        var contentOfDiv = jsonKey + ": " + data[i][jsonKey] + " ";
-                        // created text out of Json data
-                        var contentDiv = document.createTextNode(contentOfDiv);
-                        // filled each div with text into div with class column
                         
-                        divRow.appendChild(div);
-                        div.appendChild(contentDiv);
+                        // filled each logSection with text into logSection with class column
+                        logSection.appendChild(logDataText);
                         // filled entire row with all columns and their data
-                        entireRow.append(divRow);
-                    }                  
-                    
+                        entireRow.append(logSection);
+                    }
+                    console.log(lastLoggedInTime[i].innerHTML);
+                    if (lastLoggedInTime[i].innerHTML <= currentTimeAndDate) {
+                        entireRow.setAttribute('bg-success');
+                    }
                 }
+                
             }
         });
-        
-        if (lastLoggedInTime <= currentTimeAndDate) {
-            entireRow.setAttribute('bg-success');
-        }
+
     }
     
 });
