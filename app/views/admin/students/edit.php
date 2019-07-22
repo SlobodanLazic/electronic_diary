@@ -41,7 +41,7 @@
 
 
 
-                            <!--  <span class="invalid-feedback text-danger"><?php echo $data['id_school_class_err']; ?></span> -->
+                         <?php echo $data['id_school_class_err']; ?>
 
                         </div>
 

@@ -34,7 +34,9 @@ class School_class
 
         // removed *
 
-        $this->db->query('SELECT school_classes.id_school_class , school_classes.name FROM school_classes');
+        $this->db->query('SELECT school_classes.id_school_class,
+                          school_classes.name 
+                          FROM school_classes');
 
         $classes = $this->db->resultSet();
 
@@ -46,7 +48,9 @@ class School_class
 
         // removed *
 
-        $this->db->query('SELECT school_classes.id_school_class ,school_classes.name FROM school_classes WHERE id_school_class = :id_class');
+        $this->db->query('SELECT school_classes.id_school_class,
+                          school_classes.name
+                          FROM school_classes WHERE id_school_class = :id_class');
 
         $this->db->bind(':id_class', $id);
 
@@ -90,7 +94,9 @@ class School_class
     public function get_number_of_classes_for_child()
     {
 
-        $this->db->query('SELECT students.first_name , students.last_name , students.id_school_class, COUNT(schedules.id_schedules) AS class_count FROM students, schedules WHERE students.id_student IN (SELECT users_students.id_student FROM users_students WHERE users_students.id_user = :id_user) AND schedules.day_id = :id_day AND schedules.subject_name != "" ANd schedules.class_id = students.id_school_class GROUP BY students.id_student');
+        $this->db->query('SELECT students.first_name,
+                          students.last_name,
+                          students.id_school_class, COUNT(schedules.id_schedules) AS class_count FROM students, schedules WHERE students.id_student IN (SELECT users_students.id_student FROM users_students WHERE users_students.id_user = :id_user) AND schedules.day_id = :id_day AND schedules.subject_name != "" ANd schedules.class_id = students.id_school_class GROUP BY students.id_student');
 
         $id_day = idate('w', time());
         $id_user = (int) $_SESSION['id_user'];

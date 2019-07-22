@@ -50,8 +50,6 @@ class Users extends Controller
                 'id_school_class_err' => '',
                 'id_teacher_class_err' => '',
 
-
-
             ];
 
             // Validate Email
@@ -137,8 +135,6 @@ class Users extends Controller
                 && empty($data['last_name_err'])
                 && empty($data['id_school_class_err'])
                 && empty($data['id_teacher_class_err'])
-                //&& empty($data['professor_class_err'])
-                //&& empty($data['id_subject_err'])
 
             ) {
 
@@ -183,11 +179,8 @@ class Users extends Controller
                 // Load view with errors
                 $classes = $this->classModel->showAllClasses();
 
-                //$subjects = $this->subjectModel->showallSubjects();
-
                 $data['classes'] = $classes;
 
-                //$data['subjects'] = $subjects;
 
                 $this->view('users/insert', $data);
             }
@@ -204,8 +197,7 @@ class Users extends Controller
                 'id_school_class' => '',
                 'teacher_class_id' => '',
                 'professor_class_id' => '',
-                //'subject_id' => '',
-
+            
                 'name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
@@ -215,16 +207,11 @@ class Users extends Controller
                 'last_name_err' => '',
                 'id_school_class_err' => '',
                 'id_teacher_class_err' => '',
-                //'professor_class_err' => '',
-                //'id_subject_err' => ''
             ];
 
             $classes = $this->classModel->showAllClasses();
-            //$subjects = $this->subjectModel->showallSubjects();
 
             $data['classes'] = $classes;
-
-            //$data['subjects'] = $subjects;
 
             // Load view
             $this->view('users/insert', $data);
@@ -265,7 +252,7 @@ class Users extends Controller
 
     public function update()
     {
-        //die("It is in here");
+       
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Sanitize POST
             $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
