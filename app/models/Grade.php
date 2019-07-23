@@ -11,6 +11,7 @@ class Grade
 
     public function insertGrade($data2)
     {
+
         $this->db->query('INSERT INTO students_subjects (grades, grade_status, school_class_id, id_student, id_subject, grade_for_id)
         
          VALUES (:grades, :grade_status, :school_class_id, :id_student, :id_subject , :grade_for_id)');
@@ -171,7 +172,7 @@ class Grade
     {
         $this->db->query('DELETE FROM subjects
                           WHERE id_subject = :id_subject');
-                          
+
         $this->db->bind(':id_subject', $id);
 
         if ($this->db->execute()) {
@@ -217,7 +218,8 @@ class Grade
 
     // SHOWS ALL OPTIONS FOR GRADE 
 
-    public function showGradeOptions(){
+    public function showGradeOptions()
+    {
 
 
         $this->db->query('SELECT grade_for.name, grade_for.id_grade_for
@@ -227,10 +229,5 @@ class Grade
         $gradeOptions = $this->db->resultSet();
 
         return $gradeOptions;
-
-
     }
- 
-
-
 }
