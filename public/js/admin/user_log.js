@@ -15,7 +15,6 @@ $(document).ready(function () {
             success: function (data) {
                 //Getting all log data from DB
                 var data = data;
-                console.log(data);
 
                 for (let i = 0; i < data.length; i++) {
                     
@@ -30,8 +29,9 @@ $(document).ready(function () {
                             // we will not show id_user on the page
                             continue;
                         } else if ( jsonKey === 'logout_time') {
-                            console.log(data[i][jsonKey]);
-                            var lastLoggedInTime = document.getElementsByClassName("logout-time");
+                            
+                            var lastLoggedOutTime = data[i][jsonKey];
+                            
                             // added logout-time class so we can compare logout time to current time
                             logSection.setAttribute("class","col-lg-3 border-bottom pb-1 logout-time");
                         } else {
@@ -43,10 +43,17 @@ $(document).ready(function () {
                         // filled entire row with all columns and their data
                         entireRow.append(logSection);
                     }
-                    console.log(lastLoggedInTime[i].innerHTML);
-                    if (lastLoggedInTime[i].innerHTML <= currentTimeAndDate) {
-                        entireRow.setAttribute('bg-success');
-                    }
+                        if (lastLoggedOutTime < currentTimeAndDate) {
+                            
+                        }
+
+                        /* var spanActivity = document.createElement("span");
+                        spanActivity.setAttribute("class","rounded-circle bg-success");
+                        var logoutTimes = document.getElementsByClassName("logout-time");
+                        console.log(spanActivity);
+                        for (const key in logoutTimes) {
+                            logoutTimes.append(spanActivity);
+                        } */
                 }
                 
             }

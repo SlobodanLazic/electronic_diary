@@ -4,7 +4,7 @@
     <div class="container">
        <h2 class="text-dark">Logs</h2> 
     </div>
-    <div class="row">
+    <div class="row" id="log-row-data">
     </div>
 </div>
 
