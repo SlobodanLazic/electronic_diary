@@ -235,20 +235,9 @@ class Schedules extends Controller
 
                 'id_schedules' => trim($_POST['id_schedule']),
 
-                // 'name_err' => '',
-
             ];
 
 
-            // Validate first name
-            // if (empty($data['name'])) {
-            //     $data['name_err'] = 'Please enter name';
-            // }
-
-
-            // Make sure there are no errors
-            //if (empty($data['name_err'])) {
-            // Validation passed
             //Execute
             if ($this->schedulesModel->update($data)) {
                 // Redirect to login
@@ -297,9 +286,12 @@ class Schedules extends Controller
         $this->view('admin/schedules/index', $data);
     }
 
-    public function delete($id)
+    public function delete($id = '')
     {
 
+        if ($id == '') {
+            die('Schedule not exists');
+        }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 

@@ -11,7 +11,8 @@ class User
     // Insert User
     public function insert($data)
     {
-        $this->db->query('INSERT INTO users(username, password, email, id_user_role, teacher_class_id) VALUES (:name, :password, :email, :id_user_role, :teacher_class_id)');
+        $this->db->query('INSERT INTO users(username, password, email, id_user_role, teacher_class_id) 
+                          VALUES (:name, :password, :email, :id_user_role, :teacher_class_id)');
         // Bind values
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':email', $data['email']);
@@ -119,7 +120,8 @@ class User
     // Delete user
     public function deleteUser($id)
     {
-        $this->db->query('DELETE FROM users WHERE id_user = :id_user');
+        $this->db->query('DELETE FROM users 
+                          WHERE id_user = :id_user');
 
         $this->db->bind(':id_user', $id);
 
@@ -152,7 +154,7 @@ class User
                                 ur.id_user_role,
                                 ur.name
                                 FROM users AS u 
-                                    JOIN user_roles AS ur ON u.id_user_role = ur.id_user_role
+                                JOIN user_roles AS ur ON u.id_user_role = ur.id_user_role
                                 WHERE ur.id_user_role = :id_user_role
                                 ORDER BY ur.name;
                             ');
@@ -170,7 +172,12 @@ class User
 
         $integerOfDay = idate('w', time());
 
-        $this->db->query("SELECT count(*) as number_of_classes FROM schedules WHERE schedules.day_id = $integerOfDay AND schedules.subject_name != '' AND schedules.class_id = :id_class");
+        $this->db->query("SELECT count(*) 
+                          as number_of_classes 
+                          FROM schedules
+                          WHERE schedules.day_id = $integerOfDay
+                          AND schedules.subject_name != ''
+                          AND schedules.class_id = :id_class");
 
         $id_class = (int) htmlspecialchars($_SESSION['teacher_class_id']);
 
@@ -266,7 +273,8 @@ class User
     {
 
 
-        $this->db->query('INSERT INTO class_masters (id_professor , id_class) VALUES ((SELECT users.id_user FROM users WHERE users.id_user_role = 5 ORDER BY users.id_user DESC LIMIT 1) , :id_class)');
+        $this->db->query('INSERT INTO class_masters (id_professor , id_class)
+                         VALUES ((SELECT users.id_user FROM users WHERE users.id_user_role = 5 ORDER BY users.id_user DESC LIMIT 1) , :id_class)');
 
         $this->db->bind('id_class', $data['professor_class_id']);
 
@@ -283,7 +291,10 @@ class User
     public function find_all_professors()
     {
 
-        $this->db->query('SELECT users.id_user, users.username , users.email FROM users WHERE users.id_user_role = 5');
+        $this->db->query('SELECT users.id_user, users.username,
+                          users.email 
+                          FROM users 
+                          WHERE users.id_user_role = 5');
 
         $professors = $this->db->resultSet();
 

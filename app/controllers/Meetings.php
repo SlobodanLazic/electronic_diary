@@ -25,4 +25,5 @@ class Meetings extends Controller
 
         $this->meetingModel->updateTeacher($message, $id_meeting);
     }
+
 }

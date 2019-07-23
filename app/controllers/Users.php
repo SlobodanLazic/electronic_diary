@@ -15,6 +15,8 @@ class Users extends Controller
         $this->gradeModel = $this->model('Grade');
 
         $this->subjectModel = $this->model('Subject');
+
+        $this->meetingModel = $this->model('Meeting');
     }
 
     public function insert()
@@ -49,8 +51,6 @@ class Users extends Controller
                 'last_name_err' => '',
                 'id_school_class_err' => '',
                 'id_teacher_class_err' => '',
-
-
 
             ];
 
@@ -137,8 +137,6 @@ class Users extends Controller
                 && empty($data['last_name_err'])
                 && empty($data['id_school_class_err'])
                 && empty($data['id_teacher_class_err'])
-                //&& empty($data['professor_class_err'])
-                //&& empty($data['id_subject_err'])
 
             ) {
 
@@ -183,11 +181,8 @@ class Users extends Controller
                 // Load view with errors
                 $classes = $this->classModel->showAllClasses();
 
-                //$subjects = $this->subjectModel->showallSubjects();
-
                 $data['classes'] = $classes;
 
-                //$data['subjects'] = $subjects;
 
                 $this->view('users/insert', $data);
             }
@@ -204,8 +199,7 @@ class Users extends Controller
                 'id_school_class' => '',
                 'teacher_class_id' => '',
                 'professor_class_id' => '',
-                //'subject_id' => '',
-
+            
                 'name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
@@ -215,16 +209,11 @@ class Users extends Controller
                 'last_name_err' => '',
                 'id_school_class_err' => '',
                 'id_teacher_class_err' => '',
-                //'professor_class_err' => '',
-                //'id_subject_err' => ''
             ];
 
             $classes = $this->classModel->showAllClasses();
-            //$subjects = $this->subjectModel->showallSubjects();
 
             $data['classes'] = $classes;
-
-            //$data['subjects'] = $subjects;
 
             // Load view
             $this->view('users/insert', $data);
@@ -265,7 +254,7 @@ class Users extends Controller
 
     public function update()
     {
-        //die("It is in here");
+       
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Sanitize POST
             $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -508,10 +497,13 @@ class Users extends Controller
 
                 $number_of_classes = $this->userModel->get_number_of_classes();
 
+                $next_meeting = $this->meetingModel->showNextMeeting();
+
                 $data = [
 
                     'n_students' => $number_of_students,
-                    'n_classes' => $number_of_classes
+                    'n_classes' => $number_of_classes,
+                    'next_meeting' => $next_meeting
                 ];
 
                 $this->view('teacher/index', $data);
@@ -560,12 +552,14 @@ class Users extends Controller
                 $subjects = $this->subjectModel->showAllSubjects();
                 $allsubjects = $this->gradeModel->showgrade($id);
                 $students = $this->studentModel->getStudentById($id);
+                $gardeOptions = $this->gradeModel->showGradeOptions();
                 $data = [
                     'allsubjects' => $allsubjects,
                     'grades' => $grades,
                     'grade' => $grade,
                     'subjects' => $subjects,
                     'student' => $students,
+                    'gradeOptions' => $gardeOptions
                 ];
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -576,7 +570,9 @@ class Users extends Controller
                         'school_class_id' => $_POST['school_class_id'],
                         'id_subject' => $_POST['id_subject'],
                         'id_student' => $_POST['id_student'],
+                        'grade_for' => $_POST['grade_for']
                     ];
+
                     if (isset($_POST['submit'])) {
                         if ($this->gradeModel->insertGrade($data2)) {
                             flash('grades_message', 'grade added');

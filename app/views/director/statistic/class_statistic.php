@@ -28,7 +28,7 @@
 
                     </select>
 
-                    <!--  <span class="invalid-feedback text-danger"><?php echo $data['id_school_class_err']; ?></span> -->
+      
 
                 </div>
 
@@ -36,7 +36,7 @@
         </div>
 
 
-        <!-- Page Body -->
+    <!-- Page Body -->
         <div class="row">
             <div class="col-lg-12">
 
@@ -44,13 +44,13 @@
 
             </div>
         </div>
-        <!-- /.row -->
+         <!-- /.row -->
 
 
     </div>
     <!-- /.container-fluid -->
 
 </div>
-<!-- /#page-wrapper -->
+ <!-- #page-wrapper -->
 
 <?php require APPROOT . '/views/inc/director/footer2.php'; ?>

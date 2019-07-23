@@ -58,41 +58,6 @@ require APPROOT . '/views/inc/admin/header.php'; ?>
 
                     foreach ($data['schedules'] as $schedule) {
 
-
-                        //TESTING NEW CODE , LET'S STAY FORE SOME TIME IVAN
-
-                        // if ($schedule->order_id == 1) {
-
-
-                        //     $row1[] =  $schedule;
-                        // }
-
-                        // if ($schedule->order_id == 2) {
-
-                        //     $row2[] =  $schedule;
-                        // }
-
-                        // if ($schedule->order_id == 3) {
-
-                        //     $row3[] =  $schedule;
-                        // }
-                        // if ($schedule->order_id == 4) {
-
-                        //     $row4[] =  $schedule;
-                        // }
-                        // if ($schedule->order_id == 5) {
-
-                        //     $row5[] =  $schedule;
-                        // }
-                        // if ($schedule->order_id == 6) {
-
-                        //     $row6[] =  $schedule;
-                        // }
-                        // if ($schedule->order_id == 7) {
-
-                        //     $row7[] =  $schedule;
-                        // }
-
                         switch ($schedule->order_id) {
 
                             case 1:
