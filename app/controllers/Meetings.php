@@ -90,4 +90,22 @@ class Meetings extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['id_user'])) { }
     }
+
+    // SHOW NEXT MEETING TIME
+
+    public function showNextMeeting(){
+
+        $this->db->query('SELECT meetings.meetings
+        
+                          FROM meetings 
+                          
+                          ORDER BY meetings 
+                          
+                          LIMIT 1');
+
+        $nextMeeting = $this->db->single();
+
+        return $nextMeeting;
+
+    }
 }
