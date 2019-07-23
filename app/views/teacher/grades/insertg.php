@@ -78,6 +78,22 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-2">
+                                <div class="form-group">
+                                    <label>Grade For:</label>
+                                <select name='grade_for' class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+
+                                    <?php foreach ($data['gradeOptions'] as $gradeOption) : ?>
+
+                                        <?php echo "<option value=\"$gradeOption->id_grade_for\">$gradeOption->name</option>"; ?>
+
+                                    <?php endforeach; ?>
+
+                                </select>
+                                    <span class="invalid-feedback text-danger"></span>
+                                </div>
+                            </div>
                         
                         <div class="text-center">
                         <input type="hidden" name="id_student" id="id_student" value="<?php echo $data['student']->id_student ?>">

@@ -11,13 +11,16 @@ class Grade
 
     public function insertGrade($data2)
     {
-        $this->db->query('INSERT INTO students_subjects (grades, grade_status, school_class_id, id_student, id_subject) VALUES (:grades, :grade_status, :school_class_id, :id_student, :id_subject)');
+        $this->db->query('INSERT INTO students_subjects (grades, grade_status, school_class_id, id_student, id_subject, grade_for_id)
+        
+         VALUES (:grades, :grade_status, :school_class_id, :id_student, :id_subject , :grade_for_id)');
 
         $this->db->bind(':grades', $data2['grades']);
         $this->db->bind(':grade_status', $data2['grade_status']);
         $this->db->bind(':school_class_id', $data2['school_class_id']);
         $this->db->bind(':id_student', $data2['id_student']);
         $this->db->bind(':id_subject', $data2['id_subject']);
+        $this->db->bind(':grade_for_id', $data2['grade_for']);
 
         if ($this->db->execute()) {
             return true;
@@ -190,4 +193,23 @@ class Grade
             return false;
         }
     }
+
+    // SHOWS ALL OPTIONS FOR GRADE 
+
+    public function showGradeOptions(){
+
+
+        $this->db->query('SELECT grade_for.name, grade_for.id_grade_for
+        
+                          FROM grade_for');
+
+        $gradeOptions = $this->db->resultSet();
+
+        return $gradeOptions;
+
+
+    }
+ 
+
+
 }

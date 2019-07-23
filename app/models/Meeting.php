@@ -100,4 +100,22 @@ class Meeting
         $meetings = $this->db->resultSet();
         return $meetings;
     }
+
+        // SHOW NEXT MEETING TIME
+
+        public function showNextMeeting(){
+
+            $this->db->query('SELECT meetings.meetings
+            
+                              FROM meetings 
+                              
+                              ORDER BY meetings DESC
+                              
+                              LIMIT 1');
+    
+            $nextMeeting = $this->db->single(PDO::FETCH_ASSOC);
+    
+            return $nextMeeting;
+    
+        }
 }
