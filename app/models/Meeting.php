@@ -15,7 +15,7 @@ class Meeting
         $to_id_user = $this->getTeacherOfStudent($inputData['student']);
 
         $this->db->query('INSERT INTO meetings(meetings, meetings_status, from_id_user, to_id_user) 
-                            VALUES (:meetings, :meetings_status, :from_id_user, :to_id_user)');
+                          VALUES (:meetings, :meetings_status, :from_id_user, :to_id_user)');
 
         // Bind values
         $this->db->bind(':meetings', $inputData['datetime']);
@@ -57,7 +57,7 @@ class Meeting
 
         $this->db->query('SELECT meetings.id_meetings , meetings.meetings , meetings.meetings_status, users.username , meetings.to_id_user 
                           FROM meetings 
-                            JOIN users ON users.id_user = meetings.from_id_user 
+                          JOIN users ON users.id_user = meetings.from_id_user 
                           WHERE meetings.to_id_user = :id_teacher AND meetings.meetings > now()
                           ORDER BY meetings.meetings ASC');
 
@@ -76,7 +76,9 @@ class Meeting
     public function updateMeetingStatus($meetingStatus, $id_meeting)
     {
 
-        $this->db->query('UPDATE meetings SET meetings.meetings_status = :meeting_status WHERE meetings.id_meetings = :id_meeting');
+        $this->db->query('UPDATE meetings
+                          SET meetings.meetings_status = :meeting_status
+                          WHERE meetings.id_meetings = :id_meeting');
 
         $this->db->bind(':meeting_status', $meetingStatus);
         $this->db->bind(':id_meeting', $id_meeting);

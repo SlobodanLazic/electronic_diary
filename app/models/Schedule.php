@@ -257,7 +257,8 @@ class Schedule
     public function showAllFromSchedule()
     {
 
-        $this->db->query('SELECT id_schedules, subject_name, order_id, day_id, class_id FROM schedules');
+        $this->db->query('SELECT id_schedules, subject_name, order_id, day_id, class_id
+                          FROM schedules');
 
         $schedules = $this->db->resultSet();
 
@@ -268,7 +269,9 @@ class Schedule
 
     //removed *
     {
-        $this->db->query('SELECT schedules.id_schedules, schedules.subject_name FROM schedules WHERE id_schedules = :id_schedule');
+        $this->db->query('SELECT schedules.id_schedules, schedules.subject_name 
+                         FROM schedules
+                         WHERE id_schedules = :id_schedule');
 
         $this->db->bind(':id_schedule', $id);
 
@@ -282,7 +285,9 @@ class Schedule
     public function show_schedule_by_teacher_class_id($id)
     {
 
-        $this->db->query('SELECT schedules.id_schedules, schedules.subject_name , schedules.order_id, schedules.day_id, schedules.class_id FROM schedules WHERE schedules.class_id = :teacher_class_id');
+        $this->db->query('SELECT schedules.id_schedules, schedules.subject_name , schedules.order_id, schedules.day_id, schedules.class_id
+                          FROM schedules
+                          WHERE schedules.class_id = :teacher_class_id');
 
         $this->db->bind(':teacher_class_id', $id);
 
@@ -295,7 +300,9 @@ class Schedule
     {
 
 
-        $this->db->query('UPDATE schedules SET subject_name = :name WHERE id_schedules = :id');
+        $this->db->query('UPDATE schedules 
+                          SET subject_name = :name
+                          WHERE id_schedules = :id');
 
         $this->db->bind(':id', $data['id_schedules']);
 
@@ -315,7 +322,9 @@ class Schedule
 
         // removed *
 
-        $this->db->query('SELECT schedules.id_schedules, schedules.subject_name , schedules.order_id FROM schedules WHERE class_id = :id');
+        $this->db->query('SELECT schedules.id_schedules, schedules.subject_name , schedules.order_id
+                          FROM schedules 
+                          WHERE class_id = :id');
 
         $this->db->bind(':id', $id);
 
@@ -329,7 +338,9 @@ class Schedule
     public function getClassNameByClassId($id)
     {
 
-        $this->db->query('SELECT name FROM school_classes WHERE id_school_class = :id');
+        $this->db->query('SELECT name 
+                          FROM school_classes 
+                          WHERE id_school_class = :id');
 
         $this->db->bind(':id', $id);
 
@@ -341,7 +352,10 @@ class Schedule
     public function getClassWithSchedule()
     {
 
-        $this->db->query('SELECT DISTINCT name FROM school_classes JOIN schedules ON school_classes.id_school_class = 
+        $this->db->query('SELECT DISTINCT name
+                          FROM school_classes
+                          JOIN schedules 
+                          ON school_classes.id_school_class = 
         
         schedules.class_id ');
 
@@ -352,7 +366,8 @@ class Schedule
 
     public function deleteSchedule($id)
     {
-        $this->db->query('DELETE FROM schedules WHERE class_id = :class_id');
+        $this->db->query('DELETE FROM schedules
+                          WHERE class_id = :class_id');
 
         $this->db->bind(':class_id', $id);
 
