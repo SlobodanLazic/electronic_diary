@@ -1,6 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
     <div class="row justify-content-center">
-       <div class="col-xl-6 col-lg-6 con-md-9">
+       <div class="col-xl-9 col-lg-9 con-md-9">
             <div class="card o-hidden border-0 shadow-lg my-5">
                 <div class="row">
                     <div class="col">
@@ -25,7 +25,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <input type="submit" value="Login" class="btn btn-primary btn-user btn-block">
+                            <input type="submit" value="Login" class="btn btn-login btn-user btn-block">
                         </div>
                     </div>
                 </form>

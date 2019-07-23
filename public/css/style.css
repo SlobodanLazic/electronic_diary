@@ -1,7 +1,20 @@
 body {
-    background-size: cover;
-    background-image: url("../images/background.jpg");
+    background: #ff9966;  /* for old browsers */
+    background: -webkit-linear-gradient(to top, #ff5e62, #ff9966);  /* safare and chrome 10-25 */
+    background: linear-gradient(to top, #ff5e62, #ff9966); /* chrome, firefox... */
+
 }
+.btn-login {
+    background: linear-gradient(to top, #e75a5c, #ff6666);
+    color: #fff;
+}
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 td.buttons-pos {
     display: inline-flex;
     border: 0;
