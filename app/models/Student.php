@@ -13,7 +13,8 @@ class Student
     {
 
 
-        $this->db->query('INSERT INTO students (first_name , last_name , id_school_class) VALUES (:first_name , :last_name , :id_school_class)');
+        $this->db->query('INSERT INTO students (first_name , last_name , id_school_class) 
+                          VALUES (:first_name , :last_name , :id_school_class)');
 
         $this->db->bind(':first_name', $data['first_name']);
         $this->db->bind(':last_name', $data['last_name']);
@@ -29,7 +30,8 @@ class Student
 
     public function deleteStudent($id)
     {
-        $this->db->query('DELETE FROM students WHERE id_student = :id_student');
+        $this->db->query('DELETE FROM students
+                          WHERE id_student = :id_student');
 
         $this->db->bind(':id_student', $id);
 
@@ -167,7 +169,9 @@ class Student
 
         $this->db->query('INSERT INTO users_students (id_user, id_student) VALUES
         
-         ((SELECT id_user from users WHERE users.email = :email), (SELECT id_student FROM students ORDER BY id_student DESC LIMIT 1))');
+         ((SELECT id_user 
+         from users 
+         WHERE users.email = :email), (SELECT id_student FROM students ORDER BY id_student DESC LIMIT 1))');
 
         $this->db->bind(':email', $data['email_p']);
 

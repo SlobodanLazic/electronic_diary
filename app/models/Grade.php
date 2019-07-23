@@ -11,7 +11,8 @@ class Grade
 
     public function insertGrade($data2)
     {
-        $this->db->query('INSERT INTO students_subjects (grades, grade_status, school_class_id, id_student, id_subject) VALUES (:grades, :grade_status, :school_class_id, :id_student, :id_subject)');
+        $this->db->query('INSERT INTO students_subjects (grades, grade_status, school_class_id, id_student, id_subject)
+                          VALUES (:grades, :grade_status, :school_class_id, :id_student, :id_subject)');
 
         $this->db->bind(':grades', $data2['grades']);
         $this->db->bind(':grade_status', $data2['grade_status']);
@@ -28,7 +29,8 @@ class Grade
 
     public function showallSubjects()
     {
-        $this->db->query('SELECT id_subject, name FROM subjects');
+        $this->db->query('SELECT id_subject,
+                          name FROM subjects');
 
         $subjects = $this->db->resultSet();
 
@@ -36,14 +38,17 @@ class Grade
     }
     public function editGrade()
     {
-        $this->db->query('UPDATE students_subjects SET grades = :grades, grade_status = :grade_status');
+        $this->db->query('UPDATE students_subjects 
+                          SET grades = :grades, grade_status = :grade_status');
     }
     public function getSubjectId($id)
     {
 
         // removed *
 
-        $this->db->query('SELECT subjects.id_subject, subjects.name FROM subjects WHERE id_subject = :id_subject');
+        $this->db->query('SELECT subjects.id_subject, subjects.name
+                         FROM subjects
+                         WHERE id_subject = :id_subject');
 
         $this->db->bind(':id_subject', $id);
 
@@ -57,7 +62,11 @@ class Grade
 
     public function showgrade($id)
     {
-        $this->db->query('SELECT students_subjects.id_student_subject, students_subjects.grades, subjects.name, students_subjects.id_student, students_subjects.grade_status FROM students_subjects JOIN subjects ON subjects.id_subject = students_subjects.id_subject WHERE students_subjects.id_student = :id_student');
+        $this->db->query('SELECT students_subjects.id_student_subject, students_subjects.grades, subjects.name, students_subjects.id_student, students_subjects.grade_status
+                          FROM students_subjects 
+                          JOIN subjects
+                          ON subjects.id_subject = students_subjects.id_subject
+                          WHERE students_subjects.id_student = :id_student');
 
         $this->db->bind(':id_student', $id);
         $row = $this->db->resultSet();
@@ -71,7 +80,9 @@ class Grade
     public function showGradeByIdStudentSubject($id)
     {
 
-        $this->db->query('SELECT students_subjects.grades FROM students_subjects WHERE students_subjects.id_student_subject = :id_student_subject');
+        $this->db->query('SELECT students_subjects.grades
+                          FROM students_subjects
+                          WHERE students_subjects.id_student_subject = :id_student_subject');
 
         $this->db->bind(':id_student_subject', $id);
 
@@ -86,7 +97,9 @@ class Grade
     public function updateGrade($data)
     {
 
-        $this->db->query('UPDATE students_subjects SET grades = :grade WHERE id_student_subject = :id_student_subject');
+        $this->db->query('UPDATE students_subjects
+                          SET grades = :grade
+                          WHERE id_student_subject = :id_student_subject');
 
         $this->db->bind(':grade', $data['grade']);
         $this->db->bind(':id_student_subject', $data['id']);
@@ -100,7 +113,8 @@ class Grade
 
     public function showallgrades()
     {
-        $this->db->query('SELECT grades, grade_status, school_class_id, id_student, id_subject FROM students_subjects');
+        $this->db->query('SELECT grades, grade_status, school_class_id, id_student, id_subject
+                          FROM students_subjects');
 
         $grades = $this->db->resultSet();
 
@@ -110,10 +124,10 @@ class Grade
     public function showAvgGradeOfSchool()
     {
         $this->db->query('SELECT AVG(grades) AS average_grade, subjects.name, subjects.id_subject
-                            FROM students_subjects 
-                            JOIN subjects ON students_subjects.id_subject = subjects.id_subject
-                            GROUP BY subjects.name, subjects.id_subject
-                            ORDER BY subjects.id_subject');
+                          FROM students_subjects 
+                          JOIN subjects ON students_subjects.id_subject = subjects.id_subject
+                          GROUP BY subjects.name, subjects.id_subject
+                          ORDER BY subjects.id_subject');
 
         $schoolGrades = $this->db->resultSet();
 
@@ -126,11 +140,11 @@ class Grade
     {
 
         $this->db->query('SELECT subjects.name , AVG(grades) as avg_grade 
-                        FROM students_subjects 
-                        JOIN subjects ON subjects.id_subject = students_subjects.id_subject  
-                        WHERE students_subjects.school_class_id = :id_class 
-                        GROUP BY(students_subjects.id_subject) 
-                        ORDER BY avg_grade DESC');
+                          FROM students_subjects 
+                          JOIN subjects ON subjects.id_subject = students_subjects.id_subject  
+                          WHERE students_subjects.school_class_id = :id_class 
+                          GROUP BY(students_subjects.id_subject) 
+                          ORDER BY avg_grade DESC');
 
         $this->db->bind(':id_class', $id_class);
 
@@ -141,7 +155,9 @@ class Grade
 
     public function getGradeIdbyStudent($id)
     {
-        $this->db->query('SELECT id_student FROM students_subjects WHERE id_student = :id_student');
+        $this->db->query('SELECT id_student 
+                          FROM students_subjects
+                          WHERE id_student = :id_student');
 
         $this->db->bind(':id_student', $id);
 
@@ -151,7 +167,9 @@ class Grade
 
     public function deleteSubject($id)
     {
-        $this->db->query('DELETE FROM subjects WHERE id_subject = :id_subject');
+        $this->db->query('DELETE FROM subjects
+                          WHERE id_subject = :id_subject');
+                          
         $this->db->bind(':id_subject', $id);
 
         if ($this->db->execute()) {
@@ -164,7 +182,8 @@ class Grade
 
     public function update($data)
     {
-        $this->db->query('UPDATE subjects SET name = :name WHERE id_subject = :id_subject');
+        $this->db->query('UPDATE subjects
+                          SET name = :name WHERE id_subject = :id_subject');
 
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':id_subject', $data['id_subject']);
@@ -181,7 +200,9 @@ class Grade
     public function delete($id_student_subject)
     {
 
-        $this->db->query('DELETE FROM students_subjects WHERE students_subjects.id_student_subject = :id_student_subject');
+        $this->db->query('DELETE FROM students_subjects
+                          WHERE students_subjects.id_student_subject = :id_student_subject');
+
         $this->db->bind(':id_student_subject', $id_student_subject);
 
         if ($this->db->execute()) {
