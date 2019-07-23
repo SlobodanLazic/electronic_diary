@@ -183,7 +183,8 @@ class Grade
     public function update($data)
     {
         $this->db->query('UPDATE subjects
-                          SET name = :name WHERE id_subject = :id_subject');
+                          SET name = :name
+                          WHERE id_subject = :id_subject');
 
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':id_subject', $data['id_subject']);

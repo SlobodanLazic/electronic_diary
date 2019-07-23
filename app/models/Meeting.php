@@ -40,7 +40,8 @@ class Meeting
     {
         $this->db->query('SELECT users.id_user
                               FROM users JOIN students ON users.teacher_class_id = students.id_school_class
-                              WHERE users.id_user_role = 3 AND students.id_student = :id_student');
+                              WHERE users.id_user_role = 3 
+                              AND students.id_student = :id_student');
         // Bind values
         $this->db->bind(':id_student', $id_student);
 
@@ -94,7 +95,8 @@ class Meeting
     public function showAllStatus() {
         $this->db->query('SELECT meetings.meetings_status,meetings.to_id_user, meetings.meetings
                           FROM meetings 
-                          WHERE meetings.from_id_user = :id_user AND meetings.meetings > now()
+                          WHERE meetings.from_id_user = :id_user 
+                          AND meetings.meetings > now()
                           ORDER BY meetings.meetings DESC');
 
         $id_user = (int)$_SESSION['id_user']; 

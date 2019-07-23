@@ -46,7 +46,8 @@
 
         $this->db->query('SELECT parent_notifications.id_parent_notification,
                            parent_notifications.notification_content 
-                           FROM parent_notifications WHERE id_parent_notification = :id_parent_notification');
+                           FROM parent_notifications 
+                           WHERE id_parent_notification = :id_parent_notification');
 
         $this->db->bind(':id_parent_notification', $id);
 
