@@ -52,48 +52,48 @@
 
                     <?php $i = 0; ?>
 
-                    <?php foreach ($data['students'] as $student) : ?>
+                    <tbody>
+                        <?php foreach ($data['students'] as $student) : ?>
 
-                        <tbody>
+                                <tr>
 
-                            <tr>
+                                    <?php
 
-                                <?php
+                                    $postClass =  1;
 
-                                $postClass =  1;
+                                    if (isset($_POST['id_class'])) {
 
-                                if (isset($_POST['id_class'])) {
+                                        $postClass = htmlspecialchars($_POST['id_class']);
+                                    }
 
-                                    $postClass = htmlspecialchars($_POST['id_class']);
-                                }
+                                    if ($student->id_school_class != (int)$postClass) {
 
-                                if ($student->id_school_class != (int)$postClass) {
+                                        continue;
+                                    }
 
-                                    continue;
-                                }
-
-                                ?>
-
-
-                                <?php echo '<td>' . ++$i . '</td><td>' . $student->first_name . '</td><td>' . $student->last_name . '</td><td>' . 
-                                $student->name . '</td>
-                                <td class="buttons-pos">
-                                ' . '
-                                <a class="btn btn-primary btn-margin" href =' . URLROOT . "/students/edit/" . $student->id_student . '>Edit</a>' . '' ?>
-
-                                <form action="<?php echo URLROOT . "/students/delete/" . $student->id_student ?>" method="POST">
-
-                                <button class="btn btn-danger" type="submit" name="delete">Delete</button>
-
-                                </form>
+                                    ?>
 
 
-                            </tr>
+                                    <?php echo '<td>' . ++$i . '</td><td>' . $student->first_name . '</td><td>' . $student->last_name . '</td><td>' . 
+                                    $student->name . '</td>
+                                    <td class="buttons-pos">
+                                    ' . '
+                                    <a class="btn btn-primary btn-margin" href =' . URLROOT . "/students/edit/" . $student->id_student . '>Edit</a>' . '' ?>
 
-                        </tbody>
+                                    <form action="<?php echo URLROOT . "/students/delete/" . $student->id_student ?>" method="POST">
 
-                    <?php endforeach; ?>
+                                    <button class="btn btn-danger" type="submit" name="delete">Delete</button>
 
+                                    </form>
+
+
+                                </tr>
+
+                            
+
+                        <?php endforeach; ?>
+                        
+                    </tbody>
                 </table>
 
             </div>
