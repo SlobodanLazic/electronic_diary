@@ -231,4 +231,18 @@ class Grade
         return $gradeOptions;
     }
 
+    public function updateTrimester($data)
+    {
+
+        $this->db->query('UPDATE grade_for SET start_from = :start_from WHERE id_grade_for = :id_grade');
+
+        $this->db->bind(':start_from', $data['updateData']);
+        $this->db->bind(':id_grade', $data['id']);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
