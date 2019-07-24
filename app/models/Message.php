@@ -34,7 +34,6 @@ class Message
    public function getAll($data)
    {
       $this->db->query('SELECT messages.id_messages,
-<<<<<<< HEAD
 	                      messages.message_time,
                          messages.message_content,
                          messages.message_status, 
@@ -44,16 +43,6 @@ class Message
                          WHERE messages.to_id_user = :to_user_id and messages.from_id_user = :from_user_id 
                          OR messages.from_id_user = :to_user_id and messages.to_id_user = :from_user_id 
                          ORDER BY messages.message_time asc '); 
-=======
-                        messages.message_time,
-                        messages.message_content,
-                        messages.message_status, 
-                        messages.from_id_user,
-                        messages.to_id_user 
-                        FROM messages WHERE messages.to_id_user = :to_user_id and messages.from_id_user = :from_user_id 
-                        or messages.from_id_user = :to_user_id and messages.to_id_user = :from_user_id 
-                        ORDER BY messages.message_time asc '); 
->>>>>>> 321a15fc985f40a4d8ae65f1c2097b5c5196e62d
 
       $this->db->bind("to_user_id", $data['to_id_user']);
       $this->db->bind("from_user_id", $data['from_id_user']);  
@@ -104,16 +93,9 @@ class Message
    public function user_teacher()
    {
 
-<<<<<<< HEAD
       $this->db->query("SELECT users.username , users.id_user 
                           FROM users 
                           WHERE users.id_user_role = 4 AND users.id_user IN
-=======
-      $this->db->query("SELECT users.username,
-                        users.id_user
-                        FROM users
-                        WHERE users.id_user_role = 4 AND users.id_user IN
->>>>>>> 321a15fc985f40a4d8ae65f1c2097b5c5196e62d
       
       
        (
@@ -144,15 +126,9 @@ class Message
    public function user_parent()
    {
 
-<<<<<<< HEAD
       $this->db->query("SELECT users.id_user , users.username 
                         FROM users 
                         WHERE users.id_user_role = 3 AND users.teacher_class_id IN 
-=======
-      $this->db->query("SELECT users.id_user,
-                        users.username
-                        FROM users WHERE users.id_user_role = 3 AND users.teacher_class_id IN 
->>>>>>> 321a15fc985f40a4d8ae65f1c2097b5c5196e62d
 
       ( SELECT students.id_school_class
        FROM students 
