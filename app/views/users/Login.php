@@ -25,7 +25,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <input type="submit" value="Login" class="btn btn-login btn-user btn-block">
+                            <input type="submit" value="Login" class="btn btn-primary btn-user btn-block">
                         </div>
                     </div>
                 </form>

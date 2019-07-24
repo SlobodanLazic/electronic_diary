@@ -34,16 +34,11 @@ var msg;
 
 // show background transparent and heidt
 function showBG() {
-    wrapper.insertAdjacentHTML("afterend", "<div class='modal-backdrop fade show'></div>");
+    wrapper.insertAdjacentHTML("afterend", "<div id='bgd' class='modal-backdrop fade show'></div>");
 }
-
 function heighBG() {
     body.removeChild(model); 
 }
-///// 
-
-
-
 
 //scroll div messager
 function scroll() {
