@@ -497,13 +497,13 @@ class Users extends Controller
 
                 $number_of_classes = $this->userModel->get_number_of_classes();
 
-                $next_meeting = $this->meetingModel->showNextMeeting();
+                //$next_meeting = $this->meetingModel->showNextMeeting();
 
                 $data = [
 
                     'n_students' => $number_of_students,
-                    'n_classes' => $number_of_classes,
-                    'next_meeting' => $next_meeting
+                    'n_classes' => $number_of_classes
+                    //'next_meeting' => $next_meeting
                 ];
 
                 $this->view('teacher/index', $data);
