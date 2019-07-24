@@ -205,7 +205,6 @@
                 <span id="new_message" class="badge badge-danger badge-counter"></span>
               </a>
             
-            <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">

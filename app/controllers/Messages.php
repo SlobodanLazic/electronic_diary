@@ -79,9 +79,6 @@ class Messages extends Controller
           if($message->to_id_user == $this->to_id_user){
               $status = $this->messageModel->update_status($message->id_messages);
               echo "<div class='incoming_msg'>"; 
-              echo " <div class='incoming_msg_img'>";
-              echo "<img src='".URLROOT."/images/parenticon.png' alt='sunil'>";
-              echo " </div>";
               echo "<div class='received_msg message'>";
               echo "<div class='received_withd_msg'>";
               echo "<p>".$message->message_content."</p>";
@@ -123,9 +120,6 @@ class Messages extends Controller
                foreach($data['messages'] as $message) {
                 
                 echo "<div class='incoming_msg'>"; 
-                echo " <div class='incoming_msg_img'>";
-                echo "<img src='".URLROOT."/images/parenticon.png' alt='sunil'>";
-                echo " </div>";
                 echo "<div class='received_msg message'>";
                 echo "<div class='received_withd_msg'>";
                 echo "<p>".$message->message_content."</p>";
