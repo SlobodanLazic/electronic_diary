@@ -103,11 +103,12 @@ function sendMessage() {
     } else {
         var new_message = document.createElement("div"),
             outgoing = document.createElement("div"),
-            par = document.createElement('p'),
+            par = document.createElement('span'),
             date = document.createElement('span');
 
         new_message.className = 'outgoing_msg message';
         outgoing.className = 'sent_msg';
+        par.className =  'msgbg';
         date.className = 'time_date';
 
         new_message.appendChild(outgoing);

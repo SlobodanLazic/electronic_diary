@@ -10685,9 +10685,9 @@
   }
   
   .bg-gradient-primary {
-    background-color: #4e73df;
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #4e73df), to(#224abe));
-    background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+    background-color: #0575E6;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(10%, #021B79), to(#0575E6));
+    background-image: linear-gradient(to top, #021B79, #0575E6);
     background-size: cover;
   }
   
