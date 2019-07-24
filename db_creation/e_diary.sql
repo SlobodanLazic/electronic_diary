@@ -1,17 +1,16 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 23, 2019 at 09:10 PM
--- Server version: 5.7.26
--- PHP Version: 7.2.18
+-- Generation Time: Jul 24, 2019 at 08:34 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
-
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -87,18 +86,18 @@ CREATE TABLE IF NOT EXISTS `meetings` (
   `id_meetings` int(11) NOT NULL AUTO_INCREMENT,
   `meetings` datetime NOT NULL,
   `meetings_status` tinyint(1) DEFAULT '0',
-  `meeting_view` int(11) NOT NULL,
-  `from_id_user` int(11) NOT NULL,
-  `to_id_user` int(11) NOT NULL,
+  `meeting_message` int(11) NOT NULL,
+  `teacher` int(11) NOT NULL,
+  `parent` int(11) NOT NULL,
   PRIMARY KEY (`id_meetings`),
-  KEY `fk_meeting_shedules_users1_idx` (`from_id_user`)
+  KEY `fk_meeting_shedules_users1_idx` (`teacher`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `meetings`
 --
 
-INSERT INTO `meetings` (`id_meetings`, `meetings`, `meetings_status`, `meeting_view`, `from_id_user`, `to_id_user`) VALUES
+INSERT INTO `meetings` (`id_meetings`, `meetings`, `meetings_status`, `meeting_message`, `teacher`, `parent`) VALUES
 (1, '2019-07-19 19:10:00', 1, 0, 15, 8),
 (2, '2019-07-24 19:02:00', 1, 0, 15, 8);
 
@@ -119,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   PRIMARY KEY (`id_messages`),
   KEY `fk_messages_users1_idx` (`from_id_user`),
   KEY `fk_messages_users2_idx` (`to_id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `messages`
@@ -134,7 +133,8 @@ INSERT INTO `messages` (`id_messages`, `message_time`, `message_content`, `messa
 (6, '2019-07-18 16:16:31', 'ghjhgjgh', 0, 15, 8),
 (7, '2019-07-18 16:16:32', 'hgjghj', 0, 15, 8),
 (8, '2019-07-18 19:42:50', 'csacasacds', 0, 8, 15),
-(9, '2019-07-18 19:42:56', 'cascaa', 0, 8, 15);
+(9, '2019-07-18 19:42:56', 'cascaa', 0, 8, 15),
+(10, '2019-07-24 10:06:13', 'sasccacsac', 1, 8, 15);
 
 -- --------------------------------------------------------
 
@@ -549,7 +549,7 @@ CREATE TABLE IF NOT EXISTS `user_log` (
   `ip_user` varchar(20) NOT NULL,
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_log`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_log`
@@ -572,7 +572,8 @@ INSERT INTO `user_log` (`id_log`, `login_time`, `logout_time`, `ip_user`, `id_us
 (14, '2019-07-20 08:34:19', '2019-07-20 08:34:47', '::1', 15),
 (15, '2019-07-20 08:34:57', '2019-07-20 08:34:57', '::1', 8),
 (16, '2019-07-20 08:45:56', '2019-07-20 08:45:56', '::1', 2),
-(17, '2019-07-23 23:04:05', '2019-07-23 23:04:05', '::1', 8);
+(17, '2019-07-23 23:04:05', '2019-07-23 23:04:05', '::1', 8),
+(18, '2019-07-24 08:59:30', '2019-07-24 08:59:30', '::1', 8);
 
 -- --------------------------------------------------------
 
@@ -607,7 +608,7 @@ INSERT INTO `user_roles` (`id_user_role`, `name`, `description`) VALUES
 -- Constraints for table `meetings`
 --
 ALTER TABLE `meetings`
-  ADD CONSTRAINT `fk_meeting_shedules_users1` FOREIGN KEY (`from_id_user`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_meeting_shedules_users1` FOREIGN KEY (`teacher`) REFERENCES `users` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `messages`
