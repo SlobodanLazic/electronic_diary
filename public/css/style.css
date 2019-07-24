@@ -1,11 +1,12 @@
 body {
-    background: #ff9966;  /* for old browsers */
-    background: -webkit-linear-gradient(to top, #ff5e62, #ff9966);  /* safare and chrome 10-25 */
-    background: linear-gradient(to top, #ff5e62, #ff9966); /* chrome, firefox... */
+    background: #0575E6;  /* for old browsers */
+    background: -webkit-linear-gradient(to top, #021B79, #0575E6);  /* safare and chrome 10-25 */
+    background: linear-gradient(to top, #021B79, #0575E6); /* chrome, firefox... */
+
 
 }
 .btn-login {
-    background: linear-gradient(to top, #e75a5c, #ff6666);
+    background: linear-gradient(to top, #0575E6, #0575E6);
     color: #fff;
 }
 .container {

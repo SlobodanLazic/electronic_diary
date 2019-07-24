@@ -18,7 +18,6 @@
               <?php foreach($data['parents'] as $parent) { ?>
             <div class="chat_list" >
               <div class="chat_people" onclick='readMessages(<?php echo $parent->id_user; ?>)'>
-                <div class="chat_img"> <img src="<?php echo URLROOT . "/images/parenticon.png" ?>" alt="sunil"> </div>
                 <div class="chat_ib">
                   <?php echo "<h5> $parent->username "; ?><span class="chat_date"></span></h5>
                  
@@ -26,9 +25,12 @@
               </div>
             </div> <?php } ?>
           </div>
+              </div>
         </div>
         <div class="mesgs">
         <input type="hidden" id="to_id" value=''>
+        <div class="name_chat">Username</div>
+        <div class="pad-mesgs">
           <div class="msg_history" id="messages">
           </div>
           <div id="type_msg" class="type_msg">
@@ -38,6 +40,7 @@
             </div>
           </div>
         </div>
+              </div>
       </div>
 
      

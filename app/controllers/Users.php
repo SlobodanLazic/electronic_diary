@@ -199,7 +199,7 @@ class Users extends Controller
                 'id_school_class' => '',
                 'teacher_class_id' => '',
                 'professor_class_id' => '',
-            
+
                 'name_err' => '',
                 'email_err' => '',
                 'password_err' => '',
@@ -254,7 +254,7 @@ class Users extends Controller
 
     public function update()
     {
-       
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Sanitize POST
             $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -559,7 +559,7 @@ class Users extends Controller
                     'grade' => $grade,
                     'subjects' => $subjects,
                     'student' => $students,
-                    'gradeOptions' => $gardeOptions
+                    //'gradeOptions' => $gardeOptions
                 ];
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -570,8 +570,36 @@ class Users extends Controller
                         'school_class_id' => $_POST['school_class_id'],
                         'id_subject' => $_POST['id_subject'],
                         'id_student' => $_POST['id_student'],
-                        'grade_for' => $_POST['grade_for']
+                        //'grade_for' => $_POST['grade_for']
                     ];
+
+                    // Check which part of school year is
+
+                    // get current date
+                    $currentDate = strtotime(date('y-m-d'));
+
+                    // Dates for first, second , third, fourth trimester
+
+                    //$beginOfFirstTrimester = strtotime("2019-09-02");
+                    $beginOfSecondTrimester = strtotime("2019-11-05");
+                    $beginOfThirdTrimester = strtotime("2020-02-02");
+                    $beginOfFourthTrimester = strtotime("2020-04-03");
+
+                    // compare current and defined dates for trimesters
+
+                    if ($currentDate < $beginOfSecondTrimester) {
+
+                        $data2['grade_for'] = 1;
+                    } elseif ($currentDate < $beginOfThirdTrimester) {
+
+                        $data2['grade_for'] = 2;
+                    } elseif ($currentDate < $beginOfFourthTrimester) {
+
+                        $data2['grade_for'] = 3;
+                    } else {
+
+                        $data2['grade_for'] = 4;
+                    }
 
                     if (isset($_POST['submit'])) {
                         if ($this->gradeModel->insertGrade($data2)) {
@@ -887,20 +915,18 @@ class Users extends Controller
 
     public function show_log()
     {
-        
+
         if (isset($_SESSION['id_user']) && $_SESSION['id_user_role'] === '1') {
 
             $this->view("users/user_log");
-        
         }
     }
 
     public function showLastLoggedInTime()
     {
         $logsFromDb = $this->userModel->show_logs();
-        
+
         print(json_encode($logsFromDb));
-        
     }
 
     /* ASSIGN USER END*/
