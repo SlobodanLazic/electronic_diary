@@ -2,6 +2,10 @@
 
 <div id="page-wrapper">
 
+<?php foreach($data['gradeOptions'] as $gradeOptions){
+    echo '<p>'.$gradeOptions->name .'  '.'<a title="Click to Edit" href="#">'. $gradeOptions->start_from.'</a></p>';
+} ?>
+
     <div class="container-fluid">
 
         <!-- Page Heading -->

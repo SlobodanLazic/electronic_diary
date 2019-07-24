@@ -222,7 +222,7 @@ class Grade
     {
 
 
-        $this->db->query('SELECT grade_for.name, grade_for.id_grade_for
+        $this->db->query('SELECT grade_for.name, grade_for.id_grade_for, grade_for.start_from 
         
                           FROM grade_for');
 
@@ -230,4 +230,5 @@ class Grade
 
         return $gradeOptions;
     }
+
 }
