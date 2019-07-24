@@ -21,6 +21,7 @@ a.btn.btn-success.btn-icon-split.m1 {
     height: 70vh;
     margin:auto;
     max-height: 70vh !important;
+    overflow: hidden;
 }
 img { 
     max-width:100%;
@@ -217,7 +218,7 @@ img {
 }
 .msg_history {
   min-height: 50vh;  
-  max-height: 70vh !important;
+  max-height: 50vh !important;
   overflow-y: auto;
 }
 
