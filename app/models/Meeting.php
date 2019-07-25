@@ -14,6 +14,7 @@ class Meeting
 
         $this->db->query("INSERT INTO meetings(meetings.meetings, meetings.meetings_status, meetings.meeting_view, meetings.teacher) 
                           VALUES (:datatime, 0, 0, :teacher)");
+    
 
         $id_teacher = $_SESSION['id_user'];
 
