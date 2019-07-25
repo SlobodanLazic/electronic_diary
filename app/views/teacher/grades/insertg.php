@@ -25,8 +25,9 @@
     </div>
 
     <div class="text-center">
+        <h2>Trimesters</h2>
         <?php foreach ($data['gradeOptions'] as $gradeOptions) {
-            echo '<p>' . $gradeOptions->name . '  ' . '<a  id="'.$gradeOptions->id_grade_for.'" rel="' . $gradeOptions->id_grade_for . '"' . 'class="trimester" data-toggle="modal" data-target="#modalUpdateForm" title="Click to Edit" href="#">' . $gradeOptions->start_from . '</a></p>';
+            echo '<p>' . $gradeOptions->name . ' starts  ' . '<a  id="' . $gradeOptions->id_grade_for . '" rel="' . $gradeOptions->id_grade_for . '"' . 'class="trimester" data-toggle="modal" data-target="#modalUpdateForm" title="Click to Edit" href="#">' . $gradeOptions->start_from . '</a></p>';
         } ?>
     </div>
 
@@ -48,7 +49,9 @@
                     </div>
                     <div class="card-body">
                         <h3 class="text-center student_name_st">
-                            <?php echo $data['student']->first_name . " " . $data['student']->last_name ?> <p>(<?php echo $data['student']->id_school_class ?>)</p>
+                            <?php echo 'Student: ' . $data['student']->first_name . " " . $data['student']->last_name ?>
+
+
                         </h3>
 
                         <form action="<?php echo URLROOT; ?>/users/insertg/<?php echo $data['student']->id_student ?>" method="POST">
