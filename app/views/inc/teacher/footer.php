@@ -171,24 +171,27 @@
 
 <script>
     $(document).ready(function() {
+        let id ;
+        
+        $("#update_trimester").on('click', function() {
+
+        var updateData = $('#form-update').val();
+            document.getElementById(id).innerHTML = updateData;
+            $('.modal').hide()
+            $.post("<?php echo URLROOT; ?>/grades/updateTrimester", {
+                id: id,
+                updateData: updateData
+             }, function(data) {
+    
+              });
+
+
+});
 
         $(".trimester").on('click', function() {
 
-            var id = $(this).attr('rel');
-
-            $("#update_trimester").on('click', function() {
-
-                var updateData = $('#form-update').val();
-
-                $.post("<?php echo URLROOT; ?>/grades/updateTrimester", {
-                    id: id,
-                    updateData: updateData
-                }, function(data) {
-                    
-                });
-
-            });
-
+             id = $(this).attr('rel');
+            console.log(id);
 
         });
 

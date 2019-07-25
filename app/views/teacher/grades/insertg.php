@@ -26,7 +26,7 @@
 
     <div class="text-center">
         <?php foreach ($data['gradeOptions'] as $gradeOptions) {
-            echo '<p>' . $gradeOptions->name . '  ' . '<a rel="' . $gradeOptions->id_grade_for . '"' . 'class="trimester" data-toggle="modal" data-target="#modalUpdateForm" title="Click to Edit" href="#">' . $gradeOptions->start_from . '</a></p>';
+            echo '<p>' . $gradeOptions->name . '  ' . '<a  id="'.$gradeOptions->id_grade_for.'" rel="' . $gradeOptions->id_grade_for . '"' . 'class="trimester" data-toggle="modal" data-target="#modalUpdateForm" title="Click to Edit" href="#">' . $gradeOptions->start_from . '</a></p>';
         } ?>
     </div>
 
@@ -90,7 +90,7 @@
                                     <div class="form-group">
                                         <label for="grades">Select a grade</label>
                                         <select class="custom-select my-1 mr-sm-2" name="grades" id="grades">
-                                            <option default value="0">0</option>
+                                            <option default value="0">Choose Grade</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>

@@ -74,8 +74,9 @@ class Grades extends Controller
 
     public function updateTrimester()
     {
+
         if ($this->gradeModel->updateTrimester($_POST)) {
-            redirect('teacher');
+            //redirect('teacher');
         };
     }
 }
