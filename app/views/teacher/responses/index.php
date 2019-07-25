@@ -16,7 +16,7 @@
    <div id="show_consultation" class="container-fluid">
    </div>
 
-  </div>  
+  </div>
     <!-- /.container-fluid -->
 
     <div class="modal fade show" id="popup_add" style="padding-right: 17px; display: none;">  
@@ -32,7 +32,7 @@
             <div class="row">
               <div class="col">
                 <label for="id_data">Select date:</label>
-                <input class="form-control" type="date"  min="<?php echo Date("Y-m-d"); ?>" id="id_data">
+                <input class="form-control" type="date"  min="<?php echo Date("Y-m-d"); ?>" id="id_date">
               </div>
               <div class="col">
                 <label for="id_time">Select time:</label>
