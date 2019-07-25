@@ -30,8 +30,8 @@
     let add_save = document.getElementById("add_save");
     let add_cansel = document.getElementById("add_cansel");
     let add_cansel_x = document.getElementById("add_cansel_x");
-    let data_for_date = document.getElementById("id_data");
     let data_for_time = document.getElementById("id_time");
+    let data_for_date = document.getElementById("id_date");
 
 
 
@@ -44,12 +44,14 @@
     let meetings = {};
 
     meetings.showParent = () => {
-        xmlhttp = new XMLHttpRequest();
+        var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
+
                 let txt = "";
-                let metting;
-                meeting = JSON.parse(this.responseText);
+                let meeting;
+                let cc = this.responseText
+                meeting = JSON.parse(cc);
                 let y = 0;
                 for (i in meeting) {
                     y++
@@ -75,6 +77,10 @@
         model.style.display = "none";
     }
 
+    meetings.close = () => {
+
+    }
+
     meetings.save = () => {
 
         let dataFromInputDate;
@@ -89,7 +95,7 @@
             url: "<?php echo URLROOT; ?>/meetings/add_meetings",
             data: 'date=' + dataFromInputDate + '&time=' + dataFromInputTime,
             success: function(msg) {
-
+                document.write(msg);
             }
         });
     }
