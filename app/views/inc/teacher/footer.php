@@ -30,8 +30,8 @@ let add_open_door = document.getElementById("add_open_door");
 let add_save = document.getElementById("add_save");
 let add_cansel = document.getElementById("add_cansel"); 
 let add_cansel_x = document.getElementById("add_cansel_x"); 
-let data_for_date = document.getElementById("id_data");
-let data_for_time = document.getElementById("id_time");
+let data_for_time = document.getElementById("id_time"); 
+let data_for_date = document.getElementById("id_date");
 
 
 
@@ -44,26 +44,28 @@ let msg;
 let meetings = {}; 
 
 meetings.showParent = () => {
-    xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function () {
-          if (this.readyState == 4 && this.status == 200) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+             
               let txt = "";  
-              let meetings;
-               meetings = JSON.parse(this.responseText);
+               let meeting; 
+               let cc = this.responseText
+               meeting = JSON.parse(cc);
                 let y = 0; 
-              for (i in meetings) {
+              for (i in meeting) {
                 y++
                 txt += `<div class='container border-bottom m-1'>
                         <div class='row text-dark text-center'>
-                        <div class='col-4 p-1'><b>${y}:</b> Data and Time: <b>${meetings[i].meetings}</b></div>
-                        <div class='col-3 p-1'>Username: <b>${meetings[i].name}</b></div>
-                        <div class='col-1 offset-4 p-1'>${meetings[i].div}</div>
+                        <div class='col-4 p-1'><b>${y}:</b> Data and Time: <b>${meeting[i].meetings}</b></div>
+                        <div class='col-3 p-1'>Username: <b>${meeting[i].name}</b></div>
+                        <div class='col-1 offset-4 p-1'>${meeting[i].div}</div>
                         </div></div>`;
               }
               document.getElementById('show_consultation').innerHTML = txt;
           }
       };
-      xmlhttp.open("GET", "<?php echo URLROOT; ?> /meetings/showTeacher", true);
+      xmlhttp.open("GET", "<?php echo URLROOT; ?>/meetings/showTeacher", true);
       xmlhttp.send();
 }
 meetings.showParent();
@@ -74,8 +76,13 @@ meetings.add_popup = () => {
 meetings.close_popup = () => {
       model.style.display = "none"; 
 }
-//ivan pocetak
+
+meetings.close = () => {
+
+}
+
 meetings.save = () => {
+    model.style.display = "none";  
 
     let dataFromInputDate;
     let dataFromInputTime;
@@ -89,11 +96,11 @@ meetings.save = () => {
         url: "<?php echo URLROOT; ?>/meetings/add_meetings", 
         data: 'date=' + dataFromInputDate + '&time=' + dataFromInputTime,
         success: function(msg) {
-            
+             
         }
     });
 }
-//ivan kraj
+
 
 add_open_door.addEventListener("click", meetings.add_popup);
 add_cansel.addEventListener("click", meetings.close_popup); 
