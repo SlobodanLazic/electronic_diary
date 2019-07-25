@@ -1,7 +1,6 @@
 <audio class="ring" id="ring">
-    <source src="<?php echo URLROOT . "/public/music/msg_ton.mp3" ?>" type="audio/mpeg">
+         <source src="<?php echo URLROOT . "/public/music/msg_ton.mp3" ?>" type="audio/mpeg">
 </audio>
-<<<<<<< HEAD
   </div>
   <!-- /#wrapper -->
 
@@ -49,25 +48,25 @@ meetings.showParent = () => {
       xmlhttp.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
               let txt = "";  
-              let meetings;
-               meetings = JSON.parse(this.responseText);
+               let metting; 
+               meeting = JSON.parse(this.responseText);
                 let y = 0; 
-              for (i in meetings) {
+              for (i in meeting) {
                 y++
                 txt += `<div class='container border-bottom m-1'>
                         <div class='row text-dark text-center'>
-                        <div class='col-4 p-1'><b>${y}:</b> Data and Time: <b>${meetings[i].meetings}</b></div>
-                        <div class='col-3 p-1'>Username: <b>${meetings[i].name}</b></div>
-                        <div class='col-1 offset-4 p-1'>${meetings[i].div}</div>
+                        <div class='col-4 p-1'><b>${y}:</b> Data and Time: <b>${meeting[i].meetings}</b></div>
+                        <div class='col-3 p-1'>Username: <b>${meeting[i].name}</b></div>
+                        <div class='col-1 offset-4 p-1'>${meeting[i].div}</div>
                         </div></div>`;
               }
               document.getElementById('show_consultation').innerHTML = txt;
           }
       };
-      xmlhttp.open("GET", "<?php echo URLROOT; ?> /meetings/showTeacher", true);
+      xmlhttp.open("GET", "<?php echo URLROOT; ?>/meetings/showTeacher", true);
       xmlhttp.send();
 }
-
+meetings.showParent();
 meetings.add_popup = () => {
       model.style.display = "block"; 
 }
@@ -90,7 +89,7 @@ meetings.save = () => {
         url: "<?php echo URLROOT; ?>/meetings/add_meetings", 
         data: 'date=' + dataFromInputDate + '&time=' + dataFromInputTime,
         success: function(msg) {
-           document.write(msg);  
+            
         }
     });
 }
@@ -123,177 +122,101 @@ function keySend(event) {
     var key = event.keyCode;
     if (key == 13) {
         sendMessage();
-=======
-</div>
-<!-- /#wrapper -->
-
-<!-- jQuery -->
-<script src="<?php echo URLROOT; ?>/js/dashboard/jquery.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="<?php echo URLROOT; ?>/js/dashboard/bootstrap.min.js"></script>
-
-<!-- Bootstrap core JavaScript-->
-<script src="<?php echo URLROOT; ?>/css/dashboard/vendor/jquery/jquery.min.js"></script>
-<script src="<?php echo URLROOT; ?>/css/dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
-<script src="<?php echo URLROOT; ?>/css/dashboard/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for all pages-->
-<script src="<?php echo URLROOT; ?>/js/dashboard/sb-admin.js"></script>
-
-<script src="<?php echo URLROOT; ?>/js/teacher/response.js"></script>
-
-<script>
-    var wrapper = document.getElementById("wrapper");
-    var body = document.getElementById("page-top");
-    var model = document.getElementsByClassName("modal-backdrop");
-
-    var messages = document.getElementById('messages');
-    var ring = document.getElementById('ring');
-    var id_user = document.getElementById('to_id');
-    var msg;
-
-    // show background transparent and heidt
-    function showBG() {
-        wrapper.insertAdjacentHTML("afterend", "<div id='bgd' class='modal-backdrop fade show'></div>");
->>>>>>> 5f15c45bf71b66a2965d18d9147e840bf1b0fd31
     }
+}
 
-    function heighBG() {
-        body.removeChild(model);
-    }
+// Read all message from user 
+function readMessages(id) {
+    to_id.value = id;
 
-    //scroll div messager
-    function scroll() {
-        messages.scrollTop = messages.scrollHeight;
-        return;
-    }
+    document.getElementById('type_msg').style.display = 'block';
 
-    //detect click Enter, assci code = 13 
-    function keySend(event) {
-        var key = event.keyCode;
-        if (key == 13) {
-            sendMessage();
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            messages.innerHTML = this.responseText;
+            scroll();
         }
-    }
+    };
+    xmlhttp.open("GET", "<?php echo URLROOT; ?> /messages/get_all?id=" + id, true);
+    xmlhttp.send();
 
-    // Read all message from user 
-    function readMessages(id) {
-        to_id.value = id;
+    msg = setInterval(queryMessager, 2000);
+}
 
-        document.getElementById('type_msg').style.display = 'block';
+// Read new message 
+function queryMessager() {
 
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                messages.innerHTML = this.responseText;
+    var id = to_id.value;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText != "") {
+                var new_dir = document.createElement("div");
+                new_dir.innerHTML = this.responseText;
+                messages.appendChild(new_dir);
                 scroll();
+                ring.play();
             }
-        };
-        xmlhttp.open("GET", "<?php echo URLROOT; ?> /messages/get_all?id=" + id, true);
-        xmlhttp.send();
-
-        msg = setInterval(queryMessager, 2000);
-    }
-
-    // Read new message 
-    function queryMessager() {
-
-        var id = to_id.value;
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                if (this.responseText != "") {
-                    var new_dir = document.createElement("div");
-                    new_dir.innerHTML = this.responseText;
-                    messages.appendChild(new_dir);
-                    scroll();
-                    ring.play();
-                }
-            }
-        };
-
-        xmlhttp.open("GET", "<?php echo URLROOT; ?>/messages/get_msg?id=" + id, true);
-        xmlhttp.send();
-    }
-
-    //Send message
-    function sendMessage() {
-        id_user = to_id.value;
-        var message = document.getElementById('message').value;
-        if (message == "" || message == null) {
-            document.getElementById('message').focus();
-        } else {
-            var new_message = document.createElement("div"),
-                outgoing = document.createElement("div"),
-                par = document.createElement('span'),
-                date = document.createElement('span');
-
-            new_message.className = 'outgoing_msg message';
-            outgoing.className = 'sent_msg';
-            par.className = 'msgbg';
-            date.className = 'time_date';
-
-            new_message.appendChild(outgoing);
-            outgoing.appendChild(par);
-            outgoing.appendChild(date);
-
-            var d = new Date();
-
-            //// 
-
-            var datetext = document.createTextNode('');
-
-            date.appendChild(datetext);
-
-            var text = document.createTextNode(message);
-
-            par.appendChild(text);
-
-            document.getElementById('message').value = "";
-
-            messages.appendChild(new_message);
-
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-
-                }
-            };
-            xmlhttp.open("GET", "<?php echo URLROOT; ?>/messages/new_message?id=" + id_user + "&message_content=" + message, true);
-            xmlhttp.send();
-            messages.scrollTop = messages.scrollHeight;
         }
-    }
+    };
 
-    //Notificatio new messages 
-    function notification_message() {
-        var new_message = document.getElementById('new_message');
+    xmlhttp.open("GET", "<?php echo URLROOT; ?>/messages/get_msg?id=" + id, true);
+    xmlhttp.send();
+}
+
+//Send message
+function sendMessage() {
+    id_user = to_id.value;
+    var message = document.getElementById('message').value;
+    if (message == "" || message == null) {
+        document.getElementById('message').focus();
+    } else {
+        var new_message = document.createElement("div"),
+            outgoing = document.createElement("div"),
+            par = document.createElement('p'),
+            date = document.createElement('span');
+
+        new_message.className = 'outgoing_msg message';
+        outgoing.className = 'sent_msg';
+        date.className = 'time_date';
+
+        new_message.appendChild(outgoing);
+        outgoing.appendChild(par);
+        outgoing.appendChild(date);
+
+        var d = new Date();
+
+        //// 
+
+        var datetext = document.createTextNode('');
+
+        date.appendChild(datetext);
+
+        var text = document.createTextNode(message);
+
+        par.appendChild(text);
+
+        document.getElementById('message').value = "";
+
+        messages.appendChild(new_message);
 
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
+        xmlhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                if (this.responseText > 0) {
-                    new_message.innerHTML = this.responseText;
-                } else {
-                    new_message.innerHTML = "";
-                }
+
             }
         };
-
-        xmlhttp.open("GET", "<?php echo URLROOT; ?>/messages/notification", true);
-
+        xmlhttp.open("GET", "<?php echo URLROOT; ?>/messages/new_message?id=" + id_user + "&message_content=" + message, true);
         xmlhttp.send();
-
+        messages.scrollTop = messages.scrollHeight;
     }
+}
 
-    notification_message();
-    $d = setInterval(notification_message, 1000);
-</script>
+//Notificatio new messages 
+function notification_message() {
+    var new_message = document.getElementById('new_message');
 
-<<<<<<< HEAD
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -302,37 +225,19 @@ function keySend(event) {
             }
         }
     };
-=======
-<script>
-    $(document).ready(function() {
-        let id ;
-        
-        $("#update_trimester").on('click', function() {
 
-        var updateData = $('#form-update').val();
-            document.getElementById(id).innerHTML = updateData;
-            $('.modal').hide()
-            $.post("<?php echo URLROOT; ?>/grades/updateTrimester", {
-                id: id,
-                updateData: updateData
-             }, function(data) {
-    
-              });
->>>>>>> 5f15c45bf71b66a2965d18d9147e840bf1b0fd31
+    xmlhttp.open("GET", "<?php echo URLROOT; ?>/messages/notification", true);
+
+    xmlhttp.send();
+
+}
+
+notification_message(); 
+$d = setInterval(notification_message, 1000);
 
 
-});
-
-        $(".trimester").on('click', function() {
-
-             id = $(this).attr('rel');
-            console.log(id);
-
-        });
-
-    });
 </script>
 
-</body>
+  </body>
 
-</html>
+  </html>
