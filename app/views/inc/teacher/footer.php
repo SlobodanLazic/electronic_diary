@@ -2,6 +2,7 @@
     <source src="<?php echo URLROOT . "/public/music/msg_ton.mp3" ?>" type="audio/mpeg">
 </audio>
 <<<<<<< HEAD
+<<<<<<< HEAD
   </div>
   <!-- /#wrapper -->
 
@@ -131,6 +132,8 @@ function keySend(event) {
     if (key == 13) {
         sendMessage();
 =======
+=======
+>>>>>>> fbac48d9b367b91bc85b61b9a44e65800b669b25
 </div>
 <!-- /#wrapper -->
 
@@ -153,19 +156,95 @@ function keySend(event) {
 <script src="<?php echo URLROOT; ?>/js/teacher/response.js"></script>
 
 <script>
-    var wrapper = document.getElementById("wrapper");
-    var body = document.getElementById("page-top");
-    var model = document.getElementsByClassName("modal-backdrop");
+    let wrapper = document.getElementById("wrapper");
+    let body = document.getElementById("page-top");
+    let model = document.getElementById("popup_add");
+    let add_open_door = document.getElementById("add_open_door");
+    let add_save = document.getElementById("add_save");
+    let add_cansel = document.getElementById("add_cansel");
+    let add_cansel_x = document.getElementById("add_cansel_x");
+    let data_for_time = document.getElementById("id_time");
+    let data_for_date = document.getElementById("id_date");
 
-    var messages = document.getElementById('messages');
-    var ring = document.getElementById('ring');
-    var id_user = document.getElementById('to_id');
-    var msg;
+
+
+    let messages = document.getElementById('messages');
+    let ring = document.getElementById('ring');
+    let id_user = document.getElementById('to_id');
+    let msg;
+
+
+    let meetings = {};
+
+    meetings.showParent = () => {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+
+                let txt = "";
+                let meeting;
+                let cc = this.responseText
+                meeting = JSON.parse(cc);
+                let y = 0;
+                for (i in meeting) {
+                    y++
+                    txt += `<div class='container border-bottom m-1'>
+                        <div class='row text-dark text-center'>
+                        <div class='col-4 p-1'><b>${y}:</b> Data and Time: <b>${meeting[i].meetings}</b></div>
+                        <div class='col-3 p-1'>Username: <b>${meeting[i].name}</b></div>
+                        <div class='col-1 offset-4 p-1'>${meeting[i].div}</div>
+                        </div></div>`;
+                }
+                document.getElementById('show_consultation').innerHTML = txt;
+            }
+        };
+        xmlhttp.open("GET", "<?php echo URLROOT; ?>/meetings/showTeacher", true);
+        xmlhttp.send();
+    }
+    meetings.showParent();
+    meetings.add_popup = () => {
+        model.style.display = "block";
+    }
+
+    meetings.close_popup = () => {
+        model.style.display = "none";
+    }
+
+    meetings.close = () => {
+
+    }
+
+    meetings.save = () => {
+
+        let dataFromInputDate;
+        let dataFromInputTime;
+
+        dataFromInputDate = data_for_date.value;
+        dataFromInputTime = data_for_time.value;
+
+
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo URLROOT; ?>/meetings/add_meetings",
+            data: 'date=' + dataFromInputDate + '&time=' + dataFromInputTime,
+            success: function(msg) {
+                document.write(msg);
+            }
+        });
+    }
+
+
+    add_open_door.addEventListener("click", meetings.add_popup);
+    add_cansel.addEventListener("click", meetings.close_popup);
+    add_cansel_x.addEventListener("click", meetings.close_popup);
+    add_save.addEventListener("click", meetings.save)
+
+
+
 
     // show background transparent and heidt
     function showBG() {
         wrapper.insertAdjacentHTML("afterend", "<div id='bgd' class='modal-backdrop fade show'></div>");
->>>>>>> 5f15c45bf71b66a2965d18d9147e840bf1b0fd31
     }
 
     function heighBG() {
@@ -235,12 +314,11 @@ function keySend(event) {
         } else {
             var new_message = document.createElement("div"),
                 outgoing = document.createElement("div"),
-                par = document.createElement('span'),
+                par = document.createElement('p'),
                 date = document.createElement('span');
 
             new_message.className = 'outgoing_msg message';
             outgoing.className = 'sent_msg';
-            par.className = 'msgbg';
             date.className = 'time_date';
 
             new_message.appendChild(outgoing);
@@ -284,8 +362,6 @@ function keySend(event) {
             if (this.readyState == 4 && this.status == 200) {
                 if (this.responseText > 0) {
                     new_message.innerHTML = this.responseText;
-                } else {
-                    new_message.innerHTML = "";
                 }
             }
         };
@@ -300,39 +376,28 @@ function keySend(event) {
     $d = setInterval(notification_message, 1000);
 </script>
 
-<<<<<<< HEAD
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            if (this.responseText > 0) {
-                new_message.innerHTML = this.responseText;
-            }
-        }
-    };
-=======
 <script>
     $(document).ready(function() {
-        let id ;
-        
+        let id;
+
         $("#update_trimester").on('click', function() {
 
-        var updateData = $('#form-update').val();
+            var updateData = $('#form-update').val();
             document.getElementById(id).innerHTML = updateData;
             $('.modal').hide()
             $.post("<?php echo URLROOT; ?>/grades/updateTrimester", {
                 id: id,
                 updateData: updateData
-             }, function(data) {
-    
-              });
->>>>>>> 5f15c45bf71b66a2965d18d9147e840bf1b0fd31
+            }, function(data) {
+
+            });
 
 
-});
+        });
 
         $(".trimester").on('click', function() {
 
-             id = $(this).attr('rel');
+            id = $(this).attr('rel');
             console.log(id);
 
         });

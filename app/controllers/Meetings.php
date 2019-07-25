@@ -28,12 +28,16 @@ class Meetings extends Controller
         $this->meetingModel->updateTeacher($message, $id_meeting);
     }
 
-    public function showTeacher() {
-        $id_user = $_SESSION['id_user']; 
-        
-        $meetings = $this->meetingModel->selectTeacher($id_user); 
+    public function showTeacher()
+    {
+        $id_user = $_SESSION['id_user'];
+
+        $meetings = $this->meetingModel->selectTeacher($id_user);
 
 
+        $arreyMeetings = array();
+
+<<<<<<< HEAD
         $arreyMeetings = array(); 
  
         foreach($meetings as $value) {
@@ -47,15 +51,24 @@ class Meetings extends Controller
             }
                 $div = "<button class='btn btn-danger  btn-sm' onclick='m_casel(".$value->id_meetings.")' type='button'>Cansel</button>"; 
                 
+=======
+        foreach ($meetings as $value) {
+
+            $user = $this->userModel->getUserById($value->parent);
+
+            $div = "<button class='btn btn-danger  btn-sm' onclick='m_casel(" . $value->id_meetings . ")' type='button'>Cansel</button>";
+            $name = $user->username;
+>>>>>>> fbac48d9b367b91bc85b61b9a44e65800b669b25
             array_push($arreyMeetings, [
-                "id" => $value->id_meetings, 
-                "meetings" => $value->meetings, 
-                 "status" => $value->meetings_status, 
-                 "parent" => $value->parent,
-                 "div" => $div,
-                 "name" => $name
+                "id" => $value->id_meetings,
+                "meetings" => $value->meetings,
+                "status" => $value->meetings_status,
+                "parent" => $value->parent,
+                "div" => $div,
+                "name" => $name
             ]);
         }
+<<<<<<< HEAD
         $json = json_encode($arreyMeetings);
         echo $json; 
         return; 
@@ -68,13 +81,26 @@ class Meetings extends Controller
             $time = $_POST['time']; 
             $datas = $date." ".$time.":00"; 
             
-            $result = $this->meetingModel->insertConsultation($datas);
-            
-            echo $datas;
- 
-            return; 
-        }
-       
+=======
+
+        echo (json_encode($arreyMeetings));
+        return;
     }
 
+    public function add_meetings()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            $date = $_POST['date'];
+            $time = $_POST['time'];
+            $datas = $date . " " . $time . ":00";
+
+
+>>>>>>> fbac48d9b367b91bc85b61b9a44e65800b669b25
+            $result = $this->meetingModel->insertConsultation($datas);
+
+            echo $datas;
+
+            return;
+        }
+    }
 }
