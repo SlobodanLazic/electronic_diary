@@ -243,6 +243,35 @@
     $d = setInterval(notification_message, 1000);
 </script>
 
+<script>
+    $(document).ready(function() {
+        let id;
+
+        $("#update_trimester").on('click', function() {
+
+            var updateData = $('#form-update').val();
+            document.getElementById(id).innerHTML = updateData;
+            $('.modal').hide()
+            $.post("<?php echo URLROOT; ?>/grades/updateTrimester", {
+                id: id,
+                updateData: updateData
+            }, function(data) {
+
+            });
+
+
+        });
+
+        $(".trimester").on('click', function() {
+
+            id = $(this).attr('rel');
+            console.log(id);
+
+        });
+
+    });
+</script>
+
 </body>
 
 </html>
