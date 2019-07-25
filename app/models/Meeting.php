@@ -9,13 +9,14 @@ class Meeting
         $this->db = new Database();
     }
     //Insert Consultation
-    public function insertConsultation()
+    public function insertConsultation($data)
     {
-        $this->db->query("INSERT INTO meetings(meetings.meetings, meetings.meetings_status, meetings.meetings_view, meetings.teacher)
-                          VALUES (now(), :status, 0, 0, :teacher)");
-        
+        $this->db->query("INSERT INTO meetings(meetings.meetings, meetings.meetings_status, meetings.meeting_view, meetings.teacher) 
+                          VALUES (:datatime, 0, 0, :teacher))");
+    
         $id_teacher = $_SESSION['id_user']; 
         $this->db->bind(':teacher', $id_teacher); 
+        $this->db->bind(':datatime', $data);
         
         if($this->db->execute()) {
              return true; 
@@ -55,15 +56,24 @@ class Meeting
     }
 
 
-    public function selectTeacher($data)
+    public function selectTeacher($id_user)
     {
         $this->db->query("SELECT id_meetings, meetings, parent, meetings_status
                           FROM meetings 
                           WHERE teacher = :teacher AND meetings > now() "); 
         
-        $this->db->bind(':teacher', $data->id_user); 
+        $this->db->bind(':teacher', $id_user); 
         $result = $this->db->resultSet(); 
         return $result; 
     }
-     ///// Odraditi select da se ispise kod parenta....    
+     /*
+    public function selectParent($data) 
+    {
+        $this->db->query("");
+        
+        $this->db->bind();
+        
+        $this->db->
+    }
+    */
 }

@@ -23,14 +23,85 @@
   <script src="<?php echo URLROOT; ?>/js/teacher/response.js"></script>
 
   <script>
-var wrapper = document.getElementById("wrapper"); 
-var body = document.getElementById("page-top");
-var model = document.getElementsByClassName("modal-backdrop"); 
+let wrapper = document.getElementById("wrapper"); 
+let body = document.getElementById("page-top");
+let model = document.getElementById("popup_add"); 
+let add_open_door = document.getElementById("add_open_door");
+let add_save = document.getElementById("add_save");
+let add_cansel = document.getElementById("add_cansel"); 
+let add_cansel_x = document.getElementById("add_cansel_x"); 
+let data_for_date = document.getElementById("id_data");
+let data_for_time = document.getElementById("id_time");
 
-var messages = document.getElementById('messages');
-var ring = document.getElementById('ring');
-var id_user = document.getElementById('to_id');
-var msg;
+
+
+let messages = document.getElementById('messages');
+let ring = document.getElementById('ring');
+let id_user = document.getElementById('to_id');
+let msg;
+
+
+let meetings = {}; 
+
+meetings.showParent = () => {
+    xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+              let txt = "";  
+              let meetings;
+               meetings = JSON.parse(this.responseText);
+                let y = 0; 
+              for (i in meetings) {
+                y++
+                txt += `<div class='container border-bottom m-1'>
+                        <div class='row text-dark text-center'>
+                        <div class='col-4 p-1'><b>${y}:</b> Data and Time: <b>${meetings[i].meetings}</b></div>
+                        <div class='col-3 p-1'>Username: <b>${meetings[i].name}</b></div>
+                        <div class='col-1 offset-4 p-1'>${meetings[i].div}</div>
+                        </div></div>`;
+              }
+              document.getElementById('show_consultation').innerHTML = txt;
+          }
+      };
+      xmlhttp.open("GET", "<?php echo URLROOT; ?> /meetings/showTeacher", true);
+      xmlhttp.send();
+}
+
+meetings.add_popup = () => {
+      model.style.display = "block"; 
+}
+
+meetings.close_popup = () => {
+      model.style.display = "none"; 
+}
+//ivan pocetak
+meetings.save = () => {
+
+    let dataFromInputDate;
+    let dataFromInputTime;
+
+    dataFromInputDate = data_for_date.value;
+    dataFromInputTime = data_for_time.value;
+    
+
+    $.ajax({
+        type: 'POST', 
+        url: "<?php echo URLROOT; ?>/meetings/add_meetings", 
+        data: 'date=' + dataFromInputDate + '&time=' + dataFromInputTime,
+        success: function(msg) {
+           document.write(msg);  
+        }
+    });
+}
+//ivan kraj
+
+add_open_door.addEventListener("click", meetings.add_popup);
+add_cansel.addEventListener("click", meetings.close_popup); 
+add_cansel_x.addEventListener("click", meetings.close_popup); 
+add_save.addEventListener("click", meetings.save)
+ 
+
+
 
 // show background transparent and heidt
 function showBG() {
@@ -151,9 +222,6 @@ function notification_message() {
         if (this.readyState == 4 && this.status == 200) {
             if (this.responseText > 0) {
                 new_message.innerHTML = this.responseText;
-            }
-            else {
-                new_message.innerHTML = "";
             }
         }
     };
