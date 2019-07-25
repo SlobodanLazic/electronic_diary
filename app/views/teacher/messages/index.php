@@ -10,7 +10,7 @@
           <div class="headind_srch">
             <div class="recent_heading">
               <!-- <h4>Recent</h4>  -->
-              <h4>Messaging</h4>
+              <h4>Parents</h4>
             </div>
           </div>
         
@@ -40,7 +40,7 @@
             </div>
           </div>
         </div>
-              </div>
+      </div>
       </div>
 
      

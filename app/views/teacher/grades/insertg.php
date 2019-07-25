@@ -2,6 +2,39 @@
 
 <div id="page-wrapper">
 
+    <div class="modal fade" id="modalUpdateForm" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Update trimester data</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                        <input type="date" id="form-update" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="form3">Date</label>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button id='update_trimester' class="btn btn-success">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <h2>Trimesters</h2>
+        <?php foreach ($data['gradeOptions'] as $gradeOptions) {
+            echo '<p>' . $gradeOptions->name . ' starts  ' . '<a  id="' . $gradeOptions->id_grade_for . '" rel="' . $gradeOptions->id_grade_for . '"' . 'class="trimester" data-toggle="modal" data-target="#modalUpdateForm" title="Click to Edit" href="#">' . $gradeOptions->start_from . '</a></p>';
+        } ?>
+    </div>
+
+
+
+
+
     <div class="container-fluid">
 
         <!-- Page Heading -->
@@ -16,7 +49,9 @@
                     </div>
                     <div class="card-body">
                         <h3 class="text-center student_name_st">
-                            <?php echo $data['student']->first_name . " " . $data['student']->last_name ?> <p>(<?php echo $data['student']->id_school_class ?>)</p>
+                            <?php echo 'Student: ' . $data['student']->first_name . " " . $data['student']->last_name ?>
+
+
                         </h3>
 
                         <form action="<?php echo URLROOT; ?>/users/insertg/<?php echo $data['student']->id_student ?>" method="POST">
@@ -58,7 +93,7 @@
                                     <div class="form-group">
                                         <label for="grades">Select a grade</label>
                                         <select class="custom-select my-1 mr-sm-2" name="grades" id="grades">
-                                            <option default value="0">0</option>
+                                            <option default value="0">Choose Grade</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -97,5 +132,7 @@
 
 </div>
 <!-- /#page-wrapper -->
+
+
 
 <?php require APPROOT . '/views/inc/teacher/footer.php'; ?>

@@ -29,7 +29,7 @@
                                             <th>Firstname</th>
                                             <th>Lastname</th>
                                             <th>Options</th>
-                                            <th>Grade status</th>
+                                            <!--<th>Grade status</th>-->
                                         </tr>
                                     </thead>
                                     <?php foreach ($data['students'] as $student) : ?>
@@ -60,9 +60,9 @@
                                                         <span class="text">Show grades </span>
                                                     </a>
                                                 </td>
-                                                <td>
-                                                    <p class="text-success">Yes</p>
-                                                </td>
+                                                <!--<td>
+                                                        <p class="text-success">Yes</p>
+                                                    </td>-->
                                                 </form>
                                             </tr>
                                         </tbody>

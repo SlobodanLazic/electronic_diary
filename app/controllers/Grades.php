@@ -54,7 +54,7 @@ class Grades extends Controller
 
         $averageGradesByClasses = $this->gradeModel->showAvgGradesByClasses($id_class);
 
-        echo(json_encode($averageGradesByClasses));
+        echo (json_encode($averageGradesByClasses));
     }
 
 
@@ -70,5 +70,13 @@ class Grades extends Controller
         } else {
             redirect('users');
         }
+    }
+
+    public function updateTrimester()
+    {
+
+        if ($this->gradeModel->updateTrimester($_POST)) {
+            //redirect('teacher');
+        };
     }
 }

@@ -222,12 +222,27 @@ class Grade
     {
 
 
-        $this->db->query('SELECT grade_for.name, grade_for.id_grade_for
+        $this->db->query('SELECT grade_for.name, grade_for.id_grade_for, grade_for.start_from 
         
                           FROM grade_for');
 
         $gradeOptions = $this->db->resultSet();
 
         return $gradeOptions;
+    }
+
+    public function updateTrimester($data)
+    {
+
+        $this->db->query('UPDATE grade_for SET start_from = :start_from WHERE id_grade_for = :id_grade');
+
+        $this->db->bind(':start_from', $data['updateData']);
+        $this->db->bind(':id_grade', $data['id']);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -67,15 +67,16 @@ function sendMessage() {
     } else {
         var new_message = document.createElement("div"),
             outgoing = document.createElement("div"),
-            par = document.createElement('p'),
+            msgg = document.createElement('span'),
             date = document.createElement('span');
 
         new_message.className = 'outgoing_msg message';
         outgoing.className = 'sent_msg';
         date.className = 'time_date';
+        msgg.className = 'msgbg';
 
         new_message.appendChild(outgoing);
-        outgoing.appendChild(par);
+        outgoing.appendChild(msgg);
         outgoing.appendChild(date);
 
         var d = new Date();
@@ -88,7 +89,7 @@ function sendMessage() {
 
         var text = document.createTextNode(message);
 
-        par.appendChild(text);
+        msgg.appendChild(text);
 
         document.getElementById('message').value = "";
 

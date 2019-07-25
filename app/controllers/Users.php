@@ -553,13 +553,14 @@ class Users extends Controller
                 $allsubjects = $this->gradeModel->showgrade($id);
                 $students = $this->studentModel->getStudentById($id);
                 $gardeOptions = $this->gradeModel->showGradeOptions();
+             
                 $data = [
                     'allsubjects' => $allsubjects,
                     'grades' => $grades,
                     'grade' => $grade,
                     'subjects' => $subjects,
                     'student' => $students,
-                    //'gradeOptions' => $gardeOptions
+                    'gradeOptions' => $gardeOptions
                 ];
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -572,18 +573,19 @@ class Users extends Controller
                         'id_student' => $_POST['id_student'],
                         //'grade_for' => $_POST['grade_for']
                     ];
-
+                    
                     // Check which part of school year is
 
                     // get current date
                     $currentDate = strtotime(date('y-m-d'));
 
                     // Dates for first, second , third, fourth trimester
-
+                 
                     //$beginOfFirstTrimester = strtotime("2019-09-02");
-                    $beginOfSecondTrimester = strtotime("2019-11-05");
-                    $beginOfThirdTrimester = strtotime("2020-02-02");
-                    $beginOfFourthTrimester = strtotime("2020-04-03");
+                    //$beginOfSecondTrimester = strtotime("2019-11-05");
+                    $beginOfSecondTrimester = strtotime($gardeOptions[1]->start_from);
+                    $beginOfThirdTrimester = strtotime($gardeOptions[2]->start_from);
+                    $beginOfFourthTrimester = strtotime($gardeOptions[3]->start_from);
 
                     // compare current and defined dates for trimesters
 
