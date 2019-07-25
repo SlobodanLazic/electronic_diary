@@ -5,41 +5,6 @@
   <div class="container-fluid">
 
 
-<<<<<<< HEAD
-<!-- Button trigger modal -->
-<button type="button" id="add_open_door" class="btn btn-primary">
- Add open door
-</button>
-
-<!-- Modal -->
-
-<hr>
-   <div id="show_consultation" class="container-fluid">
-   </div>
-
-  </div>
-    <!-- /.container-fluid -->
-
-    <div class="modal fade show" id="popup_add" style="padding-right: 17px; display: none;">  
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button type="button" class="close" id="add_cansel_x">
-            <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col">
-                <label for="id_data">Select date:</label>
-                <input class="form-control" type="date"  min="<?php echo Date("Y-m-d"); ?>" id="id_date">
-              </div>
-              <div class="col">
-                <label for="id_time">Select time:</label>
-                <input class="form-control" type="time" value="" id="id_time">
-              </div>
-=======
     <!-- Button trigger modal -->
     <button type="button" id="add_open_door" class="btn btn-primary">
       Add open door
@@ -72,7 +37,6 @@
             <div class="col">
               <label for="id_time">Select time:</label>
               <input class="form-control" type="time" value="" id="id_time">
->>>>>>> fbac48d9b367b91bc85b61b9a44e65800b669b25
             </div>
           </div>
         </div>

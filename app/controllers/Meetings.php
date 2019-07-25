@@ -37,28 +37,12 @@ class Meetings extends Controller
 
         $arreyMeetings = array();
 
-<<<<<<< HEAD
-        $arreyMeetings = array(); 
- 
-        foreach($meetings as $value) {
-            
-            if($value->parent !== null){    
-                $user = $this->meetingModel->getUserId($value->parent); 
-                $name = $user->username;
-            } else {
-                $user = ""; 
-                $name = ""; 
-            }
-                $div = "<button class='btn btn-danger  btn-sm' onclick='m_casel(".$value->id_meetings.")' type='button'>Cansel</button>"; 
-                
-=======
         foreach ($meetings as $value) {
 
             $user = $this->userModel->getUserById($value->parent);
 
             $div = "<button class='btn btn-danger  btn-sm' onclick='m_casel(" . $value->id_meetings . ")' type='button'>Cansel</button>";
             $name = $user->username;
->>>>>>> fbac48d9b367b91bc85b61b9a44e65800b669b25
             array_push($arreyMeetings, [
                 "id" => $value->id_meetings,
                 "meetings" => $value->meetings,
@@ -68,20 +52,6 @@ class Meetings extends Controller
                 "name" => $name
             ]);
         }
-<<<<<<< HEAD
-        $json = json_encode($arreyMeetings);
-        echo $json; 
-        return; 
-    }
-
-    public function add_meetings() 
-    {   
-        if($_SERVER['REQUEST_METHOD'] === "POST") {
-            $date = $_POST['date']; 
-            $time = $_POST['time']; 
-            $datas = $date." ".$time.":00"; 
-            
-=======
 
         echo (json_encode($arreyMeetings));
         return;
@@ -95,7 +65,6 @@ class Meetings extends Controller
             $datas = $date . " " . $time . ":00";
 
 
->>>>>>> fbac48d9b367b91bc85b61b9a44e65800b669b25
             $result = $this->meetingModel->insertConsultation($datas);
 
             echo $datas;
