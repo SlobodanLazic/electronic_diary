@@ -62,8 +62,8 @@ class Meetings extends Controller
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $date = $_POST['date'];
             $time = $_POST['time'];
-            $datas = str($date . " " . $time . ":00");
-            die(var_dump($datas));
+            $datas = $date . " " . $time . ":00";
+
 
             $result = $this->meetingModel->insertConsultation($datas);
 
