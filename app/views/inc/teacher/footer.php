@@ -66,7 +66,7 @@ meetings.showParent = () => {
       xmlhttp.open("GET", "<?php echo URLROOT; ?> /meetings/showTeacher", true);
       xmlhttp.send();
 }
-
+meetings.showParent();
 meetings.add_popup = () => {
       model.style.display = "block"; 
 }
@@ -89,7 +89,7 @@ meetings.save = () => {
         url: "<?php echo URLROOT; ?>/meetings/add_meetings", 
         data: 'date=' + dataFromInputDate + '&time=' + dataFromInputTime,
         success: function(msg) {
-           document.write(msg);  
+            
         }
     });
 }
