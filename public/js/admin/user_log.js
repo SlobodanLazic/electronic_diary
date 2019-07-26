@@ -56,7 +56,7 @@ $(document).ready(function () {
                             // we will not show id_user on the page
                             continue;
                         } else if ( jsonKey === 'logout_time') {
-                            
+                            logTableRow.setAttribute("id", i);
                             var lastLoggedOutTime = data[i][jsonKey];
                             // added logout-time class so we can compare logout time to current time
                             logTableCell.setAttribute("class","logout-time p-2");
@@ -68,6 +68,13 @@ $(document).ready(function () {
                         logTableCell.appendChild(logDataText);
                         // filled entire row with all columns and their data
                         logTableRow.append(logTableCell);
+                        console.log("current time and date : " + currentTimeAndDate);
+                        console.log("logout time and date : " + lastLoggedOutTime);
+                        if (Date.parse(currentTimeAndDate) > Date.parse(lastLoggedOutTime)) {
+                            logTableRow.setAttribute("class","bg-danger");
+                        } else {
+                            logTableRow.setAttribute("class","bg-success");
+                        }
                     }
                         
                 }
