@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 24, 2019 at 08:34 AM
--- Server version: 5.7.24
--- PHP Version: 7.2.14
+-- Generation Time: Jul 26, 2019 at 06:59 AM
+-- Server version: 5.7.19
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -68,10 +68,10 @@ CREATE TABLE IF NOT EXISTS `grade_for` (
 --
 
 INSERT INTO `grade_for` (`id_grade_for`, `name`, `start_from`, `end_to`) VALUES
-(1, 'Trimester1', NULL, NULL),
-(2, 'Trimester1', NULL, NULL),
-(3, 'Trimester3', NULL, NULL),
-(4, 'Trimester4', NULL, NULL),
+(1, 'Trimester1', '2019-07-02', NULL),
+(2, 'Trimester2', '2019-07-03', NULL),
+(3, 'Trimester3', '2019-07-04', NULL),
+(4, 'Trimester4', '2019-07-05', NULL),
 (5, 'Semester', NULL, NULL),
 (6, 'Final', NULL, NULL);
 
@@ -86,20 +86,21 @@ CREATE TABLE IF NOT EXISTS `meetings` (
   `id_meetings` int(11) NOT NULL AUTO_INCREMENT,
   `meetings` datetime NOT NULL,
   `meetings_status` tinyint(1) DEFAULT '0',
-  `meeting_message` int(11) NOT NULL,
+  `meeting_view` int(11) NOT NULL,
   `teacher` int(11) NOT NULL,
-  `parent` int(11) NOT NULL,
+  `parent` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_meetings`),
   KEY `fk_meeting_shedules_users1_idx` (`teacher`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `meetings`
 --
 
-INSERT INTO `meetings` (`id_meetings`, `meetings`, `meetings_status`, `meeting_message`, `teacher`, `parent`) VALUES
+INSERT INTO `meetings` (`id_meetings`, `meetings`, `meetings_status`, `meeting_view`, `teacher`, `parent`) VALUES
 (1, '2019-07-19 19:10:00', 1, 0, 15, 8),
-(2, '2019-07-24 19:02:00', 1, 0, 15, 8);
+(2, '2019-07-24 19:02:00', 1, 0, 15, 8),
+(3, '2019-07-26 21:05:00', 0, 0, 8, NULL);
 
 -- --------------------------------------------------------
 
@@ -118,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   PRIMARY KEY (`id_messages`),
   KEY `fk_messages_users1_idx` (`from_id_user`),
   KEY `fk_messages_users2_idx` (`to_id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `messages`
@@ -134,7 +135,10 @@ INSERT INTO `messages` (`id_messages`, `message_time`, `message_content`, `messa
 (7, '2019-07-18 16:16:32', 'hgjghj', 0, 15, 8),
 (8, '2019-07-18 19:42:50', 'csacasacds', 0, 8, 15),
 (9, '2019-07-18 19:42:56', 'cascaa', 0, 8, 15),
-(10, '2019-07-24 10:06:13', 'sasccacsac', 1, 8, 15);
+(10, '2019-07-24 10:06:13', 'sasccacsac', 0, 8, 15),
+(11, '2019-07-24 10:43:18', 'sdasdsadsadsa', 0, 8, 15),
+(12, '2019-07-24 10:43:40', 'Cao , gospodine', 0, 8, 15),
+(13, '2019-07-26 08:56:51', 'fdgfhgfh', 1, 8, 15);
 
 -- --------------------------------------------------------
 
@@ -423,14 +427,81 @@ CREATE TABLE IF NOT EXISTS `students_subjects` (
   PRIMARY KEY (`id_student_subject`),
   KEY `fk_students_subjects_students1_idx` (`id_student`),
   KEY `fk_students_subjects_subjects1_idx` (`id_subject`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `students_subjects`
 --
 
 INSERT INTO `students_subjects` (`id_student_subject`, `grades`, `grade_status`, `school_class_id`, `id_student`, `id_subject`, `grade_for_id`) VALUES
-(16, 5, 0, 1, 27, 4, 1);
+(28, 1, 1, 1, 27, 1, 4),
+(29, 1, 1, 1, 27, 1, 1),
+(30, 1, 1, 1, 27, 1, 1),
+(31, 1, 1, 1, 27, 1, 1),
+(32, 1, 1, 1, 27, 1, 4),
+(33, 1, 1, 1, 27, 1, 4),
+(34, 1, 1, 1, 27, 1, 4),
+(35, 1, 1, 1, 27, 1, 4),
+(36, 1, 1, 1, 27, 1, 4),
+(37, 1, 1, 1, 27, 1, 4),
+(38, 1, 1, 1, 27, 1, 4),
+(39, 1, 1, 1, 27, 1, 4),
+(40, 1, 1, 1, 27, 1, 4),
+(41, 1, 1, 1, 27, 1, 4),
+(42, 1, 1, 1, 27, 1, 4),
+(43, 1, 1, 1, 27, 1, 4),
+(44, 1, 1, 1, 27, 1, 1),
+(45, 1, 1, 1, 27, 1, 4),
+(46, 1, 1, 1, 27, 1, 4),
+(47, 1, 1, 1, 27, 1, 4),
+(48, 1, 1, 1, 27, 1, 4),
+(49, 1, 1, 1, 27, 1, 4),
+(50, 1, 1, 1, 27, 1, 4),
+(51, 1, 1, 1, 27, 1, 4),
+(52, 1, 1, 1, 27, 1, 4),
+(53, 1, 1, 1, 27, 1, 4),
+(54, 1, 1, 1, 27, 1, 4),
+(55, 1, 1, 1, 27, 1, 4),
+(56, 1, 1, 1, 27, 1, 4),
+(57, 1, 1, 1, 27, 1, 4),
+(58, 1, 1, 1, 27, 1, 4),
+(59, 1, 1, 1, 27, 1, 4),
+(60, 1, 1, 1, 27, 1, 4),
+(61, 1, 1, 1, 27, 1, 4),
+(62, 1, 1, 1, 27, 1, 4),
+(63, 1, 1, 1, 27, 1, 4),
+(64, 1, 1, 1, 27, 1, 4),
+(65, 1, 1, 1, 27, 1, 4),
+(66, 1, 1, 1, 27, 1, 4),
+(67, 1, 1, 1, 27, 1, 4),
+(68, 1, 1, 1, 27, 1, 4),
+(69, 1, 1, 1, 27, 1, 4),
+(70, 1, 1, 1, 27, 1, 4),
+(71, 1, 1, 1, 27, 1, 4),
+(72, 1, 1, 1, 27, 1, 4),
+(73, 1, 1, 1, 27, 1, 4),
+(74, 1, 1, 1, 27, 1, 4),
+(75, 1, 1, 1, 27, 1, 4),
+(76, 1, 1, 1, 27, 1, 4),
+(77, 1, 1, 1, 27, 1, 4),
+(78, 1, 1, 1, 27, 1, 4),
+(79, 1, 1, 1, 27, 1, 4),
+(80, 1, 1, 1, 27, 1, 4),
+(81, 1, 1, 1, 27, 1, 4),
+(82, 1, 1, 1, 27, 1, 4),
+(83, 1, 1, 1, 27, 1, 4),
+(84, 1, 1, 1, 27, 1, 4),
+(85, 1, 1, 1, 27, 1, 4),
+(86, 1, 1, 1, 27, 1, 4),
+(87, 1, 1, 1, 27, 1, 4),
+(88, 1, 1, 1, 27, 1, 4),
+(89, 1, 1, 1, 27, 1, 4),
+(90, 1, 1, 1, 27, 1, 4),
+(91, 1, 1, 1, 27, 1, 4),
+(92, 1, 1, 1, 27, 1, 4),
+(93, 1, 1, 1, 27, 1, 4),
+(94, 1, 1, 1, 27, 1, 4),
+(95, 1, 1, 1, 27, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -549,7 +620,7 @@ CREATE TABLE IF NOT EXISTS `user_log` (
   `ip_user` varchar(20) NOT NULL,
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id_log`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_log`
@@ -573,7 +644,16 @@ INSERT INTO `user_log` (`id_log`, `login_time`, `logout_time`, `ip_user`, `id_us
 (15, '2019-07-20 08:34:57', '2019-07-20 08:34:57', '::1', 8),
 (16, '2019-07-20 08:45:56', '2019-07-20 08:45:56', '::1', 2),
 (17, '2019-07-23 23:04:05', '2019-07-23 23:04:05', '::1', 8),
-(18, '2019-07-24 08:59:30', '2019-07-24 08:59:30', '::1', 8);
+(18, '2019-07-24 08:59:30', '2019-07-24 08:59:30', '::1', 8),
+(19, '2019-07-24 10:41:57', '2019-07-24 10:42:32', '::1', 2),
+(20, '2019-07-24 10:42:38', '2019-07-24 10:43:43', '::1', 8),
+(21, '2019-07-24 10:43:50', '2019-07-24 10:44:27', '::1', 15),
+(22, '2019-07-24 10:44:35', '2019-07-24 10:51:28', '::1', 2),
+(23, '2019-07-24 10:51:35', '2019-07-24 10:51:35', '::1', 8),
+(24, '2019-07-24 11:47:49', '2019-07-24 11:47:49', '::1', 2),
+(25, '2019-07-24 12:47:58', '2019-07-24 12:47:58', '::1', 8),
+(26, '2019-07-25 09:11:17', '2019-07-25 09:11:17', '::1', 8),
+(27, '2019-07-26 08:50:54', '2019-07-26 08:50:54', '::1', 8);
 
 -- --------------------------------------------------------
 
