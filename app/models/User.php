@@ -38,7 +38,7 @@ class User
                             u.id_user_role,
                             u.teacher_class_id
                             FROM users AS u 
-                            WHERE email = :email');
+                            WHERE email = :email OR username = :email');
         $this->db->bind(':email', $email);
 
         $row = $this->db->single();
@@ -61,7 +61,7 @@ class User
                               u.email,
                               u.id_user_role
                               FROM users AS u
-                              WHERE email = :email');
+                              WHERE email = :email OR username = :email');
         // Bind value
         $this->db->bind(':email', $email);
 

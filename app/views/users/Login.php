@@ -16,7 +16,7 @@
 
                 <form class="user" action="<?php echo URLROOT; ?>/users/login" method="post">
                     <div class="form-group">
-                        <input type="email" id="user2"  name="email" class="form-control form-control-user <?php echo(!empty($data['email_err'])) ? 'is-invalid' : '' ?>" value="" placeholder="Email">
+                        <input type="text" id="user2"  name="email" class="form-control form-control-user <?php echo(!empty($data['email_err'])) ? 'is-invalid' : '' ?>" value="" placeholder="Email">
                         <span class="invalid-feedback"></span>
                     </div>
                     <div class="form-group">
