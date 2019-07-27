@@ -1,7 +1,6 @@
 $(document).ready(function () {
     var entireRow = $('.col-lg-12');
     
-    
     setInterval(checkUserActivity(entireRow), 60000);
 
     function checkUserActivity(entireRow) {
@@ -70,11 +69,18 @@ $(document).ready(function () {
                         logTableRow.append(logTableCell);
                         console.log("current time and date : " + currentTimeAndDate);
                         console.log("logout time and date : " + lastLoggedOutTime);
-                        if (Date.parse(currentTimeAndDate) > Date.parse(lastLoggedOutTime)) {
-                            logTableRow.setAttribute("class","bg-danger");
-                        } else {
-                            logTableRow.setAttribute("class","bg-success");
+
+                        rowColor();
+                        setInterval(rowColor, 120000);
+
+                        function rowColor(currentTimeAndDate,lastLoggedOutTime) {
+                            if (Date.parse(currentTimeAndDate) > Date.parse(lastLoggedOutTime)) {
+                                logTableRow.setAttribute("class","bg-danger");
+                            } else {
+                                logTableRow.setAttribute("class","bg-success");
+                            } 
                         }
+                        
                     }
                         
                 }
