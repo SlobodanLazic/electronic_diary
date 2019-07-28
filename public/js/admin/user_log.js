@@ -20,8 +20,10 @@ $(document).ready(function () {
                 // creating table tag and adding bootstrap class for a stripped table
                 var logTable = document.createElement('table');
                 logTable.setAttribute('class', 'table table-striped');
-                // creating table head 
+                // creating table head and appending row to it
                 var logTableHead = document.createElement('thead');
+                var tableHeadingRow = document.createElement('tr');
+                logTableHead.append(tableHeadingRow);
                 // creating table body
                 var logTableBody = document.createElement('tbody');
 
@@ -41,7 +43,7 @@ $(document).ready(function () {
                             var tableHeadingTxt = document.createTextNode(jsonKey.toUpperCase());
                             var tableHeading = document.createElement('th');
                             tableHeading.setAttribute("class", "p-2");
-                            logTableHead.append(tableHeading);
+                            tableHeadingRow.append(tableHeading);
                             tableHeading.appendChild(tableHeadingTxt); 
                         }
                         
@@ -67,16 +69,18 @@ $(document).ready(function () {
                         logTableCell.appendChild(logDataText);
                         // filled entire row with all columns and their data
                         logTableRow.append(logTableCell);
-                        console.log("current time and date : " + currentTimeAndDate);
-                        console.log("logout time and date : " + lastLoggedOutTime);
+                        //console.log("current time and date : " + currentTimeAndDate);
+                        //console.log("logout time and date : " + lastLoggedOutTime);                        
 
                         rowColor();
                         setInterval(rowColor, 120000);
 
                         function rowColor(currentTimeAndDate,lastLoggedOutTime) {
-                            if (Date.parse(currentTimeAndDate) > Date.parse(lastLoggedOutTime)) {
+                            if (Date.parse(currentTimeAndDate) >= Date.parse(lastLoggedOutTime)) {
                                 logTableRow.setAttribute("class","bg-danger");
-                            } else {
+                            } else if(lastLoggedOutTime === undefined) {
+                                logTableRows = document.getElementById(i);
+                                console.log(logTableRows);
                                 logTableRow.setAttribute("class","bg-success");
                             } 
                         }
