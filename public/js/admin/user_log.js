@@ -69,18 +69,21 @@ $(document).ready(function () {
                         logTableCell.appendChild(logDataText);
                         // filled entire row with all columns and their data
                         logTableRow.append(logTableCell);
-                        //console.log("current time and date : " + currentTimeAndDate);
-                        //console.log("logout time and date : " + lastLoggedOutTime);                        
+                        console.log("current time and date : " + currentTimeAndDate);
+                        console.log("logout time and date : " + lastLoggedOutTime);       
+                        console.log("current time and date : " + Date.parse(currentTimeAndDate));
+                        console.log("logout time and date : " + Date.parse(lastLoggedOutTime));                        
 
-                        rowColor();
+                        
+                       
+                        //rowColor();
                         setInterval(rowColor, 120000);
 
                         function rowColor(currentTimeAndDate,lastLoggedOutTime) {
-                            if (Date.parse(currentTimeAndDate) >= Date.parse(lastLoggedOutTime)) {
+                            var timeDifference = Date.parse(currentTimeAndDate) - Date.parse(lastLoggedOutTime);
+                            if (timeDifference < 120000) {
                                 logTableRow.setAttribute("class","bg-danger");
-                            } else if(lastLoggedOutTime === undefined) {
-                                logTableRows = document.getElementById(i);
-                                console.log(logTableRows);
+                            } else {
                                 logTableRow.setAttribute("class","bg-success");
                             } 
                         }
@@ -93,5 +96,5 @@ $(document).ready(function () {
         });
 
     }
-    
+
 });
