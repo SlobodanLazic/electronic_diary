@@ -64,30 +64,24 @@ $(document).ready(function () {
                         } else {
                             logTableCell.setAttribute("class","p-2");
                         }
-                        //promena
+
                         // filled each logTableCell with text 
                         logTableCell.appendChild(logDataText);
                         // filled entire row with all columns and their data
                         logTableRow.append(logTableCell);
-                        console.log("current time and date : " + currentTimeAndDate);
-                        console.log("logout time and date : " + lastLoggedOutTime);       
-                        console.log("current time and date : " + Date.parse(currentTimeAndDate));
-                        console.log("logout time and date : " + Date.parse(lastLoggedOutTime));                        
-
                         
-                       
-                        //rowColor();
-                        setInterval(rowColor, 120000);
+                    }
 
-                        function rowColor(currentTimeAndDate,lastLoggedOutTime) {
-                            var timeDifference = Date.parse(currentTimeAndDate) - Date.parse(lastLoggedOutTime);
-                            if (timeDifference < 120000) {
-                                logTableRow.setAttribute("class","bg-danger");
-                            } else {
-                                logTableRow.setAttribute("class","bg-success");
-                            } 
-                        }
-                        
+                    rowColor(currentTimeAndDate,lastLoggedOutTime);
+                    setInterval(rowColor(currentTimeAndDate,lastLoggedOutTime), 120000);
+
+                    function rowColor(currentTimeAndDate,lastLoggedOutTime) {
+                        var timeDifference = Date.parse(currentTimeAndDate) - Date.parse(lastLoggedOutTime);
+                        if (timeDifference > 120000) {
+                            logTableRow.setAttribute("class","bg-danger");
+                        } else {
+                            logTableRow.setAttribute("class","bg-success");
+                        } 
                     }
                         
                 }
