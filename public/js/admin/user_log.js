@@ -64,7 +64,7 @@ $(document).ready(function () {
                         } else {
                             logTableCell.setAttribute("class","p-2");
                         }
-                        
+                        //promena
                         // filled each logTableCell with text 
                         logTableCell.appendChild(logDataText);
                         // filled entire row with all columns and their data
