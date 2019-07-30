@@ -56,7 +56,7 @@ $(document).ready(function () {
                         if (jsonKey === 'id_user') {
                             // we will not show id_user on the page
                             continue;
-                        } else if (jsonKey === 'login_time') {
+                        } else if ( jsonKey === 'login_time') {
                             // added a login time so we can compare logout and login time
                             var loginTime = data[i][jsonKey];
                             logTableCell.setAttribute("class","logout-time p-2 text-white");
@@ -86,7 +86,9 @@ $(document).ready(function () {
                             logTableRow.setAttribute("class","bg-danger");
                         } else if (loginTime === lastLoggedOutTime) {
                             logTableRow.setAttribute("class","bg-success");
-                        } 
+                        } else {
+                            logTableRow.setAttribute("class","bg-danger");
+                        }
                     }
                         
                 }
