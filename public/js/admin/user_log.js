@@ -53,16 +53,20 @@ $(document).ready(function () {
                         // created text out of Json data
                         var  logDataText = document.createTextNode(contentOfDiv);
                         
-                        if ( jsonKey === 'id_user') {
+                        if (jsonKey === 'id_user') {
                             // we will not show id_user on the page
                             continue;
-                        } else if ( jsonKey === 'logout_time') {
+                        } else if (jsonKey === 'login_time') {
+                            // added a login time so we can compare logout and login time
+                            var loginTime = data[i][jsonKey];
+                            logTableCell.setAttribute("class","logout-time p-2 text-white");
+                        } else if (jsonKey === 'logout_time') {
                             logTableRow.setAttribute("id", i);
                             var lastLoggedOutTime = data[i][jsonKey];
                             // added logout-time class so we can compare logout time to current time
-                            logTableCell.setAttribute("class","logout-time p-2");     
+                            logTableCell.setAttribute("class","logout-time p-2 text-white");
                         } else {
-                            logTableCell.setAttribute("class","p-2");
+                            logTableCell.setAttribute("class","p-2 text-white");
                         }
 
                         // filled each logTableCell with text 
@@ -70,17 +74,17 @@ $(document).ready(function () {
 
                         // filled entire row with all columns and their data
                         logTableRow.append(logTableCell);
-
                         
                     }
-
-                    rowColor(currentTimeAndDate,lastLoggedOutTime);
+                    
+                    setInterval(rowColor(currentTimeAndDate,lastLoggedOutTime), 120000);
+                    //rowColor(currentTimeAndDate,lastLoggedOutTime);
 
                     function rowColor(currentTimeAndDate,lastLoggedOutTime) {
                         var timeDifference = Date.parse(currentTimeAndDate) - Date.parse(lastLoggedOutTime);
-                        if (timeDifference > 120000) {
+                        if (timeDifference > 120000 && loginTime !== lastLoggedOutTime) {
                             logTableRow.setAttribute("class","bg-danger");
-                        } else {
+                        } else if (loginTime === lastLoggedOutTime) {
                             logTableRow.setAttribute("class","bg-success");
                         } 
                     }
