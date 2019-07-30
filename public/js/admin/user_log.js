@@ -51,8 +51,8 @@ $(document).ready(function () {
                         // for each json object it adds format of text like this key: value 
                         var contentOfDiv = data[i][jsonKey];
                         // created text out of Json data
-                        var logDataText = document.createTextNode(contentOfDiv);
-
+                        var  logDataText = document.createTextNode(contentOfDiv);
+                        
                         if ( jsonKey === 'id_user') {
                             // we will not show id_user on the page
                             continue;
@@ -60,20 +60,21 @@ $(document).ready(function () {
                             logTableRow.setAttribute("id", i);
                             var lastLoggedOutTime = data[i][jsonKey];
                             // added logout-time class so we can compare logout time to current time
-                            logTableCell.setAttribute("class","logout-time p-2");
+                            logTableCell.setAttribute("class","logout-time p-2");     
                         } else {
                             logTableCell.setAttribute("class","p-2");
                         }
 
                         // filled each logTableCell with text 
                         logTableCell.appendChild(logDataText);
+
                         // filled entire row with all columns and their data
                         logTableRow.append(logTableCell);
+
                         
                     }
 
                     rowColor(currentTimeAndDate,lastLoggedOutTime);
-                    setInterval(rowColor(currentTimeAndDate,lastLoggedOutTime), 120000);
 
                     function rowColor(currentTimeAndDate,lastLoggedOutTime) {
                         var timeDifference = Date.parse(currentTimeAndDate) - Date.parse(lastLoggedOutTime);
@@ -92,3 +93,5 @@ $(document).ready(function () {
     }
 
 });
+
+
