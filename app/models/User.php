@@ -226,14 +226,15 @@ class User
 
     public function show_logs()
     {
-        $this->db->query("  SELECT users.id_user,
+        $this->db->query("  SELECT user_log.id_log,
+                                users.id_user,
                                 users.email,
                                 users.username,
                                 user_log.login_time, 
                                 user_log.logout_time
                             FROM user_log
                                 JOIN users ON user_log.id_user = users.id_user
-                            ORDER BY id_log DESC");
+                            ORDER BY user_log.id_log DESC");
 
         $user_id = (int) $_SESSION['id_user'];
 

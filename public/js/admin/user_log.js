@@ -84,7 +84,7 @@ $(document).ready(function () {
                         var timeDifference = Date.parse(currentTimeAndDate) - Date.parse(lastLoggedOutTime);
                         if (timeDifference > 120000 && loginTime !== lastLoggedOutTime) {
                             logTableRow.setAttribute("class","bg-danger");
-                        } else if (loginTime === lastLoggedOutTime) {
+                        } else if (loginTime === lastLoggedOutTime && timeDifference > 120000 ) {
                             logTableRow.setAttribute("class","bg-success");
                         } else {
                             logTableRow.setAttribute("class","bg-danger");
@@ -97,7 +97,14 @@ $(document).ready(function () {
         });
 
     }
-
+function new_time() {
+    $.ajax({
+        type: `POST`,
+        data: ``,
+        url: `http://localhost/electronic_diary/users/logout_new`
+    });
+}
+    $new_data = setInterval(new_time, 60000);
 });
 
 
