@@ -436,7 +436,7 @@ class Users extends Controller
     }
 
     public function logout_new() {
-        $this->userModel->LogoutTimeUpdate();
+        $this->userModel->show_logs();
     }
 
     public function admin()

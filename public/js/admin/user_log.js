@@ -5,7 +5,25 @@ $(document).ready(function () {
 
     function checkUserActivity(entireRow) {
         var currentTimeAndDate = new Date($.now());
+        // creating a div that and adding bootstrap class that will make the table responsive
+        var divTableResponsive = document.createElement('div');
+        divTableResponsive.setAttribute('class','table-responsive');
+        // creating table tag and adding bootstrap class for a stripped table
+        var logTable = document.createElement('table');
+        logTable.setAttribute('class', 'table table-striped');
+        // creating table head and appending row to it
+        var logTableHead = document.createElement('thead');
+        var tableHeadingRow = document.createElement('tr');
+        logTableHead.append(tableHeadingRow);
+        // creating table body
+        var logTableBody = document.createElement('tbody');
+
+        logTable.appendChild(logTableHead);
+        logTable.appendChild(logTableBody);
+        divTableResponsive.appendChild(logTable);
         
+        entireRow.append(divTableResponsive);
+
         $.ajax({
             url : 'http://localhost/electronic_diary/users/showLastLoggedInTime',
             method: 'POST',
@@ -14,24 +32,7 @@ $(document).ready(function () {
             success: function (data) {
                 //Getting all log data from DB
                 var data = data;
-                // creating a div that and adding bootstrap class that will make the table responsive
-                var divTableResponsive = document.createElement('div');
-                divTableResponsive.setAttribute('class','table-responsive');
-                // creating table tag and adding bootstrap class for a stripped table
-                var logTable = document.createElement('table');
-                logTable.setAttribute('class', 'table table-striped');
-                // creating table head and appending row to it
-                var logTableHead = document.createElement('thead');
-                var tableHeadingRow = document.createElement('tr');
-                logTableHead.append(tableHeadingRow);
-                // creating table body
-                var logTableBody = document.createElement('tbody');
-
-                logTable.appendChild(logTableHead);
-                logTable.appendChild(logTableBody);
-                divTableResponsive.appendChild(logTable);
                 
-                entireRow.append(divTableResponsive);
                 for (let i = 0; i < data.length; i++) {
                     
                     var logTableRow = document.createElement('tr');
@@ -82,10 +83,10 @@ $(document).ready(function () {
 
                     function rowColor(currentTimeAndDate,lastLoggedOutTime) {
                         var timeDifference = Date.parse(currentTimeAndDate) - Date.parse(lastLoggedOutTime);
-                        if (timeDifference > 120000 && loginTime !== lastLoggedOutTime) {
-                            logTableRow.setAttribute("class","bg-danger");
-                        } else if (loginTime === lastLoggedOutTime && timeDifference > 120000 ) {
+                        if (lastLoggedOutTime === null) {
                             logTableRow.setAttribute("class","bg-success");
+                            // added when logout time is null to write Logged in
+                            logTableCell.innerHTML = 'Logged In';
                         } else {
                             logTableRow.setAttribute("class","bg-danger");
                         }
@@ -97,14 +98,14 @@ $(document).ready(function () {
         });
 
     }
-function new_time() {
-    $.ajax({
-        type: `POST`,
-        data: ``,
-        url: `http://localhost/electronic_diary/users/logout_new`
-    });
-}
-    $new_data = setInterval(new_time, 60000);
+    function newLogoutTime() {
+        $.ajax({
+            type: `POST`,
+            data: ``,
+            url: `http://localhost/electronic_diary/users/logout_new`
+        });
+    }
+    $new_data = setInterval(newLogoutTime, 60000);
 });
 
 

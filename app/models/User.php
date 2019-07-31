@@ -211,7 +211,9 @@ class User
     public function LogoutTimeUpdate()
     {
 
-        $this->db->query("update user_log set logout_time = now() WHERE id_log = :id_log");
+        $this->db->query("UPDATE user_log 
+                          SET user_log.logout_time = NOW() 
+                          WHERE id_log = :id_log");
 
         $id_log = (int) $_SESSION['last_id'];
 
