@@ -109,7 +109,3 @@ $(document).ready(function () {
     setInterval(newLogoutTime, 60000);
     
 });
-
-
-
-
