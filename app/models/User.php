@@ -228,8 +228,7 @@ class User
 
     public function show_logs()
     {
-        $this->db->query("  SELECT user_log.id_log,
-                                users.id_user,
+        $this->db->query("  SELECT users.id_user,
                                 users.email,
                                 users.username,
                                 user_log.login_time, 
