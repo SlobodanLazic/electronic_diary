@@ -41,71 +41,71 @@
     let msg;
 
 
-    let meetings = {};
+    let meetings = {}; 
 
-    meetings.showParent = () => {
+meetings.showParent = () => {
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-
-                let txt = "";
-                let meeting;
-                let cc = this.responseText
-                meeting = JSON.parse(cc);
-                let y = 0;
-                for (i in meeting) {
-                    y++
-                    txt += `<div class='container border-bottom m-1'>
+             
+              let txt = "";  
+               let meeting; 
+               let cc = this.responseText
+               meeting = JSON.parse(cc);
+                let y = 0; 
+              for (i in meeting) {
+                y++
+                txt += `<div class='container border-bottom m-1'>
                         <div class='row text-dark text-center'>
                         <div class='col-4 p-1'><b>${y}:</b> Data and Time: <b>${meeting[i].meetings}</b></div>
                         <div class='col-3 p-1'>Username: <b>${meeting[i].name}</b></div>
                         <div class='col-1 offset-4 p-1'>${meeting[i].div}</div>
                         </div></div>`;
-                }
-                document.getElementById('show_consultation').innerHTML = txt;
-            }
-        };
-        xmlhttp.open("GET", "<?php echo URLROOT; ?>/meetings/showTeacher", true);
-        xmlhttp.send();
-    }
-    meetings.showParent();
-    meetings.add_popup = () => {
-        model.style.display = "block";
-    }
+              }
+              document.getElementById('show_consultation').innerHTML = txt;
+          }
+      };
+      xmlhttp.open("GET", "<?php echo URLROOT; ?>/meetings/showTeacher", true);
+      xmlhttp.send();
+}
+meetings.showParent();
+meetings.add_popup = () => {
+      model.style.display = "block"; 
+}
 
-    meetings.close_popup = () => {
-        model.style.display = "none";
-    }
+meetings.close_popup = () => {
+      model.style.display = "none"; 
+}
 
-    meetings.close = () => {
+meetings.close = () => {
 
-    }
+}
 
-    meetings.save = () => {
+meetings.save = () => {
+    model.style.display = "none";  
 
-        let dataFromInputDate;
-        let dataFromInputTime;
+    let dataFromInputDate;
+    let dataFromInputTime;
 
-        dataFromInputDate = data_for_date.value;
-        dataFromInputTime = data_for_time.value;
+    dataFromInputDate = data_for_date.value;
+    dataFromInputTime = data_for_time.value;
+    
+
+    $.ajax({
+        type: 'POST', 
+        url: "<?php echo URLROOT; ?>/meetings/add_meetings", 
+        data: 'date=' + dataFromInputDate + '&time=' + dataFromInputTime,
+        success: function(msg) {
+             
+        }
+    });
+}
 
 
-        $.ajax({
-            type: 'POST',
-            url: "<?php echo URLROOT; ?>/meetings/add_meetings",
-            data: 'date=' + dataFromInputDate + '&time=' + dataFromInputTime,
-            success: function(msg) {
-                document.write(msg);
-            }
-        });
-    }
-
-
-    add_open_door.addEventListener("click", meetings.add_popup);
-    add_cansel.addEventListener("click", meetings.close_popup);
-    add_cansel_x.addEventListener("click", meetings.close_popup);
-    add_save.addEventListener("click", meetings.save)
-
+add_open_door.addEventListener("click", meetings.add_popup);
+add_cansel.addEventListener("click", meetings.close_popup); 
+add_cansel_x.addEventListener("click", meetings.close_popup); 
+add_save.addEventListener("click", meetings.save);
 
 
 
