@@ -435,6 +435,10 @@ class Users extends Controller
         redirect('users/login');
     }
 
+    public function logout_new() {
+        $this->userModel->show_logs();
+    }
+
     public function admin()
     {
         if (isset($_SESSION['id_user'])) {

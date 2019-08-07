@@ -38,7 +38,7 @@ class User
                             u.id_user_role,
                             u.teacher_class_id
                             FROM users AS u 
-                            WHERE email = :email');
+                            WHERE email = :email OR username = :email');
         $this->db->bind(':email', $email);
 
         $row = $this->db->single();
@@ -61,7 +61,7 @@ class User
                               u.email,
                               u.id_user_role
                               FROM users AS u
-                              WHERE email = :email');
+                              WHERE email = :email OR username = :email');
         // Bind value
         $this->db->bind(':email', $email);
 
@@ -211,7 +211,9 @@ class User
     public function LogoutTimeUpdate()
     {
 
-        $this->db->query("update user_log set logout_time = now() WHERE id_log = :id_log");
+        $this->db->query("UPDATE user_log 
+                          SET user_log.logout_time = NOW() 
+                          WHERE id_log = :id_log");
 
         $id_log = (int) $_SESSION['last_id'];
 
@@ -233,7 +235,7 @@ class User
                                 user_log.logout_time
                             FROM user_log
                                 JOIN users ON user_log.id_user = users.id_user
-                            ORDER BY id_log DESC");
+                            ORDER BY user_log.id_log DESC");
 
         $user_id = (int) $_SESSION['id_user'];
 

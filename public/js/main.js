@@ -39,20 +39,7 @@ function dragLeave(event) {
 
 
 
-// const inputElement = document.querySelector(".js-controlled-input")
-
-// preventDragNDropChangesOn(inputElement)
-
-// function preventDragNDropChangesOn(inputElement) {
-//    let previousValue = inputElement.value
-//    let isDragged = false
-//    let wasDropped = false
-
-
-//    inputElement.addEventListener('dragstart', () => isDragged = true)
-//    document.body.addEventListener('drop', () =>subjects_drag
-//       (wasDropped = isDragged) && (previousValue = inputElement.value))
-//    inputElement.addEventListener('change', (e) =>
-//       isDragged && wasDropped && (e.target.value = previousValue))
-//    inputElement.addEventListener('dragend', () => isDragged = wasDropped = false)
-// }
+function hideText(inputsSchedules) {
+ 
+   inputsSchedules.value='';
+}
